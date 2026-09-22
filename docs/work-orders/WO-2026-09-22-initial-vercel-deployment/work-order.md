@@ -5,6 +5,9 @@
 - Created: 2026-09-22
 - Repository: `rickvang/Portfolio`
 - Branch: `ops/initial-vercel-deployment`
+- GitHub issue: https://github.com/rickvang/Portfolio/issues/23
+- Current Work: `CW-36`
+- Current Work URL: https://app.notion.com/p/3e3cd82535ff814cbd74ca0afaecd7af
 - Vercel project: `portfolio`
 - Vercel project ID: `prj_TpNCsnCbMRjCS4Sn6FLdnR7BCqM2`
 - Vercel team ID: `team_aDqth5R7Xpr6XKtxgfpfvTZt`
@@ -36,7 +39,7 @@ The requester explicitly authorized deployment in chat on 2026-09-22.
 
 ## Current state
 
-The Vercel project exists and currently reports zero deployments. The connected Vercel app's direct one-click deploy action is advertised but not exposed by the live connector, so this Work Order commit is the minimal Git-trigger path.
+The Git integration is confirmed. The first preview build for commit `0be3cc2` failed on Vercel with `edge_invalid_api` while the repository CI build passed. The failure matches the known Edge-runtime static-analysis limitation in the pinned Supabase client path. The deployment branch now sets Next.js 15.5 middleware to the stable `nodejs` runtime for the narrow `/admin` and `/dev/harness` matcher, and Vercel is rebuilding commit `64db9eb`.
 
 ## Next action
 
