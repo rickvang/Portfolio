@@ -170,3 +170,11 @@ export function getCaseStudyBySlug(
 ): CaseStudy | undefined {
   return caseStudies.find((caseStudy) => caseStudy.slug === slug);
 }
+
+
+export function getApprovedCaseStudyBySlug(
+  slug: string,
+  caseStudies: readonly CaseStudy[] = importedCaseStudyDrafts,
+): CaseStudy | undefined {
+  return getApprovedCaseStudies(caseStudies).find((caseStudy) => caseStudy.slug === slug);
+}
