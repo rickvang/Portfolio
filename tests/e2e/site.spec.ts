@@ -32,6 +32,18 @@ test("public work stays approval-gated", async ({ page }) => {
   await expect(page.getByText(/design system for improving consistency/i)).toHaveCount(0);
 });
 
+test("new editorial drafts remain unavailable on public routes", async ({ page }) => {
+  for (const slug of ["ai-systems", "ui-design-practices"]) {
+    await page.goto(`/work/${slug}`);
+    await expect(page).toHaveTitle("Case study not found | Rick Vang");
+    await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);
+  }
+
+  await page.goto("/notes/persona-led-design-discovery");
+  await expect(page).toHaveTitle("Note not found | Rick Vang");
+  await expect(page.getByText(/AI personas are most useful to my design process/i)).toHaveCount(0);
+});
+
 test("public notes provide a list and detail route", async ({ page }) => {
   await page.goto("/notes");
 
