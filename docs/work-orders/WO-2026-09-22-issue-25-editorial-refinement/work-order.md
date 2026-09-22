@@ -82,12 +82,13 @@ Phase 5 — implementation and verification complete; waiting for explicit merge
 ## Validation evidence
 
 - PR: https://github.com/rickvang/Portfolio/pull/26
-- Current verified head: `0e27668ea822ed95534e552b8cb8e15f96d07281`
+- Validated implementation head before tracking-only Work Order updates: `0e27668ea822ed95534e552b8cb8e15f96d07281`
 - GitHub CI run `35754808409`: lint, typecheck, unit tests, Playwright E2E, visual capture upload, production build, and local Supabase schema checks all passed.
 - Vercel preview `dpl_2WamtXRghteHXNRSgvM4fwbRjkkV`: `READY`, no alias error.
 - Visual artifact `10706249851`: reviewed; captures are clean and development chrome is excluded.
 - Automated review: Cursor approval present; all Codex P2 threads are resolved; no unresolved review threads remain.
 - Branch relationship at the last verification: ahead of `main` with no known product/validation blocker.
+- The final Work Order checkpoint commits are documentation-only and do not change product behavior; their CI/preview state must still be refreshed before any authorized merge.
 
 ## Validation required
 
