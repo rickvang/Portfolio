@@ -1,14 +1,18 @@
 import { expect, test } from "@playwright/test";
 
-test("homepage exposes the primary portfolio flow", async ({ page }) => {
+test("homepage is driven by approved portfolio content", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /build the conditions for better work/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Hi, I'm Rick.", exact: true })).toBeVisible();
+  await expect(page.getByText(/product design leader driven by creating systems/i)).toBeVisible();
   await expect(page.getByRole("link", { name: "View work" })).toHaveAttribute("href", "/work");
-  await expect(page.getByRole("heading", { name: "Systems that make complexity legible." })).toBeVisible();
-  await expect(page.getByTestId("case-study-list-empty")).toContainText("Case studies are under review.");
-  await expect(page.getByRole("heading", { name: "Methods, systems, and the questions behind the work." })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Fixture post", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Recent projects", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
+  await expect(page.getByText("11+", { exact: true })).toBeVisible();
+  await expect(page.getByText("14+", { exact: true })).toBeVisible();
+  await expect(page.getByText("30+", { exact: true })).toBeVisible();
 
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });
   await expect(navigation.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "page");
@@ -19,21 +23,38 @@ test("homepage exposes the primary portfolio flow", async ({ page }) => {
   await expect(page.locator('a[href^="/dev/harness"]')).toHaveCount(0);
 });
 
-test("public work stays approval-gated", async ({ page }) => {
-  await page.goto("/work");
+test("about page renders the approved biography and experience summary", async ({ page }) => {
+  await page.goto("/about");
 
-  await expect(page.getByRole("heading", { name: "Approved work" })).toBeVisible();
-  await expect(page.getByTestId("case-study-list-empty")).toContainText(
-    "Draft source material stays out of public routes until it is explicitly approved.",
-  );
-
-  await page.goto("/work/design-systems");
-  await expect(page).toHaveTitle("Case study not found | Rick Vang");
-  await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);
-  await expect(page.getByText(/design system for improving consistency/i)).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
+  await expect(page.getByText(/spent over a decade designing and building software/i)).toBeVisible();
+  await expect(page.getByRole("term", { name: "Years of Experience" })).toBeVisible();
+  await expect(page.getByRole("term", { name: "Companies" })).toBeVisible();
+  await expect(page.getByRole("term", { name: "Projects Delivered" })).toBeVisible();
 });
 
-test("new editorial drafts remain unavailable on public routes", async ({ page }) => {
+test("approved imported work is public through the shared case-study routes", async ({ page }) => {
+  await page.goto("/work");
+
+  await expect(page.getByRole("heading", { name: "Selected work" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
+  await expect(page.getByTestId("case-study-list-empty")).toHaveCount(0);
+
+  await page.goto("/work/multi-product-integrations");
+  await expect(page).toHaveTitle("Multi Product Integrations | Rick Vang");
+  await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Case study chapters" })).toContainText("Exploration");
+  await expect(page.getByText(/client intellectual property/i)).toBeVisible();
+
+  await page.goto("/work/design-systems");
+  await expect(page).toHaveTitle("Design Systems | Rick Vang");
+  await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
+  await expect(page.getByText("Lightweight governance", { exact: true })).toBeVisible();
+  await expect(page.getByText(/client intellectual property/i)).toBeVisible();
+});
+
+test("authored editorial drafts remain unavailable on public routes", async ({ page }) => {
   for (const slug of ["ai-systems", "ui-design-practices"]) {
     await page.goto(`/work/${slug}`);
     await expect(page).toHaveTitle("Case study not found | Rick Vang");
