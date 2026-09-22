@@ -31,3 +31,11 @@ The first author workflow is implemented as server actions and protected routes 
 ## 2026-09-22 — Use Riley and Current Work as the durable orchestration layer
 
 Portfolio remains authoritative for its code, architecture, design, tests, data boundaries, and repository-specific implementation decisions. For every substantial Portfolio workstream, Riley Morgan / `ai-orchestrator` is the default durable orchestration owner unless the requester establishes another boundary. Current Work is the concise cross-agent index, repo-local Work Orders carry detailed execution and recovery state, and GitHub, Vercel, Supabase, and other live systems remain authoritative for volatile operational facts. The selected specialist, Persona, Skill, Playbook, Tool path, or runtime may execute directly without an artificial Riley hop. Shared Persona Workspace repositories provide reusable guidance but do not replace Portfolio-local implementation truth or grant cross-repository mutation permission.
+
+## 2026-09-22 — Keep cinematic motion CSS-first and interruption-safe
+
+The redesign motion contract uses semantic CSS duration/easing tokens and small presentational transforms rather than adding a motion library. Public chapter entry, drawer entry, rail-state changes, hover/focus feedback, and form feedback are expressible with CSS and do not justify a new dependency.
+
+Navigation, Escape, explicit close, browser history, and focus recovery are authoritative. Motion is canceled or superseded when those states change; animations are not queued and no exit animation may delay drawer close or route focus. Reduced-motion users receive final-state rendering without chapter, drawer, backdrop, or feedback animation.
+
+Revisit a motion dependency only if a later approved interaction requires coordinated stateful choreography that cannot remain accessible, interruptible, progressively enhanced, and maintainable with the platform primitives already in use.
