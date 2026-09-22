@@ -6,7 +6,7 @@
 - Title: Portfolio work-to-experience translation and work-led surfaces
 - Status: ready-for-review
 - Created: 2026-09-22
-- Last updated: 2026-09-22 (local verification complete)
+- Last updated: 2026-09-22 (draft PR, issue links, and Current Work reconciled)
 - Requester: Riley / repository owner
 - Current owner: Riley Morgan / Codex implementation for Current Work CW-39
 - Request mode: update and prototype
@@ -29,7 +29,7 @@
 | ART-002 | UX evidence and design crosswalk | `docs/work-orders/WO-2026-09-22-issue-28-work-led-surface/experience-crosswalk.md` | Current branch | Riley Morgan / Codex | reviewed | Source-backed interpretations; reader response remains a hypothesis. |
 | ART-003 | Product implementation and tests | `src/lib/experience-profiles.ts`, `src/lib/project-presentation.ts`, `src/components/experience-presentation.tsx`, `src/components/project-preview.tsx`, and associated pages/styles/tests | Current branch | Portfolio | reviewed | All mutations stay in Portfolio; repository checks pass. |
 | ART-004 | GitHub issue | https://github.com/rickvang/Portfolio/issues/30 | Live issue | Repository owner | open | User-directed progress link update; keep issue open. |
-| ART-005 | Stacked draft PR | To be linked after creation | Current branch from PR #29 head | Portfolio | active | Must target the Issue #29 head branch, not main. |
+| ART-005 | Stacked draft PR | https://github.com/rickvang/Portfolio/pull/31 | Branch `codex/issue-30-work-to-experience` | Portfolio | active | Draft PR #31 targets `feat/issue-28-work-led-surface` at PR #29's head; no merge/deploy. |
 
 ## Project context and reference routing
 
@@ -260,9 +260,9 @@ No modeled responses are claimed. The harness only exercises component states.
 - Revision: 2026-09-22
 - Coverage result: implementation acceptance covered; independent reader result remains pending
 - Unserved or blocked rows: human cold-reader comprehension is pending; source media remains intentionally blocked.
-- Orphan check: pending final GitHub artifact linking and diff review.
+- Orphan check: complete; PR #31 lists all 23 intended changed files and issue/Work Order links resolve to the same branch.
 - Owner: Riley Morgan / Codex
-- Next correction: record test results and links after validation.
+- Next correction: capture an independent reader's interpretation; revise only if the crosswalk invalidators are triggered.
 
 | Acceptance item | Evidence in implementation | Verification |
 | --- | --- | --- |
@@ -293,7 +293,7 @@ No modeled responses are claimed. The harness only exercises component states.
 | Content and IA | Riley Morgan / Codex | complete | experience crosswalk and profiles | source-backed with curated interpretations | pass | independent reader remains a separate evaluation gate |
 | Visual and interaction | Portfolio | complete | shared renderer, previews, harness | authored pattern contracts | pass | none |
 | Prototype and evaluation | Requester/reviewer | blocked on external reader | local harness and cold-reader script | synthetic fixtures only | blocked: reviewer session not yet performed | select independent reviewer |
-| Handoff and QA | Riley Morgan / Codex | active | local build and browser suite | build + 32 unit tests + 37 browser tests pass | pass | publish stacked draft PR and update issue links |
+| Handoff and QA | Riley Morgan / Codex | complete | [draft PR #31](https://github.com/rickvang/Portfolio/pull/31), Issue #30, and CW-39 | build + 32 unit tests + 37 browser tests pass | pass | independent cold-reader evaluation remains open |
 
 ## 9. Handoffs and recovery
 
@@ -333,19 +333,19 @@ No modeled responses are claimed. The harness only exercises component states.
 - Direct dependents: Portfolio DESIGN.md, architecture, decisions, tests, GitHub Issue #30
 - Required updates: link work packet and draft PR from issue; update Current Work with resulting state
 - Optional follow-ups: conduct cold-reader review; separately review source-media reuse
-- Reconciliation status: in progress; GitHub and Notion links still need the draft PR
-- Link: https://app.notion.com/p/3e3cd82535ff81199040fc1bbd07f5a5
+- Reconciliation status: complete; Issue #30 and Current Work CW-39 link to draft PR #31 and the evidence packet
+- Link: [Current Work CW-39](https://app.notion.com/p/3e3cd82535ff81199040fc1bbd07f5a5); [Issue #30](https://github.com/rickvang/Portfolio/issues/30); [draft PR #31](https://github.com/rickvang/Portfolio/pull/31)
 
 ## 11. Close or no-go
 
-- Concrete deliverable, decision, prototype, implementation, or action plan: seven-layer interpretation, two project patterns, shared renderer, local harness, passing build/unit/browser suites; stacked draft PR still to publish
+- Concrete deliverable, decision, prototype, implementation, or action plan: seven-layer interpretation, agent-facing scaffold, two project patterns, shared renderer, local harness, passing build/unit/browser suites, and stacked draft PR #31
 - Success criterion addressed: all implementation and local verification criteria; independent cold-reader evaluation remains open
 - Contribution or decision dispositions: Portfolio only; no shared-repository write is authorized
 - Evidence limitations: no independent cold-reader result, no quantitative outcomes, and no approved media
 - Remaining unknowns: U-001 and U-002
 - What was not tested: cold-reader understanding until an independent reviewer participates
 - Final gate: ready-for-review; local checks pass and human evaluation remains a separate review gate
-- Next action or explicit completion boundary: publish the stacked draft PR and artifact links; requester/reviewer completes the crosswalk's independent cold-reader check; keep Issue #30 open
+- Next action or explicit completion boundary: requester/reviewer completes the crosswalk's independent cold-reader check; keep Issue #30 open until that interpretation is recorded
 - Closed by: not closed
 - Closed at: not closed
 
