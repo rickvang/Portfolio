@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import { publicRoutes } from "@/lib/public-routes";
 
@@ -53,12 +53,12 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
   const drawerRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
-  function closeDrawer({ returnFocus = true } = {}) {
+  const closeDrawer = useCallback(({ returnFocus = true }: { returnFocus?: boolean } = {}) => {
     setDrawerOpen(false);
     if (returnFocus) {
       window.requestAnimationFrame(() => toggleRef.current?.focus());
     }
-  }
+  }, []);
 
   useEffect(() => {
     if (!drawerOpen) return;
@@ -99,7 +99,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [drawerOpen]);
+  }, [closeDrawer, drawerOpen]);
 
   return (
     <div className="public-shell">
