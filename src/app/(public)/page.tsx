@@ -14,21 +14,17 @@ export default async function HomePage() {
   const caseStudies = getApprovedCaseStudies();
   const posts = await getPublishedPosts();
 
-  if (!profile) {
-    throw new Error("The public homepage requires an approved imported profile.");
-  }
-
   return (
     <div className="public-page">
       <section className="hero public-hero editorial-hero" id="top">
-        <p className="hero-coordinate">{profile.eyebrow}</p>
+        <p className="hero-coordinate">{profile?.eyebrow ?? "Portfolio"}</p>
         <div className="editorial-hero-grid">
           <div className="editorial-hero-statement">
             <p className="eyebrow">Rick Vang / Product design leader</p>
-            <h1>{profile.headline}</h1>
+            <h1>{profile?.headline ?? "Rick Vang"}</h1>
           </div>
           <div className="editorial-hero-support">
-            <p className="lede">{profile.summary}</p>
+            <p className="lede">{profile?.summary ?? "Profile content is under review."}</p>
             <div className="hero-actions">
               <Link className="button" href={publicRoutes.work}>
                 View work
@@ -56,15 +52,15 @@ export default async function HomePage() {
       <section className="content-section split-section editorial-section" id="about">
         <div className="section-heading editorial-section-heading">
           <p className="eyebrow">About</p>
-          <h2>{profile.aboutHeading}</h2>
+          <h2>{profile?.aboutHeading ?? "About Rick Vang"}</h2>
         </div>
         <div className="editorial-section-copy">
-          <p>{profile.aboutSummary}</p>
+          <p>{profile?.aboutSummary ?? "Profile content is under review."}</p>
           <Link className="text-link" href={publicRoutes.about}>
             More about my work
           </Link>
         </div>
-        <ProfileStats stats={profile.stats} />
+        {profile && <ProfileStats stats={profile.stats} />}
       </section>
 
       <section className="content-section editorial-section editorial-section-offset" id="notes">

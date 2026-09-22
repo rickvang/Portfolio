@@ -41,7 +41,8 @@ test("harness previews the attributed approved public source", async ({ page }) 
 
   const preview = page.getByTestId("imported-content-preview");
   await expect(preview).toBeVisible();
-  await expect(preview).toContainText("Review status: approved");
+  await expect(preview).toContainText("Profile status: approved");
+  await expect(preview).toContainText("Source capture: reviewed");
   await expect(preview).toContainText("Multi Product Integrations");
   await expect(preview).toContainText("Design Systems");
   await expect(preview.getByRole("link", { name: "Review the captured source" })).toHaveAttribute(
@@ -49,7 +50,6 @@ test("harness previews the attributed approved public source", async ({ page }) 
     "https://www.rickvang.com/",
   );
 });
-
 
 test("harness exercises approved imported work through the shared case-study template", async ({ page }) => {
   await page.goto("/dev/harness");
@@ -72,7 +72,6 @@ test("harness exercises approved imported work through the shared case-study tem
   await expect(integrations.getByText(/client intellectual property/i)).toBeVisible();
   await expect(designSystems.getByText(/client intellectual property/i)).toBeVisible();
 });
-
 
 test("harness exposes authored editorial drafts without publishing them", async ({ page }) => {
   await page.goto("/dev/harness");
@@ -101,7 +100,6 @@ test("harness exposes authored editorial drafts without publishing them", async 
   await expect(article).toContainText("Synthetic persona responses are explicitly not framed as observed user research.");
 });
 
-
 test("shell harness exposes deterministic active-route state", async ({ page }) => {
   await page.goto("/dev/harness/shell?route=work");
 
@@ -121,7 +119,6 @@ test("case-study harness can deep-link to an authored draft", async ({ page }) =
   await expect(caseStudy.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
   await expect(caseStudy).toContainText("This content is not eligible for public rendering");
 });
-
 
 test("destructive post action requires explicit confirmation", async ({ page }) => {
   await page.goto("/dev/harness");

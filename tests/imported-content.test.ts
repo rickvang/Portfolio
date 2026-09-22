@@ -1,21 +1,21 @@
 import { describe, expect, it } from "vitest";
 
 import {
-  getApprovedImportedContent,
   getApprovedImportedProfile,
   importedContent,
 } from "@/lib/imported-content";
 
 describe("imported source content", () => {
-  it("is explicitly approved with source provenance", () => {
-    expect(importedContent.source.reviewStatus).toBe("approved");
+  it("tracks source review separately from record publication", () => {
+    expect(importedContent.source.captureStatus).toBe("reviewed");
     expect(importedContent.source.sourcePages).toHaveLength(5);
     expect(importedContent.source.clientIpDisclaimer).toContain("client intellectual property");
-    expect(getApprovedImportedContent()).toEqual(importedContent);
+    expect(importedContent.profile.reviewStatus).toBe("approved");
+    expect(importedContent.projects.every((project) => project.reviewStatus === "approved")).toBe(true);
     expect(getApprovedImportedProfile()).toEqual(importedContent.profile);
   });
 
-  it("contains the first curated case-study set", () => {
+  it("contains the first curated case-study set without deferred personal material", () => {
     expect(importedContent.projects.map((project) => project.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
@@ -27,16 +27,27 @@ describe("imported source content", () => {
     expect(importedContent).not.toHaveProperty("credentials");
   });
 
-  it("keeps draft packets out of the public adapter", () => {
-    const draft = {
+  it("keeps a withdrawn profile out of the public adapter", () => {
+    const reviewContent = {
       ...importedContent,
-      source: {
-        ...importedContent.source,
+      profile: {
+        ...importedContent.profile,
         reviewStatus: "draft" as const,
       },
     };
 
-    expect(getApprovedImportedContent(draft)).toBeUndefined();
-    expect(getApprovedImportedProfile(draft)).toBeUndefined();
+    expect(getApprovedImportedProfile(reviewContent)).toBeUndefined();
+  });
+
+  it("keeps publication status on each project record", () => {
+    const pendingProject = {
+      ...importedContent.projects[0]!,
+      id: "future-project",
+      slug: "future-project",
+      reviewStatus: "draft" as const,
+    };
+
+    expect(pendingProject.reviewStatus).toBe("draft");
+    expect(importedContent.projects[0]?.reviewStatus).toBe("approved");
   });
 });

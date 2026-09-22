@@ -134,7 +134,7 @@ function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
     title: project.title,
     summary: project.summary,
     category: project.category,
-    reviewStatus: importedContent.source.reviewStatus,
+    reviewStatus: project.reviewStatus,
     clientIpDisclaimer: importedContent.source.clientIpDisclaimer,
     sources: [
       {
@@ -203,7 +203,6 @@ export function getCaseStudyBySlug(
 ): CaseStudy | undefined {
   return caseStudies.find((caseStudy) => caseStudy.slug === slug);
 }
-
 
 export function getApprovedCaseStudyBySlug(
   slug: string,

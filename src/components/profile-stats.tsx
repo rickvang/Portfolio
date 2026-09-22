@@ -9,8 +9,8 @@ export function ProfileStats({ stats }: ProfileStatsProps) {
     <dl aria-label="Experience summary" className="profile-stats">
       {stats.map((stat) => (
         <div className="profile-stat" key={stat.label}>
-          <dd>{stat.value}</dd>
           <dt>{stat.label}</dt>
+          <dd>{stat.value}</dd>
         </div>
       ))}
     </dl>

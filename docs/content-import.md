@@ -1,6 +1,6 @@
 # Content import from rickvang.com
 
-This document records the local-first import from the public Framer site. The first-party positioning, biography/experience summary, and two client-protective case studies are now explicitly approved for the public Next.js content path. Deferred personal contact details, third-party testimonials, credentials, brand assets, source imagery, and hosted Supabase writes remain outside this approval.
+This document records the local-first import from the public Framer site. The first-party positioning, biography/experience summary, and two client-protective case studies are now explicitly approved at the individual record level for the public Next.js content path. Deferred personal contact details, third-party testimonials, credentials, brand assets, source imagery, and hosted Supabase writes remain outside this approval.
 
 ## Source capture
 
@@ -17,15 +17,16 @@ This document records the local-first import from the public Framer site. The fi
 
 | Source page | Imported content | Status | Notes |
 | --- | --- | --- | --- |
-| `/` | availability label, “Hi, I'm Rick.” positioning, systems/firefighting summary, project links | Approved | Grammar is normalized in the structured import; source images remain deferred. |
-| `/about` | about heading, biography summary, 11+/14+/30+ experience counts | Approved | Email, phone, LinkedIn presentation, credentials, testimonials, and brand assets remain deferred. |
-| `/projects` | project index context and client-IP disclaimer | Approved for case-study boundary | The disclaimer stays attached to imported case-study records. |
-| `/projects/multi-product-integrations` | category, summary/scope, discovery, outcomes, solution sections | Approved | Client-protective level of detail retained; the source category typo remains normalized. |
-| `/projects/design-systems` | category, summary/scope, discovery, outcomes, collaboration, foundations, density, templates, patterns | Approved | Structured into the shared case-study model; source media remains deferred. |
+| `/` | availability label, “Hi, I'm Rick.” positioning, systems/firefighting summary, project links | Approved profile record | Grammar is normalized in the structured import; source images remain deferred. |
+| `/about` | about heading, biography summary, 11+/14+/30+ experience counts | Approved profile record | Email, phone, LinkedIn presentation, credentials, testimonials, and brand assets remain deferred. |
+| `/projects` | project index context and client-IP disclaimer | Source reviewed | The disclaimer stays attached to imported case-study records; source review itself does not publish projects. |
+| `/projects/multi-product-integrations` | category, summary/scope, discovery, outcomes, solution sections | Approved project record | Client-protective level of detail retained; the source category typo remains normalized. |
+| `/projects/design-systems` | category, summary/scope, discovery, outcomes, collaboration, foundations, density, templates, patterns | Approved project record | Structured into the shared case-study model; source media remains deferred. |
 
 ## Curation and publication rules
 
-- Public routes may consume only content carrying explicit `approved` status.
+- Profile and project records carry their own publication status; public routes may consume only records carrying explicit `approved` status. Source-capture review status does not publish newly imported records.
+- New or refreshed project records default to unpublished until their own status is explicitly approved.
 - Preserve the client-IP disclaimer for imported client case studies.
 - Do not add protected client details or infer employer/client names that the source does not state.
 - Keep phone/email, third-party testimonials, credentials, brand marks, and source images out of the public content model until separately reviewed.
@@ -35,12 +36,14 @@ This document records the local-first import from the public Framer site. The fi
 
 ## Current public promotion
 
-The approved import drives:
+The approved records drive:
 
 - homepage positioning and About summary;
 - the reusable experience-summary stats component;
 - the public Work index;
 - public detail routes for Multi Product Integrations and Design Systems through the shared `CaseStudyTemplate`.
+
+If profile approval is withdrawn, Home and About remain available with a neutral review-state fallback instead of failing the route. Project publication remains independent per record.
 
 The old Framer site remains the provenance source until a separate launch/cutover decision retires it.
 

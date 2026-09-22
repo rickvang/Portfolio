@@ -13,7 +13,8 @@ export function ImportedContentPreview({ content }: ImportedContentPreviewProps)
       </div>
       <div className="surface-grid">
         <article className="surface-card">
-          <p className="eyebrow">Review status: {content.source.reviewStatus}</p>
+          <p className="eyebrow">Profile status: {content.profile.reviewStatus}</p>
+          <p className="state-card-note">Source capture: {content.source.captureStatus}</p>
           <h3>{content.profile.headline}</h3>
           <p>{content.profile.summary}</p>
           <p>{content.profile.aboutSummary}</p>
@@ -29,7 +30,7 @@ export function ImportedContentPreview({ content }: ImportedContentPreviewProps)
               <article className="project-card" key={project.id}>
                 <div className="project-card-meta">
                   <span className="tag">{project.category}</span>
-                  <span className="tag">{content.source.reviewStatus}</span>
+                  <span className="tag">{project.reviewStatus}</span>
                 </div>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
