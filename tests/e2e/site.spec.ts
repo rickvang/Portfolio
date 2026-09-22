@@ -16,6 +16,7 @@ test("homepage exposes the primary portfolio flow", async ({ page }) => {
   await expect(navigation.getByRole("link", { name: "Notes" })).toHaveAttribute("href", "/notes");
   await expect(navigation.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
   await expect(navigation.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+  await expect(page.locator('a[href^="/dev/harness"]')).toHaveCount(0);
 });
 
 test("public work stays approval-gated", async ({ page }) => {
@@ -73,9 +74,10 @@ test("health endpoint reports service readiness", async ({ request }) => {
     },
     readiness: {
       app: true,
+      overall: false,
       supabase: false,
     },
     service: "rickvang.com",
-    status: "ok",
+    status: "degraded",
   });
 });
