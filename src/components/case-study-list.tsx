@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ProjectPreview } from "@/components/project-preview";
 import type { CaseStudy } from "@/lib/case-studies";
 import { workHref } from "@/lib/public-routes";
 
