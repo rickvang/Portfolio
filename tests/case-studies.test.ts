@@ -9,17 +9,20 @@ import {
   getApprovedCaseStudyBySlug,
   getCaseStudyBySlug,
   getCaseStudyChapters,
-  importedCaseStudyDrafts,
+  importedCaseStudies,
 } from "@/lib/case-studies";
 
 describe("case-study content contract", () => {
-  it("adapts imported projects without promoting them", () => {
-    expect(importedCaseStudyDrafts.map((caseStudy) => caseStudy.slug)).toEqual([
+  it("promotes explicitly approved imported projects", () => {
+    expect(importedCaseStudies.map((caseStudy) => caseStudy.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
     ]);
-    expect(importedCaseStudyDrafts.every((caseStudy) => caseStudy.reviewStatus === "draft")).toBe(true);
-    expect(getApprovedCaseStudies()).toEqual([]);
+    expect(importedCaseStudies.every((caseStudy) => caseStudy.reviewStatus === "approved")).toBe(true);
+    expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
+      "multi-product-integrations",
+      "design-systems",
+    ]);
   });
 
   it("keeps authored editorial case studies review-ready but unpublished", () => {
@@ -31,7 +34,10 @@ describe("case-study content contract", () => {
     expect(caseStudyCatalog).toHaveLength(4);
     expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudyDrafts[0]);
     expect(getApprovedCaseStudyBySlug("ai-systems")).toBeUndefined();
-    expect(getApprovedCaseStudies()).toEqual([]);
+    expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
+      "multi-product-integrations",
+      "design-systems",
+    ]);
   });
 
   it("groups evidence-backed sections into the reusable chapter model", () => {
@@ -44,7 +50,7 @@ describe("case-study content contract", () => {
       "Outcomes",
     ]);
 
-    const imported = importedCaseStudyDrafts[0]!;
+    const imported = importedCaseStudies[0]!;
     expect(getCaseStudyChapters(imported).map((chapter) => chapter.label)).toEqual([
       "Context",
       "Exploration",
@@ -54,7 +60,7 @@ describe("case-study content contract", () => {
   });
 
   it("keeps imported source provenance attached to every section", () => {
-    for (const caseStudy of importedCaseStudyDrafts) {
+    for (const caseStudy of importedCaseStudies) {
       const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
 
       expect(caseStudy.clientIpDisclaimer).toContain("client intellectual property");
@@ -79,14 +85,14 @@ describe("case-study content contract", () => {
   });
 
   it("keeps available sections in the shared sequence without inventing missing sections", () => {
-    expect(importedCaseStudyDrafts[0]?.sections.map((section) => section.kind)).toEqual([
+    expect(importedCaseStudies[0]?.sections.map((section) => section.kind)).toEqual([
       "overview",
       "exploration",
       "system-practice",
       "outcomes",
     ]);
 
-    const positions = importedCaseStudyDrafts[0]?.sections.map((section) =>
+    const positions = importedCaseStudies[0]?.sections.map((section) =>
       CASE_STUDY_SECTION_ORDER.indexOf(section.kind),
     );
 
@@ -94,7 +100,7 @@ describe("case-study content contract", () => {
   });
 
   it("rejects sections that violate the shared sequence", () => {
-    const caseStudy = importedCaseStudyDrafts[0]!;
+    const caseStudy = importedCaseStudies[0]!;
     const result = caseStudySchema.safeParse({
       ...caseStudy,
       sections: [caseStudy.sections[1], caseStudy.sections[0], ...caseStudy.sections.slice(2)],
@@ -103,17 +109,17 @@ describe("case-study content contract", () => {
     expect(result.success).toBe(false);
   });
 
-  it("allows explicit approval without changing draft source data", () => {
-    const approved = caseStudySchema.parse({
-      ...importedCaseStudyDrafts[0],
-      reviewStatus: "approved",
+  it("filters mixed approval states without publishing review-ready authored work", () => {
+    const reviewReady = caseStudySchema.parse({
+      ...importedCaseStudies[0],
+      reviewStatus: "review-ready",
     });
 
-    const mixed = [importedCaseStudyDrafts[1]!, approved];
+    const mixed = [importedCaseStudies[1]!, reviewReady];
 
-    expect(getApprovedCaseStudies(mixed)).toEqual([approved]);
-    expect(getApprovedCaseStudyBySlug("multi-product-integrations", mixed)).toEqual(approved);
-    expect(getApprovedCaseStudyBySlug("design-systems", mixed)).toBeUndefined();
-    expect(importedCaseStudyDrafts[0]?.reviewStatus).toBe("draft");
+    expect(getApprovedCaseStudies(mixed)).toEqual([importedCaseStudies[1]]);
+    expect(getApprovedCaseStudyBySlug("multi-product-integrations", mixed)).toBeUndefined();
+    expect(getApprovedCaseStudyBySlug("design-systems", mixed)).toEqual(importedCaseStudies[1]);
+    expect(importedCaseStudies[0]?.reviewStatus).toBe("approved");
   });
 });
