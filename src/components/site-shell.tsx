@@ -7,11 +7,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { publicRoutes } from "@/lib/public-routes";
 
 const navigationItems = [
-  { href: publicRoutes.home, label: "Home" },
-  { href: publicRoutes.work, label: "Work" },
-  { href: publicRoutes.notes, label: "Notes" },
-  { href: publicRoutes.about, label: "About" },
-  { href: publicRoutes.contact, label: "Contact" },
+  { href: publicRoutes.home, index: "01", label: "Home" },
+  { href: publicRoutes.work, index: "02", label: "Work" },
+  { href: publicRoutes.notes, index: "03", label: "Notes" },
+  { href: publicRoutes.about, index: "04", label: "About" },
+  { href: publicRoutes.contact, index: "05", label: "Contact" },
 ] as const;
 
 function routeIsActive(pathname: string, href: string) {
@@ -38,7 +38,10 @@ function NavigationLinks({ pathname, onNavigate }: NavigationLinksProps) {
             key={item.href}
             onClick={onNavigate}
           >
-            <span>{item.label}</span>
+            <span className="rail-link-copy">
+              <span aria-hidden="true" className="rail-link-index">{item.index}</span>
+              <span>{item.label}</span>
+            </span>
             <span aria-hidden="true" className="rail-link-marker" />
           </Link>
         );
@@ -118,7 +121,7 @@ export function SiteShellFrame({
 
       <aside className="site-rail">
         <div>
-          <Link className="rail-wordmark" href={publicRoutes.home}>
+          <Link aria-label="Rick Vang, home" className="rail-wordmark" href={publicRoutes.home}>
             Rick Vang
           </Link>
           <p className="rail-role">Portfolio · work and notes</p>
@@ -130,7 +133,7 @@ export function SiteShellFrame({
       </aside>
 
       <header className="mobile-nav-bar">
-        <Link className="rail-wordmark" href={publicRoutes.home}>
+        <Link aria-label="Rick Vang, home" className="rail-wordmark" href={publicRoutes.home}>
           Rick Vang
         </Link>
         <button

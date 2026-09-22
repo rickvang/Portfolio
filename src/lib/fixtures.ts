@@ -30,6 +30,7 @@ export const portfolioFixtures = seed as {
     name: string;
     eyebrow: string;
     headline: string;
+    headlineEmphasis: string;
     summary: string;
   };
   projects: Project[];

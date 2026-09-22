@@ -7,9 +7,9 @@ This document is the working visual and interaction contract for rickvang.com. I
 The portfolio uses a cinematic editorial foundation for systems-oriented product design work:
 
 - the work and authored content remain the focal point; navigation acts as a stable frame;
-- a dark persistent rail creates continuity against warm neutral reading surfaces;
+- a warm-charcoal persistent rail creates continuity against warm neutral reading surfaces without reading as pure black chrome;
 - the original rickvang.com accent is restored as `#f24c27` and used semantically rather than decoratively;
-- small text on light surfaces uses the darker `--accent-ink` token instead of raw orange where contrast would be insufficient;
+- small text on light surfaces uses the darker `--accent-ink` token, while small rail text uses the contrast-adjusted `--rail-accent` token;
 - generous spacing and compact typography create hierarchy without delaying access to content;
 - every important flow has explicit loading, empty, error, disabled, long-content, keyboard, and reduced-motion behavior where applicable;
 - the system favors native HTML, readable markup, progressive enhancement, and route continuity over interaction for its own sake.
@@ -44,16 +44,18 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 | `--accent` | `#f24c27` | Brand identity, active rail marker, large authored emphasis, button fill |
 | `--accent-hover` | `#ff6848` | Hover fill for accent actions |
 | `--accent-ink` | `#b7371c` | Small accent text and links on light surfaces |
-| `--rail` | `#151311` | Persistent navigation rail and mobile drawer |
+| `--rail` | `#282622` | Warm-charcoal persistent navigation rail and mobile drawer |
 | `--rail-foreground` | `#f7f2eb` | Primary text on the rail |
-| `--rail-muted` | `#aaa29a` | Secondary rail text |
+| `--rail-muted` | `#b6afa3` | Secondary rail text |
+| `--rail-accent` | `#ff6848` | Contrast-adjusted orange for small rail indices and active markers |
+| `--rail-border` | `rgb(247 242 235 / 14%)` | Rail separators on charcoal |
 | `--focus` | `#f24c27` | Selected-state accent and legacy focus-related emphasis |
 | `--focus-inner` | `#fffdfa` | Light inner edge of the two-tone keyboard focus ring |
 | `--focus-outer` | `#171614` | Dark outer edge of the two-tone keyboard focus ring |
 | `--danger` | `#9c342e` | Destructive actions and failures |
 | `--success` | `#176648` | Successful feedback |
 
-Use semantic tokens instead of raw color values in components. The `#f24c27` accent was recovered from the rendered rickvang.com wordmark/name treatment on 2026-09-22 rather than guessed. A new semantic color should be added to the token list before it is used in multiple places.
+Use semantic tokens instead of raw color values in components. The `#f24c27` accent was recovered from the rendered rickvang.com wordmark/name treatment on 2026-09-22 rather than guessed. `--rail-accent` is a contrast-adjusted derivative for small text on `--rail`; the original orange remains the primary brand/accent token. On `#282622`, rail foreground, muted text, and rail-accent all clear normal-text contrast targets. A new semantic color should be added to the token list before it is used in multiple places.
 
 ### Typography
 
@@ -73,9 +75,22 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 - The public content column uses responsive horizontal padding: `clamp(1.5rem, 5vw, 5rem)`; below `900px` it becomes full-width with a sticky mobile navigation bar.
 - `.site-shell` remains the centered `1120px` container for internal/admin and development-harness surfaces; public pages no longer depend on it.
 - Public heroes use a large first-view rhythm and `.public-hero` targets up to `78vh` without requiring a fixed height.
-- Major sections retain a top divider and `5rem` vertical padding so long-form content keeps a predictable chapter rhythm.
+- The homepage uses an asymmetric `.editorial-hero-grid`: the statement carries the visual weight and the supporting copy/actions occupy the narrower column. At the shell breakpoint it returns to one column.
+- Major sections retain a top divider and `5rem` vertical padding so long-form content keeps a predictable chapter rhythm. A single offset section may create editorial cadence, but repeated zig-zagging is discouraged.
 - Cards use responsive padding: `clamp(1.25rem, 3vw, 2rem)`; repeated grids use a `1rem` gap.
 - Prefer the existing spacing rhythm; introduce a token only when a new spacing value repeats across components.
+
+### Editorial composition rules
+
+Use the following patterns deliberately rather than decorating every section:
+
+1. **First-viewport thesis** — one dominant statement, one supporting column, and one small orientation line. Do not put a card grid above the thesis.
+2. **Asymmetry with recovery** — use one controlled offset or unequal-column moment, then return to the shared content grid so the page remains easy to scan.
+3. **Numbered orientation** — the global rail uses 01–05 indices and long-form case studies use chapter numbers. Numbers support wayfinding; they do not replace text labels.
+4. **Chapter scale** — case-study chapter headings are the largest long-form landmarks beneath the page title. Nested source sections remain smaller and may disappear when their title duplicates the chapter name.
+5. **Warm neutral surfaces** — use background/surface contrast, spacing, and rules before adding more boxes. Cards are reserved for discrete items, evidence, or interactive surfaces.
+6. **Accent discipline** — orange identifies authored emphasis, active state, and selected landmarks. It should not become a decorative wash or substitute for hierarchy.
+7. **Layout choice** — use the asymmetric homepage pattern for thesis-led landing pages, the split section pattern for paired explanation/action content, and the chapter pattern for evidence-heavy long-form work. Do not force the chapter pattern onto short notes or utility pages.
 
 ### Shape, elevation, and motion
 
@@ -83,6 +98,8 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 - Cards use `--shadow: 0 18px 50px rgb(23 22 20 / 8%)`.
 - Motion uses semantic duration/easing tokens: `--motion-fast: 150ms`, `--motion-standard: 240ms`, `--motion-slow: 320ms`, `--ease-standard: cubic-bezier(0.2, 0, 0, 1)`, and `--ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1)`.
 - Public page entry is a non-blocking `240ms` chapter reveal from 0.96 opacity and a 0.625rem vertical offset; content exists in the DOM immediately and does not wait for animation completion.
+- Homepage coordinate, statement, and support columns use a staged `320ms` reveal from partial opacity with 50–110ms delays. The copy is still readable before the animation finishes.
+- Case-study chapters use the same `320ms` CSS-first reveal with small capped delays between chapters; no intersection observer or scroll-trigger dependency is required.
 - Mobile drawer entry uses `240ms` emphasized easing with a 1rem horizontal offset; the backdrop fades over `150ms`. Close is intentionally immediate so Escape, route selection, and focus recovery win over decoration.
 - Rail state, hover/focus, and feedback transitions use the `150ms` fast token.
 - Loading indicators remain an `800ms linear` functional animation.
@@ -97,6 +114,8 @@ Motion supports continuity and hierarchy; it never carries the only copy of stat
 | --- | --- | --- | --- | --- | --- |
 | Active rail marker + link state | Route/pathname changes, hover, or focus | `150ms` / `--ease-standard` | The newest route/pointer/focus state wins immediately; CSS transitions reverse naturally | Every applicable route or interaction state change | State changes immediately; active text + marker remain visible |
 | Public chapter entry | A public route/page node mounts | `240ms` / `--ease-standard` | Navigation/unmount cancels the prior animation; the next route begins from its own current state | Once per public page mount, including direct loads | No animation; content renders at final opacity/position |
+| Homepage thesis staging | Homepage mounts | `320ms` / `--ease-emphasized`, 0–110ms capped delays | Navigation/unmount wins; there is no queued sequence | Once per homepage mount | Coordinate, statement, and support render immediately in final state |
+| Case-study chapter staging | Shared case-study renderer mounts | `320ms` / `--ease-standard`, 0–160ms capped delays | Navigation/unmount wins; anchors remain native and immediate | Once per case-study mount | Chapters render immediately in final state |
 | Mobile drawer entry | Menu changes from closed to open | drawer `240ms` / `--ease-emphasized`; backdrop `150ms` / `--ease-standard` | Escape, backdrop/close action, or route selection closes immediately; no exit animation is allowed to delay focus recovery | Every explicit open | No animation; drawer appears in final position |
 | Mobile drawer close | Escape, close control, backdrop, or route selection | `0ms` intentional | Close/focus recovery is authoritative | Every close | Same immediate behavior |
 | Button / link affordance | Hover or focus state changes | `150ms` / `--ease-standard` | Latest pointer/focus state wins; transitions may reverse | Every interaction | Effectively immediate |
@@ -112,7 +131,7 @@ Motion supports continuity and hierarchy; it never carries the only copy of stat
 4. Do not queue animations. If state changes while an effect is running, current state becomes authoritative.
 5. Motion may repeat when a user explicitly repeats an interaction or mounts a new route; it must not loop for decoration.
 6. A pattern is not implementation-complete until its reduced-motion behavior is defined and verified.
-7. The shared case-study template now inherits public chapter entry. Section navigation itself stays native and immediate; media reveal remains deferred until approved media exists, and no hidden placeholder DOM is created solely to demonstrate motion.
+7. The shared case-study template groups existing typed sections into visible chapters and stages those chapter blocks on mount. Chapter anchors remain native and immediate; media reveal remains deferred until approved media exists, and no hidden placeholder DOM is created solely to demonstrate motion.
 
 ## Component inventory
 
@@ -123,8 +142,8 @@ These are the reusable components currently in `src/components/`.
 | `SiteShell` | Public pathname-aware wrapper around the shared frame | `children` | Current public route state |
 | `SiteShellFrame` | Persistent public navigation/content frame used by production routes and local verification | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
 | `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
-| `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft review with provenance/evidence |
-| `EditorialDraftPreview` | Local-only review surface for source-backed article drafts | `draft` | Draft article, evidence details, source provenance, curation notes |
+| `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft/review-ready rendering with chapter map, provenance, and evidence |
+| `EditorialDraftPreview` | Local-only review surface for source-backed article drafts | `draft` | Draft or review-ready article, evidence details, source provenance, curation notes |
 | `ContactForm` | Contact form boundary | `disabled`, `initialStatus` | Idle, success, error, disabled |
 | `ProjectList` | Project card collection | `projects`, `state` | Success, loading, empty, error, long content |
 | `PostList` | Public/admin-friendly post card collection | `posts`, `state` | Success, loading, empty, error, long content |
@@ -164,13 +183,14 @@ Every important interactive component should have a short interaction specificat
 `CaseStudyTemplate` is the single renderer for case-study detail content.
 
 - **Public mode:** receives only approved records from the route boundary; review evidence and curation notes are not rendered.
-- **Review mode:** is local-harness only and adds an explicit draft banner, source provenance, curation notes, and per-section evidence details without changing the underlying content.
-- **Section navigation:** uses native anchor links generated from the ordered typed section contract. Missing sections remain absent rather than receiving invented filler.
+- **Review mode:** is local-harness only and adds an explicit draft/review-ready banner, source provenance, curation notes, and per-section evidence details without changing the underlying content.
+- **Chapter navigation:** existing typed sections are grouped into the canonical path `Context → Personas → Exploration → System → Outcomes`. A chapter appears only when at least one evidence-backed section maps to it; missing chapters stay absent rather than receiving invented filler.
+- **Section detail:** source sections remain individually addressable inside a chapter so imported provenance and review evidence stay attached to their original content unit.
 - **Client-IP note:** remains attached whenever the case-study record carries the imported disclaimer.
-- **Responsive behavior:** desktop uses a sticky local section index beside reading content; at the public shell breakpoint the index becomes static and precedes the sections.
-- **Motion:** inherits the public page chapter entry. Section navigation is immediate and never depends on JavaScript animation.
-- **Publication safety:** `CaseStudyList` and `/work/[slug]` consume approval-filtered data. Draft records may be exercised only through the local development harness until an explicit content decision changes their status.
-- **Verification:** unit coverage checks approval filtering/lookup; browser coverage checks both imported drafts through review mode and proves their public detail URLs return 404 while draft.
+- **Responsive behavior:** desktop uses a sticky local chapter index beside reading content; at the public shell breakpoint the index becomes static and precedes the chapters.
+- **Motion:** chapter blocks use capped CSS-first entry staging. Anchor navigation is immediate and never depends on JavaScript animation.
+- **Publication safety:** `CaseStudyList` and `/work/[slug]` consume only `reviewStatus: "approved"` data. Both `draft` and `review-ready` records remain local-review only until explicit publication approval changes their status.
+- **Verification:** unit coverage checks approval filtering/lookup and chapter grouping; browser coverage checks imported drafts and authored review-ready work through review mode and proves public detail URLs still return 404.
 
 ### Representative interaction specification: `ContactForm`
 
@@ -208,7 +228,7 @@ Every important interactive component should have a short interaction specificat
 
 **Transitions:** active rail state uses the fast motion token. Opening the drawer runs the documented 240ms drawer / 150ms backdrop entry while body scrolling is locked and focus moves into the drawer. Explicit close, backdrop close, Escape, or route selection interrupts immediately rather than waiting for an exit animation. Explicit close or Escape returns focus to the menu button; route selection moves focus to the persistent main-content region. Reopening repeats the entry motion; no animation is queued.
 
-**Keyboard and focus:** rail links remain in native document order. The drawer traps Tab/Shift+Tab only while open and closes on Escape. The global skip link targets `#main-content`.
+**Keyboard and focus:** rail links remain in native document order. On charcoal navigation surfaces, focus uses a light inner outline plus orange outer ring; light surfaces keep the global two-tone ring. The drawer traps Tab/Shift+Tab only while open and closes on Escape. The global skip link targets `#main-content`.
 
 **Responsive behavior:** the fixed rail is used above `900px`; at `900px` and below it is replaced by the sticky mobile bar and drawer. Public content drops its rail offset at the same breakpoint.
 
@@ -266,7 +286,7 @@ When a new important state is introduced, update all four places together:
 - Use `aria-live="polite"` for non-blocking form feedback and `role="alert"` for failures.
 - Use `aria-busy="true"` on loading data surfaces.
 - Use `aria-pressed` for the harness state toggle group.
-- Preserve a visible `:focus-visible` ring with sufficient contrast. Interactive controls use a two-tone light/dark ring so focus remains visible on both the warm light surfaces and the dark navigation rail.
+- Preserve a visible `:focus-visible` ring with sufficient contrast. Light surfaces use the global light/dark two-tone ring; charcoal rail/drawer controls use a light inner outline plus orange outer ring.
 - Primary mobile navigation controls maintain at least a 44×44 CSS-pixel target; browser coverage checks the menu and close controls at mobile/tablet widths.
 - Keep heading levels in document order.
 - Prefer Playwright roles, labels, and visible text. Use `data-testid` only for harness roots and state boundaries that do not have a better semantic locator.
@@ -288,9 +308,10 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 
 - Portfolio/profile content and reusable presentation are separate concerns.
 - Project and post summaries should be concise enough for cards; full content belongs on detail surfaces.
-- Public case-study lists and detail routes receive only records with `reviewStatus: "approved"`; the same template may render drafts only in local review mode.
-- Authored AI Systems and UI Design Practices case studies live under `content/drafts/` and are parsed into the same typed case-study contract with a draft-only source guard.
-- The persona-led design article is a separate typed editorial draft and is not connected to the public post adapter.
+- Public case-study lists and detail routes receive only records with `reviewStatus: "approved"`; the same template may render `draft` and `review-ready` records only in local review mode.
+- Authored AI Systems and UI Design Practices case studies live under `content/drafts/` and are currently `review-ready`: source-backed and polished for human approval, but still unpublished.
+- The persona-led design article is a separate typed editorial record, currently `review-ready`, and is not connected to the public post adapter.
+- `review-ready` is not publication authorization. Moving any of these records to `approved` is a separate explicit content decision.
 - Public posts are rendered only when their status is `published`.
 - Draft, archived, and unpublished content must not leak through public components or metadata.
 - Preserve the client-IP disclaimer when importing case-study material from the existing site.

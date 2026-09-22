@@ -3,11 +3,11 @@ import { expect, test } from "@playwright/test";
 test("homepage exposes the primary portfolio flow", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: /clear home for work/i })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /build the conditions for better work/i })).toBeVisible();
   await expect(page.getByRole("link", { name: "View work" })).toHaveAttribute("href", "/work");
-  await expect(page.getByRole("heading", { name: "Selected case studies" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Systems that make complexity legible." })).toBeVisible();
   await expect(page.getByTestId("case-study-list-empty")).toContainText("Case studies are under review.");
-  await expect(page.getByRole("heading", { name: "Ideas can become a maintained content surface." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Methods, systems, and the questions behind the work." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fixture post", exact: true })).toBeVisible();
 
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });

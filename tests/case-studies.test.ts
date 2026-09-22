@@ -8,6 +8,7 @@ import {
   getApprovedCaseStudies,
   getApprovedCaseStudyBySlug,
   getCaseStudyBySlug,
+  getCaseStudyChapters,
   importedCaseStudyDrafts,
 } from "@/lib/case-studies";
 
@@ -21,16 +22,35 @@ describe("case-study content contract", () => {
     expect(getApprovedCaseStudies()).toEqual([]);
   });
 
-  it("adds the two authored editorial case studies as drafts", () => {
+  it("keeps authored editorial case studies review-ready but unpublished", () => {
     expect(authoredCaseStudyDrafts.map((caseStudy) => caseStudy.slug)).toEqual([
       "ai-systems",
       "ui-design-practices",
     ]);
-    expect(authoredCaseStudyDrafts.every((caseStudy) => caseStudy.reviewStatus === "draft")).toBe(true);
+    expect(authoredCaseStudyDrafts.every((caseStudy) => caseStudy.reviewStatus === "review-ready")).toBe(true);
     expect(caseStudyCatalog).toHaveLength(4);
     expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudyDrafts[0]);
     expect(getApprovedCaseStudyBySlug("ai-systems")).toBeUndefined();
     expect(getApprovedCaseStudies()).toEqual([]);
+  });
+
+  it("groups evidence-backed sections into the reusable chapter model", () => {
+    const aiSystems = getCaseStudyBySlug("ai-systems")!;
+    expect(getCaseStudyChapters(aiSystems).map((chapter) => chapter.label)).toEqual([
+      "Context",
+      "Personas",
+      "Exploration",
+      "System",
+      "Outcomes",
+    ]);
+
+    const imported = importedCaseStudyDrafts[0]!;
+    expect(getCaseStudyChapters(imported).map((chapter) => chapter.label)).toEqual([
+      "Context",
+      "Exploration",
+      "System",
+      "Outcomes",
+    ]);
   });
 
   it("keeps imported source provenance attached to every section", () => {

@@ -1,22 +1,29 @@
 {
   "profile": {
     "name": "Rick Vang",
-    "eyebrow": "Portfolio foundation",
-    "headline": "A clear home for work, ideas, and useful systems.",
-    "summary": "Placeholder content for the first vertical slice. Replace this with approved portfolio positioning before launch."
+    "eyebrow": "Product design leadership",
+    "headline": "I build the conditions for",
+    "headlineEmphasis": "better work.",
+    "summary": "Product design leadership for complex systems, from the first question to the last useful detail."
   },
   "projects": [
     {
       "id": "project-01",
       "title": "Project placeholder",
       "description": "A deterministic fixture used to exercise the work-list states.",
-      "tags": ["Fixture", "Replace me"]
+      "tags": [
+        "Fixture",
+        "Replace me"
+      ]
     },
     {
       "id": "project-02",
       "title": "Another project placeholder",
       "description": "A second fixture keeps the responsive list meaningful during development.",
-      "tags": ["Responsive", "Fixture"]
+      "tags": [
+        "Responsive",
+        "Fixture"
+      ]
     }
   ],
   "posts": [
