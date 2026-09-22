@@ -1,12 +1,18 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
+import { CaseStudyTemplate } from "@/components/case-study-template";
 import { ContactForm, type ContactStatus } from "@/components/contact-form";
+import { EditorialDraftPreview } from "@/components/editorial-draft-preview";
 import { AdminWorkflowPreview } from "@/components/admin-workflow-preview";
 import { ImportedContentPreview } from "@/components/imported-content-preview";
 import { PostList } from "@/components/post-list";
+import { DeletePostForm } from "@/components/post-status-actions";
 import { ProjectList } from "@/components/project-list";
+import { caseStudyCatalog } from "@/lib/case-studies";
+import { personaLedDesignDraft } from "@/lib/editorial-drafts";
 import { importedContent } from "@/lib/imported-content";
 import {
   harnessStates,
@@ -76,6 +82,18 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
 
       <section className="surface-grid" aria-label="Harness component previews">
         <article className="surface-card">
+          <p className="eyebrow">Public shell</p>
+          <h2>Navigation verification</h2>
+          <p>
+            Exercise the production rail and drawer with deterministic route and initial-drawer states.
+          </p>
+          <p>
+            <Link className="text-link" href="/dev/harness/shell?route=work">
+              Open shell harness
+            </Link>
+          </p>
+        </article>
+        <article className="surface-card">
           <p className="eyebrow">Content adapter</p>
           <h2>{portfolioFixtures.profile.name}</h2>
           <p>{portfolioFixtures.profile.summary}</p>
@@ -88,6 +106,12 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
             key={`contact-${state}`}
           />
         </article>
+        <article className="surface-card">
+          <p className="eyebrow">Destructive action</p>
+          <h2>Delete confirmation</h2>
+          <p>Uses the production delete form with a non-production fixture identifier.</p>
+          <DeletePostForm postId="00000000-0000-0000-0000-000000000001" />
+        </article>
       </section>
 
       <section className="harness-section" aria-labelledby="imported-content-section-heading">
@@ -96,6 +120,33 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
           <h2 id="imported-content-section-heading">Imported source review</h2>
         </div>
         <ImportedContentPreview content={importedContent} />
+      </section>
+
+      <section className="harness-section" aria-labelledby="case-study-template-heading">
+        <div>
+          <p className="eyebrow">Shared case-study template</p>
+          <h2 id="case-study-template-heading">Draft case-study review</h2>
+          <p className="lede">
+            Imported and authored drafts use the same renderer intended for approved public case studies, with
+            review-only provenance and evidence controls added locally.
+          </p>
+        </div>
+        <div className="case-study-review-stack" data-testid="case-study-review-stack">
+          {caseStudyCatalog.map((caseStudy) => (
+            <CaseStudyTemplate caseStudy={caseStudy} key={caseStudy.id} mode="review" />
+          ))}
+        </div>
+      </section>
+
+      <section className="harness-section" aria-labelledby="editorial-draft-heading">
+        <div>
+          <p className="eyebrow">Editorial draft</p>
+          <h2 id="editorial-draft-heading">Persona-led design article review</h2>
+          <p className="lede">
+            This source-backed article remains separate from the published post adapter until editorial approval.
+          </p>
+        </div>
+        <EditorialDraftPreview draft={personaLedDesignDraft} />
       </section>
 
       <section className="harness-section" aria-labelledby="projects-heading">
