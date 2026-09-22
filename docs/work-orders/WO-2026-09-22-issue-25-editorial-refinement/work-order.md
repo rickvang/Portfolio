@@ -65,7 +65,17 @@ Refine the issue #6 production portfolio so it recovers more of the authored Opt
 
 ## Current phase
 
-Phase 1 — inspect current implementation surfaces and lock the token/composition/chapter changes.
+Phase 4 — implementation slice complete; entering PR/CI/preview verification.
+
+## Implemented changes
+
+- Warm-charcoal Option E rail tokens, numbered navigation, contrast-adjusted small-text rail accent, and rail-specific focus treatment.
+- Stronger asymmetric homepage thesis/composition with explicit section numbering and a clearer first-viewport statement.
+- Canonical case-study chapter grouping: Context → Personas → Exploration → System → Outcomes, derived from existing typed/evidence-backed sections without invented filler.
+- CSS-first staged homepage and chapter entry motion with reduced-motion fallbacks and no scroll interception.
+- Explicit `review-ready` lifecycle state for AI Systems, UI Design Practices, and the persona-led article; public adapters still accept only `approved`.
+- Updated browser/unit/visual verification for chapter labels, review-ready gating, refined focus, reduced motion, and the five-chapter authored case study.
+- DESIGN.md updated with rail, composition, chapter, motion, layout-choice, focus, and publication guidance.
 
 ## Validation required
 
@@ -83,4 +93,4 @@ Issue #25 is complete when the visual/editorial refinement, chapter pattern, mot
 
 ## Next action
 
-Inspect the homepage, shared case-study template/data, global CSS, harness, fixtures, and browser tests; then implement the smallest coherent refinement stack.
+Open the implementation PR, run GitHub CI and the Vercel preview, review the deterministic visual captures/review feedback, and repair any failures. Do not merge to `main` or trigger a production deployment without separate explicit deployment authorization.
