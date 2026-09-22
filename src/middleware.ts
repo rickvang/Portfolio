@@ -1,13 +1,19 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 
-export function middleware() {
-  if (process.env.NODE_ENV === "production") {
-    return new NextResponse("Not Found", { status: 404 });
+import { updateSession } from "@/lib/supabase/middleware";
+
+export async function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith("/dev/harness")) {
+    if (process.env.NODE_ENV === "production") {
+      return new NextResponse("Not Found", { status: 404 });
+    }
+
+    return NextResponse.next();
   }
 
-  return NextResponse.next();
+  return updateSession(request);
 }
 
 export const config = {
-  matcher: "/dev/harness/:path*",
+  matcher: ["/admin/:path*", "/dev/harness/:path*"],
 };
