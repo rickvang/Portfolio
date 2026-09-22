@@ -47,7 +47,9 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 | `--rail` | `#151311` | Persistent navigation rail and mobile drawer |
 | `--rail-foreground` | `#f7f2eb` | Primary text on the rail |
 | `--rail-muted` | `#aaa29a` | Secondary rail text |
-| `--focus` | `#f24c27` | Keyboard focus indication |
+| `--focus` | `#f24c27` | Selected-state accent and legacy focus-related emphasis |
+| `--focus-inner` | `#fffdfa` | Light inner edge of the two-tone keyboard focus ring |
+| `--focus-outer` | `#171614` | Dark outer edge of the two-tone keyboard focus ring |
 | `--danger` | `#9c342e` | Destructive actions and failures |
 | `--success` | `#176648` | Successful feedback |
 
@@ -222,7 +224,7 @@ The following existing surfaces use the template above. ContactForm is the repre
 | --- | --- | --- | --- |
 | `AdminLoginForm` | Sign an author into the content workspace; idle, pending, and error. | Native email/password fields; submit becomes disabled while pending; server action owns authentication and redirect validation; errors use `role="alert"`. | `/admin/login` is the route-level boundary; the harness author preview represents loading, error, and disabled author-tool states without credentials. |
 | `PostEditorForm` | Create or edit a post; create, edit, pending, validation/action error, and long-content. | Visible labels and native required/pattern validation; server action validates title, slug, and content; pending disables the submit action; no client-side publishing or external transmission. | `/admin/posts/new` and `/admin/posts/[id]/edit` are the route-level boundaries; long-content fixtures exercise the surrounding author layout in the harness. |
-| `PostStatusActions` | Change draft/published/archived status or delete an owned post. | Each status action is an explicit form; pending disables only its action; server action validates the post ID, status, and author ownership; deletion remains visually destructive and must keep confirmation behavior explicit before expansion. | The author preview exposes the same visible action availability across loading, disabled, error, and long-content states; live status mutations remain a hosted-auth route concern. |
+| `PostStatusActions` | Change draft/published/archived status or delete an owned post. | Each status action is an explicit form; pending disables only its action; server action validates the post ID, status, and author ownership; deletion requires an explicit browser confirmation before the server action can run. | The author preview exposes the same visible action availability across loading, disabled, error, and long-content states; live status mutations remain a hosted-auth route concern. |
 | Primary navigation / `SiteShell` | Move among Home, Work, Notes, About, and Contact while preserving orientation. | Desktop uses a persistent rail with text plus an active marker; mobile uses an explicitly named drawer, Escape close, focus containment while open, focus return on explicit close, and a `<noscript>` fallback. Primary destinations never depend on hover or motion. | Browser coverage verifies active-route semantics, desktop rail visibility, mobile drawer open/close, Escape, focus return, and no horizontal overflow. |
 | Harness controls | Select a deterministic fixture state and restore the baseline. | Use a labeled button group with `aria-pressed`; state changes are local and synchronous; reset returns to `success`; direct URL state is accepted only from the known state union. | `/dev/harness` exposes all six fixture states, a reset control, `data-harness-state`, and stable state-region selectors. |
 
@@ -264,7 +266,7 @@ When a new important state is introduced, update all four places together:
 - Use `aria-live="polite"` for non-blocking form feedback and `role="alert"` for failures.
 - Use `aria-busy="true"` on loading data surfaces.
 - Use `aria-pressed` for the harness state toggle group.
-- Preserve a visible `:focus-visible` ring with sufficient contrast.
+- Preserve a visible `:focus-visible` ring with sufficient contrast. Interactive controls use a two-tone light/dark ring so focus remains visible on both the warm light surfaces and the dark navigation rail.
 - Primary mobile navigation controls maintain at least a 44×44 CSS-pixel target; browser coverage checks the menu and close controls at mobile/tablet widths.
 - Keep heading levels in document order.
 - Prefer Playwright roles, labels, and visible text. Use `data-testid` only for harness roots and state boundaries that do not have a better semantic locator.
@@ -325,3 +327,15 @@ When adding a component or pattern:
 - add a deterministic fixture and harness preview for meaningful states;
 - update this document and the relevant architecture/decision record;
 - run the verification commands before completing the change.
+
+
+## Release-hardening audit closure
+
+Issue #6 Phase 7 closes the recorded UI/release audit findings as follows:
+
+- **Supabase session refresh:** `/admin/:path*` requests pass through the request-scoped Supabase SSR refresh helper before Server Components consume auth cookies; missing configuration remains a no-op rather than a failed request.
+- **Focus-ring contrast:** keyboard focus uses the documented two-tone light/dark ring instead of a single orange outline that could disappear against accent or dark surfaces.
+- **Notes navigation assertion:** the public Notes browser journey asserts the Notes link carries `aria-current="page"`.
+- **Destructive-action confirmation:** `DeletePostForm` requires confirmation and the harness exercises both cancel and confirm paths.
+- **Production harness link:** public browser coverage asserts no `/dev/harness` link is exposed; the development surfaces remain guarded from production.
+- **Health/readiness semantics:** `/api/health` reports `status: "ready"` only when Supabase is configured and otherwise reports `status: "degraded"` with `readiness.overall: false`, while keeping the liveness response available for local/CI startup checks.
