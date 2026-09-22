@@ -89,3 +89,24 @@ test("harness exposes authored editorial drafts without publishing them", async 
 
   await expect(article).toContainText("Synthetic persona responses are explicitly not framed as observed user research.");
 });
+
+
+test("shell harness exposes deterministic active-route state", async ({ page }) => {
+  await page.goto("/dev/harness/shell?route=work");
+
+  const shell = page.getByTestId("site-shell-frame");
+  await expect(shell).toBeVisible();
+  await expect(page.getByTestId("shell-harness-page")).toContainText("Active route");
+  await expect(
+    page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Work" }),
+  ).toHaveAttribute("aria-current", "page");
+});
+
+test("case-study harness can deep-link to an authored draft", async ({ page }) => {
+  await page.goto("/dev/harness/case-study?slug=ai-systems");
+
+  const caseStudy = page.getByTestId("case-study-review-ai-systems");
+  await expect(caseStudy).toHaveAttribute("data-case-study-status", "draft");
+  await expect(caseStudy.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
+  await expect(caseStudy).toContainText("This content is not eligible for public rendering");
+});
