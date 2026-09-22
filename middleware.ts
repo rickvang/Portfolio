@@ -16,4 +16,5 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: ["/admin/:path*", "/dev/harness/:path*"],
+  runtime: "nodejs",
 };

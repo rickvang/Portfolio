@@ -12,12 +12,27 @@ const envSchema = z.object({
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.string().min(1, "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY cannot be empty").optional(),
 });
 
+function optionalEnvValue(value: string | undefined) {
+  const normalized = value?.trim();
+  return normalized ? normalized : undefined;
+}
+
+function vercelSiteUrl(input: NodeJS.ProcessEnv) {
+  const hostname =
+    optionalEnvValue(input.VERCEL_PROJECT_PRODUCTION_URL) ??
+    optionalEnvValue(input.VERCEL_URL);
+
+  if (!hostname) return undefined;
+  return /^https?:\/\//.test(hostname) ? hostname : `https://${hostname}`;
+}
+
 export function parseEnv(input: NodeJS.ProcessEnv) {
   const parsed = envSchema.safeParse({
     NODE_ENV: input.NODE_ENV,
-    NEXT_PUBLIC_SITE_URL: input.NEXT_PUBLIC_SITE_URL,
-    NEXT_PUBLIC_SUPABASE_URL: input.NEXT_PUBLIC_SUPABASE_URL,
-    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: input.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+    NEXT_PUBLIC_SITE_URL:
+      optionalEnvValue(input.NEXT_PUBLIC_SITE_URL) ?? vercelSiteUrl(input),
+    NEXT_PUBLIC_SUPABASE_URL: optionalEnvValue(input.NEXT_PUBLIC_SUPABASE_URL),
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: optionalEnvValue(input.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY),
   });
 
   if (!parsed.success) {
