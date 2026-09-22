@@ -123,6 +123,8 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
         <ImportedContentPreview content={importedContent} />
       </section>
 
+      <WorkLedPreviewHarness />
+
       <section className="harness-section" aria-labelledby="case-study-template-heading">
         <div>
           <p className="eyebrow">Shared case-study template</p>
