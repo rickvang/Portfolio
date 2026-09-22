@@ -12,17 +12,17 @@ Redesign rickvang.com for two audiences, in order:
 
 This brief locks structure before visual implementation. Imported content remains draft-first until reviewed.
 
-## Riley orchestration route
+## Repository ownership and handoffs
 
-Riley Morgan / `ai-orchestrator` owns sequencing and durable handoffs. Domain work executes through the smallest relevant specialist route.
+Issue #6 is the repository-local coordination surface. Each phase must leave an inspectable artifact or verified behavior before dependent work proceeds.
 
-| Stage | Owner | Exit artifact |
+| Stage | Repository-local owner | Exit artifact |
 | --- | --- | --- |
-| Phase 0–1: IA and content contracts | Jordan Lee / `ux-senior` | Visitor jobs, page modes, routes, hierarchy, case-study contract |
-| Phase 2–3: visual + interaction | Camille Ortiz / `ui-expert` | Rail/drawer, hierarchy, orange token use, motion, responsive/accessibility rules |
-| Phase 2–6: implementation | Frontend Systems Engineer | Reusable shell, progressive enhancement, performance, harness and browser coverage |
-| Persistence changes, only if required | Application & Data Architect | Justified source-of-truth/schema/auth/publishing changes |
-| Lifecycle boundaries | Riley Morgan / `ai-orchestrator` | Current Work and issue state reconciled |
+| Phase 0–1: IA and content contracts | UX / information architecture | Visitor jobs, page modes, routes, hierarchy, case-study contract |
+| Phase 2–3: visual + interaction | UI / interaction design | Rail/drawer, hierarchy, orange token use, motion, responsive/accessibility rules |
+| Phase 2–6: implementation | Frontend engineering | Reusable shell, progressive enhancement, performance, harness and browser coverage |
+| Persistence changes, only if required | Application/data architecture | Justified source-of-truth/schema/auth/publishing changes |
+| Lifecycle boundaries | Issue owner / implementing contributor | Issue status, blockers, handoffs, and completion evidence stay current |
 
 ## Visitor jobs
 
@@ -196,6 +196,6 @@ Do not turn the redesign into:
 
 ## Phase 0 exit gate
 
-Phase 0 is complete when audience, visitor jobs, page modes, route contracts, rail/drawer behavior, content hierarchy, first-viewport thesis, signature interaction, anti-goals, publication boundaries, and Riley handoffs are all explicit.
+Phase 0 is complete when audience, visitor jobs, page modes, route contracts, rail/drawer behavior, content hierarchy, first-viewport thesis, signature interaction, anti-goals, publication boundaries, and repository-local handoffs are all explicit.
 
 Next boundary: Phase 1 — information architecture and typed content contracts. Visual implementation follows only after that structure is sufficient.
