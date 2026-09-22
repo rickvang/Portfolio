@@ -27,3 +27,7 @@ The CI workflow gets a dedicated Ubuntu job that runs the local Docker-backed Su
 ## 2026-09-22 — Keep authoring local-first
 
 The first author workflow is implemented as server actions and protected routes over the typed Supabase boundary. It can be developed and tested without a hosted project; the public site falls back to deterministic fixtures when public Supabase configuration is absent. Hosted authentication, remote migration deployment, and production publishing remain gated until the project is explicitly linked.
+
+## 2026-09-22 — Use Riley and Current Work as the durable orchestration layer
+
+Portfolio remains authoritative for its code, architecture, design, tests, data boundaries, and repository-specific implementation decisions. For every substantial Portfolio workstream, Riley Morgan / `ai-orchestrator` is the default durable orchestration owner unless the requester establishes another boundary. Current Work is the concise cross-agent index, repo-local Work Orders carry detailed execution and recovery state, and GitHub, Vercel, Supabase, and other live systems remain authoritative for volatile operational facts. The selected specialist, Persona, Skill, Playbook, Tool path, or runtime may execute directly without an artificial Riley hop. Shared Persona Workspace repositories provide reusable guidance but do not replace Portfolio-local implementation truth or grant cross-repository mutation permission.
