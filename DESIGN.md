@@ -121,6 +121,7 @@ These are the reusable components currently in `src/components/`.
 | `SiteShell` | Persistent public navigation and content frame | `children` | Desktop rail; mobile closed/open drawer; active route; keyboard Escape/Tab trap; no-JS fallback |
 | `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
 | `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft review with provenance/evidence |
+| `EditorialDraftPreview` | Local-only review surface for source-backed article drafts | `draft` | Draft article, evidence details, source provenance, curation notes |
 | `ContactForm` | Contact form boundary | `disabled`, `initialStatus` | Idle, success, error, disabled |
 | `ProjectList` | Project card collection | `projects`, `state` | Success, loading, empty, error, long content |
 | `PostList` | Public/admin-friendly post card collection | `posts`, `state` | Success, loading, empty, error, long content |
@@ -273,6 +274,8 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 - Portfolio/profile content and reusable presentation are separate concerns.
 - Project and post summaries should be concise enough for cards; full content belongs on detail surfaces.
 - Public case-study lists and detail routes receive only records with `reviewStatus: "approved"`; the same template may render drafts only in local review mode.
+- Authored AI Systems and UI Design Practices case studies live under `content/drafts/` and are parsed into the same typed case-study contract with a draft-only source guard.
+- The persona-led design article is a separate typed editorial draft and is not connected to the public post adapter.
 - Public posts are rendered only when their status is `published`.
 - Draft, archived, and unpublished content must not leak through public components or metadata.
 - Preserve the client-IP disclaimer when importing case-study material from the existing site.
