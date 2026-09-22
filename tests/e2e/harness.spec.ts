@@ -116,22 +116,18 @@ test("destructive post action requires explicit confirmation", async ({ page }) 
   await page.goto("/dev/harness");
 
   const form = page.getByTestId("delete-post-form");
+  const confirmation = form.getByRole("checkbox", {
+    name: "I understand this permanently deletes the post.",
+  });
   const deleteButton = form.getByRole("button", { name: "Delete" });
 
-  page.once("dialog", async (dialog) => {
-    expect(dialog.type()).toBe("confirm");
-    expect(dialog.message()).toBe("Delete this post? This action cannot be undone.");
-    await dialog.dismiss();
-  });
+  await expect(confirmation).toHaveAttribute("required", "");
   await deleteButton.click();
 
+  await expect(confirmation).toBeFocused();
   await expect(form.getByRole("alert")).toHaveCount(0);
-  await expect(deleteButton).toBeEnabled();
 
-  page.once("dialog", async (dialog) => {
-    expect(dialog.type()).toBe("confirm");
-    await dialog.accept();
-  });
+  await confirmation.check();
   await deleteButton.click();
 
   await expect(form.getByRole("alert")).toContainText("Supabase is not configured for this environment.");
