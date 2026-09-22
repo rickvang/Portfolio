@@ -77,6 +77,23 @@ Issue #3 is complete when the approved first-party profile and two imported case
 
 Because `main` triggers Vercel production, merge/deployment remains a separate explicit authorization boundary.
 
+## Implemented slice
+
+- Revalidated the current public Framer source pages.
+- Promoted the first-party import packet to explicit `approved` state.
+- Added typed approved-content helpers for the public profile boundary.
+- Promoted Multi Product Integrations and Design Systems through the existing approval-filtered case-study catalog.
+- Replaced the generic homepage hero/about copy with the approved source-backed positioning and biography.
+- Added a reusable semantic `ProfileStats` component for the 11+/14+/30+ experience summary using existing design tokens and responsive patterns.
+- Updated Home, About, and Work without introducing a second route/component architecture.
+- Kept AI Systems, UI Design Practices, and persona-led design at `review-ready`.
+- Kept phone/email, third-party testimonials, credentials, brand assets, source imagery, and Supabase writes outside the promotion packet.
+- Updated DESIGN.md with a content-led hierarchy rule so actual work outranks generic portfolio slogans.
+
+## Current phase
+
+Implementation complete on the feature branch; entering PR/CI/preview validation.
+
 ## Next action
 
-Implement the typed approval/promotion path and public route integration, then open a PR and validate it. In parallel, create a separate follow-up issue describing the work-led surface redesign from this actual content inventory.
+Open the Issue #3 PR and run full CI plus Vercel preview. Repair any failures or review findings. Do not merge/deploy production without explicit authorization. Separately create the work-led surface redesign issue from the approved content inventory and existing DESIGN.md system.
