@@ -112,12 +112,12 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
           <Link className="rail-wordmark" href={publicRoutes.home}>
             Rick Vang
           </Link>
-          <p className="rail-role">Product design · systems thinking</p>
+          <p className="rail-role">Portfolio · work and notes</p>
         </div>
 
         <NavigationLinks pathname={pathname} />
 
-        <p className="rail-note">Designing useful systems for complex work.</p>
+        <p className="rail-note">Work, notes, and practice.</p>
       </aside>
 
       <header className="mobile-nav-bar">
