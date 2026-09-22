@@ -37,9 +37,9 @@ test("captures the mobile drawer", async ({ page }) => {
 
 test("captures a case-study first viewport", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto("/dev/harness/case-study?slug=multi-product-integrations");
+  await page.goto("/dev/harness/case-study?slug=ai-systems");
 
-  const caseStudy = page.getByTestId("case-study-review-multi-product-integrations");
+  const caseStudy = page.getByTestId("case-study-review-ai-systems");
   await expect(caseStudy).toBeVisible();
   await caseStudy.scrollIntoViewIfNeeded();
 
