@@ -26,8 +26,9 @@ test("public work stays approval-gated", async ({ page }) => {
     "Draft source material stays out of public routes until it is explicitly approved.",
   );
 
-  const response = await page.goto("/work/design-systems");
-  expect(response?.status()).toBe(404);
+  await page.goto("/work/design-systems");
+  await expect(page).toHaveTitle("Case study not found | Rick Vang");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   await expect(page.getByText(/design system for improving consistency/i)).toHaveCount(0);
 });
 
