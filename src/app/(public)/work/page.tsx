@@ -10,7 +10,7 @@ export default function WorkPage() {
         <p className="eyebrow">Work</p>
         <h1>Recent projects.</h1>
         <p className="lede">
-          Two client-protective case studies from the existing portfolio, now carried forward through the shared typed
+          Client-protective case studies from the existing portfolio, now carried forward through the shared typed
           content model.
         </p>
       </section>
