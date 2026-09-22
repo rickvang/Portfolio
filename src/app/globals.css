@@ -1306,6 +1306,11 @@ h3 {
   background: var(--background);
 }
 
+.case-study-item h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
 .case-study-item p,
 .case-study-disclaimer p,
 .case-study-review-footer li,
