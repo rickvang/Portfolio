@@ -1,4 +1,4 @@
-import type { CaseStudy } from "@/lib/case-studies";
+import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
 
 type CaseStudyTemplateProps = {
   caseStudy: CaseStudy;
@@ -7,6 +7,8 @@ type CaseStudyTemplateProps = {
 
 export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTemplateProps) {
   const reviewMode = mode === "review";
+  const chapters = getCaseStudyChapters(caseStudy);
+  const statusLabel = caseStudy.reviewStatus === "review-ready" ? "Review-ready content." : "Draft review surface.";
 
   return (
     <article
@@ -16,7 +18,7 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
     >
       {reviewMode && (
         <div className="case-study-review-banner" role="note">
-          <strong>Draft review surface.</strong> This content is not eligible for public rendering until its status is
+          <strong>{statusLabel}</strong> This content is not eligible for public rendering until its status is
           explicitly changed to approved.
         </div>
       )}
@@ -42,56 +44,85 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
             )}
           </dl>
         )}
+
+        <div className="case-study-chapter-path" aria-label="Case study chapter path">
+          {chapters.map((chapter, index) => (
+            <span key={chapter.id}>
+              <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
+              {chapter.label}
+            </span>
+          ))}
+        </div>
       </header>
 
       <div className="case-study-body">
-        <nav aria-label="Case study sections" className="case-study-index">
-          <p className="eyebrow">In this case study</p>
+        <nav aria-label="Case study chapters" className="case-study-index">
+          <p className="eyebrow">Chapters</p>
           <ol>
-            {caseStudy.sections.map((section) => (
-              <li key={section.kind}>
-                <a href={`#${caseStudy.slug}-${section.kind}`}>{section.title}</a>
+            {chapters.map((chapter, index) => (
+              <li key={chapter.id}>
+                <a href={`#${caseStudy.slug}-chapter-${chapter.id}`}>
+                  <span aria-hidden="true" className="case-study-index-number">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span>{chapter.label}</span>
+                </a>
               </li>
             ))}
           </ol>
         </nav>
 
-        <div className="case-study-sections">
-          {caseStudy.sections.map((section) => (
+        <div className="case-study-chapters">
+          {chapters.map((chapter, chapterIndex) => (
             <section
-              aria-labelledby={`${caseStudy.slug}-${section.kind}-heading`}
-              className="case-study-section"
-              id={`${caseStudy.slug}-${section.kind}`}
-              key={section.kind}
+              aria-labelledby={`${caseStudy.slug}-chapter-${chapter.id}-heading`}
+              className="case-study-chapter"
+              data-case-study-chapter={chapter.id}
+              id={`${caseStudy.slug}-chapter-${chapter.id}`}
+              key={chapter.id}
             >
-              <p className="eyebrow">{section.kind.replace("-", " / ")}</p>
-              <h2 id={`${caseStudy.slug}-${section.kind}-heading`}>{section.title}</h2>
+              <header className="case-study-chapter-heading">
+                <p className="eyebrow">
+                  {String(chapterIndex + 1).padStart(2, "0")} / {chapter.label}
+                </p>
+                <h2 id={`${caseStudy.slug}-chapter-${chapter.id}-heading`}>{chapter.label}</h2>
+              </header>
 
-              {section.body && <p className="case-study-copy">{section.body}</p>}
+              {chapter.sections.map((section) => (
+                <div
+                  className="case-study-section"
+                  id={`${caseStudy.slug}-${section.kind}`}
+                  key={section.kind}
+                >
+                  {section.title !== chapter.label && <h3>{section.title}</h3>}
 
-              {section.items && (
-                <div className="case-study-item-grid">
-                  {section.items.map((item) => (
-                    <article className="case-study-item" key={item.title}>
-                      <h3>{item.title}</h3>
-                      <p>{item.summary}</p>
-                    </article>
-                  ))}
+                  {section.body && <p className="case-study-copy">{section.body}</p>}
+
+                  {section.items && (
+                    <div className="case-study-item-grid">
+                      {section.items.map((item) => (
+                        <article className="case-study-item" key={item.title}>
+                          <h3>{item.title}</h3>
+                          <p>{item.summary}</p>
+                        </article>
+                      ))}
+                    </div>
+                  )}
+
+                  {reviewMode && (
+                    <details className="case-study-evidence">
+                      <summary>Review evidence</summary>
+                      <ul>
+                        {section.evidence.map((evidence) => (
+                          <li key={`${section.kind}-${evidence.sourceId}-${evidence.note}`}>
+                            <code>{evidence.sourceId}</code>: {evidence.note}
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
                 </div>
-              )}
-
-              {reviewMode && (
-                <details className="case-study-evidence">
-                  <summary>Review evidence</summary>
-                  <ul>
-                    {section.evidence.map((evidence) => (
-                      <li key={`${section.kind}-${evidence.sourceId}-${evidence.note}`}>
-                        <code>{evidence.sourceId}</code>: {evidence.note}
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              )}
+              ))}
             </section>
           ))}
         </div>
