@@ -4,11 +4,13 @@ import { useState } from "react";
 
 import { CaseStudyTemplate } from "@/components/case-study-template";
 import { ContactForm, type ContactStatus } from "@/components/contact-form";
+import { EditorialDraftPreview } from "@/components/editorial-draft-preview";
 import { AdminWorkflowPreview } from "@/components/admin-workflow-preview";
 import { ImportedContentPreview } from "@/components/imported-content-preview";
 import { PostList } from "@/components/post-list";
 import { ProjectList } from "@/components/project-list";
-import { importedCaseStudyDrafts } from "@/lib/case-studies";
+import { caseStudyCatalog } from "@/lib/case-studies";
+import { personaLedDesignDraft } from "@/lib/editorial-drafts";
 import { importedContent } from "@/lib/imported-content";
 import {
   harnessStates,
@@ -105,15 +107,26 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
           <p className="eyebrow">Shared case-study template</p>
           <h2 id="case-study-template-heading">Draft case-study review</h2>
           <p className="lede">
-            Both imported drafts use the same renderer intended for approved public case studies, with review-only
-            provenance and evidence controls added locally.
+            Imported and authored drafts use the same renderer intended for approved public case studies, with
+            review-only provenance and evidence controls added locally.
           </p>
         </div>
         <div className="case-study-review-stack" data-testid="case-study-review-stack">
-          {importedCaseStudyDrafts.map((caseStudy) => (
+          {caseStudyCatalog.map((caseStudy) => (
             <CaseStudyTemplate caseStudy={caseStudy} key={caseStudy.id} mode="review" />
           ))}
         </div>
+      </section>
+
+      <section className="harness-section" aria-labelledby="editorial-draft-heading">
+        <div>
+          <p className="eyebrow">Editorial draft</p>
+          <h2 id="editorial-draft-heading">Persona-led design article review</h2>
+          <p className="lede">
+            This source-backed article remains separate from the published post adapter until editorial approval.
+          </p>
+        </div>
+        <EditorialDraftPreview draft={personaLedDesignDraft} />
       </section>
 
       <section className="harness-section" aria-labelledby="projects-heading">
