@@ -51,7 +51,7 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 | `--danger` | `#9c342e` | Destructive actions and failures |
 | `--success` | `#176648` | Successful feedback |
 
-Use semantic tokens instead of raw color values in components. A new semantic color should be added to the token list before it is used in multiple places.
+Use semantic tokens instead of raw color values in components. The `#f24c27` accent was recovered from the rendered rickvang.com wordmark/name treatment on 2026-09-22 rather than guessed. A new semantic color should be added to the token list before it is used in multiple places.
 
 ### Typography
 
@@ -159,7 +159,7 @@ Every important interactive component should have a short interaction specificat
 
 **States:** desktop rail; mobile drawer closed; mobile drawer open; active-route state; keyboard focus; reduced motion; no-JavaScript fallback navigation.
 
-**Transitions:** desktop route state changes are immediate except for the short active-marker/color transition. Opening the drawer locks body scrolling and moves focus into the drawer. Explicit close or Escape closes the drawer and returns focus to the menu button. Selecting a route closes the drawer without queueing decorative motion.
+**Transitions:** desktop route state changes are immediate except for the short active-marker/color transition. Opening the drawer locks body scrolling and moves focus into the drawer. Explicit close or Escape closes the drawer and returns focus to the menu button. Selecting a route closes the drawer and moves focus to the persistent main-content region without queueing decorative motion.
 
 **Keyboard and focus:** rail links remain in native document order. The drawer traps Tab/Shift+Tab only while open and closes on Escape. The global skip link targets `#main-content`.
 
