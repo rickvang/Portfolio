@@ -21,6 +21,10 @@ describe("imported source content", () => {
       "design-systems",
     ]);
     expect(importedContent.projects.every((project) => project.solutionSections.length > 0)).toBe(true);
+    expect(importedContent.profile).not.toHaveProperty("email");
+    expect(importedContent.profile).not.toHaveProperty("phone");
+    expect(importedContent).not.toHaveProperty("testimonials");
+    expect(importedContent).not.toHaveProperty("credentials");
   });
 
   it("keeps draft packets out of the public adapter", () => {
