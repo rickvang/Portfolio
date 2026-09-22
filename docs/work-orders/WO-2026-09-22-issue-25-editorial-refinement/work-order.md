@@ -65,7 +65,7 @@ Refine the issue #6 production portfolio so it recovers more of the authored Opt
 
 ## Current phase
 
-Phase 4 — implementation slice complete; entering PR/CI/preview verification.
+Phase 5 — implementation and verification complete; waiting for explicit merge/production authorization.
 
 ## Implemented changes
 
@@ -75,7 +75,19 @@ Phase 4 — implementation slice complete; entering PR/CI/preview verification.
 - CSS-first staged homepage and chapter entry motion with reduced-motion fallbacks and no scroll interception.
 - Explicit `review-ready` lifecycle state for AI Systems, UI Design Practices, and the persona-led article; public adapters still accept only `approved`.
 - Updated browser/unit/visual verification for chapter labels, review-ready gating, refined focus, reduced motion, and the five-chapter authored case study.
+- Deterministic review captures were inspected for the homepage, mobile drawer, reduced-motion drawer, and AI Systems first viewport; Next.js development chrome was removed from the capture harness so screenshots represent the authored UI cleanly.
+- Codex's three P2 review findings were repaired: later chapter-section headings remain labeled, nested card headings are demoted beneath visible section headings, and case-study chapter reduced-motion behavior is explicitly tested.
 - DESIGN.md updated with rail, composition, chapter, motion, layout-choice, focus, and publication guidance.
+
+## Validation evidence
+
+- PR: https://github.com/rickvang/Portfolio/pull/26
+- Current verified head: `0e27668ea822ed95534e552b8cb8e15f96d07281`
+- GitHub CI run `35754808409`: lint, typecheck, unit tests, Playwright E2E, visual capture upload, production build, and local Supabase schema checks all passed.
+- Vercel preview `dpl_2WamtXRghteHXNRSgvM4fwbRjkkV`: `READY`, no alias error.
+- Visual artifact `10706249851`: reviewed; captures are clean and development chrome is excluded.
+- Automated review: Cursor approval present; all Codex P2 threads are resolved; no unresolved review threads remain.
+- Branch relationship at the last verification: ahead of `main` with no known product/validation blocker.
 
 ## Validation required
 
@@ -89,8 +101,8 @@ Phase 4 — implementation slice complete; entering PR/CI/preview verification.
 
 ## Completion boundary
 
-Issue #25 is complete when the visual/editorial refinement, chapter pattern, motion, harness, tests, and documentation land on `main` with all applicable gates green, while unapproved content remains review-gated and no production deployment is intentionally initiated beyond normal repository preview/build behavior.
+The implementation packet is complete and verified on PR #26. Issue #25 should close only after PR #26 lands on `main`. Because this repository's Vercel Git integration automatically creates a production deployment from `main`, merging the PR is also a production-state change and remains outside standing implementation authorization until the requester explicitly approves it. Review-ready content must remain unpublished unless separately approved.
 
 ## Next action
 
-Open the implementation PR, run GitHub CI and the Vercel preview, review the deterministic visual captures/review feedback, and repair any failures. Do not merge to `main` or trigger a production deployment without separate explicit deployment authorization.
+Wait for explicit requester authorization to merge PR #26 / deploy the resulting `main` commit. After authorization, refresh PR head/base, required checks, review state, unresolved threads, mergeability, and the Vercel preview immediately before merge. Do not change the three review-ready content records to `approved` unless publication is separately authorized.
