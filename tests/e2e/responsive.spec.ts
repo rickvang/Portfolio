@@ -40,9 +40,9 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
   await page.keyboard.press("Escape");
   await expect(drawer).not.toBeVisible();
   await expect(menuButton).toBeFocused();
-  await expect(menuButton).toHaveCSS("outline-width", "3px");
-  await expect(menuButton).toHaveCSS("outline-color", "rgb(255, 253, 250)");
-  await expect(menuButton).toHaveCSS("box-shadow", /rgb\(23, 22, 20\).*6px/);
+  await expect(menuButton).toHaveCSS("outline-width", "2px");
+  await expect(menuButton).toHaveCSS("outline-color", "rgb(247, 242, 235)");
+  await expect(menuButton).toHaveCSS("box-shadow", /rgb\(242, 76, 39\).*5px/);
 
   await menuButton.click();
   await page.getByRole("dialog", { name: "Site navigation" }).getByRole("link", { name: "Notes" }).click();
@@ -60,6 +60,7 @@ test.describe("reduced motion", () => {
     await page.goto("/");
 
     await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
+    await expect(page.locator(".editorial-hero-statement")).toHaveCSS("animation-name", "none");
 
     const menuButton = page.getByRole("button", { name: "Open site navigation" });
     await menuButton.click();
