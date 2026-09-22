@@ -110,7 +110,7 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
           <p className="eyebrow">Destructive action</p>
           <h2>Delete confirmation</h2>
           <p>Uses the production delete form with a non-production fixture identifier.</p>
-          <DeletePostForm postId="00000000-0000-0000-0000-000000000001" />
+          <DeletePostForm postId="00000000-0000-4000-8000-000000000001" />
         </article>
       </section>
 
