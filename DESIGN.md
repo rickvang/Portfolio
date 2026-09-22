@@ -110,7 +110,7 @@ Motion supports continuity and hierarchy; it never carries the only copy of stat
 4. Do not queue animations. If state changes while an effect is running, current state becomes authoritative.
 5. Motion may repeat when a user explicitly repeats an interaction or mounts a new route; it must not loop for decoration.
 6. A pattern is not implementation-complete until its reduced-motion behavior is defined and verified.
-7. Case-study section continuity and media reveal stay at the contract level until their Phase 4 surfaces exist; do not create hidden placeholder DOM solely to demonstrate motion.
+7. The shared case-study template now inherits public chapter entry. Section navigation itself stays native and immediate; media reveal remains deferred until approved media exists, and no hidden placeholder DOM is created solely to demonstrate motion.
 
 ## Component inventory
 
@@ -119,6 +119,8 @@ These are the reusable components currently in `src/components/`.
 | Component | Role | Inputs | Important states |
 | --- | --- | --- | --- |
 | `SiteShell` | Persistent public navigation and content frame | `children` | Desktop rail; mobile closed/open drawer; active route; keyboard Escape/Tab trap; no-JS fallback |
+| `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
+| `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft review with provenance/evidence |
 | `ContactForm` | Contact form boundary | `disabled`, `initialStatus` | Idle, success, error, disabled |
 | `ProjectList` | Project card collection | `projects`, `state` | Success, loading, empty, error, long content |
 | `PostList` | Public/admin-friendly post card collection | `posts`, `state` | Success, loading, empty, error, long content |
@@ -152,6 +154,19 @@ Every important interactive component should have a short interaction specificat
 7. **Responsive behavior** — layout changes, touch targets, wrapping, and overflow expectations.
 8. **Accessibility contract** — accessible names, roles, descriptions, live regions, and disabled semantics.
 9. **Harness and verification** — deterministic fixture states, stable selectors, and browser/unit acceptance checks.
+
+### Case-study template contract
+
+`CaseStudyTemplate` is the single renderer for case-study detail content.
+
+- **Public mode:** receives only approved records from the route boundary; review evidence and curation notes are not rendered.
+- **Review mode:** is local-harness only and adds an explicit draft banner, source provenance, curation notes, and per-section evidence details without changing the underlying content.
+- **Section navigation:** uses native anchor links generated from the ordered typed section contract. Missing sections remain absent rather than receiving invented filler.
+- **Client-IP note:** remains attached whenever the case-study record carries the imported disclaimer.
+- **Responsive behavior:** desktop uses a sticky local section index beside reading content; at the public shell breakpoint the index becomes static and precedes the sections.
+- **Motion:** inherits the public page chapter entry. Section navigation is immediate and never depends on JavaScript animation.
+- **Publication safety:** `CaseStudyList` and `/work/[slug]` consume approval-filtered data. Draft records may be exercised only through the local development harness until an explicit content decision changes their status.
+- **Verification:** unit coverage checks approval filtering/lookup; browser coverage checks both imported drafts through review mode and proves their public detail URLs return 404 while draft.
 
 ### Representative interaction specification: `ContactForm`
 
@@ -257,6 +272,7 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 
 - Portfolio/profile content and reusable presentation are separate concerns.
 - Project and post summaries should be concise enough for cards; full content belongs on detail surfaces.
+- Public case-study lists and detail routes receive only records with `reviewStatus: "approved"`; the same template may render drafts only in local review mode.
 - Public posts are rendered only when their status is `published`.
 - Draft, archived, and unpublished content must not leak through public components or metadata.
 - Preserve the client-IP disclaimer when importing case-study material from the existing site.
