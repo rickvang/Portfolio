@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 import { CaseStudyTemplate } from "@/components/case-study-template";
@@ -79,6 +80,18 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
       </section>
 
       <section className="surface-grid" aria-label="Harness component previews">
+        <article className="surface-card">
+          <p className="eyebrow">Public shell</p>
+          <h2>Navigation verification</h2>
+          <p>
+            Exercise the production rail and drawer with deterministic route and initial-drawer states.
+          </p>
+          <p>
+            <Link className="text-link" href="/dev/harness/shell?route=work">
+              Open shell harness
+            </Link>
+          </p>
+        </article>
         <article className="surface-card">
           <p className="eyebrow">Content adapter</p>
           <h2>{portfolioFixtures.profile.name}</h2>
