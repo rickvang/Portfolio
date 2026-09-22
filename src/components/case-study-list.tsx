@@ -29,7 +29,7 @@ export function CaseStudyList({
   return (
     <div aria-label="Case studies" className="project-preview-list">
       {caseStudies.map((caseStudy) => (
-        <article className="case-study-card" key={caseStudy.id}>
+        <article className="project-preview" data-project-preview={caseStudy.slug} key={caseStudy.id}>
           <div className="project-card-meta">
             <span className="tag">{caseStudy.category}</span>
           </div>
