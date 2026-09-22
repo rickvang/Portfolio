@@ -1,14 +1,16 @@
 import Link from "next/link";
 
+import { CaseStudyList } from "@/components/case-study-list";
 import { ContactForm } from "@/components/contact-form";
 import { PostList } from "@/components/post-list";
-import { ProjectList } from "@/components/project-list";
+import { getApprovedCaseStudies } from "@/lib/case-studies";
 import { portfolioFixtures } from "@/lib/fixtures";
 import { getPublishedPosts } from "@/lib/posts";
 import { publicRoutes } from "@/lib/public-routes";
 
 export default async function HomePage() {
-  const { profile, projects } = portfolioFixtures;
+  const { profile } = portfolioFixtures;
+  const caseStudies = getApprovedCaseStudies();
   const posts = await getPublishedPosts();
 
   return (
@@ -30,9 +32,9 @@ export default async function HomePage() {
       <section className="content-section" id="work">
         <div className="section-heading">
           <p className="eyebrow">Selected work</p>
-          <h2>A content-driven project list</h2>
+          <h2>Selected case studies</h2>
         </div>
-        <ProjectList projects={projects} />
+        <CaseStudyList caseStudies={caseStudies} />
       </section>
 
       <section className="content-section" id="notes">
