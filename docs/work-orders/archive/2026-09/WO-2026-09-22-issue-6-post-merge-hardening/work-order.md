@@ -1,7 +1,7 @@
 # Work Order — Issue #6 post-merge hardening
 
 - Work Order ID: `WO-2026-09-22-issue-6-post-merge-hardening`
-- Status: active
+- Status: complete
 - Created: 2026-09-22
 - Last updated: 2026-09-22
 - Repository: `rickvang/Portfolio`
@@ -34,10 +34,22 @@ Correct the destructive-action hardening gap that remained after PR #18 merged I
 
 PR #16 automated review identified that a JavaScript-only confirmation could be bypassed before hydration. PR #18 merged a partial correction with the native checkbox but without server-side validation; current main also retained a non-versioned harness UUID that prevented the confirmed-path test from reaching the Supabase configuration boundary.
 
+## Validation
+
+- PR #20 CI passed lint, typecheck, unit tests, Playwright, production build, and the local Supabase schema/RLS job.
+- Automated review approved PR #20 with no unresolved review threads.
+- PR #20 merged into `main` as commit `623d583045c23b9aaf4369e9d997fbc648186dbb`.
+- The final delete path requires the native confirmation value and independently validates it server-side before auth or deletion.
+- The harness uses a valid non-production UUID and exercises the confirmed path to the intended Supabase configuration boundary.
+
 ## Current phase
 
-Implementation complete; verification pending.
+Complete.
+
+## Completion boundary
+
+The post-merge hardening correction is on `main`, its verification gates passed, and no content publication, schema change, external integration, paid service, or explicit deployment operation was performed.
 
 ## Next action
 
-Open the corrective PR against current main, run review/CI, and follow the repository merge contract if all gates pass.
+None for this Work Order. Any content approval/publication or deployment is a separate authorized workstream.
