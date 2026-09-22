@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   return (
     <div className="public-page">
-      <section className="hero public-hero editorial-hero" id="top">
+      <section className="content-section editorial-section" id="top">
         <p className="hero-coordinate">{profile?.eyebrow ?? "Portfolio"}</p>
         <div className="editorial-hero-grid">
           <div className="editorial-hero-statement">
