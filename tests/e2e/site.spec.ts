@@ -5,7 +5,8 @@ test("homepage exposes the primary portfolio flow", async ({ page }) => {
 
   await expect(page.getByRole("heading", { name: /clear home for work/i })).toBeVisible();
   await expect(page.getByRole("link", { name: "View work" })).toHaveAttribute("href", "/work");
-  await expect(page.getByRole("heading", { name: "A content-driven project list" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Selected case studies" })).toBeVisible();
+  await expect(page.getByTestId("case-study-list-empty")).toContainText("Case studies are under review.");
   await expect(page.getByRole("heading", { name: "Ideas can become a maintained content surface." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fixture post", exact: true })).toBeVisible();
 
@@ -15,6 +16,19 @@ test("homepage exposes the primary portfolio flow", async ({ page }) => {
   await expect(navigation.getByRole("link", { name: "Notes" })).toHaveAttribute("href", "/notes");
   await expect(navigation.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
   await expect(navigation.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+});
+
+test("public work stays approval-gated", async ({ page }) => {
+  await page.goto("/work");
+
+  await expect(page.getByRole("heading", { name: "Approved work" })).toBeVisible();
+  await expect(page.getByTestId("case-study-list-empty")).toContainText(
+    "Draft source material stays out of public routes until it is explicitly approved.",
+  );
+
+  const response = await page.goto("/work/design-systems");
+  expect(response?.status()).toBe(404);
+  await expect(page.getByText(/design system for improving consistency/i)).toHaveCount(0);
 });
 
 test("public notes provide a list and detail route", async ({ page }) => {
