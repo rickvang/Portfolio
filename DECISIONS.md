@@ -27,3 +27,12 @@ The CI workflow gets a dedicated Ubuntu job that runs the local Docker-backed Su
 ## 2026-09-22 — Keep authoring local-first
 
 The first author workflow is implemented as server actions and protected routes over the typed Supabase boundary. It can be developed and tested without a hosted project; the public site falls back to deterministic fixtures when public Supabase configuration is absent. Hosted authentication, remote migration deployment, and production publishing remain gated until the project is explicitly linked.
+
+
+## 2026-09-22 — Keep cinematic motion CSS-first and interruption-safe
+
+The redesign motion contract uses semantic CSS duration/easing tokens and small presentational transforms rather than adding a motion library. Public chapter entry, drawer entry, rail-state changes, hover/focus feedback, and form feedback are expressible with CSS and do not justify a new dependency.
+
+Navigation, Escape, explicit close, browser history, and focus recovery are authoritative. Motion is canceled or superseded when those states change; animations are not queued and no exit animation may delay drawer close or route focus. Reduced-motion users receive final-state rendering without chapter, drawer, backdrop, or feedback animation.
+
+Revisit a motion dependency only if a later approved interaction requires coordinated stateful choreography that cannot remain accessible, interruptible, progressively enhanced, and maintainable with the platform primitives already in use.
