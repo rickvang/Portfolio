@@ -518,6 +518,18 @@ h3 {
   grid-template-columns: minmax(0, 0.45fr) minmax(0, 1.55fr);
 }
 
+.harness-section-single {
+  grid-template-columns: 1fr;
+}
+
+.case-study-harness .case-study-review {
+  margin-top: 1rem;
+}
+
+.shell-harness-page {
+  min-height: 100vh;
+}
+
 .state-card {
   align-items: center;
   display: flex;
