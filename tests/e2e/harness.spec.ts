@@ -63,8 +63,8 @@ test("harness exercises both imported drafts through the shared case-study templ
   await expect(integrations.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(designSystems.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
 
-  await expect(integrations.getByRole("navigation", { name: "Case study sections" })).toContainText("Overview");
-  await expect(integrations.getByRole("navigation", { name: "Case study sections" })).toContainText("Outcomes");
+  await expect(integrations.getByRole("navigation", { name: "Case study chapters" })).toContainText("Context");
+  await expect(integrations.getByRole("navigation", { name: "Case study chapters" })).toContainText("Outcomes");
   await expect(designSystems.getByText("Lightweight governance", { exact: true })).toBeVisible();
 
   await expect(integrations.getByText(/client intellectual property/i)).toBeVisible();
@@ -79,13 +79,18 @@ test("harness exposes authored editorial drafts without publishing them", async 
   const uiPractices = page.getByTestId("case-study-review-ui-design-practices");
   const article = page.getByTestId("editorial-draft-persona-led-design-discovery");
 
-  await expect(aiSystems).toHaveAttribute("data-case-study-status", "draft");
-  await expect(uiPractices).toHaveAttribute("data-case-study-status", "draft");
-  await expect(article).toHaveAttribute("data-editorial-status", "draft");
+  await expect(aiSystems).toHaveAttribute("data-case-study-status", "review-ready");
+  await expect(uiPractices).toHaveAttribute("data-case-study-status", "review-ready");
+  await expect(article).toHaveAttribute("data-editorial-status", "review-ready");
 
   await expect(aiSystems.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
   await expect(uiPractices.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
   await expect(article.getByRole("heading", { name: "Persona-led Design Starts Before the Screen" })).toBeVisible();
+
+  const chapterNav = aiSystems.getByRole("navigation", { name: "Case study chapters" });
+  for (const chapter of ["Context", "Personas", "Exploration", "System", "Outcomes"]) {
+    await expect(chapterNav).toContainText(chapter);
+  }
 
   await expect(article).toContainText("Synthetic persona responses are explicitly not framed as observed user research.");
 });
@@ -106,7 +111,7 @@ test("case-study harness can deep-link to an authored draft", async ({ page }) =
   await page.goto("/dev/harness/case-study?slug=ai-systems");
 
   const caseStudy = page.getByTestId("case-study-review-ai-systems");
-  await expect(caseStudy).toHaveAttribute("data-case-study-status", "draft");
+  await expect(caseStudy).toHaveAttribute("data-case-study-status", "review-ready");
   await expect(caseStudy.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
   await expect(caseStudy).toContainText("This content is not eligible for public rendering");
 });
