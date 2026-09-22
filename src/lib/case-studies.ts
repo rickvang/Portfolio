@@ -16,7 +16,7 @@ export const CASE_STUDY_SECTION_ORDER = [
 ] as const;
 
 const caseStudySectionKindSchema = z.enum(CASE_STUDY_SECTION_ORDER);
-const reviewStatusSchema = z.enum(["draft", "approved"]);
+const reviewStatusSchema = z.enum(["draft", "review-ready", "approved"]);
 
 export const caseStudySourceSchema = z.object({
   id: z.string().min(1),
@@ -106,6 +106,24 @@ export type CaseStudySection = CaseStudy["sections"][number];
 export type CaseStudySectionKind = z.infer<typeof caseStudySectionKindSchema>;
 export type CaseStudyReviewStatus = z.infer<typeof reviewStatusSchema>;
 
+export const CASE_STUDY_CHAPTERS = [
+  { id: "context", label: "Context", kinds: ["overview", "context", "problem"] },
+  { id: "personas", label: "Personas", kinds: ["personas"] },
+  { id: "exploration", label: "Exploration", kinds: ["exploration"] },
+  { id: "system", label: "System", kinds: ["system-practice", "decisions"] },
+  { id: "outcomes", label: "Outcomes", kinds: ["outcomes", "reflection"] },
+] as const;
+
+export function getCaseStudyChapters(caseStudy: CaseStudy) {
+  return CASE_STUDY_CHAPTERS.map((chapter) => {
+    const kinds = new Set<string>(chapter.kinds);
+    return {
+      ...chapter,
+      sections: caseStudy.sections.filter((section) => kinds.has(section.kind)),
+    };
+  }).filter((chapter) => chapter.sections.length > 0);
+}
+
 function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
   const sourceId = `${project.id}-source`;
   const evidence = (note: string) => [{ sourceId, note }];
@@ -162,8 +180,8 @@ export const importedCaseStudyDrafts = importedContent.projects.map(importedProj
 const authoredCaseStudyDraftsSchema = z
   .array(caseStudySchema)
   .min(1)
-  .refine((caseStudies) => caseStudies.every((caseStudy) => caseStudy.reviewStatus === "draft"), {
-    message: "Authored case-study draft sources must remain draft until explicitly approved elsewhere.",
+  .refine((caseStudies) => caseStudies.every((caseStudy) => caseStudy.reviewStatus !== "approved"), {
+    message: "Authored case-study review sources must remain unpublished until explicitly approved elsewhere.",
   });
 
 export const authoredCaseStudyDrafts = authoredCaseStudyDraftsSchema.parse(authoredCaseStudySource);
