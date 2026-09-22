@@ -35,3 +35,17 @@ test("contact form exposes success and disabled interaction states", async ({ pa
   await expect(page.getByTestId("contact-form").getByLabel("Name")).toBeDisabled();
   await expect(page.getByTestId("contact-form").getByRole("button", { name: "Send message" })).toBeDisabled();
 });
+
+test("harness previews the attributed public-source draft", async ({ page }) => {
+  await page.goto("/dev/harness");
+
+  const preview = page.getByTestId("imported-content-preview");
+  await expect(preview).toBeVisible();
+  await expect(preview).toContainText("Review status: draft");
+  await expect(preview).toContainText("Multi Product Integrations");
+  await expect(preview).toContainText("Design Systems");
+  await expect(preview.getByRole("link", { name: "Review the captured source" })).toHaveAttribute(
+    "href",
+    "https://www.rickvang.com/",
+  );
+});

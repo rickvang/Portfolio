@@ -49,3 +49,7 @@ The harness is deterministic and local-only. It previews the first vertical slic
 ## Repository guidance
 
 See `AGENTS.md`, `ARCHITECTURE.md`, `DECISIONS.md`, and `DESIGN.md` before making structural or visual changes.
+
+## Imported draft content
+
+The first structured import from the public Framer site lives in `content/imports/rickvang.com.json`. It is validated at the `src/lib/imported-content.ts` boundary and previewed only through the local harness until the profile, case studies, contact details, testimonials, credentials, and media assets are reviewed. See `docs/content-import.md` for the source mapping and promotion checklist.

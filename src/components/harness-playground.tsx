@@ -4,8 +4,10 @@ import { useState } from "react";
 
 import { ContactForm, type ContactStatus } from "@/components/contact-form";
 import { AdminWorkflowPreview } from "@/components/admin-workflow-preview";
+import { ImportedContentPreview } from "@/components/imported-content-preview";
 import { PostList } from "@/components/post-list";
 import { ProjectList } from "@/components/project-list";
+import { importedContent } from "@/lib/imported-content";
 import {
   harnessStates,
   portfolioFixtures,
@@ -86,6 +88,14 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
             key={`contact-${state}`}
           />
         </article>
+      </section>
+
+      <section className="harness-section" aria-labelledby="imported-content-section-heading">
+        <div>
+          <p className="eyebrow">Draft content boundary</p>
+          <h2 id="imported-content-section-heading">Imported source review</h2>
+        </div>
+        <ImportedContentPreview content={importedContent} />
       </section>
 
       <section className="harness-section" aria-labelledby="projects-heading">

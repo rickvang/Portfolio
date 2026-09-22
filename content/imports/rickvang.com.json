@@ -1,0 +1,130 @@
+{
+  "source": {
+    "site": "rickvang.com",
+    "capturedAt": "2026-09-22",
+    "reviewStatus": "draft",
+    "clientIpDisclaimer": "The work displayed here shows my methodology and interface design strategies with real customers, but may differ from what was implemented due to project constraints. The contents have also been modified to protect client intellectual property.",
+    "sourcePages": [
+      {
+        "url": "https://www.rickvang.com/",
+        "role": "positioning"
+      },
+      {
+        "url": "https://www.rickvang.com/about",
+        "role": "profile and experience"
+      },
+      {
+        "url": "https://www.rickvang.com/projects",
+        "role": "project index and disclaimer"
+      },
+      {
+        "url": "https://www.rickvang.com/projects/multi-product-integrations",
+        "role": "case study"
+      },
+      {
+        "url": "https://www.rickvang.com/projects/design-systems",
+        "role": "case study"
+      }
+    ]
+  },
+  "profile": {
+    "eyebrow": "Available for Work",
+    "headline": "Hi, I'm Rick.",
+    "summary": "I'm a product design leader driven by creating systems that give people tools to stop fighting fires so they can do the things they're passionate about.",
+    "aboutHeading": "A decade-long craft defined with empathy",
+    "aboutSummary": "I've spent over a decade designing and building software in multiple roles and sectors to understand how to think in systems. I've developed my skillset around consistently delivering while improving the underlying experience architecture.",
+    "stats": [
+      {
+        "value": "11+",
+        "label": "Years of Experience"
+      },
+      {
+        "value": "14+",
+        "label": "Companies"
+      },
+      {
+        "value": "30+",
+        "label": "Projects Delivered"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "multi-product-integrations",
+      "slug": "multi-product-integrations",
+      "title": "Multi Product Integrations",
+      "category": "Enterprise B2B",
+      "sourceUrl": "https://www.rickvang.com/projects/multi-product-integrations",
+      "summary": "A unified framework for standardizing processes, consolidating data, and integrating workflows across a fragmented ecosystem of products and applications.",
+      "discovery": "The work began by identifying core personas and mapping their workflows to create reusable domain experiences that could support future journey and experience maps.",
+      "outcomes": "Designed a platform framework and collaborated to build trust with early adopters. The effort enabled real-time operational data views, reduced administrative work, and reduced UX-operations rework.",
+      "solutionSections": [
+        {
+          "title": "Standardized Layouts",
+          "summary": "Modular layouts designed to handle large sets of data."
+        },
+        {
+          "title": "Dashboards",
+          "summary": "Aggregated views shaped around a user's persona and needs."
+        },
+        {
+          "title": "Records and Chat",
+          "summary": "Current views of the data a user is entitled to access."
+        },
+        {
+          "title": "Settings",
+          "summary": "Reusable cross-application configurations that can expand with business needs."
+        },
+        {
+          "title": "Workflow Completion",
+          "summary": "Connected data, project visibility, and progress for consumers."
+        }
+      ],
+      "curationNotes": [
+        "Normalized the source category typo from 'Enerprise B2B' to 'Enterprise B2B'.",
+        "Kept the case study at the public, client-protective level of detail from the source page.",
+        "Source images remain deferred until asset ownership and hosting are reviewed."
+      ]
+    },
+    {
+      "id": "design-systems",
+      "slug": "design-systems",
+      "title": "Design Systems",
+      "category": "Design Systems",
+      "sourceUrl": "https://www.rickvang.com/projects/design-systems",
+      "summary": "A comprehensive and scalable design system for improving consistency, accelerating development workflows, and extending legacy capabilities for future growth.",
+      "discovery": "Audited and prioritized existing patterns and user scenarios, then used stakeholder workshops, usage analysis, user testing, and developer feedback to align goals and feasibility.",
+      "outcomes": "Established a platform framework, built trust with early adopters, enabled real-time operational data views, reduced administrative work, and created potential to reduce UX-operations rework.",
+      "solutionSections": [
+        {
+          "title": "Gathered collaborators",
+          "summary": "Brought the team together to implement and prioritize the system."
+        },
+        {
+          "title": "Established a core library",
+          "summary": "Created a reusable foundation for shared design decisions."
+        },
+        {
+          "title": "Lightweight governance",
+          "summary": "Created collaborative feedback loops to support adoption and ongoing prioritization."
+        },
+        {
+          "title": "Foundations",
+          "summary": "Defined reusable style-library and token foundations."
+        },
+        {
+          "title": "Density",
+          "summary": "Supported different needs across marketing and enterprise-product surfaces."
+        },
+        {
+          "title": "Templates and patterns",
+          "summary": "Created reusable screens and workflow patterns for onboarding, work progression, inventory management, and account configuration."
+        }
+      ],
+      "curationNotes": [
+        "Kept governance, foundations, density, templates, and patterns as separate content concepts for future structured rendering.",
+        "Source images remain deferred until asset ownership and hosting are reviewed."
+      ]
+    }
+  ]
+}
