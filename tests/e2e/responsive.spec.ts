@@ -41,6 +41,8 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
   await expect(drawer).not.toBeVisible();
   await expect(menuButton).toBeFocused();
   await expect(menuButton).toHaveCSS("outline-width", "3px");
+  await expect(menuButton).toHaveCSS("outline-color", "rgb(255, 253, 250)");
+  await expect(menuButton).toHaveCSS("box-shadow", /rgb\(23, 22, 20\).*6px/);
 
   await menuButton.click();
   await page.getByRole("dialog", { name: "Site navigation" }).getByRole("link", { name: "Notes" }).click();
