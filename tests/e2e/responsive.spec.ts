@@ -10,3 +10,28 @@ test("long-content harness state stays within the viewport", async ({ page }) =>
   const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(hasHorizontalOverflow).toBe(false);
 });
+
+
+test("mobile public navigation traps focus and returns it on Escape", async ({ page }) => {
+  await page.goto("/");
+
+  const menuButton = page.getByRole("button", { name: "Open site navigation" });
+  await expect(menuButton).toBeVisible();
+  await menuButton.click();
+
+  const drawer = page.getByRole("dialog", { name: "Site navigation" });
+  const closeButton = drawer.getByRole("button", { name: "Close" });
+
+  await expect(drawer).toBeVisible();
+  await expect(closeButton).toBeFocused();
+
+  await page.keyboard.press("Shift+Tab");
+  await expect(drawer.getByRole("link", { name: "Contact" })).toBeFocused();
+
+  await page.keyboard.press("Escape");
+  await expect(drawer).not.toBeVisible();
+  await expect(menuButton).toBeFocused();
+
+  const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+  expect(hasHorizontalOverflow).toBe(false);
+});
