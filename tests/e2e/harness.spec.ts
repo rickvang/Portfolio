@@ -110,3 +110,29 @@ test("case-study harness can deep-link to an authored draft", async ({ page }) =
   await expect(caseStudy.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
   await expect(caseStudy).toContainText("This content is not eligible for public rendering");
 });
+
+
+test("destructive post action requires explicit confirmation", async ({ page }) => {
+  await page.goto("/dev/harness");
+
+  const form = page.getByTestId("delete-post-form");
+  const deleteButton = form.getByRole("button", { name: "Delete" });
+
+  page.once("dialog", async (dialog) => {
+    expect(dialog.type()).toBe("confirm");
+    expect(dialog.message()).toBe("Delete this post? This action cannot be undone.");
+    await dialog.dismiss();
+  });
+  await deleteButton.click();
+
+  await expect(form.getByRole("alert")).toHaveCount(0);
+  await expect(deleteButton).toBeEnabled();
+
+  page.once("dialog", async (dialog) => {
+    expect(dialog.type()).toBe("confirm");
+    await dialog.accept();
+  });
+  await deleteButton.click();
+
+  await expect(form.getByRole("alert")).toContainText("Supabase is not configured for this environment.");
+});
