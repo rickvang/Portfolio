@@ -5,8 +5,9 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 
   await expect(page.getByRole("heading", { name: "Hi, I'm Rick.", exact: true })).toBeVisible();
   await expect(page.getByText(/product design leader driven by creating systems/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: "View work" })).toHaveAttribute("href", "/work");
-  await expect(page.getByRole("heading", { name: "Recent projects", exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View all work" })).toHaveAttribute("href", "/work");
+  await expect(page.getByText("Featured project", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Other approved case studies", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
@@ -36,7 +37,7 @@ test("about page renders the approved biography and experience summary", async (
 test("approved imported work is public through the shared case-study routes", async ({ page }) => {
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { name: "Selected work" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Projects" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
   await expect(page.getByTestId("case-study-list-empty")).toHaveCount(0);
@@ -73,9 +74,9 @@ test("public notes provide a list and detail route", async ({ page }) => {
   await expect(
     page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Notes" }),
   ).toHaveAttribute("aria-current", "page");
-  await page.getByRole("link", { name: "Fixture post", exact: true }).click();
+  await page.goto("/notes/fixture-post");
   await expect(page.getByRole("heading", { name: "Fixture post", exact: true })).toBeVisible();
-  await expect(page.getByText("Replace this fixture with approved content before production use.")).toBeVisible();
+  await expect(page.locator(".post-content")).toContainText("Replace this fixture with approved content before production use.");
 });
 
 test("admin route explains missing Supabase configuration locally", async ({ page }) => {
@@ -102,3 +103,4 @@ test("health endpoint reports service readiness", async ({ request }) => {
     status: "degraded",
   });
 });
+

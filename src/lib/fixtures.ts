@@ -35,6 +35,23 @@ export const portfolioFixtures = seed as {
   };
   projects: Project[];
   posts: PostFixture[];
+  experienceHarness: {
+    textOnly: {
+      id: string;
+      title: string;
+      summary: string;
+    };
+    longContent: {
+      id: string;
+      title: string;
+      summary: string;
+      items: {
+        id: string;
+        title: string;
+        summary: string;
+      }[];
+    };
+  };
 };
 
 export const harnessStates: HarnessState[] = [
@@ -83,3 +100,4 @@ export function postsForState(state: HarnessState): PostFixture[] {
 
   return state === "success" || state === "disabled" ? portfolioFixtures.posts : [];
 }
+

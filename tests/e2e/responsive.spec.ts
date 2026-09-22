@@ -11,6 +11,17 @@ test("long-content harness state stays within the viewport", async ({ page }) =>
   expect(hasHorizontalOverflow).toBe(false);
 });
 
+test("work-to-experience patterns stack and wrap without horizontal overflow", async ({ page }) => {
+  await page.goto("/work");
+
+  await expect(page.getByRole("heading", { name: "How the product parts relate" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Governance, foundations, and use patterns" })).toBeVisible();
+  await expect(page.getByText("Enterprise-product surfaces", { exact: true })).toBeVisible();
+
+  const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+  expect(hasHorizontalOverflow).toBe(false);
+});
+
 
 test("mobile public navigation traps focus and returns it on Escape", async ({ page }) => {
   await page.goto("/");
@@ -60,7 +71,7 @@ test.describe("reduced motion", () => {
     await page.goto("/");
 
     await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
-    await expect(page.locator(".editorial-hero-statement")).toHaveCSS("animation-name", "none");
+    await expect(page.locator(".home-work-hero")).toHaveCSS("animation-name", "none");
 
     const menuButton = page.getByRole("button", { name: "Open site navigation" });
     await menuButton.click();
@@ -93,3 +104,4 @@ test("mobile drawer entry can be interrupted immediately", async ({ page }) => {
   await expect(menuButton).toBeFocused();
   await expect(page.getByTestId("shell-harness-page")).toBeVisible();
 });
+

@@ -36,5 +36,35 @@
       "status": "published",
       "publishedAt": "2026-09-20T12:00:00.000Z"
     }
-  ]
+  ],
+  "experienceHarness": {
+    "textOnly": {
+      "id": "harness-text-only",
+      "title": "Text-first fallback example",
+      "summary": "Synthetic example: this source contains a short summary but no structured system details or client media."
+    },
+    "longContent": {
+      "id": "harness-long-content",
+      "title": "Long project title for checking dense content, narrow layouts, and readable wrapping in the work presentation",
+      "summary": "Synthetic example: this fixture stresses long headings and dense descriptions without representing a real client, product, interface, or outcome.",
+      "items": [
+        {
+          "id": "system-practice:long-workflow-context",
+          "title": "A longer workflow context label that must wrap without clipping",
+          "summary": "This synthetic item contains enough supporting text to exercise line length, spacing, and readable grouping when a visitor reviews a content-heavy project."
+        },
+        {
+          "id": "system-practice:many-relationships",
+          "title": "A second long example for repeated information",
+          "summary": "The fixture adds another paragraph so the matrix and topology styles can be checked at desktop, tablet, and narrow viewport sizes."
+        },
+        {
+          "id": "system-practice:long-evidence-note",
+          "title": "A source trail with a deliberately lengthy description",
+          "summary": "Nothing in this fixture describes a client artifact. It only gives the harness enough text to reveal overflow and density problems."
+        }
+      ]
+    }
+  }
 }
+

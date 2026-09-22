@@ -32,6 +32,7 @@ export const caseStudyEvidenceSchema = z.object({
 });
 
 const caseStudySectionItemSchema = z.object({
+  id: z.string().min(1).optional(),
   title: z.string().min(1),
   summary: z.string().min(1),
 });
@@ -106,6 +107,16 @@ export type CaseStudySection = CaseStudy["sections"][number];
 export type CaseStudySectionKind = z.infer<typeof caseStudySectionKindSchema>;
 export type CaseStudyReviewStatus = z.infer<typeof reviewStatusSchema>;
 
+export function getCaseStudySectionItemId(sectionKind: CaseStudySectionKind, title: string): string {
+  const stableTitle = title
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+  return sectionKind + ":" + stableTitle;
+}
+
 export const CASE_STUDY_CHAPTERS = [
   { id: "context", label: "Context", kinds: ["overview", "context", "problem"] },
   { id: "personas", label: "Personas", kinds: ["personas"] },
@@ -161,7 +172,10 @@ function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
       {
         kind: "system-practice",
         title: "System / practice",
-        items: project.solutionSections,
+        items: project.solutionSections.map((item) => ({
+          id: getCaseStudySectionItemId("system-practice", item.title),
+          ...item,
+        })),
         evidence: evidence("Imported solution sections from the approved public source."),
       },
       {
@@ -210,3 +224,4 @@ export function getApprovedCaseStudyBySlug(
 ): CaseStudy | undefined {
   return getApprovedCaseStudies(caseStudies).find((caseStudy) => caseStudy.slug === slug);
 }
+
