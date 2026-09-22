@@ -12,6 +12,7 @@
   --rail: #282622;
   --rail-foreground: #f7f2eb;
   --rail-muted: #b6afa3;
+  --rail-accent: #ff6848;
   --rail-border: rgb(247 242 235 / 14%);
   --focus: #f24c27;
   --focus-inner: #fffdfa;
@@ -620,7 +621,7 @@ h3 {
 }
 
 .rail-wordmark::after {
-  color: var(--accent);
+  color: var(--rail-accent);
   content: ".";
 }
 
@@ -664,7 +665,7 @@ h3 {
 }
 
 .rail-link-index {
-  color: var(--accent);
+  color: var(--rail-accent);
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -694,7 +695,7 @@ h3 {
 }
 
 .rail-link.is-active .rail-link-marker {
-  background: var(--accent);
+  background: var(--rail-accent);
   transform: scaleX(1);
 }
 
