@@ -4,14 +4,15 @@ This document is the working visual and interaction contract for rickvang.com. I
 
 ## Design direction
 
-The portfolio uses a quiet editorial foundation for systems-oriented product design work:
+The portfolio uses a cinematic editorial foundation for systems-oriented product design work:
 
-- content leads; decoration supports comprehension;
-- warm neutral surfaces keep long-form case-study content comfortable to read;
-- deep green provides a restrained action and identity accent;
-- generous spacing creates hierarchy without introducing visual noise;
-- every important flow has an explicit loading, empty, error, disabled, and long-content behavior;
-- the system favors native HTML, readable markup, and progressive enhancement over interaction for its own sake.
+- the work and authored content remain the focal point; navigation acts as a stable frame;
+- a dark persistent rail creates continuity against warm neutral reading surfaces;
+- the original rickvang.com accent is restored as `#f24c27` and used semantically rather than decoratively;
+- small text on light surfaces uses the darker `--accent-ink` token instead of raw orange where contrast would be insufficient;
+- generous spacing and compact typography create hierarchy without delaying access to content;
+- every important flow has explicit loading, empty, error, disabled, long-content, keyboard, and reduced-motion behavior where applicable;
+- the system favors native HTML, readable markup, progressive enhancement, and route continuity over interaction for its own sake.
 
 The current system is CSS-variable based. Tailwind and a third-party component library are not required for this application.
 
@@ -33,17 +34,22 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--background` | `#f7f5f0` | Page background |
-| `--surface` | `#fffdf8` | Cards, fields, and elevated content |
-| `--surface-muted` | `#eeece5` | Secondary surfaces and disabled fields |
-| `--foreground` | `#1d1c1a` | Primary text and strong borders |
-| `--muted` | `#6d6a63` | Supporting text and secondary navigation |
-| `--border` | `#d8d4c9` | Dividers, card borders, and field borders |
-| `--accent` | `#1d5b52` | Primary actions, eyebrows, and active emphasis |
-| `--accent-strong` | `#12483f` | Hover state for primary actions |
+| `--background` | `#f4f1eb` | Public page and application background |
+| `--surface` | `#fffdfa` | Cards, fields, and elevated reading surfaces |
+| `--surface-muted` | `#e9e4db` | Secondary surfaces and disabled fields |
+| `--surface-strong` | `#ded7cc` | Stronger neutral separation when a muted surface is insufficient |
+| `--foreground` | `#171614` | Primary text and strong borders |
+| `--muted` | `#6b665f` | Supporting text |
+| `--border` | `#d5cfc5` | Dividers, card borders, and field borders |
+| `--accent` | `#f24c27` | Brand identity, active rail marker, large authored emphasis, button fill |
+| `--accent-hover` | `#ff6848` | Hover fill for accent actions |
+| `--accent-ink` | `#b7371c` | Small accent text and links on light surfaces |
+| `--rail` | `#151311` | Persistent navigation rail and mobile drawer |
+| `--rail-foreground` | `#f7f2eb` | Primary text on the rail |
+| `--rail-muted` | `#aaa29a` | Secondary rail text |
+| `--focus` | `#f24c27` | Keyboard focus indication |
 | `--danger` | `#9c342e` | Destructive actions and failures |
 | `--success` | `#176648` | Successful feedback |
-| focus ring | `#8bc9ba` | Keyboard focus indication |
 
 Use semantic tokens instead of raw color values in components. A new semantic color should be added to the token list before it is used in multiple places.
 
@@ -61,22 +67,22 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 
 ### Layout and spacing
 
-- `.site-shell` is centered at a maximum width of `1120px` with responsive horizontal padding: `clamp(1.25rem, 4vw, 4rem)`.
-- The hero uses generous vertical space: `clamp(5rem, 14vw, 10rem)` above and `7rem` below on larger screens.
-- Major sections use a top divider and `5rem` vertical padding.
-- Cards use responsive padding: `clamp(1.25rem, 3vw, 2rem)`.
-- Repeated grids use a `1rem` gap.
-- The current spacing values are intentionally simple rather than a full numeric scale. Prefer an existing value; introduce a token if a new value repeats.
+- Public routes use `.public-shell`: a fixed `17rem` desktop rail plus a content column capped by `--content-max: 76rem`.
+- The public content column uses responsive horizontal padding: `clamp(1.5rem, 5vw, 5rem)`; below `900px` it becomes full-width with a sticky mobile navigation bar.
+- `.site-shell` remains the centered `1120px` container for internal/admin and development-harness surfaces; public pages no longer depend on it.
+- Public heroes use a large first-view rhythm and `.public-hero` targets up to `78vh` without requiring a fixed height.
+- Major sections retain a top divider and `5rem` vertical padding so long-form content keeps a predictable chapter rhythm.
+- Cards use responsive padding: `clamp(1.25rem, 3vw, 2rem)`; repeated grids use a `1rem` gap.
+- Prefer the existing spacing rhythm; introduce a token only when a new spacing value repeats across components.
 
 ### Shape, elevation, and motion
 
-- Standard card radius: `--radius: 1rem`.
-- Pills use `999px` radius for buttons, tags, and compact status labels.
-- Cards use `--shadow: 0 18px 50px rgb(29 28 26 / 8%)`.
-- Interactive buttons transition background, border, and a small `1px` lift over `150ms ease`.
+- Standard card radius: `--radius: 1rem`; pills use `999px` radius for buttons, tags, and compact controls.
+- Cards use `--shadow: 0 18px 50px rgb(23 22 20 / 8%)`.
+- Rail links and active markers use short `150ms ease` state transitions; buttons retain the small `1px` hover lift.
 - Loading indicators use an `800ms linear` rotation.
-- Page anchor scrolling is smooth, but motion should remain supplementary and should not carry meaning.
-- Respect a future reduced-motion preference if animated surfaces become more prominent.
+- The shell does not run an intro animation or delay route content. Chapter-style route motion remains a Phase 3 concern.
+- `prefers-reduced-motion: reduce` globally removes nonessential animation/transition duration and smooth scrolling.
 
 ## Component inventory
 
@@ -84,6 +90,7 @@ These are the reusable components currently in `src/components/`.
 
 | Component | Role | Inputs | Important states |
 | --- | --- | --- | --- |
+| `SiteShell` | Persistent public navigation and content frame | `children` | Desktop rail; mobile closed/open drawer; active route; keyboard Escape/Tab trap; no-JS fallback |
 | `ContactForm` | Contact form boundary | `disabled`, `initialStatus` | Idle, success, error, disabled |
 | `ProjectList` | Project card collection | `projects`, `state` | Success, loading, empty, error, long content |
 | `PostList` | Public/admin-friendly post card collection | `posts`, `state` | Success, loading, empty, error, long content |
@@ -144,6 +151,24 @@ Every important interactive component should have a short interaction specificat
 
 **Verification:** `tests/e2e/harness.spec.ts` verifies that the success form can submit locally and that the disabled fixture disables both a field and the submit button.
 
+### Interaction specification: `SiteShell`
+
+**Purpose:** provide a stable navigation spine across public routes while keeping internal admin, API, and harness surfaces independent.
+
+**Anatomy:** desktop `aside` rail; identity link; primary navigation; active-route marker; mobile sticky bar; menu toggle; modal drawer/backdrop; skip link; public `main` content region.
+
+**States:** desktop rail; mobile drawer closed; mobile drawer open; active-route state; keyboard focus; reduced motion; no-JavaScript fallback navigation.
+
+**Transitions:** desktop route state changes are immediate except for the short active-marker/color transition. Opening the drawer locks body scrolling and moves focus into the drawer. Explicit close or Escape closes the drawer and returns focus to the menu button. Selecting a route closes the drawer without queueing decorative motion.
+
+**Keyboard and focus:** rail links remain in native document order. The drawer traps Tab/Shift+Tab only while open and closes on Escape. The global skip link targets `#main-content`.
+
+**Responsive behavior:** the fixed rail is used above `900px`; at `900px` and below it is replaced by the sticky mobile bar and drawer. Public content drops its rail offset at the same breakpoint.
+
+**Accessibility contract:** active route uses `aria-current="page"` plus a visible marker, not color alone. The mobile toggle exposes `aria-expanded` and `aria-controls`; the open drawer uses `role="dialog"` and `aria-modal="true"`. A no-JavaScript navigation list preserves access to the public routes.
+
+**Verification:** Playwright covers rail visibility and active state on default desktop, drawer behavior at mobile/tablet widths, Escape/focus return, and viewport overflow. Reduced motion is enforced in CSS and will receive a dedicated visual snapshot in the later motion/harness phase.
+
 ### Prioritized interaction map
 
 The following existing surfaces use the template above. ContactForm is the representative component with a full harness journey; the server-bound forms keep their real data boundary and use the deterministic author preview for cross-cutting state inspection.
@@ -153,7 +178,7 @@ The following existing surfaces use the template above. ContactForm is the repre
 | `AdminLoginForm` | Sign an author into the content workspace; idle, pending, and error. | Native email/password fields; submit becomes disabled while pending; server action owns authentication and redirect validation; errors use `role="alert"`. | `/admin/login` is the route-level boundary; the harness author preview represents loading, error, and disabled author-tool states without credentials. |
 | `PostEditorForm` | Create or edit a post; create, edit, pending, validation/action error, and long-content. | Visible labels and native required/pattern validation; server action validates title, slug, and content; pending disables the submit action; no client-side publishing or external transmission. | `/admin/posts/new` and `/admin/posts/[id]/edit` are the route-level boundaries; long-content fixtures exercise the surrounding author layout in the harness. |
 | `PostStatusActions` | Change draft/published/archived status or delete an owned post. | Each status action is an explicit form; pending disables only its action; server action validates the post ID, status, and author ownership; deletion remains visually destructive and must keep confirmation behavior explicit before expansion. | The author preview exposes the same visible action availability across loading, disabled, error, and long-content states; live status mutations remain a hosted-auth route concern. |
-| Primary navigation | Move between work, notes, and contact sections or return to the home surface. | Use native links and meaningful visible names; preserve keyboard focus and URL fragments; do not hide the only route to content behind hover or motion. | The homepage and notes routes are covered by the browser suite; anchor navigation is inspectable from the main page and remains available at mobile widths. |
+| Primary navigation / `SiteShell` | Move among Home, Work, Notes, About, and Contact while preserving orientation. | Desktop uses a persistent rail with text plus an active marker; mobile uses an explicitly named drawer, Escape close, focus containment while open, focus return on explicit close, and a `<noscript>` fallback. Primary destinations never depend on hover or motion. | Browser coverage verifies active-route semantics, desktop rail visibility, mobile drawer open/close, Escape, focus return, and no horizontal overflow. |
 | Harness controls | Select a deterministic fixture state and restore the baseline. | Use a labeled button group with `aria-pressed`; state changes are local and synchronous; reset returns to `success`; direct URL state is accepted only from the known state union. | `/dev/harness` exposes all six fixture states, a reset control, `data-harness-state`, and stable state-region selectors. |
 
 ## State matrix
@@ -190,14 +215,15 @@ When a new important state is introduced, update all four places together:
 
 ## Responsive behavior
 
-The main breakpoint is `760px`:
+Public navigation and content use a `900px` shell breakpoint; internal grids keep the existing `760px` content breakpoint:
 
-- desktop/tablet: two-column project, post, split, and harness layouts where content supports it;
-- mobile: grids collapse to one column, headers and admin rows stack, and action groups wrap;
-- content determines height; fixed heights are reserved for loading placeholders and minimum card rhythm;
-- test long titles and long excerpts at mobile widths before shipping.
+- above `900px`: public routes use the fixed `17rem` rail and offset content column;
+- at `900px` and below: the rail is removed from layout and replaced with the sticky mobile bar plus drawer;
+- at `760px` and below: project, post, split, harness, and relevant admin grids collapse to one column;
+- content determines height; fixed heights remain limited to loading placeholders and minimum card rhythm;
+- test long titles, long excerpts, drawer focus behavior, and route navigation at both mobile and tablet widths.
 
-Use the harness at normal desktop width and a narrow viewport to validate layout changes. The Playwright suite includes default, mobile, and tablet projects.
+The Playwright suite includes default desktop plus dedicated mobile and tablet projects.
 
 ## Content presentation
 
