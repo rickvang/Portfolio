@@ -68,6 +68,6 @@ Do not turn it into a transcript or duplicate every commit/check.
 
 ## Completion
 
-A Work Order is complete when the scoped outcome is in place, directly inspectable structure/invariants are correct, applicable checks have passed or remaining uncertainty is stated, authorization boundaries were respected, and Current Work has been reconciled to the terminal state.
+A Work Order is complete when the scoped outcome is in place, directly inspectable structure/invariants are correct, applicable checks have passed or remaining uncertainty is stated, authorization boundaries were respected, and Current Work has been reconciled to the terminal state **when the tracker is available**. If Current Work cannot be written because the required Notion tool, connection, or permission is unavailable, the explicit `Current Work not updated` fallback plus the reason satisfies the tracker portion of completion; reconcile it later when a subsequent authorized agent has access.
 
 Portfolio-specific completion and verification requirements in `AGENTS.md`, `ARCHITECTURE.md`, and `DESIGN.md` still apply.
