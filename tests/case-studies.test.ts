@@ -4,6 +4,7 @@ import {
   CASE_STUDY_SECTION_ORDER,
   caseStudySchema,
   getApprovedCaseStudies,
+  getApprovedCaseStudyBySlug,
   importedCaseStudyDrafts,
 } from "@/lib/case-studies";
 
@@ -62,7 +63,11 @@ describe("case-study content contract", () => {
       reviewStatus: "approved",
     });
 
-    expect(getApprovedCaseStudies([importedCaseStudyDrafts[1]!, approved])).toEqual([approved]);
+    const mixed = [importedCaseStudyDrafts[1]!, approved];
+
+    expect(getApprovedCaseStudies(mixed)).toEqual([approved]);
+    expect(getApprovedCaseStudyBySlug("multi-product-integrations", mixed)).toEqual(approved);
+    expect(getApprovedCaseStudyBySlug("design-systems", mixed)).toBeUndefined();
     expect(importedCaseStudyDrafts[0]?.reviewStatus).toBe("draft");
   });
 });
