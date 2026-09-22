@@ -1,3 +1,4 @@
+import { CaseStudyList } from "@/components/case-study-list";
 import { getApprovedCaseStudies } from "@/lib/case-studies";
 
 export default function WorkPage() {
@@ -18,14 +19,7 @@ export default function WorkPage() {
           <p className="eyebrow">Case studies</p>
           <h2 id="work-index-heading">Approved work</h2>
         </div>
-        {caseStudies.length === 0 ? (
-          <div className="state-card">
-            <div>
-              <p className="state-card-title">Case studies are under review.</p>
-              <p>Draft source material stays out of public routes until it is explicitly approved.</p>
-            </div>
-          </div>
-        ) : null}
+        <CaseStudyList caseStudies={caseStudies} />
       </section>
     </div>
   );
