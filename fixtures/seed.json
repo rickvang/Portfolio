@@ -1,0 +1,33 @@
+{
+  "profile": {
+    "name": "Rick Vang",
+    "eyebrow": "Portfolio foundation",
+    "headline": "A clear home for work, ideas, and useful systems.",
+    "summary": "Placeholder content for the first vertical slice. Replace this with approved portfolio positioning before launch."
+  },
+  "projects": [
+    {
+      "id": "project-01",
+      "title": "Project placeholder",
+      "description": "A deterministic fixture used to exercise the work-list states.",
+      "tags": ["Fixture", "Replace me"]
+    },
+    {
+      "id": "project-02",
+      "title": "Another project placeholder",
+      "description": "A second fixture keeps the responsive list meaningful during development.",
+      "tags": ["Responsive", "Fixture"]
+    }
+  ],
+  "posts": [
+    {
+      "id": "post-01",
+      "slug": "fixture-post",
+      "title": "Fixture post",
+      "excerpt": "A deterministic content preview for the future posts workflow.",
+      "content": "Replace this fixture with approved content before production use.",
+      "status": "published",
+      "publishedAt": "2026-09-20T12:00:00.000Z"
+    }
+  ]
+}
