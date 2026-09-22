@@ -1,7 +1,7 @@
 # Work Order — Portfolio agent workflow alignment
 
 - Work Order ID: `WO-2026-09-22-portfolio-agent-workflow`
-- Status: active
+- Status: ready-for-review
 - Created: 2026-09-22
 - Last updated: 2026-09-22
 - Repository: `rickvang/Portfolio`
@@ -48,10 +48,19 @@ The proposed `AGENTS.md` adds Portfolio standing completion authorization for fu
 - Live systems remain freshness-sensitive authority.
 - Shared Persona/Skill/Playbook/Tool material is reusable guidance, not a replacement for local Portfolio rules.
 
+## Validation
+
+- Structural inspection confirmed the Riley, Current Work, Operating Route, Work Order, and future standing-completion rules are present on the branch.
+- PR #10 is open and mergeable.
+- Cursor automated review approved the PR with no review threads.
+- CI run #10 passed both jobs:
+  - `verify`: install, lint, typecheck, unit tests, Playwright E2E, and build.
+  - `Supabase local schema`: local start, migrations/seed, lint, database tests, migration-state check, and posts/RLS smoke test.
+
 ## Current phase
 
-Implementation.
+Ready for review / merge authorization.
 
 ## Next action
 
-Update the three scoped repository surfaces, validate the documentation structure and repository checks, open a PR, address review findings, and stop at the merge boundary unless separately authorized.
+Obtain separate requester authorization to merge PR #10. The proposed standing-completion rule is not used to self-authorize the PR that introduces it.
