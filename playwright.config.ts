@@ -1,14 +1,17 @@
 import { defineConfig } from "@playwright/test";
 
+const baseURL = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
+const port = process.env.E2E_PORT ?? "3000";
+
 const webServer = process.env.PW_REUSE_SERVER === "true"
   ? undefined
   : {
-      command: "node node_modules/next/dist/bin/next dev --hostname 127.0.0.1",
+      command: `node node_modules/next/dist/bin/next dev --hostname 127.0.0.1 --port ${port}`,
       gracefulShutdown: {
         signal: "SIGTERM" as const,
         timeout: 5_000,
       },
-      url: "http://127.0.0.1:3000",
+      url: baseURL,
       reuseExistingServer: !process.env.CI,
       timeout: 120_000,
     };
@@ -20,7 +23,7 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: "list",
   use: {
-    baseURL: "http://127.0.0.1:3000",
+    baseURL,
     trace: "on-first-retry",
   },
   webServer,

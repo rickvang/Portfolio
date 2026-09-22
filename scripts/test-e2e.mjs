@@ -3,7 +3,13 @@ import { resolve } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 
 const root = resolve(import.meta.dirname, "..");
-const baseUrl = "http://127.0.0.1:3000";
+const port = Number(process.env.E2E_PORT ?? "3100");
+
+if (!Number.isInteger(port) || port < 1024 || port > 65535) {
+  throw new Error("E2E_PORT must be an integer between 1024 and 65535");
+}
+
+const baseUrl = `http://127.0.0.1:${port}`;
 const healthUrl = `${baseUrl}/api/health`;
 const nextCli = resolve(root, "node_modules", "next", "dist", "bin", "next");
 const playwrightCli = resolve(root, "node_modules", "@playwright", "test", "cli.js");
@@ -36,7 +42,7 @@ function stopServer(server) {
     const netstat = spawnSync("netstat", ["-ano"], { encoding: "utf8" });
     const listener = netstat.stdout
       .split(/\r?\n/)
-      .find((line) => line.includes("127.0.0.1:3000") && line.includes("LISTENING"));
+      .find((line) => line.includes(`127.0.0.1:${port}`) && line.includes("LISTENING"));
     const listenerPid = listener?.trim().split(/\s+/).at(-1);
 
     if (listenerPid) pids.add(Number(listenerPid));
@@ -66,9 +72,14 @@ async function runPlaywright() {
   try {
     if (!(await serverIsReady())) {
       ownsServer = true;
-      server = spawn(process.execPath, [nextCli, "dev", "--hostname", "127.0.0.1"], {
+      server = spawn(process.execPath, [nextCli, "dev", "--hostname", "127.0.0.1", "--port", String(port)], {
         cwd: root,
-        env: { ...process.env, NODE_ENV: "development" },
+        env: {
+          ...process.env,
+          E2E_USE_FIXTURES: "true",
+          NEXT_PUBLIC_SITE_URL: baseUrl,
+          NODE_ENV: "development",
+        },
         detached: true,
         stdio: "ignore",
         windowsHide: true,
@@ -79,7 +90,7 @@ async function runPlaywright() {
 
     const result = spawnSync(process.execPath, [playwrightCli, "test", ...process.argv.slice(2)], {
       cwd: root,
-      env: { ...process.env, PW_REUSE_SERVER: "true" },
+      env: { ...process.env, E2E_BASE_URL: baseUrl, PW_REUSE_SERVER: "true" },
       stdio: "inherit",
       windowsHide: true,
     });

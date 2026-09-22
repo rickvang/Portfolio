@@ -8,6 +8,7 @@ This repository owns the rickvang.com web application. It is independent from th
 
 - Use pnpm and the Node version declared in `package.json`.
 - Read `ARCHITECTURE.md` and `DECISIONS.md` before changing system boundaries.
+- Read `DESIGN.md` before making visual changes or adding reusable components.
 - Keep product content separate from reusable UI and infrastructure.
 - Add or update deterministic fixtures in `fixtures/seed.json` when a state needs to be represented in the harness.
 - Keep `/dev/harness` local-only. It must not be accessible in production.

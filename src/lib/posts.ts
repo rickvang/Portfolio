@@ -8,7 +8,9 @@ export type Post = Database["public"]["Tables"]["posts"]["Row"];
 const FIXTURE_TIMESTAMP = "2026-09-20T12:00:00.000Z";
 
 export function hasSupabaseConfig() {
-  return Boolean(env.NEXT_PUBLIC_SUPABASE_URL && env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY);
+  return process.env.E2E_USE_FIXTURES !== "true" && Boolean(
+    env.NEXT_PUBLIC_SUPABASE_URL && env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+  );
 }
 
 function fixturePosts(): Post[] {

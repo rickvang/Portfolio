@@ -18,7 +18,7 @@ The app can run without Supabase credentials. Copy `.env.example` to `.env.local
 
 ## Supabase
 
-Supabase is wired for future content posts. The initial migration creates a `posts` table with draft, published, and archived states, public-read RLS for published posts, and authenticated author ownership policies. No remote Supabase project is linked yet and no credentials are committed.
+Supabase is wired for content posts. The initial migration creates a `posts` table with draft, published, and archived states, public-read RLS for published posts, and authenticated author ownership policies. The hosted Portfolio project is linked for the local author workflow, while no credentials are committed and CI continues to use a credential-free local Supabase stack.
 
 ```bash
 pnpm supabase:start
@@ -38,7 +38,7 @@ pnpm test:e2e
 pnpm build
 ```
 
-`pnpm verify` runs lint, type checking, unit tests, and a production build. `pnpm test:e2e` owns a temporary development server, waits for `/api/health`, runs the browser matrix, and cleans up the server afterward so the command is safe for agents and CI on Windows as well as Unix-like hosts.
+`pnpm verify` runs lint, type checking, unit tests, and a production build. `pnpm test:e2e` owns an isolated fixture-only development server on port 3100, waits for `/api/health`, runs the browser matrix, and cleans up the server afterward so it does not reuse a connected developer session or hosted content. The command is safe for agents and CI on Windows as well as Unix-like hosts.
 
 GitHub Actions also runs a separate `supabase` job on Ubuntu. It starts the local Docker-backed Supabase stack, resets it from committed migrations and seed data, lints the local database, verifies migration state, and smoke-tests the seeded posts table and RLS. This job intentionally uses no hosted Supabase credentials.
 
@@ -48,4 +48,4 @@ The harness is deterministic and local-only. It previews the first vertical slic
 
 ## Repository guidance
 
-See `AGENTS.md`, `ARCHITECTURE.md`, and `DECISIONS.md` before making structural changes.
+See `AGENTS.md`, `ARCHITECTURE.md`, `DECISIONS.md`, and `DESIGN.md` before making structural or visual changes.
