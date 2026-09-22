@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 
+import { CaseStudyTemplate } from "@/components/case-study-template";
 import { ContactForm, type ContactStatus } from "@/components/contact-form";
 import { AdminWorkflowPreview } from "@/components/admin-workflow-preview";
 import { ImportedContentPreview } from "@/components/imported-content-preview";
 import { PostList } from "@/components/post-list";
 import { ProjectList } from "@/components/project-list";
+import { importedCaseStudyDrafts } from "@/lib/case-studies";
 import { importedContent } from "@/lib/imported-content";
 import {
   harnessStates,
@@ -96,6 +98,22 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
           <h2 id="imported-content-section-heading">Imported source review</h2>
         </div>
         <ImportedContentPreview content={importedContent} />
+      </section>
+
+      <section className="harness-section" aria-labelledby="case-study-template-heading">
+        <div>
+          <p className="eyebrow">Shared case-study template</p>
+          <h2 id="case-study-template-heading">Draft case-study review</h2>
+          <p className="lede">
+            Both imported drafts use the same renderer intended for approved public case studies, with review-only
+            provenance and evidence controls added locally.
+          </p>
+        </div>
+        <div className="case-study-review-stack" data-testid="case-study-review-stack">
+          {importedCaseStudyDrafts.map((caseStudy) => (
+            <CaseStudyTemplate caseStudy={caseStudy} key={caseStudy.id} mode="review" />
+          ))}
+        </div>
       </section>
 
       <section className="harness-section" aria-labelledby="projects-heading">
