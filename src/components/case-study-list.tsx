@@ -30,9 +30,6 @@ export function CaseStudyList({
     <div aria-label="Case studies" className="project-preview-list">
       {caseStudies.map((caseStudy) => (
         <article className="project-preview" data-project-preview={caseStudy.slug} key={caseStudy.id}>
-          <div className="project-card-meta">
-            <span className="tag">{caseStudy.category}</span>
-          </div>
           <h3>
             <Link href={workHref(caseStudy.slug)}>{caseStudy.title}</Link>
           </h3>
