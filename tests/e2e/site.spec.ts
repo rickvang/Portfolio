@@ -4,16 +4,54 @@ test("homepage exposes the primary portfolio flow", async ({ page }) => {
   await page.goto("/");
 
   await expect(page.getByRole("heading", { name: /clear home for work/i })).toBeVisible();
-  await expect(page.getByRole("link", { name: "View work" })).toHaveAttribute("href", "#work");
-  await expect(page.getByRole("heading", { name: "A content-driven project list" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "View work" })).toHaveAttribute("href", "/work");
+  await expect(page.getByRole("heading", { name: "Selected case studies" })).toBeVisible();
+  await expect(page.getByTestId("case-study-list-empty")).toContainText("Case studies are under review.");
   await expect(page.getByRole("heading", { name: "Ideas can become a maintained content surface." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fixture post", exact: true })).toBeVisible();
+
+  const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+  await expect(navigation.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "page");
+  await expect(navigation.getByRole("link", { name: "Work" })).toHaveAttribute("href", "/work");
+  await expect(navigation.getByRole("link", { name: "Notes" })).toHaveAttribute("href", "/notes");
+  await expect(navigation.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
+  await expect(navigation.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+  await expect(page.locator('a[href^="/dev/harness"]')).toHaveCount(0);
+});
+
+test("public work stays approval-gated", async ({ page }) => {
+  await page.goto("/work");
+
+  await expect(page.getByRole("heading", { name: "Approved work" })).toBeVisible();
+  await expect(page.getByTestId("case-study-list-empty")).toContainText(
+    "Draft source material stays out of public routes until it is explicitly approved.",
+  );
+
+  await page.goto("/work/design-systems");
+  await expect(page).toHaveTitle("Case study not found | Rick Vang");
+  await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);
+  await expect(page.getByText(/design system for improving consistency/i)).toHaveCount(0);
+});
+
+test("new editorial drafts remain unavailable on public routes", async ({ page }) => {
+  for (const slug of ["ai-systems", "ui-design-practices"]) {
+    await page.goto(`/work/${slug}`);
+    await expect(page).toHaveTitle("Case study not found | Rick Vang");
+    await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);
+  }
+
+  await page.goto("/notes/persona-led-design-discovery");
+  await expect(page).toHaveTitle("Note not found | Rick Vang");
+  await expect(page.getByText(/AI personas are most useful to my design process/i)).toHaveCount(0);
 });
 
 test("public notes provide a list and detail route", async ({ page }) => {
   await page.goto("/notes");
 
   await expect(page.getByRole("heading", { name: "Latest notes" })).toBeVisible();
+  await expect(
+    page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Notes" }),
+  ).toHaveAttribute("aria-current", "page");
   await page.getByRole("link", { name: "Fixture post", exact: true }).click();
   await expect(page.getByRole("heading", { name: "Fixture post", exact: true })).toBeVisible();
   await expect(page.getByText("Replace this fixture with approved content before production use.")).toBeVisible();
@@ -36,9 +74,10 @@ test("health endpoint reports service readiness", async ({ request }) => {
     },
     readiness: {
       app: true,
+      overall: false,
       supabase: false,
     },
     service: "rickvang.com",
-    status: "ok",
+    status: "degraded",
   });
 });
