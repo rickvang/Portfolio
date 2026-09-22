@@ -1,0 +1,475 @@
+[
+  {
+    "id": "ai-systems",
+    "slug": "ai-systems",
+    "title": "AI Systems",
+    "summary": "A repository-backed orchestration system that separates persona roles, shared context, durable work state, and live tool state so complex AI-assisted work can be routed and resumed without turning one orchestrator into every specialist.",
+    "category": "AI Systems",
+    "reviewStatus": "draft",
+    "sources": [
+      {
+        "id": "pl-agents",
+        "kind": "repository",
+        "label": "Persona-Library repository operating contract",
+        "url": "https://github.com/rickvang/Persona-Library/blob/main/AGENTS.md",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "pl-work-orders",
+        "kind": "repository",
+        "label": "Persona-Library Work Order contract",
+        "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/work-orders.md",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "pl-problem-context",
+        "kind": "repository",
+        "label": "Shared problem-context contract",
+        "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/collaboration/problem-context.md",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "pl-riley-work-order",
+        "kind": "repository",
+        "label": "Riley universal Current Work orchestration Work Order",
+        "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/work-orders/archive/2026-09/WO-2026-09-21-riley-universal-current-work/work-order.md",
+        "capturedAt": "2026-09-22"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "Overview",
+        "body": "The system coordinates reusable Personas, Skills, Playbooks, Tools, project-scoped Work Orders, and a concise Current Work index while preserving separate ownership boundaries. The orchestration layer is designed to keep complex work resumable without becoming the execution path for every specialist task.",
+        "evidence": [
+          {
+            "sourceId": "pl-agents",
+            "note": "Repository contract defines Riley as the default durable orchestration owner while selected Personas, Skills, Playbooks, Tool paths, or runtimes may execute directly."
+          },
+          {
+            "sourceId": "pl-work-orders",
+            "note": "Work Order guidance defines the durable coordination hierarchy and resume order."
+          }
+        ]
+      },
+      {
+        "kind": "context",
+        "title": "Context",
+        "body": "Non-trivial AI-assisted work can cross agents, repositories, tools, approvals, and interruptions. Durable records need enough context to resume, while freshness-sensitive systems such as GitHub checks, permissions, and deployments must remain authoritative in their own systems rather than being copied into a tracker that can go stale.",
+        "evidence": [
+          {
+            "sourceId": "pl-work-orders",
+            "note": "Defines Current Work, Work Orders, and live systems as separate layers with different freshness responsibilities."
+          }
+        ]
+      },
+      {
+        "kind": "personas",
+        "title": "Personas",
+        "items": [
+          {
+            "title": "Riley Morgan — orchestration",
+            "summary": "Owns durable routing and continuity for substantial workstreams, reconciling state at creation, material rerouting, handoff, major blockers, and completion."
+          },
+          {
+            "title": "Domain specialists — execution",
+            "summary": "Selected Personas, Skills, Playbooks, Tool paths, and runtimes execute the work directly when they own the relevant capability; Riley does not become a mandatory execution hop."
+          },
+          {
+            "title": "Coordinator — shared context",
+            "summary": "For multi-Persona work, one coordinator records attributable contributions, evidence status, decisions, dispositions, gates, and handoffs in the shared problem context."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "pl-riley-work-order",
+            "note": "Records the durable-orchestration invariant and direct-execution boundary."
+          },
+          {
+            "sourceId": "pl-problem-context",
+            "note": "Defines coordinator/single-writer behavior and attributable participant contributions."
+          }
+        ]
+      },
+      {
+        "kind": "problem",
+        "title": "Problem",
+        "body": "Two failure modes shaped the architecture: making the orchestrator perform every execution step adds redundant coordination and blurs domain ownership, while mirroring volatile operational state into durable trackers makes those trackers look complete but quickly stale.",
+        "evidence": [
+          {
+            "sourceId": "pl-riley-work-order",
+            "note": "Explicitly rejects a mandatory Riley execution hop and a second orchestration database."
+          },
+          {
+            "sourceId": "pl-work-orders",
+            "note": "Explicitly says not to mirror volatile live state into Current Work."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Exploration",
+        "body": "The working model separated three kinds of state: a concise cross-agent index, a detailed project recovery packet, and the live systems that own current operational truth. Multi-Persona collaboration was treated as a separate shared-context problem with a single writer, attributable contributions, and a quality gate instead of an informal panel transcript.",
+        "evidence": [
+          {
+            "sourceId": "pl-work-orders",
+            "note": "Documents the Current Work → Work Order → live systems hierarchy."
+          },
+          {
+            "sourceId": "pl-problem-context",
+            "note": "Documents the shared-context lifecycle, evidence ledger, dispositions, and quality gate."
+          }
+        ]
+      },
+      {
+        "kind": "system-practice",
+        "title": "System / practice",
+        "items": [
+          {
+            "title": "Current Work",
+            "summary": "A concise cross-thread index containing objective, owner, route, next action, blocker, checkpoint, and authoritative links."
+          },
+          {
+            "title": "Work Orders",
+            "summary": "Project-scoped execution and recovery packets that preserve scope, constraints, decisions, phase state, evidence, handoffs, validation, and the next safe action."
+          },
+          {
+            "title": "Problem context",
+            "summary": "A bounded shared source of truth for multi-Persona contributions, evidence status, decisions, artifacts, quality gates, and handoffs."
+          },
+          {
+            "title": "Live systems",
+            "summary": "GitHub, deployments, permissions, and other freshness-sensitive systems remain the authority for state that can change independently of a checkpoint."
+          },
+          {
+            "title": "Reconciliation points",
+            "summary": "Durable orchestration state is updated at material lifecycle boundaries rather than after every remote operation."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "pl-work-orders",
+            "note": "Defines the responsibilities and lifecycle of Current Work, Work Orders, and live-system refresh."
+          },
+          {
+            "sourceId": "pl-problem-context",
+            "note": "Defines the multi-Persona context and completion gate."
+          }
+        ]
+      },
+      {
+        "kind": "decisions",
+        "title": "Decisions",
+        "items": [
+          {
+            "title": "Keep orchestration separate from execution",
+            "summary": "Riley remains the continuity and routing layer; the smallest relevant specialist path performs the actual work."
+          },
+          {
+            "title": "Do not create a second orchestration database",
+            "summary": "The existing Current Work tracker remains the cross-agent index and Work Orders remain the detailed recovery packet."
+          },
+          {
+            "title": "Keep volatile authority live",
+            "summary": "Fresh GitHub, CI, deployment, permission, and similar state is selectively refreshed instead of copied into durable notes."
+          },
+          {
+            "title": "Require attributable collaboration",
+            "summary": "Multi-Persona work uses a single-writer context, explicit evidence status, contribution dispositions, and a concrete solution-quality gate."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "pl-riley-work-order",
+            "note": "Captures the placement decision and six orchestration invariants."
+          },
+          {
+            "sourceId": "pl-problem-context",
+            "note": "Captures attribution, disposition, handoff, and quality-gate decisions."
+          }
+        ]
+      },
+      {
+        "kind": "outcomes",
+        "title": "Outcomes",
+        "body": "The documented operating model now provides an explicit resume order, clear orchestration versus execution boundaries, a reusable handoff packet, evidence-status rules, contribution dispositions, and completion gates. Repository validation for the Riley continuity change passed at the recorded implementation checkpoint. This draft does not claim measured productivity, quality, or cost improvements.",
+        "evidence": [
+          {
+            "sourceId": "pl-riley-work-order",
+            "note": "Completion evidence records the implemented continuity contract and passing repository validation run."
+          },
+          {
+            "sourceId": "pl-problem-context",
+            "note": "Provides the reusable handoff and solution-quality gate contracts."
+          }
+        ]
+      },
+      {
+        "kind": "reflection",
+        "title": "Reflection",
+        "body": "The durable design move was separating control-plane continuity from specialist execution, and stable recovery state from freshness-sensitive operational truth. That makes the system easier to resume and inspect without pretending a tracker is the live system. Before publication, this reflection should be reviewed against real usage evidence; no efficiency metric is asserted here.",
+        "evidence": [
+          {
+            "sourceId": "pl-work-orders",
+            "note": "The state hierarchy and resume order support this architectural reflection."
+          },
+          {
+            "sourceId": "pl-riley-work-order",
+            "note": "The recorded placement review explicitly avoids duplicate orchestration infrastructure and redundant execution hops."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "Draft is synthesized from current Persona-Library contracts and completed orchestration work; it is not user research.",
+      "No productivity, cost, quality, or adoption metric is claimed because no attributable measurement was found in the source set.",
+      "Review first-person role framing and any screenshots before publication."
+    ]
+  },
+  {
+    "id": "ui-design-practices",
+    "slug": "ui-design-practices",
+    "title": "UI Design Practices",
+    "summary": "A staged design-to-implementation practice for turning an ambiguous portfolio redesign into information architecture, visual tokens, interaction contracts, reusable components, and browser-verifiable behavior.",
+    "category": "UI Design Practice",
+    "reviewStatus": "draft",
+    "sources": [
+      {
+        "id": "portfolio-issue-6",
+        "kind": "repository",
+        "label": "Portfolio redesign implementation plan",
+        "url": "https://github.com/rickvang/Portfolio/issues/6",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "portfolio-issue-4",
+        "kind": "repository",
+        "label": "Portfolio interaction-spec and component-builder work",
+        "url": "https://github.com/rickvang/Portfolio/issues/4",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "portfolio-design",
+        "kind": "repository",
+        "label": "Portfolio DESIGN.md contract",
+        "url": "https://github.com/rickvang/Portfolio/blob/feat/issue-6-case-study-slice/DESIGN.md",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "pl-ux-practice",
+        "kind": "repository",
+        "label": "Persona-Library Expert UX Design Practice",
+        "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/ux/expert-ux-design-practice.md",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "pl-project-routing",
+        "kind": "repository",
+        "label": "Persona-Library Project Context and Reference Routing",
+        "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/ux/project-context-and-reference-routing.md",
+        "capturedAt": "2026-09-22"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "Overview",
+        "body": "The portfolio redesign was organized as a sequence of inspectable design and engineering contracts: information architecture first, then visual system and navigation, then motion, then a shared case-study slice. Each phase had a concrete artifact and verification boundary before the next dependent layer was added.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Defines the phased redesign plan and handoff model."
+          }
+        ]
+      },
+      {
+        "kind": "context",
+        "title": "Context",
+        "body": "The starting portfolio already had routes, fixtures, a local harness, content imports, and a design contract. The redesign needed to change hierarchy and presentation without publishing draft case-study claims, duplicating navigation components, adding unnecessary dependencies, or breaking the existing admin/content boundaries.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Defines redesign boundaries, anti-goals, and publication constraints."
+          },
+          {
+            "sourceId": "portfolio-design",
+            "note": "Documents the implemented shell, motion, component, accessibility, and verification contracts."
+          }
+        ]
+      },
+      {
+        "kind": "personas",
+        "title": "Personas",
+        "items": [
+          {
+            "title": "Hiring managers and design leadership",
+            "summary": "Primary evaluation audience for fast understanding of positioning, representative work, design decisions, system thinking, and outcomes."
+          },
+          {
+            "title": "Potential consulting clients",
+            "summary": "Secondary audience evaluating fit, problem-structuring ability, relevant examples, and a direct contact path."
+          },
+          {
+            "title": "UX and UI design roles",
+            "summary": "Structure/content questions are separated from visual hierarchy, interaction states, responsive behavior, accessibility, and built-versus-designed QA."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Confirms primary and secondary portfolio audiences."
+          },
+          {
+            "sourceId": "pl-project-routing",
+            "note": "Defines conditional routing between UX structure work and UI hierarchy/interaction work."
+          }
+        ]
+      },
+      {
+        "kind": "problem",
+        "title": "Problem",
+        "body": "A portfolio redesign can become a styling exercise before the content model, route hierarchy, interaction states, and publication rules are clear. That makes visual polish difficult to evaluate and increases the chance of route-specific markup, hidden states, or unreviewed content appearing authoritative.",
+        "evidence": [
+          {
+            "sourceId": "pl-ux-practice",
+            "note": "The UX practice requires reasoning, evidence, state coverage, traceability, and implementation QA rather than polished screens alone."
+          },
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Phase order deliberately locks IA/content contracts before visual and motion implementation."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Exploration",
+        "body": "The redesign explored a persistent left rail, a mobile drawer, recovery of the original orange accent, chapter-style route continuity, and a shared case-study model. The implementation favored native links, CSS variables, route groups, and CSS-first motion because those primitives covered the required behavior without a component or animation dependency.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Confirms the rail, drawer, cinematic direction, orange recovery, and shared case-study structure."
+          },
+          {
+            "sourceId": "portfolio-design",
+            "note": "Documents the implemented shell and CSS-first motion contract."
+          }
+        ]
+      },
+      {
+        "kind": "system-practice",
+        "title": "System / practice",
+        "items": [
+          {
+            "title": "Define structure before polish",
+            "summary": "Visitor jobs, page modes, route contracts, section sequence, and publication boundaries are made explicit before visual implementation."
+          },
+          {
+            "title": "Turn visual direction into tokens",
+            "summary": "Color, spacing, layout, and motion values live in semantic CSS variables and documented contracts instead of route-specific values."
+          },
+          {
+            "title": "Specify interaction behavior",
+            "summary": "Important components document states, triggers, focus behavior, cancellation, responsive rules, accessibility, selectors, and verification."
+          },
+          {
+            "title": "Build shared components",
+            "summary": "Public navigation and case-study rendering are reusable boundaries rather than repeated route markup."
+          },
+          {
+            "title": "Keep a deterministic harness",
+            "summary": "Loading, empty, error, disabled, long-content, responsive, and reduced-motion behavior can be exercised without external services."
+          },
+          {
+            "title": "Validate the built experience",
+            "summary": "Lint, typecheck, unit, browser, build, and local schema checks act as implementation gates rather than post-hoc cleanup."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-4",
+            "note": "Defines the interaction-spec and component-builder workflow."
+          },
+          {
+            "sourceId": "portfolio-design",
+            "note": "Documents tokens, components, states, motion, responsive behavior, and verification."
+          },
+          {
+            "sourceId": "pl-ux-practice",
+            "note": "Defines design practice from structure through implementation handoff and built QA."
+          }
+        ]
+      },
+      {
+        "kind": "decisions",
+        "title": "Decisions",
+        "items": [
+          {
+            "title": "Use a public route-group shell",
+            "summary": "Public routes share persistent navigation while admin, API, and local harness surfaces remain outside the portfolio frame."
+          },
+          {
+            "title": "Recover the orange precisely",
+            "summary": "The rendered original site was inspected and the accent was formalized as #F24C27, with a darker semantic ink token for small text contrast."
+          },
+          {
+            "title": "Keep motion CSS-first",
+            "summary": "Short, interruptible CSS motion covers route entry, active state, drawer entry, and feedback without adding an animation dependency."
+          },
+          {
+            "title": "Make approval a route boundary",
+            "summary": "Draft case studies can use the shared template locally, but public indexes and detail routes consume approval-filtered records only."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "portfolio-design",
+            "note": "Documents shell ownership, accent provenance, motion decisions, and the shared case-study publication contract."
+          },
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Establishes the staged implementation and draft-first constraints."
+          }
+        ]
+      },
+      {
+        "kind": "outcomes",
+        "title": "Outcomes",
+        "body": "The work produced documented route/content contracts, a persistent responsive navigation shell, semantic visual and motion tokens, reusable case-study components, and automated coverage for keyboard, mobile/tablet, reduced-motion, and publication-gate behavior. This draft describes implementation artifacts and checks; it does not claim hiring, conversion, or user-research outcomes.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-design",
+            "note": "Documents the implemented component and verification surface."
+          },
+          {
+            "sourceId": "portfolio-issue-4",
+            "note": "Records completed interaction-spec/component-builder verification on the portfolio foundation."
+          },
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Defines the redesign acceptance criteria these implementation artifacts address."
+          }
+        ]
+      },
+      {
+        "kind": "reflection",
+        "title": "Reflection",
+        "body": "Separating structure, visual system, motion, content rendering, and verification into reviewable layers made each decision easier to trace to a user or system need. The remaining evidence gap is outcome validation: content approval, visual snapshots, release hardening, and real portfolio performance still need to be evaluated before this becomes a finished redesign story.",
+        "evidence": [
+          {
+            "sourceId": "pl-ux-practice",
+            "note": "Requires traceable design reasoning, explicit unknowns, evaluation, and built QA."
+          },
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Later phases explicitly cover editorial review, visual snapshots, and release hardening."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "This draft is an implementation-practice case study, not a claim of user-research validation.",
+      "Outcome language is limited to inspectable artifacts and checks; hiring, conversion, usability, and business impact remain unmeasured.",
+      "Review screenshots and final production state after the redesign stack is merged before publication."
+    ]
+  }
+]
