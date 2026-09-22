@@ -1,6 +1,6 @@
 # Portfolio content and route contracts
 
-Issue #6 Phase 1 establishes the contracts that later public-route implementation will consume. It does not publish draft content or replace the current homepage shell.
+Issue #6 Phase 1 established the content and route contracts. Later phases now consume those contracts, but implementation still does not turn imported draft content into published content.
 
 ## Public route contract
 
@@ -18,7 +18,7 @@ The canonical route shape is implemented in `src/lib/public-routes.ts`:
 
 Use `workHref(slug)` and `noteHref(slug)` for detail links instead of duplicating route strings in components.
 
-Creating the missing route files and redesigned navigation shell belongs to the later public vertical slice. Phase 1 only prevents URL and IA drift before that implementation.
+The public route files and shared navigation shell now implement this route shape. The route contract remains the canonical URL source so components do not invent competing paths.
 
 ## Case-study contract
 
@@ -69,6 +69,16 @@ The adapter does not modify `content/imports/rickvang.com.json` and does not pro
 
 ## Publication boundary
 
-`getApprovedCaseStudies()` is the publication gate for the case-study model. With the current imported set it returns no public case studies because both records remain drafts.
+`getApprovedCaseStudies()` gates public indexes and `getApprovedCaseStudyBySlug()` gates public detail routes. With the current imported set both return no publishable case studies because both records remain drafts.
 
 Approval is an explicit content decision. It must not be inferred from the existence of imported content, successful validation, or a route being implemented.
+
+
+## Shared rendering boundary
+
+`CaseStudyTemplate` consumes the typed case-study record in two modes:
+
+- public mode, reachable only after the route has resolved an approved record;
+- review mode, reachable from the local-only development harness and allowed to expose source provenance, evidence notes, and curation notes for draft review.
+
+Both current imported drafts are exercised through review mode so layout and section behavior can be verified without changing their publication status. Their public `/work/[slug]` URLs intentionally return 404 until approval.
