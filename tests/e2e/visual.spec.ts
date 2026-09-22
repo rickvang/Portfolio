@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Page } from "@playwright/test";
 import { mkdir } from "node:fs/promises";
 import { join } from "node:path";
 
@@ -6,6 +6,12 @@ const snapshotDirectory = join(process.cwd(), "test-results", "visual-snapshots"
 
 async function prepareSnapshotDirectory() {
   await mkdir(snapshotDirectory, { recursive: true });
+}
+
+async function hideDevelopmentChrome(page: Page) {
+  await page.locator("nextjs-portal").evaluateAll((portals) => {
+    portals.forEach((portal) => portal.remove());
+  });
 }
 
 test.beforeAll(async () => {
@@ -16,6 +22,7 @@ test("captures the home first viewport", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  await hideDevelopmentChrome(page);
 
   await page.screenshot({
     animations: "disabled",
@@ -28,6 +35,7 @@ test("captures the mobile drawer", async ({ page }) => {
   await page.goto("/dev/harness/shell?route=work&drawer=open");
 
   await expect(page.getByRole("dialog", { name: "Site navigation" })).toBeVisible();
+  await hideDevelopmentChrome(page);
 
   await page.screenshot({
     animations: "disabled",
@@ -42,6 +50,7 @@ test("captures a case-study first viewport", async ({ page }) => {
   const caseStudy = page.getByTestId("case-study-review-ai-systems");
   await expect(caseStudy).toBeVisible();
   await caseStudy.scrollIntoViewIfNeeded();
+  await hideDevelopmentChrome(page);
 
   await page.screenshot({
     animations: "disabled",
@@ -55,6 +64,7 @@ test("captures a reduced-motion public state", async ({ page }) => {
   await page.goto("/dev/harness/shell?route=notes&drawer=open");
 
   await expect(page.getByRole("dialog", { name: "Site navigation" })).toHaveCSS("animation-name", "none");
+  await hideDevelopmentChrome(page);
 
   await page.screenshot({
     animations: "disabled",
