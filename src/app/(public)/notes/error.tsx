@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 import { logger } from "@/lib/logger";
+import { publicRoutes } from "@/lib/public-routes";
 
 export default function NotesError({
   error,
@@ -17,7 +18,7 @@ export default function NotesError({
   }, [error]);
 
   return (
-    <main className="site-shell error-page">
+    <section className="public-page error-page">
       <p className="eyebrow">Notes unavailable</p>
       <h1>We could not load the published notes.</h1>
       <p className="lede">Try again, or return home while the content service recovers.</p>
@@ -25,10 +26,10 @@ export default function NotesError({
         <button className="button" onClick={() => reset()} type="button">
           Try again
         </button>
-        <Link className="button button-secondary" href="/">
+        <Link className="button button-secondary" href={publicRoutes.home}>
           Return home
         </Link>
       </div>
-    </main>
+    </section>
   );
 }

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import type { HarnessState } from "@/lib/fixtures";
+import { noteHref } from "@/lib/public-routes";
 
 type PostListProps = {
   posts: PostListItem[];
@@ -49,7 +50,7 @@ export function PostList({ posts, state = "success" }: PostListProps) {
         <article className="post-card" key={post.id}>
           <p className="eyebrow">{post.status}</p>
           <h3>
-            <Link href={`/notes/${post.slug}`}>{post.title}</Link>
+            <Link href={noteHref(post.slug)}>{post.title}</Link>
           </h3>
           <p>{post.excerpt ?? "No excerpt yet."}</p>
         </article>

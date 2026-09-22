@@ -10,3 +10,74 @@ test("long-content harness state stays within the viewport", async ({ page }) =>
   const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(hasHorizontalOverflow).toBe(false);
 });
+
+
+test("mobile public navigation traps focus and returns it on Escape", async ({ page }) => {
+  await page.goto("/");
+
+  const menuButton = page.getByRole("button", { name: "Open site navigation" });
+  await expect(menuButton).toBeVisible();
+
+  const menuBox = await menuButton.boundingBox();
+  expect(menuBox?.width).toBeGreaterThanOrEqual(44);
+  expect(menuBox?.height).toBeGreaterThanOrEqual(44);
+
+  await menuButton.click();
+
+  const drawer = page.getByRole("dialog", { name: "Site navigation" });
+  const closeButton = drawer.getByRole("button", { name: "Close" });
+
+  await expect(drawer).toBeVisible();
+  await expect(closeButton).toBeFocused();
+
+  const closeBox = await closeButton.boundingBox();
+  expect(closeBox?.width).toBeGreaterThanOrEqual(44);
+  expect(closeBox?.height).toBeGreaterThanOrEqual(44);
+
+  await page.keyboard.press("Shift+Tab");
+  await expect(drawer.getByRole("link", { name: "Contact" })).toBeFocused();
+
+  await page.keyboard.press("Escape");
+  await expect(drawer).not.toBeVisible();
+  await expect(menuButton).toBeFocused();
+  await expect(menuButton).toHaveCSS("outline-width", "3px");
+  await expect(menuButton).toHaveCSS("outline-color", "rgb(255, 253, 250)");
+  await expect(menuButton).toHaveCSS("box-shadow", /rgb\(23, 22, 20\).*6px/);
+
+  await menuButton.click();
+  await page.getByRole("dialog", { name: "Site navigation" }).getByRole("link", { name: "Notes" }).click();
+  await expect(page).toHaveURL(/\/notes$/);
+  await expect(page.locator("#main-content")).toBeFocused();
+
+  const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
+  expect(hasHorizontalOverflow).toBe(false);
+});
+
+
+test.describe("reduced motion", () => {
+  test("public shell renders motion patterns at their final state", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/");
+
+    await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
+
+    const menuButton = page.getByRole("button", { name: "Open site navigation" });
+    await menuButton.click();
+
+    await expect(page.getByRole("dialog", { name: "Site navigation" })).toHaveCSS("animation-name", "none");
+    await expect(page.locator(".mobile-drawer-backdrop")).toHaveCSS("animation-name", "none");
+  });
+});
+
+
+test("mobile drawer entry can be interrupted immediately", async ({ page }) => {
+  await page.goto("/dev/harness/shell?route=contact");
+
+  const menuButton = page.getByRole("button", { name: "Open site navigation" });
+  await menuButton.click();
+  await page.keyboard.press("Escape");
+
+  await expect(page.getByRole("dialog", { name: "Site navigation" })).toHaveCount(0);
+  await expect(menuButton).toBeFocused();
+  await expect(page.getByTestId("shell-harness-page")).toBeVisible();
+});

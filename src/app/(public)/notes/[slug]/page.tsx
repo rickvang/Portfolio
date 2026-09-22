@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getPublishedPostBySlug } from "@/lib/posts";
@@ -48,24 +47,15 @@ export default async function NotePage({ params }: NotePageProps) {
   if (!post) notFound();
 
   return (
-    <main className="site-shell">
-      <header className="site-header">
-        <Link className="wordmark" href="/">
-          Rick Vang
-        </Link>
-        <Link className="button button-secondary" href="/notes">
-          All notes
-        </Link>
-      </header>
-
-      <article className="post-detail">
-        <p className="eyebrow">Published note</p>
-        <h1>{post.title}</h1>
-        {post.excerpt && <p className="lede">{post.excerpt}</p>}
-        <div className="post-content">
-          {post.content.split("\n").map((paragraph, index) => <p key={`${post.id}-${index}`}>{paragraph}</p>)}
-        </div>
-      </article>
-    </main>
+    <article className="post-detail public-page">
+      <p className="eyebrow">Published note</p>
+      <h1>{post.title}</h1>
+      {post.excerpt && <p className="lede">{post.excerpt}</p>}
+      <div className="post-content">
+        {post.content.split("\n").map((paragraph, index) => (
+          <p key={`${post.id}-${index}`}>{paragraph}</p>
+        ))}
+      </div>
+    </article>
   );
 }

@@ -4,14 +4,15 @@ This document is the working visual and interaction contract for rickvang.com. I
 
 ## Design direction
 
-The portfolio uses a quiet editorial foundation for systems-oriented product design work:
+The portfolio uses a cinematic editorial foundation for systems-oriented product design work:
 
-- content leads; decoration supports comprehension;
-- warm neutral surfaces keep long-form case-study content comfortable to read;
-- deep green provides a restrained action and identity accent;
-- generous spacing creates hierarchy without introducing visual noise;
-- every important flow has an explicit loading, empty, error, disabled, and long-content behavior;
-- the system favors native HTML, readable markup, and progressive enhancement over interaction for its own sake.
+- the work and authored content remain the focal point; navigation acts as a stable frame;
+- a dark persistent rail creates continuity against warm neutral reading surfaces;
+- the original rickvang.com accent is restored as `#f24c27` and used semantically rather than decoratively;
+- small text on light surfaces uses the darker `--accent-ink` token instead of raw orange where contrast would be insufficient;
+- generous spacing and compact typography create hierarchy without delaying access to content;
+- every important flow has explicit loading, empty, error, disabled, long-content, keyboard, and reduced-motion behavior where applicable;
+- the system favors native HTML, readable markup, progressive enhancement, and route continuity over interaction for its own sake.
 
 The current system is CSS-variable based. Tailwind and a third-party component library are not required for this application.
 
@@ -22,7 +23,7 @@ The current system is CSS-variable based. Tailwind and a third-party component l
 | Design tokens and global primitives | `src/app/globals.css` | Add or update tokens here before scattering new values through components. |
 | Reusable presentation and interaction | `src/components/` | Components receive data and callbacks; they do not create external-service clients. |
 | Deterministic component states | `fixtures/seed.json`, `src/lib/fixtures.ts` | Add fixture data and type changes together. |
-| State catalog | `src/components/harness-playground.tsx` | Make important states visible and direct-linkable through `/dev/harness?state=...`. |
+| State catalog | `src/components/harness-playground.tsx`, `src/app/dev/harness/` | Make important states visible and direct-linkable through the core state matrix plus specialized shell and case-study harness routes. |
 | Product and data boundaries | `src/app/`, `src/lib/` | Keep route orchestration, adapters, validation, and auth outside presentation components. |
 
 ## Tokens
@@ -33,19 +34,26 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--background` | `#f7f5f0` | Page background |
-| `--surface` | `#fffdf8` | Cards, fields, and elevated content |
-| `--surface-muted` | `#eeece5` | Secondary surfaces and disabled fields |
-| `--foreground` | `#1d1c1a` | Primary text and strong borders |
-| `--muted` | `#6d6a63` | Supporting text and secondary navigation |
-| `--border` | `#d8d4c9` | Dividers, card borders, and field borders |
-| `--accent` | `#1d5b52` | Primary actions, eyebrows, and active emphasis |
-| `--accent-strong` | `#12483f` | Hover state for primary actions |
+| `--background` | `#f4f1eb` | Public page and application background |
+| `--surface` | `#fffdfa` | Cards, fields, and elevated reading surfaces |
+| `--surface-muted` | `#e9e4db` | Secondary surfaces and disabled fields |
+| `--surface-strong` | `#ded7cc` | Stronger neutral separation when a muted surface is insufficient |
+| `--foreground` | `#171614` | Primary text and strong borders |
+| `--muted` | `#6b665f` | Supporting text |
+| `--border` | `#d5cfc5` | Dividers, card borders, and field borders |
+| `--accent` | `#f24c27` | Brand identity, active rail marker, large authored emphasis, button fill |
+| `--accent-hover` | `#ff6848` | Hover fill for accent actions |
+| `--accent-ink` | `#b7371c` | Small accent text and links on light surfaces |
+| `--rail` | `#151311` | Persistent navigation rail and mobile drawer |
+| `--rail-foreground` | `#f7f2eb` | Primary text on the rail |
+| `--rail-muted` | `#aaa29a` | Secondary rail text |
+| `--focus` | `#f24c27` | Selected-state accent and legacy focus-related emphasis |
+| `--focus-inner` | `#fffdfa` | Light inner edge of the two-tone keyboard focus ring |
+| `--focus-outer` | `#171614` | Dark outer edge of the two-tone keyboard focus ring |
 | `--danger` | `#9c342e` | Destructive actions and failures |
 | `--success` | `#176648` | Successful feedback |
-| focus ring | `#8bc9ba` | Keyboard focus indication |
 
-Use semantic tokens instead of raw color values in components. A new semantic color should be added to the token list before it is used in multiple places.
+Use semantic tokens instead of raw color values in components. The `#f24c27` accent was recovered from the rendered rickvang.com wordmark/name treatment on 2026-09-22 rather than guessed. A new semantic color should be added to the token list before it is used in multiple places.
 
 ### Typography
 
@@ -61,22 +69,50 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 
 ### Layout and spacing
 
-- `.site-shell` is centered at a maximum width of `1120px` with responsive horizontal padding: `clamp(1.25rem, 4vw, 4rem)`.
-- The hero uses generous vertical space: `clamp(5rem, 14vw, 10rem)` above and `7rem` below on larger screens.
-- Major sections use a top divider and `5rem` vertical padding.
-- Cards use responsive padding: `clamp(1.25rem, 3vw, 2rem)`.
-- Repeated grids use a `1rem` gap.
-- The current spacing values are intentionally simple rather than a full numeric scale. Prefer an existing value; introduce a token if a new value repeats.
+- Public routes use `.public-shell`: a fixed `17rem` desktop rail plus a content column capped by `--content-max: 76rem`.
+- The public content column uses responsive horizontal padding: `clamp(1.5rem, 5vw, 5rem)`; below `900px` it becomes full-width with a sticky mobile navigation bar.
+- `.site-shell` remains the centered `1120px` container for internal/admin and development-harness surfaces; public pages no longer depend on it.
+- Public heroes use a large first-view rhythm and `.public-hero` targets up to `78vh` without requiring a fixed height.
+- Major sections retain a top divider and `5rem` vertical padding so long-form content keeps a predictable chapter rhythm.
+- Cards use responsive padding: `clamp(1.25rem, 3vw, 2rem)`; repeated grids use a `1rem` gap.
+- Prefer the existing spacing rhythm; introduce a token only when a new spacing value repeats across components.
 
 ### Shape, elevation, and motion
 
-- Standard card radius: `--radius: 1rem`.
-- Pills use `999px` radius for buttons, tags, and compact status labels.
-- Cards use `--shadow: 0 18px 50px rgb(29 28 26 / 8%)`.
-- Interactive buttons transition background, border, and a small `1px` lift over `150ms ease`.
-- Loading indicators use an `800ms linear` rotation.
-- Page anchor scrolling is smooth, but motion should remain supplementary and should not carry meaning.
-- Respect a future reduced-motion preference if animated surfaces become more prominent.
+- Standard card radius: `--radius: 1rem`; pills use `999px` radius for buttons, tags, and compact controls.
+- Cards use `--shadow: 0 18px 50px rgb(23 22 20 / 8%)`.
+- Motion uses semantic duration/easing tokens: `--motion-fast: 150ms`, `--motion-standard: 240ms`, `--motion-slow: 320ms`, `--ease-standard: cubic-bezier(0.2, 0, 0, 1)`, and `--ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1)`.
+- Public page entry is a non-blocking `240ms` chapter reveal from 0.96 opacity and a 0.625rem vertical offset; content exists in the DOM immediately and does not wait for animation completion.
+- Mobile drawer entry uses `240ms` emphasized easing with a 1rem horizontal offset; the backdrop fades over `150ms`. Close is intentionally immediate so Escape, route selection, and focus recovery win over decoration.
+- Rail state, hover/focus, and feedback transitions use the `150ms` fast token.
+- Loading indicators remain an `800ms linear` functional animation.
+- There is no splash intro, scroll-jacking, autoplay cinematic sequence, or animation prerequisite for reading/navigation.
+- `prefers-reduced-motion: reduce` removes the chapter, drawer, backdrop, and feedback animations; it also removes smooth scrolling and collapses other transitions to effectively immediate state changes.
+
+## Cinematic motion contract
+
+Motion supports continuity and hierarchy; it never carries the only copy of state or delays task completion.
+
+| Pattern | Trigger | Duration / easing | Interruption | Repeat behavior | Reduced motion |
+| --- | --- | --- | --- | --- | --- |
+| Active rail marker + link state | Route/pathname changes, hover, or focus | `150ms` / `--ease-standard` | The newest route/pointer/focus state wins immediately; CSS transitions reverse naturally | Every applicable route or interaction state change | State changes immediately; active text + marker remain visible |
+| Public chapter entry | A public route/page node mounts | `240ms` / `--ease-standard` | Navigation/unmount cancels the prior animation; the next route begins from its own current state | Once per public page mount, including direct loads | No animation; content renders at final opacity/position |
+| Mobile drawer entry | Menu changes from closed to open | drawer `240ms` / `--ease-emphasized`; backdrop `150ms` / `--ease-standard` | Escape, backdrop/close action, or route selection closes immediately; no exit animation is allowed to delay focus recovery | Every explicit open | No animation; drawer appears in final position |
+| Mobile drawer close | Escape, close control, backdrop, or route selection | `0ms` intentional | Close/focus recovery is authoritative | Every close | Same immediate behavior |
+| Button / link affordance | Hover or focus state changes | `150ms` / `--ease-standard` | Latest pointer/focus state wins; transitions may reverse | Every interaction | Effectively immediate |
+| Feedback message entry | Success/error feedback node appears | `150ms` / `--ease-standard` | New feedback replaces/cancels the prior node animation | Once per newly mounted feedback message | No animation |
+| Case-study entry | Shared case-study page mounts | Inherits public chapter entry until the case-study template introduces a justified override | Navigation/unmount wins | Once per case-study mount | Inherits final-state rendering |
+| Media reveal | Media is added and approved for a case study | **Not implemented yet.** Default requirement is visible content without JS; any later reveal must stay within `240ms` and use existing easing tokens | Scrolling/navigation must never leave media hidden | At most once per media item per page mount | Media renders immediately |
+
+### Motion implementation rules
+
+1. Prefer CSS transitions/animations for presentational motion; do not add a motion dependency while these patterns remain expressible in the platform.
+2. Keep entering content visible throughout the effect. The current chapter reveal begins at 0.96 opacity rather than 0.
+3. Close, cancellation, route navigation, browser history, keyboard input, and focus recovery take priority over completing an animation.
+4. Do not queue animations. If state changes while an effect is running, current state becomes authoritative.
+5. Motion may repeat when a user explicitly repeats an interaction or mounts a new route; it must not loop for decoration.
+6. A pattern is not implementation-complete until its reduced-motion behavior is defined and verified.
+7. The shared case-study template now inherits public chapter entry. Section navigation itself stays native and immediate; media reveal remains deferred until approved media exists, and no hidden placeholder DOM is created solely to demonstrate motion.
 
 ## Component inventory
 
@@ -84,6 +120,11 @@ These are the reusable components currently in `src/components/`.
 
 | Component | Role | Inputs | Important states |
 | --- | --- | --- | --- |
+| `SiteShell` | Public pathname-aware wrapper around the shared frame | `children` | Current public route state |
+| `SiteShellFrame` | Persistent public navigation/content frame used by production routes and local verification | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
+| `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
+| `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft review with provenance/evidence |
+| `EditorialDraftPreview` | Local-only review surface for source-backed article drafts | `draft` | Draft article, evidence details, source provenance, curation notes |
 | `ContactForm` | Contact form boundary | `disabled`, `initialStatus` | Idle, success, error, disabled |
 | `ProjectList` | Project card collection | `projects`, `state` | Success, loading, empty, error, long content |
 | `PostList` | Public/admin-friendly post card collection | `posts`, `state` | Success, loading, empty, error, long content |
@@ -111,12 +152,25 @@ Every important interactive component should have a short interaction specificat
 1. **Purpose** — the user goal and the boundary of the component.
 2. **Anatomy** — semantic elements, labels, actions, and feedback regions.
 3. **States** — default, hover, focus, pressed, disabled, loading, success, error, empty, and long-content states that apply.
-4. **Transitions** — what triggers each state, what feedback appears, and how the user recovers or cancels.
+4. **Transitions and motion** — what triggers each state; duration and easing when animated; interruption/cancellation behavior; repeat behavior; feedback; and recovery.
 5. **Keyboard and focus** — native tab order, activation keys, focus visibility, and any intentional focus movement.
 6. **Validation and safety** — client/server validation, data transmission, confirmation, and destructive-action rules.
 7. **Responsive behavior** — layout changes, touch targets, wrapping, and overflow expectations.
 8. **Accessibility contract** — accessible names, roles, descriptions, live regions, and disabled semantics.
 9. **Harness and verification** — deterministic fixture states, stable selectors, and browser/unit acceptance checks.
+
+### Case-study template contract
+
+`CaseStudyTemplate` is the single renderer for case-study detail content.
+
+- **Public mode:** receives only approved records from the route boundary; review evidence and curation notes are not rendered.
+- **Review mode:** is local-harness only and adds an explicit draft banner, source provenance, curation notes, and per-section evidence details without changing the underlying content.
+- **Section navigation:** uses native anchor links generated from the ordered typed section contract. Missing sections remain absent rather than receiving invented filler.
+- **Client-IP note:** remains attached whenever the case-study record carries the imported disclaimer.
+- **Responsive behavior:** desktop uses a sticky local section index beside reading content; at the public shell breakpoint the index becomes static and precedes the sections.
+- **Motion:** inherits the public page chapter entry. Section navigation is immediate and never depends on JavaScript animation.
+- **Publication safety:** `CaseStudyList` and `/work/[slug]` consume approval-filtered data. Draft records may be exercised only through the local development harness until an explicit content decision changes their status.
+- **Verification:** unit coverage checks approval filtering/lookup; browser coverage checks both imported drafts through review mode and proves their public detail URLs return 404 while draft.
 
 ### Representative interaction specification: `ContactForm`
 
@@ -144,6 +198,24 @@ Every important interactive component should have a short interaction specificat
 
 **Verification:** `tests/e2e/harness.spec.ts` verifies that the success form can submit locally and that the disabled fixture disables both a field and the submit button.
 
+### Interaction specification: `SiteShell`
+
+**Purpose:** provide a stable navigation spine across public routes while keeping internal admin, API, and harness surfaces independent.
+
+**Anatomy:** desktop `aside` rail; identity link; primary navigation; active-route marker; mobile sticky bar; menu toggle; modal drawer/backdrop; skip link; public `main` content region.
+
+**States:** desktop rail; mobile drawer closed; mobile drawer open; active-route state; keyboard focus; reduced motion; no-JavaScript fallback navigation.
+
+**Transitions:** active rail state uses the fast motion token. Opening the drawer runs the documented 240ms drawer / 150ms backdrop entry while body scrolling is locked and focus moves into the drawer. Explicit close, backdrop close, Escape, or route selection interrupts immediately rather than waiting for an exit animation. Explicit close or Escape returns focus to the menu button; route selection moves focus to the persistent main-content region. Reopening repeats the entry motion; no animation is queued.
+
+**Keyboard and focus:** rail links remain in native document order. The drawer traps Tab/Shift+Tab only while open and closes on Escape. The global skip link targets `#main-content`.
+
+**Responsive behavior:** the fixed rail is used above `900px`; at `900px` and below it is replaced by the sticky mobile bar and drawer. Public content drops its rail offset at the same breakpoint.
+
+**Accessibility contract:** active route uses `aria-current="page"` plus a visible marker, not color alone. The mobile toggle exposes `aria-expanded` and `aria-controls`; the open drawer uses `role="dialog"` and `aria-modal="true"`. A no-JavaScript navigation list preserves access to the public routes. Reduced-motion users get final-state rendering without chapter/drawer/backdrop/feedback animation.
+
+**Verification:** Playwright covers rail visibility and active state on default desktop, drawer behavior at mobile/tablet widths, Escape/focus return, route focus handoff, touch-target minimums, focus-ring visibility, motion interruption, viewport overflow, and reduced-motion final-state behavior. `/dev/harness/shell` reuses `SiteShellFrame` for deterministic route/drawer states, and CI uploads visual verification captures.
+
 ### Prioritized interaction map
 
 The following existing surfaces use the template above. ContactForm is the representative component with a full harness journey; the server-bound forms keep their real data boundary and use the deterministic author preview for cross-cutting state inspection.
@@ -152,8 +224,8 @@ The following existing surfaces use the template above. ContactForm is the repre
 | --- | --- | --- | --- |
 | `AdminLoginForm` | Sign an author into the content workspace; idle, pending, and error. | Native email/password fields; submit becomes disabled while pending; server action owns authentication and redirect validation; errors use `role="alert"`. | `/admin/login` is the route-level boundary; the harness author preview represents loading, error, and disabled author-tool states without credentials. |
 | `PostEditorForm` | Create or edit a post; create, edit, pending, validation/action error, and long-content. | Visible labels and native required/pattern validation; server action validates title, slug, and content; pending disables the submit action; no client-side publishing or external transmission. | `/admin/posts/new` and `/admin/posts/[id]/edit` are the route-level boundaries; long-content fixtures exercise the surrounding author layout in the harness. |
-| `PostStatusActions` | Change draft/published/archived status or delete an owned post. | Each status action is an explicit form; pending disables only its action; server action validates the post ID, status, and author ownership; deletion remains visually destructive and must keep confirmation behavior explicit before expansion. | The author preview exposes the same visible action availability across loading, disabled, error, and long-content states; live status mutations remain a hosted-auth route concern. |
-| Primary navigation | Move between work, notes, and contact sections or return to the home surface. | Use native links and meaningful visible names; preserve keyboard focus and URL fragments; do not hide the only route to content behind hover or motion. | The homepage and notes routes are covered by the browser suite; anchor navigation is inspectable from the main page and remains available at mobile widths. |
+| `PostStatusActions` | Change draft/published/archived status or delete an owned post. | Each status action is an explicit form; pending disables only its action; server action validates the post ID, status, and author ownership; deletion requires an explicit browser confirmation before the server action can run. | The author preview exposes the same visible action availability across loading, disabled, error, and long-content states; live status mutations remain a hosted-auth route concern. |
+| Primary navigation / `SiteShell` | Move among Home, Work, Notes, About, and Contact while preserving orientation. | Desktop uses a persistent rail with text plus an active marker; mobile uses an explicitly named drawer, Escape close, focus containment while open, focus return on explicit close, and a `<noscript>` fallback. Primary destinations never depend on hover or motion. | Browser coverage verifies active-route semantics, desktop rail visibility, mobile drawer open/close, Escape, focus return, and no horizontal overflow. |
 | Harness controls | Select a deterministic fixture state and restore the baseline. | Use a labeled button group with `aria-pressed`; state changes are local and synchronous; reset returns to `success`; direct URL state is accepted only from the known state union. | `/dev/harness` exposes all six fixture states, a reset control, `data-harness-state`, and stable state-region selectors. |
 
 ## State matrix
@@ -169,6 +241,17 @@ The harness accepts `success`, `loading`, `empty`, `error`, `disabled`, and `lon
 | `disabled` | Fixture content remains inspectable | Inputs and submit are disabled | Actions are visible but disabled |
 | `long-content` | Expanded fixtures exercise wrapping and density | Form remains usable | Long-title metadata fixture |
 
+### Specialized harness routes
+
+The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces that need deterministic URL-addressable state use the same production components through specialized local-only routes:
+
+| Surface | Route | Deterministic inputs | Verification purpose |
+| --- | --- | --- | --- |
+| Public shell | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
+| Case study | `/dev/harness/case-study?slug=<draft-slug>` | Any typed case-study draft slug | Shared template first viewport, long content, section navigation, evidence/provenance review, responsive behavior, visual capture |
+
+Both specialized routes return not-found in production through the same environment guard as the main development harness. They do not create a second implementation of the shell or case-study renderer.
+
 When a new important state is introduced, update all four places together:
 
 1. `HarnessState` and fixture helpers in `src/lib/fixtures.ts`;
@@ -183,26 +266,31 @@ When a new important state is introduced, update all four places together:
 - Use `aria-live="polite"` for non-blocking form feedback and `role="alert"` for failures.
 - Use `aria-busy="true"` on loading data surfaces.
 - Use `aria-pressed` for the harness state toggle group.
-- Preserve a visible `:focus-visible` ring with sufficient contrast.
+- Preserve a visible `:focus-visible` ring with sufficient contrast. Interactive controls use a two-tone light/dark ring so focus remains visible on both the warm light surfaces and the dark navigation rail.
+- Primary mobile navigation controls maintain at least a 44×44 CSS-pixel target; browser coverage checks the menu and close controls at mobile/tablet widths.
 - Keep heading levels in document order.
 - Prefer Playwright roles, labels, and visible text. Use `data-testid` only for harness roots and state boundaries that do not have a better semantic locator.
 - Do not use color alone to communicate status; pair it with text or a semantic label.
 
 ## Responsive behavior
 
-The main breakpoint is `760px`:
+Public navigation and content use a `900px` shell breakpoint; internal grids keep the existing `760px` content breakpoint:
 
-- desktop/tablet: two-column project, post, split, and harness layouts where content supports it;
-- mobile: grids collapse to one column, headers and admin rows stack, and action groups wrap;
-- content determines height; fixed heights are reserved for loading placeholders and minimum card rhythm;
-- test long titles and long excerpts at mobile widths before shipping.
+- above `900px`: public routes use the fixed `17rem` rail and offset content column;
+- at `900px` and below: the rail is removed from layout and replaced with the sticky mobile bar plus drawer;
+- at `760px` and below: project, post, split, harness, and relevant admin grids collapse to one column;
+- content determines height; fixed heights remain limited to loading placeholders and minimum card rhythm;
+- test long titles, long excerpts, drawer focus behavior, and route navigation at both mobile and tablet widths.
 
-Use the harness at normal desktop width and a narrow viewport to validate layout changes. The Playwright suite includes default, mobile, and tablet projects.
+The Playwright suite includes default desktop plus dedicated mobile and tablet projects. The mobile/tablet journeys check long-content overflow, drawer focus behavior, 44×44 navigation targets, immediate motion interruption, and reduced-motion final states.
 
 ## Content presentation
 
 - Portfolio/profile content and reusable presentation are separate concerns.
 - Project and post summaries should be concise enough for cards; full content belongs on detail surfaces.
+- Public case-study lists and detail routes receive only records with `reviewStatus: "approved"`; the same template may render drafts only in local review mode.
+- Authored AI Systems and UI Design Practices case studies live under `content/drafts/` and are parsed into the same typed case-study contract with a draft-only source guard.
+- The persona-led design article is a separate typed editorial draft and is not connected to the public post adapter.
 - Public posts are rendered only when their status is `published`.
 - Draft, archived, and unpublished content must not leak through public components or metadata.
 - Preserve the client-IP disclaimer when importing case-study material from the existing site.
@@ -215,7 +303,8 @@ Before a UI change is complete:
 1. Start with the relevant harness state, for example `/dev/harness?state=long-content`.
 2. Verify keyboard focus, labels, empty/error feedback, and responsive layout.
 3. Run the narrowest relevant test while iterating.
-4. Run the full baseline before handoff:
+4. For material visual changes, inspect the deterministic captures generated by `tests/e2e/visual.spec.ts`: home first viewport, mobile drawer, case-study first viewport, and reduced-motion drawer. CI uploads them as the `visual-verification-captures` artifact for 14 days. These are review captures; semantic/CSS/browser assertions remain the automated regression gate rather than a brittle pixel-diff baseline.
+5. Run the full baseline before handoff:
 
 ```bash
 pnpm lint
@@ -238,3 +327,15 @@ When adding a component or pattern:
 - add a deterministic fixture and harness preview for meaningful states;
 - update this document and the relevant architecture/decision record;
 - run the verification commands before completing the change.
+
+
+## Release-hardening audit closure
+
+Issue #6 Phase 7 closes the recorded UI/release audit findings as follows:
+
+- **Supabase session refresh:** `/admin/:path*` requests pass through the request-scoped Supabase SSR refresh helper before Server Components consume auth cookies; missing configuration remains a no-op rather than a failed request.
+- **Focus-ring contrast:** keyboard focus uses the documented two-tone light/dark ring instead of a single orange outline that could disappear against accent or dark surfaces.
+- **Notes navigation assertion:** the public Notes browser journey asserts the Notes link carries `aria-current="page"`.
+- **Destructive-action confirmation:** `DeletePostForm` requires confirmation and the harness exercises both cancel and confirm paths.
+- **Production harness link:** public browser coverage asserts no `/dev/harness` link is exposed; the development surfaces remain guarded from production.
+- **Health/readiness semantics:** `/api/health` reports `status: "ready"` only when Supabase is configured and otherwise reports `status: "degraded"` with `readiness.overall: false`, while keeping the liveness response available for local/CI startup checks.

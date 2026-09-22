@@ -49,3 +49,86 @@ test("harness previews the attributed public-source draft", async ({ page }) => 
     "https://www.rickvang.com/",
   );
 });
+
+
+test("harness exercises both imported drafts through the shared case-study template", async ({ page }) => {
+  await page.goto("/dev/harness");
+
+  const integrations = page.getByTestId("case-study-review-multi-product-integrations");
+  const designSystems = page.getByTestId("case-study-review-design-systems");
+
+  await expect(integrations).toHaveAttribute("data-case-study-status", "draft");
+  await expect(designSystems).toHaveAttribute("data-case-study-status", "draft");
+
+  await expect(integrations.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
+  await expect(designSystems.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
+
+  await expect(integrations.getByRole("navigation", { name: "Case study sections" })).toContainText("Overview");
+  await expect(integrations.getByRole("navigation", { name: "Case study sections" })).toContainText("Outcomes");
+  await expect(designSystems.getByText("Lightweight governance", { exact: true })).toBeVisible();
+
+  await expect(integrations.getByText(/client intellectual property/i)).toBeVisible();
+  await expect(designSystems.getByText(/client intellectual property/i)).toBeVisible();
+});
+
+
+test("harness exposes authored editorial drafts without publishing them", async ({ page }) => {
+  await page.goto("/dev/harness");
+
+  const aiSystems = page.getByTestId("case-study-review-ai-systems");
+  const uiPractices = page.getByTestId("case-study-review-ui-design-practices");
+  const article = page.getByTestId("editorial-draft-persona-led-design-discovery");
+
+  await expect(aiSystems).toHaveAttribute("data-case-study-status", "draft");
+  await expect(uiPractices).toHaveAttribute("data-case-study-status", "draft");
+  await expect(article).toHaveAttribute("data-editorial-status", "draft");
+
+  await expect(aiSystems.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
+  await expect(uiPractices.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
+  await expect(article.getByRole("heading", { name: "Persona-led Design Starts Before the Screen" })).toBeVisible();
+
+  await expect(article).toContainText("Synthetic persona responses are explicitly not framed as observed user research.");
+});
+
+
+test("shell harness exposes deterministic active-route state", async ({ page }) => {
+  await page.goto("/dev/harness/shell?route=work");
+
+  const shell = page.getByTestId("site-shell-frame");
+  await expect(shell).toBeVisible();
+  await expect(page.getByTestId("shell-harness-page")).toContainText("Active route");
+  await expect(
+    page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Work" }),
+  ).toHaveAttribute("aria-current", "page");
+});
+
+test("case-study harness can deep-link to an authored draft", async ({ page }) => {
+  await page.goto("/dev/harness/case-study?slug=ai-systems");
+
+  const caseStudy = page.getByTestId("case-study-review-ai-systems");
+  await expect(caseStudy).toHaveAttribute("data-case-study-status", "draft");
+  await expect(caseStudy.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
+  await expect(caseStudy).toContainText("This content is not eligible for public rendering");
+});
+
+
+test("destructive post action requires explicit confirmation", async ({ page }) => {
+  await page.goto("/dev/harness");
+
+  const form = page.getByTestId("delete-post-form");
+  const confirmation = form.getByRole("checkbox", {
+    name: "I understand this permanently deletes the post.",
+  });
+  const deleteButton = form.getByRole("button", { name: "Delete" });
+
+  await expect(confirmation).toHaveAttribute("required", "");
+  await deleteButton.click();
+
+  await expect(confirmation).toBeFocused();
+  await expect(form.getByRole("alert")).toHaveCount(0);
+
+  await confirmation.check();
+  await deleteButton.click();
+
+  await expect(form.getByRole("alert")).toContainText("Supabase is not configured for this environment.");
+});

@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { PostList } from "@/components/post-list";
 import { getPublishedPosts } from "@/lib/posts";
 
@@ -9,16 +7,7 @@ export default async function NotesPage() {
   const posts = await getPublishedPosts();
 
   return (
-    <main className="site-shell">
-      <header className="site-header">
-        <Link className="wordmark" href="/">
-          Rick Vang
-        </Link>
-        <Link className="button button-secondary" href="/">
-          Back home
-        </Link>
-      </header>
-
+    <div className="public-page">
       <section className="hero notes-hero">
         <p className="eyebrow">Notes</p>
         <h1>A maintained place for ideas.</h1>
@@ -32,6 +21,6 @@ export default async function NotesPage() {
         </div>
         <PostList posts={posts} />
       </section>
-    </main>
+    </div>
   );
 }
