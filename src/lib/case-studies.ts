@@ -181,7 +181,7 @@ export function getApprovedCaseStudies(
 
 export function getCaseStudyBySlug(
   slug: string,
-  caseStudies: readonly CaseStudy[] = importedCaseStudyDrafts,
+  caseStudies: readonly CaseStudy[] = caseStudyCatalog,
 ): CaseStudy | undefined {
   return caseStudies.find((caseStudy) => caseStudy.slug === slug);
 }
@@ -189,7 +189,7 @@ export function getCaseStudyBySlug(
 
 export function getApprovedCaseStudyBySlug(
   slug: string,
-  caseStudies: readonly CaseStudy[] = importedCaseStudyDrafts,
+  caseStudies: readonly CaseStudy[] = caseStudyCatalog,
 ): CaseStudy | undefined {
   return getApprovedCaseStudies(caseStudies).find((caseStudy) => caseStudy.slug === slug);
 }
