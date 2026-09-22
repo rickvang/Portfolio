@@ -150,9 +150,10 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
       {drawerOpen && (
         <div className="mobile-drawer-layer">
           <button
-            aria-label="Close site navigation"
+            aria-hidden="true"
             className="mobile-drawer-backdrop"
             onClick={() => closeDrawer()}
+            tabIndex={-1}
             type="button"
           />
           <div
@@ -169,7 +170,13 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
                 Close
               </button>
             </div>
-            <NavigationLinks pathname={pathname} onNavigate={() => closeDrawer({ returnFocus: false })} />
+            <NavigationLinks
+              pathname={pathname}
+              onNavigate={() => {
+                closeDrawer({ returnFocus: false });
+                window.requestAnimationFrame(() => document.getElementById("main-content")?.focus());
+              }}
+            />
           </div>
         </div>
       )}
