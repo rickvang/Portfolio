@@ -47,9 +47,18 @@ function NavigationLinks({ pathname, onNavigate }: NavigationLinksProps) {
   );
 }
 
-export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>) {
-  const pathname = usePathname();
-  const [drawerOpen, setDrawerOpen] = useState(false);
+type SiteShellFrameProps = Readonly<{
+  children: React.ReactNode;
+  pathname: string;
+  initialDrawerOpen?: boolean;
+}>;
+
+export function SiteShellFrame({
+  children,
+  pathname,
+  initialDrawerOpen = false,
+}: SiteShellFrameProps) {
+  const [drawerOpen, setDrawerOpen] = useState(initialDrawerOpen);
   const drawerRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -102,7 +111,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
   }, [closeDrawer, drawerOpen]);
 
   return (
-    <div className="public-shell">
+    <div className="public-shell" data-testid="site-shell-frame">
       <a className="skip-link" href="#main-content">
         Skip to content
       </a>
@@ -186,4 +195,11 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
       </main>
     </div>
   );
+}
+
+
+export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>) {
+  const pathname = usePathname();
+
+  return <SiteShellFrame pathname={pathname}>{children}</SiteShellFrame>;
 }
