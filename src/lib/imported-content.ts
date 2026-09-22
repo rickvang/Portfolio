@@ -29,7 +29,7 @@ const importedContentSchema = z.object({
   source: z.object({
     site: z.literal("rickvang.com"),
     capturedAt: z.string().date(),
-    reviewStatus: z.literal("draft"),
+    reviewStatus: z.enum(["draft", "approved"]),
     clientIpDisclaimer: z.string().min(1),
     sourcePages: z.array(sourcePageSchema).min(1),
   }),
@@ -53,3 +53,16 @@ export const importedContent = importedContentSchema.parse(importedContentSource
 
 export type ImportedContent = z.infer<typeof importedContentSchema>;
 export type ImportedProject = ImportedContent["projects"][number];
+
+
+export function getApprovedImportedContent(
+  content: ImportedContent = importedContent,
+): ImportedContent | undefined {
+  return content.source.reviewStatus === "approved" ? content : undefined;
+}
+
+export function getApprovedImportedProfile(
+  content: ImportedContent = importedContent,
+): ImportedContent["profile"] | undefined {
+  return getApprovedImportedContent(content)?.profile;
+}
