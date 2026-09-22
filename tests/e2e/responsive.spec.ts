@@ -43,9 +43,8 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
 
 
 test.describe("reduced motion", () => {
-  test.use({ reducedMotion: "reduce" });
-
   test("public shell renders motion patterns at their final state", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
     await page.goto("/");
 
     await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
