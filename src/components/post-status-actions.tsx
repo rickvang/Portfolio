@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, useActionState } from "react";
+import { useActionState } from "react";
 
 import { deletePost, setPostStatus } from "@/app/admin/posts/actions";
 
@@ -22,15 +22,13 @@ function StatusForm({ label, postId, status }: { label: string; postId: string; 
 export function DeletePostForm({ postId }: { postId: string }) {
   const [deleteState, deleteAction, deletePending] = useActionState(deletePost, {});
 
-  function confirmDelete(event: FormEvent<HTMLFormElement>) {
-    if (!window.confirm("Delete this post? This action cannot be undone.")) {
-      event.preventDefault();
-    }
-  }
-
   return (
-    <form action={deleteAction} data-testid="delete-post-form" onSubmit={confirmDelete}>
+    <form action={deleteAction} className="delete-post-form" data-testid="delete-post-form">
       <input name="id" type="hidden" value={postId} />
+      <label className="delete-confirmation">
+        <input name="confirmDelete" required type="checkbox" value="delete" />
+        <span>I understand this permanently deletes the post.</span>
+      </label>
       <button className="button button-danger" disabled={deletePending} type="submit">
         {deletePending ? "Deleting…" : "Delete"}
       </button>
