@@ -2,10 +2,11 @@
 
 ## Current shape
 
-The application is a small Next.js App Router site with server-rendered pages and focused client components for interactive states. The first vertical slice is a portfolio home page with work, about, and contact sections.
+The application is a small Next.js App Router site with server-rendered pages and focused client components for interactive states. Public portfolio routes share one route-group layout and persistent navigation shell, while admin, API, and development-harness surfaces remain outside that public frame.
 
 ```text
-src/app/                 routes, metadata, error boundaries, API routes
+src/app/(public)/        public portfolio routes sharing the persistent site shell
+src/app/                 root metadata plus admin, API, harness, and global boundaries
 src/components/          reusable UI and interactive client components
 src/lib/                 fixtures, content contracts, route contracts, logging, and adapters
 src/lib/supabase/        typed browser/server clients and database contract
@@ -22,7 +23,9 @@ tests/                   Vitest unit tests and Playwright browser tests
 - `src/lib/fixtures.ts` provides typed access to deterministic fixture data.
 - `content/imports/rickvang.com.json` is a draft source capture; it is never a publication signal by itself.
 - `src/lib/case-studies.ts` adapts case-study sources into the shared typed contract, validates section order and evidence references, and exposes explicit approval filtering.
-- `src/lib/public-routes.ts` is the canonical public route-shape contract used by future navigation and public-route implementation.
+- `src/lib/public-routes.ts` is the canonical public route-shape contract used by navigation and public-route implementation.
+- `src/app/(public)/layout.tsx` is the public routing boundary. It applies `SiteShell` without wrapping `/admin`, `/api`, or `/dev/harness`.
+- `src/components/site-shell.tsx` owns the persistent desktop rail and accessible mobile drawer; route pages should not duplicate primary navigation markup.
 - `src/components/` owns presentation and interaction; it should not reach directly into external services.
 - External services must be introduced behind a typed adapter and mocked in tests.
 - Supabase access is isolated behind `src/lib/supabase/` and `src/lib/posts.ts`; components should not create raw clients.
