@@ -68,6 +68,17 @@ test.describe("reduced motion", () => {
     await expect(page.getByRole("dialog", { name: "Site navigation" })).toHaveCSS("animation-name", "none");
     await expect(page.locator(".mobile-drawer-backdrop")).toHaveCSS("animation-name", "none");
   });
+
+  test("case-study chapters render immediately at their final state", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.goto("/dev/harness/case-study?slug=ai-systems");
+
+    const contextChapter = page.locator('[data-case-study-chapter="context"]');
+    await expect(contextChapter).toBeVisible();
+    await expect(contextChapter).toHaveCSS("animation-name", "none");
+    await expect(contextChapter).toHaveCSS("opacity", "1");
+    await expect(contextChapter).toHaveCSS("transform", "none");
+  });
 });
 
 
