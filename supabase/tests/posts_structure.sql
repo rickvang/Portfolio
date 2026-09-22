@@ -12,7 +12,7 @@ select is(
     from pg_class
     where oid = 'public.posts'::regclass
   ),
-  't',
+  'true',
   'posts has row level security enabled'
 );
 

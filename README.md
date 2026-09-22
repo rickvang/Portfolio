@@ -4,7 +4,7 @@ A maintainable Next.js foundation for Rick Vang's portfolio site.
 
 ## Setup
 
-Requirements: Node 20.9+, pnpm 11, and Docker Desktop for the local Supabase stack.
+Requirements: Node 22.13+, pnpm 11, and Docker Desktop for the local Supabase stack.
 
 ```bash
 pnpm install
