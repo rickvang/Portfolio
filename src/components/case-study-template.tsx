@@ -88,28 +88,31 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
                 <h2 id={`${caseStudy.slug}-chapter-${chapter.id}-heading`}>{chapter.label}</h2>
               </header>
 
-              {chapter.sections.map((section) => (
-                <div
-                  className="case-study-section"
-                  id={`${caseStudy.slug}-${section.kind}`}
-                  key={section.kind}
-                >
-                  {section.title !== chapter.label && <h3>{section.title}</h3>}
+              {chapter.sections.map((section, sectionIndex) => {
+                const showSectionHeading = section.title !== chapter.label || sectionIndex > 0;
 
-                  {section.body && <p className="case-study-copy">{section.body}</p>}
+                return (
+                  <div
+                    className="case-study-section"
+                    id={`${caseStudy.slug}-${section.kind}`}
+                    key={section.kind}
+                  >
+                    {showSectionHeading && <h3>{section.title}</h3>}
 
-                  {section.items && (
-                    <div className="case-study-item-grid">
-                      {section.items.map((item) => (
-                        <article className="case-study-item" key={item.title}>
-                          <h3>{item.title}</h3>
-                          <p>{item.summary}</p>
-                        </article>
-                      ))}
-                    </div>
-                  )}
+                    {section.body && <p className="case-study-copy">{section.body}</p>}
 
-                  {reviewMode && (
+                    {section.items && (
+                      <div className="case-study-item-grid">
+                        {section.items.map((item) => (
+                          <article className="case-study-item" key={item.title}>
+                            {showSectionHeading ? <h4>{item.title}</h4> : <h3>{item.title}</h3>}
+                            <p>{item.summary}</p>
+                          </article>
+                        ))}
+                      </div>
+                    )}
+
+                    {reviewMode && (
                     <details className="case-study-evidence">
                       <summary>Review evidence</summary>
                       <ul>
@@ -120,9 +123,10 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
                         ))}
                       </ul>
                     </details>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                );
+              })}
             </section>
           ))}
         </div>
