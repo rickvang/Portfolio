@@ -84,13 +84,14 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 
 Use the following patterns deliberately rather than decorating every section:
 
-1. **First-viewport thesis** — one dominant statement, one supporting column, and one small orientation line. Do not put a card grid above the thesis.
-2. **Asymmetry with recovery** — use one controlled offset or unequal-column moment, then return to the shared content grid so the page remains easy to scan.
-3. **Numbered orientation** — the global rail uses 01–05 indices and long-form case studies use chapter numbers. Numbers support wayfinding; they do not replace text labels.
-4. **Chapter scale** — case-study chapter headings are the largest long-form landmarks beneath the page title. Nested source sections remain smaller and may disappear when their title duplicates the chapter name.
-5. **Warm neutral surfaces** — use background/surface contrast, spacing, and rules before adding more boxes. Cards are reserved for discrete items, evidence, or interactive surfaces.
-6. **Accent discipline** — orange identifies authored emphasis, active state, and selected landmarks. It should not become a decorative wash or substitute for hierarchy.
-7. **Layout choice** — use the asymmetric homepage pattern for thesis-led landing pages, the split section pattern for paired explanation/action content, and the chapter pattern for evidence-heavy long-form work. Do not force the chapter pattern onto short notes or utility pages.
+1. **Content-led hierarchy** — once source-backed portfolio content is approved, use the actual project names, project language, biography, evidence, and artifacts as the primary hierarchy. Do not replace specific work with generic portfolio slogans merely to fill a composition.
+2. **First-viewport thesis** — one dominant statement, one supporting column, and one small orientation line. Do not put a card grid above the thesis.
+3. **Asymmetry with recovery** — use one controlled offset or unequal-column moment, then return to the shared content grid so the page remains easy to scan.
+4. **Numbered orientation** — the global rail uses 01–05 indices and long-form case studies use chapter numbers. Numbers support wayfinding; they do not replace text labels.
+5. **Chapter scale** — case-study chapter headings are the largest long-form landmarks beneath the page title. Nested source sections remain smaller and may disappear when their title duplicates the chapter name.
+6. **Warm neutral surfaces** — use background/surface contrast, spacing, and rules before adding more boxes. Cards are reserved for discrete items, evidence, or interactive surfaces.
+7. **Accent discipline** — orange identifies authored emphasis, active state, and selected landmarks. It should not become a decorative wash or substitute for hierarchy.
+8. **Layout choice** — use the asymmetric homepage pattern for thesis-led landing pages, the split section pattern for paired explanation/action content, and the chapter pattern for evidence-heavy long-form work. Do not force the chapter pattern onto short notes or utility pages.
 
 ### Shape, elevation, and motion
 
@@ -143,6 +144,7 @@ These are the reusable components currently in `src/components/`.
 | `SiteShellFrame` | Persistent public navigation/content frame used by production routes and local verification | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
 | `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
 | `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft/review-ready rendering with chapter map, provenance, and evidence |
+| `ProfileStats` | Reusable compact experience summary driven by approved profile data | `stats` | Homepage/About experience counts; semantic `dl` that collapses from three columns to one using existing surface/border tokens |
 | `EditorialDraftPreview` | Local-only review surface for source-backed article drafts | `draft` | Draft or review-ready article, evidence details, source provenance, curation notes |
 | `ContactForm` | Contact form boundary | `disabled`, `initialStatus` | Idle, success, error, disabled |
 | `ProjectList` | Project card collection | `projects`, `state` | Success, loading, empty, error, long content |
