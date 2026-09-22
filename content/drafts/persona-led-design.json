@@ -1,0 +1,157 @@
+{
+  "id": "persona-led-design-discovery",
+  "slug": "persona-led-design-discovery",
+  "title": "Persona-led Design Starts Before the Screen",
+  "excerpt": "A practical method for structuring AI personas as bounded design collaborators before exploration, then questioning them during design without mistaking synthetic perspective for user evidence.",
+  "reviewStatus": "draft",
+  "sources": [
+    {
+      "id": "pl-ux-practice",
+      "kind": "repository",
+      "label": "Persona-Library Expert UX Design Practice",
+      "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/ux/expert-ux-design-practice.md",
+      "capturedAt": "2026-09-22"
+    },
+    {
+      "id": "pl-project-routing",
+      "kind": "repository",
+      "label": "Persona-Library Project Context and Reference Routing",
+      "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/ux/project-context-and-reference-routing.md",
+      "capturedAt": "2026-09-22"
+    },
+    {
+      "id": "pl-problem-context",
+      "kind": "repository",
+      "label": "Persona-Library Shared Problem Context",
+      "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/collaboration/problem-context.md",
+      "capturedAt": "2026-09-22"
+    },
+    {
+      "id": "portfolio-issue-6",
+      "kind": "repository",
+      "label": "Portfolio redesign implementation plan",
+      "url": "https://github.com/rickvang/Portfolio/issues/6",
+      "capturedAt": "2026-09-22"
+    }
+  ],
+  "intro": [
+    "AI personas are most useful to my design process when they are treated as bounded collaborators, not fictional users and not a panel I summon after the interface already exists.",
+    "The structure starts before design: define the problem, identify which perspective can answer which question, label what is evidence versus assumption, and decide what a persona is allowed to influence. During exploration, I can then question those personas about the workflow, terminology, priorities, handoffs, and failure states that belong to their scope.",
+    "The goal is not to manufacture confidence. It is to make design reasoning more inspectable while preserving the line between a modeled perspective and actual user evidence."
+  ],
+  "sections": [
+    {
+      "id": "frame-before-selecting",
+      "heading": "Frame the problem before selecting personas",
+      "body": [
+        "Start with the task, desired outcome, constraints, known evidence, missing evidence, and stopping condition. A persona should be selected because it contributes a distinct perspective to that frame, not because adding another voice feels comprehensive.",
+        "This prevents the design process from turning into role-play. It also makes it easier to see when the real gap is missing research, an unsettled content model, a tooling constraint, or a decision that belongs to a human owner."
+      ],
+      "evidence": [
+        {
+          "sourceId": "pl-project-routing",
+          "note": "Requires an explicit user/operator job, evidence status, constraints, success criteria, and the minimum relevant Persona set."
+        },
+        {
+          "sourceId": "pl-problem-context",
+          "note": "The collaboration contract says to frame the request before selecting participants and not invent a panel."
+        }
+      ]
+    },
+    {
+      "id": "give-each-persona-a-job",
+      "heading": "Give each persona a bounded job",
+      "body": [
+        "A useful design persona has a responsibility boundary. When structure, terminology, task flow, or evaluation is unsettled, the UX perspective should own those questions. Once the structure is sufficient, a UI perspective can focus on visual hierarchy, interaction states, responsive behavior, accessibility, and implementation fidelity.",
+        "Those roles can collaborate, but they should not collapse into one generic design voice. Clear boundaries make disagreement useful because I can trace it back to a specific design responsibility."
+      ],
+      "evidence": [
+        {
+          "sourceId": "pl-ux-practice",
+          "note": "Separates Jordan's structure/task-flow responsibility from Camille's visual/interaction/responsive/accessibility responsibility."
+        },
+        {
+          "sourceId": "pl-project-routing",
+          "note": "Routes UX versus UI work conditionally and recommends the smallest relevant set."
+        }
+      ]
+    },
+    {
+      "id": "shared-context-only-when-needed",
+      "heading": "Create shared context only when handoffs matter",
+      "body": [
+        "Multiple personas do not automatically require a collaboration system. I use shared context when several perspectives need to contribute to one outcome, hand work between stages, or preserve consequential disagreement.",
+        "The shared record should carry the problem, evidence status, contributions, decisions, artifacts, blockers, quality gates, and next handoff. That turns the collaboration into an inspectable design process instead of a transcript."
+      ],
+      "evidence": [
+        {
+          "sourceId": "pl-problem-context",
+          "note": "Defines when and how a shared problem-context records attributable contributions, decisions, gates, artifacts, and handoffs."
+        },
+        {
+          "sourceId": "pl-project-routing",
+          "note": "Says to use shared problem-context only when shared state and attributable handoffs are genuinely needed."
+        }
+      ]
+    },
+    {
+      "id": "question-during-exploration",
+      "heading": "Question personas during exploration",
+      "body": [
+        "Once the responsibilities are clear, the questions can become specific: What terminology is ambiguous in this workflow? Which information must remain visible on a narrow screen? What happens when the user returns after an interruption? Which state would make this action feel irreversible? What evidence would change this recommendation?",
+        "For a synthetic or modeled perspective, the answer stays labeled as an assumption, recommendation, or unknown. I use it to surface design risks and better validation questions, not to claim that users said or wanted something."
+      ],
+      "evidence": [
+        {
+          "sourceId": "pl-project-routing",
+          "note": "Synthetic-participant guidance recommends context-specific questions about workflow, tools, terminology, priorities, handoffs, and recovery while preserving assumption status."
+        },
+        {
+          "sourceId": "pl-ux-practice",
+          "note": "Requires evidence status and warns that modeled perspectives are not automatic user evidence."
+        }
+      ]
+    },
+    {
+      "id": "preserve-disagreement",
+      "heading": "Preserve disagreement instead of averaging it away",
+      "body": [
+        "If two design perspectives disagree about hierarchy, interaction, or risk, the useful move is not to force consensus. Record the tradeoff, the evidence each perspective is using, who owns the decision, and what would cause it to be revisited.",
+        "That creates a better handoff to prototyping and evaluation because the risky assumption is visible. It also keeps later iteration from looking like arbitrary preference changes."
+      ],
+      "evidence": [
+        {
+          "sourceId": "pl-problem-context",
+          "note": "Requires consequential disagreement and contribution dispositions to remain visible with reasons."
+        },
+        {
+          "sourceId": "pl-ux-practice",
+          "note": "Calls for decisions, evidence status, alternatives, traceability, and explicit unknowns."
+        }
+      ]
+    },
+    {
+      "id": "close-with-a-gate",
+      "heading": "Close with a real design gate",
+      "body": [
+        "Persona input is not the finish line. The design still needs a concrete output and a quality gate: does the structure serve the task, are important states covered, does responsive behavior preserve the relationships that matter, is focus and keyboard behavior defined, and what remains untested?",
+        "When real user evidence is available, it should outrank synthetic perspective. When it is not, the missing validation should remain explicit. A persona-led process is useful because it makes the next question clearer, not because it removes the need to ask real people."
+      ],
+      "evidence": [
+        {
+          "sourceId": "pl-ux-practice",
+          "note": "Requires state, responsive, accessibility, evaluation, handoff, and built-QA gates."
+        },
+        {
+          "sourceId": "pl-problem-context",
+          "note": "Requires a concrete solution and solution-quality gate before completion."
+        }
+      ]
+    }
+  ],
+  "curationNotes": [
+    "Draft article describes a working method derived from current Persona-Library design and collaboration contracts.",
+    "Synthetic persona responses are explicitly not framed as observed user research.",
+    "Review first-person phrasing and add concrete design screenshots/examples only after the associated portfolio surfaces are approved."
+  ]
+}
