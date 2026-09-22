@@ -16,7 +16,7 @@ const editorialDraftSchema = z
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     title: z.string().min(1),
     excerpt: z.string().min(1),
-    reviewStatus: z.literal("draft"),
+    reviewStatus: z.enum(["draft", "review-ready"]),
     sources: z.array(caseStudySourceSchema).min(1),
     intro: z.array(z.string().min(1)).min(1),
     sections: z.array(editorialSectionSchema).min(1),
