@@ -43,11 +43,14 @@ export async function setPostStatus(_previousState: PostActionState, formData: F
 }
 
 export async function deletePost(_previousState: PostActionState, formData: FormData): Promise<PostActionState> {
+  const id = z.string().uuid().safeParse(formData.get("id"));
+  const confirmation = z.literal("delete").safeParse(formData.get("confirmDelete"));
+
+  if (!id.success) return { error: "The post identifier is invalid." };
+  if (!confirmation.success) return { error: "Confirm permanent deletion before continuing." };
+
   const author = await requireAuthor();
   if ("error" in author) return author;
-
-  const id = z.string().uuid().safeParse(formData.get("id"));
-  if (!id.success) return { error: "The post identifier is invalid." };
 
   const { error } = await author.supabase.from("posts").delete().eq("id", id.data).eq("author_id", author.user.id);
   if (error) return { error: "Unable to delete the post." };
