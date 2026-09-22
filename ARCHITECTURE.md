@@ -10,7 +10,7 @@ src/app/                 root metadata plus admin, API, harness, and global boun
 src/components/          reusable UI and interactive client components
 src/lib/                 fixtures, content contracts, route contracts, logging, and adapters
 src/lib/supabase/        typed browser/server clients and database contract
-content/                 imported and authored content sources kept separate from presentation
+content/                 imported sources plus source-backed draft editorial content, separate from presentation
 fixtures/                deterministic source data for local development
 scripts/                 seed and reset helpers for local fixture state
 supabase/                local Supabase config, migrations, and database seed
@@ -22,6 +22,8 @@ tests/                   Vitest unit tests and Playwright browser tests
 - `fixtures/seed.json` is the current local content source for the foundation and the deterministic posts preview.
 - `src/lib/fixtures.ts` provides typed access to deterministic fixture data.
 - `content/imports/rickvang.com.json` is a draft source capture; it is never a publication signal by itself.
+- `content/drafts/case-studies.json` contains source-backed authored case-study drafts; `src/lib/case-studies.ts` validates them through the shared schema and requires the authored source set to remain draft.
+- `content/drafts/persona-led-design.json` is a source-backed article draft parsed by `src/lib/editorial-drafts.ts`; it is intentionally separate from the public/Supabase posts adapter.
 - `src/lib/case-studies.ts` adapts case-study sources into the shared typed contract, validates section order and evidence references, and exposes explicit approval filtering plus approved-by-slug lookup.
 - `src/lib/public-routes.ts` is the canonical public route-shape contract used by navigation and public-route implementation.
 - `src/app/(public)/layout.tsx` is the public routing boundary. It applies `SiteShell` without wrapping `/admin`, `/api`, or `/dev/harness`.
