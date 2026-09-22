@@ -21,7 +21,7 @@ export function ContactForm({
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" data-testid="contact-form" onSubmit={handleSubmit}>
       <div className="form-row">
         <label htmlFor="contact-name">Name</label>
         <input id="contact-name" name="name" placeholder="Your name" disabled={disabled} />
@@ -49,7 +49,7 @@ export function ContactForm({
       <button className="button" type="submit" disabled={disabled}>
         Send message
       </button>
-      <div aria-live="polite" className="form-feedback">
+      <div aria-live="polite" className="form-feedback" data-testid="contact-feedback">
         {status === "success" && <p className="feedback-success">Message ready to send.</p>}
         {status === "error" && (
           <p className="feedback-error" role="alert">

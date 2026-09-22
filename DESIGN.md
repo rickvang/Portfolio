@@ -104,6 +104,46 @@ These are the reusable components currently in `src/components/`.
 6. Keep long content valid. Titles, excerpts, tags, and status metadata must wrap without forcing horizontal overflow.
 7. Add a component to the harness when it has a meaningful state or is reused across a product flow.
 
+## Interaction specifications
+
+Every important interactive component should have a short interaction specification before its behavior is expanded. Use this structure:
+
+1. **Purpose** — the user goal and the boundary of the component.
+2. **Anatomy** — semantic elements, labels, actions, and feedback regions.
+3. **States** — default, hover, focus, pressed, disabled, loading, success, error, empty, and long-content states that apply.
+4. **Transitions** — what triggers each state, what feedback appears, and how the user recovers or cancels.
+5. **Keyboard and focus** — native tab order, activation keys, focus visibility, and any intentional focus movement.
+6. **Validation and safety** — client/server validation, data transmission, confirmation, and destructive-action rules.
+7. **Responsive behavior** — layout changes, touch targets, wrapping, and overflow expectations.
+8. **Accessibility contract** — accessible names, roles, descriptions, live regions, and disabled semantics.
+9. **Harness and verification** — deterministic fixture states, stable selectors, and browser/unit acceptance checks.
+
+### Representative interaction specification: `ContactForm`
+
+**Purpose:** collect a visitor's contact intent. The current implementation is local-first and simulates feedback; it does not transmit data to an external service.
+
+**Anatomy:** visible labels for name, email, and message; native text controls; a submit button; and an `aria-live="polite"` feedback region.
+
+**Current states:**
+
+- `idle`: fields and submit action are available.
+- `success`: the harness initializes the feedback region with “Message ready to send.”; a local submit also produces that message.
+- `error`: the harness exposes an actionable error message with `role="alert"`.
+- `disabled`: native controls and submit action are disabled and the state explains why.
+- `loading`, `empty`, and `long-content`: the harness keeps the form idle because those states belong to the data surfaces in this component group.
+
+**Transitions:** submitting prevents the browser's default navigation and changes local state to success when enabled. A disabled form does not submit. A future real contact adapter must define pending, retry, and transmission-error behavior before it is connected.
+
+**Keyboard and focus:** use the browser's native form tab order; submit from a focused control using the native form behavior; preserve the global visible focus ring; do not add custom focus movement until a concrete recovery flow requires it.
+
+**Validation and safety:** the current form uses the native email input type but does not yet transmit or perform server-side validation. A future integration must validate with the application's server boundary before sending contact data and must document consent, failure, and retry behavior.
+
+**Responsive behavior:** the form remains a single-column grid and controls use the shared full-width field treatment. Verify it at mobile width through the harness.
+
+**Accessibility and selectors:** labels are associated with controls by `htmlFor`/`id`; feedback uses `aria-live`; failures use `role="alert"`; the form and feedback region expose `data-testid="contact-form"` and `data-testid="contact-feedback"` for harness-bound tests. Prefer labels and roles in tests when they identify the behavior directly.
+
+**Verification:** `tests/e2e/harness.spec.ts` verifies that the success form can submit locally and that the disabled fixture disables both a field and the submit button.
+
 ## State matrix
 
 The harness accepts `success`, `loading`, `empty`, `error`, `disabled`, and `long-content` through the visible controls or a direct URL such as `/dev/harness?state=error`.
