@@ -9,7 +9,7 @@ export function ImportedContentPreview({ content }: ImportedContentPreviewProps)
     <section aria-labelledby="imported-content-heading" data-testid="imported-content-preview">
       <div className="section-heading">
         <p className="eyebrow">Source import</p>
-        <h2 id="imported-content-heading">Public content draft</h2>
+        <h2 id="imported-content-heading">Public content import</h2>
       </div>
       <div className="surface-grid">
         <article className="surface-card">
@@ -29,7 +29,7 @@ export function ImportedContentPreview({ content }: ImportedContentPreviewProps)
               <article className="project-card" key={project.id}>
                 <div className="project-card-meta">
                   <span className="tag">{project.category}</span>
-                  <span className="tag">Draft</span>
+                  <span className="tag">{content.source.reviewStatus}</span>
                 </div>
                 <h3>{project.title}</h3>
                 <p>{project.summary}</p>
