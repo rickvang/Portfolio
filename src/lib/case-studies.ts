@@ -18,7 +18,7 @@ export const CASE_STUDY_SECTION_ORDER = [
 const caseStudySectionKindSchema = z.enum(CASE_STUDY_SECTION_ORDER);
 const reviewStatusSchema = z.enum(["draft", "approved"]);
 
-const caseStudySourceSchema = z.object({
+export const caseStudySourceSchema = z.object({
   id: z.string().min(1),
   kind: z.enum(["source-page", "repository", "user-provided", "observed"]),
   label: z.string().min(1),
@@ -26,7 +26,7 @@ const caseStudySourceSchema = z.object({
   capturedAt: z.string().date().optional(),
 });
 
-const caseStudyEvidenceSchema = z.object({
+export const caseStudyEvidenceSchema = z.object({
   sourceId: z.string().min(1),
   note: z.string().min(1),
 });
