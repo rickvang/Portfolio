@@ -22,10 +22,12 @@ tests/                   Vitest unit tests and Playwright browser tests
 - `fixtures/seed.json` is the current local content source for the foundation and the deterministic posts preview.
 - `src/lib/fixtures.ts` provides typed access to deterministic fixture data.
 - `content/imports/rickvang.com.json` is a draft source capture; it is never a publication signal by itself.
-- `src/lib/case-studies.ts` adapts case-study sources into the shared typed contract, validates section order and evidence references, and exposes explicit approval filtering.
+- `src/lib/case-studies.ts` adapts case-study sources into the shared typed contract, validates section order and evidence references, and exposes explicit approval filtering plus approved-by-slug lookup.
 - `src/lib/public-routes.ts` is the canonical public route-shape contract used by navigation and public-route implementation.
 - `src/app/(public)/layout.tsx` is the public routing boundary. It applies `SiteShell` without wrapping `/admin`, `/api`, or `/dev/harness`.
 - `src/components/site-shell.tsx` owns the persistent desktop rail and accessible mobile drawer; route pages should not duplicate primary navigation markup.
+- `src/components/case-study-template.tsx` is the single case-study detail renderer. Public routes use public mode only after approval filtering; `/dev/harness` may use review mode for draft provenance/evidence inspection.
+- `/work` and `/work/[slug]` are publication boundaries: draft case studies must resolve to the empty index state or 404 rather than render publicly.
 - `src/components/` owns presentation and interaction; it should not reach directly into external services.
 - External services must be introduced behind a typed adapter and mocked in tests.
 - Supabase access is isolated behind `src/lib/supabase/` and `src/lib/posts.ts`; components should not create raw clients.
