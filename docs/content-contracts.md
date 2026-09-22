@@ -82,3 +82,16 @@ Approval is an explicit content decision. It must not be inferred from the exist
 - review mode, reachable from the local-only development harness and allowed to expose source provenance, evidence notes, and curation notes for draft review.
 
 Both current imported drafts are exercised through review mode so layout and section behavior can be verified without changing their publication status. Their public `/work/[slug]` URLs intentionally return 404 until approval.
+
+
+## Authored editorial drafts
+
+Phase 5 adds three source-backed review artifacts under `content/drafts/`:
+
+- `AI Systems` — a case-study draft grounded in Persona-Library orchestration, Work Order, and shared problem-context contracts;
+- `UI Design Practices` — a case-study draft grounded in the Portfolio redesign plan/interaction work and the Persona-Library UX practice;
+- `Persona-led Design Starts Before the Screen` — an article draft describing bounded persona selection and questioning during exploration while explicitly preserving synthetic-evidence limits.
+
+The two case studies are parsed into the normal case-study catalog but the authored source file is guarded so every record must remain `draft`. The article uses its own typed editorial-draft contract and is not connected to `getPublishedPosts()` or any Supabase publication path.
+
+All three artifacts are reviewable through `/dev/harness` only. Browser tests verify their draft status and verify that `/work/ai-systems`, `/work/ui-design-practices`, and `/notes/persona-led-design-discovery` do not expose the draft content publicly.
