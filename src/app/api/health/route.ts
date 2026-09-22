@@ -12,10 +12,11 @@ export function GET() {
     },
     readiness: {
       app: true,
+      overall: supabaseConfigured,
       supabase: supabaseConfigured,
     },
     service: "rickvang.com",
-    status: "ok",
+    status: supabaseConfigured ? "ready" : "degraded",
     timestamp: new Date().toISOString(),
   });
 }
