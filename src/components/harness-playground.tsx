@@ -9,6 +9,7 @@ import { EditorialDraftPreview } from "@/components/editorial-draft-preview";
 import { AdminWorkflowPreview } from "@/components/admin-workflow-preview";
 import { ImportedContentPreview } from "@/components/imported-content-preview";
 import { PostList } from "@/components/post-list";
+import { DeletePostForm } from "@/components/post-status-actions";
 import { ProjectList } from "@/components/project-list";
 import { caseStudyCatalog } from "@/lib/case-studies";
 import { personaLedDesignDraft } from "@/lib/editorial-drafts";
@@ -104,6 +105,12 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
             initialStatus={contactStatusForState[state]}
             key={`contact-${state}`}
           />
+        </article>
+        <article className="surface-card">
+          <p className="eyebrow">Destructive action</p>
+          <h2>Delete confirmation</h2>
+          <p>Uses the production delete form with a non-production fixture identifier.</p>
+          <DeletePostForm postId="00000000-0000-0000-0000-000000000001" />
         </article>
       </section>
 
