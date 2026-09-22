@@ -17,6 +17,11 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
 
   const menuButton = page.getByRole("button", { name: "Open site navigation" });
   await expect(menuButton).toBeVisible();
+
+  const menuBox = await menuButton.boundingBox();
+  expect(menuBox?.width).toBeGreaterThanOrEqual(44);
+  expect(menuBox?.height).toBeGreaterThanOrEqual(44);
+
   await menuButton.click();
 
   const drawer = page.getByRole("dialog", { name: "Site navigation" });
@@ -25,12 +30,17 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
   await expect(drawer).toBeVisible();
   await expect(closeButton).toBeFocused();
 
+  const closeBox = await closeButton.boundingBox();
+  expect(closeBox?.width).toBeGreaterThanOrEqual(44);
+  expect(closeBox?.height).toBeGreaterThanOrEqual(44);
+
   await page.keyboard.press("Shift+Tab");
   await expect(drawer.getByRole("link", { name: "Contact" })).toBeFocused();
 
   await page.keyboard.press("Escape");
   await expect(drawer).not.toBeVisible();
   await expect(menuButton).toBeFocused();
+  await expect(menuButton).toHaveCSS("outline-width", "3px");
 
   await menuButton.click();
   await page.getByRole("dialog", { name: "Site navigation" }).getByRole("link", { name: "Notes" }).click();
@@ -55,4 +65,17 @@ test.describe("reduced motion", () => {
     await expect(page.getByRole("dialog", { name: "Site navigation" })).toHaveCSS("animation-name", "none");
     await expect(page.locator(".mobile-drawer-backdrop")).toHaveCSS("animation-name", "none");
   });
+});
+
+
+test("mobile drawer entry can be interrupted immediately", async ({ page }) => {
+  await page.goto("/dev/harness/shell?route=contact");
+
+  const menuButton = page.getByRole("button", { name: "Open site navigation" });
+  await menuButton.click();
+  await page.keyboard.press("Escape");
+
+  await expect(page.getByRole("dialog", { name: "Site navigation" })).toHaveCount(0);
+  await expect(menuButton).toBeFocused();
+  await expect(page.getByTestId("shell-harness-page")).toBeVisible();
 });
