@@ -7,8 +7,9 @@ The application is a small Next.js App Router site with server-rendered pages an
 ```text
 src/app/                 routes, metadata, error boundaries, API routes
 src/components/          reusable UI and interactive client components
-src/lib/                 fixtures, environment validation, logging, and adapters
+src/lib/                 fixtures, content contracts, route contracts, logging, and adapters
 src/lib/supabase/        typed browser/server clients and database contract
+content/                 imported and authored content sources kept separate from presentation
 fixtures/                deterministic source data for local development
 scripts/                 seed and reset helpers for local fixture state
 supabase/                local Supabase config, migrations, and database seed
@@ -19,6 +20,9 @@ tests/                   Vitest unit tests and Playwright browser tests
 
 - `fixtures/seed.json` is the current local content source for the foundation and the deterministic posts preview.
 - `src/lib/fixtures.ts` provides typed access to deterministic fixture data.
+- `content/imports/rickvang.com.json` is a draft source capture; it is never a publication signal by itself.
+- `src/lib/case-studies.ts` adapts case-study sources into the shared typed contract, validates section order and evidence references, and exposes explicit approval filtering.
+- `src/lib/public-routes.ts` is the canonical public route-shape contract used by future navigation and public-route implementation.
 - `src/components/` owns presentation and interaction; it should not reach directly into external services.
 - External services must be introduced behind a typed adapter and mocked in tests.
 - Supabase access is isolated behind `src/lib/supabase/` and `src/lib/posts.ts`; components should not create raw clients.
