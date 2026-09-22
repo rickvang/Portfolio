@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import {
   CASE_STUDY_SECTION_ORDER,
+  authoredCaseStudyDrafts,
+  caseStudyCatalog,
   caseStudySchema,
   getApprovedCaseStudies,
   getApprovedCaseStudyBySlug,
@@ -18,12 +20,33 @@ describe("case-study content contract", () => {
     expect(getApprovedCaseStudies()).toEqual([]);
   });
 
+  it("adds the two authored editorial case studies as drafts", () => {
+    expect(authoredCaseStudyDrafts.map((caseStudy) => caseStudy.slug)).toEqual([
+      "ai-systems",
+      "ui-design-practices",
+    ]);
+    expect(authoredCaseStudyDrafts.every((caseStudy) => caseStudy.reviewStatus === "draft")).toBe(true);
+    expect(caseStudyCatalog).toHaveLength(4);
+    expect(getApprovedCaseStudies()).toEqual([]);
+  });
+
   it("keeps imported source provenance attached to every section", () => {
     for (const caseStudy of importedCaseStudyDrafts) {
       const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
 
       expect(caseStudy.clientIpDisclaimer).toContain("client intellectual property");
       expect(caseStudy.sources[0]?.url).toBeTruthy();
+
+      for (const section of caseStudy.sections) {
+        expect(section.evidence.length).toBeGreaterThan(0);
+        expect(section.evidence.every((evidence) => sourceIds.has(evidence.sourceId))).toBe(true);
+      }
+    }
+  });
+
+  it("keeps authored draft evidence resolvable", () => {
+    for (const caseStudy of authoredCaseStudyDrafts) {
+      const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
 
       for (const section of caseStudy.sections) {
         expect(section.evidence.length).toBeGreaterThan(0);
