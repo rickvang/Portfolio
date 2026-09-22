@@ -3,8 +3,8 @@ import { describe, expect, it } from "vitest";
 import { personaLedDesignDraft } from "@/lib/editorial-drafts";
 
 describe("persona-led design editorial draft", () => {
-  it("stays draft and source-backed", () => {
-    expect(personaLedDesignDraft.reviewStatus).toBe("draft");
+  it("is review-ready, unpublished, and source-backed", () => {
+    expect(personaLedDesignDraft.reviewStatus).toBe("review-ready");
     expect(personaLedDesignDraft.slug).toBe("persona-led-design-discovery");
     expect(personaLedDesignDraft.sections).toHaveLength(6);
 
