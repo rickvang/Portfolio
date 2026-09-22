@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+import authoredCaseStudySource from "../../content/drafts/case-studies.json";
 import { importedContent, type ImportedProject } from "@/lib/imported-content";
 
 export const CASE_STUDY_SECTION_ORDER = [
@@ -158,8 +159,22 @@ function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
 
 export const importedCaseStudyDrafts = importedContent.projects.map(importedProjectToCaseStudy);
 
+const authoredCaseStudyDraftsSchema = z
+  .array(caseStudySchema)
+  .min(1)
+  .refine((caseStudies) => caseStudies.every((caseStudy) => caseStudy.reviewStatus === "draft"), {
+    message: "Authored case-study draft sources must remain draft until explicitly approved elsewhere.",
+  });
+
+export const authoredCaseStudyDrafts = authoredCaseStudyDraftsSchema.parse(authoredCaseStudySource);
+
+export const caseStudyCatalog: CaseStudy[] = [
+  ...importedCaseStudyDrafts,
+  ...authoredCaseStudyDrafts,
+];
+
 export function getApprovedCaseStudies(
-  caseStudies: readonly CaseStudy[] = importedCaseStudyDrafts,
+  caseStudies: readonly CaseStudy[] = caseStudyCatalog,
 ): CaseStudy[] {
   return caseStudies.filter((caseStudy) => caseStudy.reviewStatus === "approved");
 }
