@@ -28,9 +28,9 @@ test("about page renders the approved biography and experience summary", async (
 
   await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
   await expect(page.getByText(/spent over a decade designing and building software/i)).toBeVisible();
-  await expect(page.getByRole("term", { name: "Years of Experience" })).toBeVisible();
-  await expect(page.getByRole("term", { name: "Companies" })).toBeVisible();
-  await expect(page.getByRole("term", { name: "Projects Delivered" })).toBeVisible();
+  await expect(page.getByText("Years of Experience", { exact: true })).toBeVisible();
+  await expect(page.getByText("Companies", { exact: true })).toBeVisible();
+  await expect(page.getByText("Projects Delivered", { exact: true })).toBeVisible();
 });
 
 test("approved imported work is public through the shared case-study routes", async ({ page }) => {
