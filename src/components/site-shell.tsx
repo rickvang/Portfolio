@@ -150,7 +150,7 @@ export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>)
       {drawerOpen && (
         <div className="mobile-drawer-layer">
           <button
-            aria-hidden="true"
+            aria-label="Close site navigation"
             className="mobile-drawer-backdrop"
             onClick={() => closeDrawer()}
             tabIndex={-1}
