@@ -32,6 +32,11 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
   await expect(drawer).not.toBeVisible();
   await expect(menuButton).toBeFocused();
 
+  await menuButton.click();
+  await page.getByRole("dialog", { name: "Site navigation" }).getByRole("link", { name: "Notes" }).click();
+  await expect(page).toHaveURL(/\/notes$/);
+  await expect(page.locator("#main-content")).toBeFocused();
+
   const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(hasHorizontalOverflow).toBe(false);
 });
