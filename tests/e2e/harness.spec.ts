@@ -92,6 +92,10 @@ test("harness exposes authored editorial drafts without publishing them", async 
     await expect(chapterNav).toContainText(chapter);
   }
 
+  await expect(aiSystems.getByRole("heading", { level: 3, name: "Context", exact: true })).toBeVisible();
+  await expect(aiSystems.getByRole("heading", { level: 3, name: "System / practice", exact: true })).toBeVisible();
+  await expect(aiSystems.getByRole("heading", { level: 4, name: "Current Work", exact: true })).toBeVisible();
+
   await expect(article).toContainText("Synthetic persona responses are explicitly not framed as observed user research.");
 });
 
