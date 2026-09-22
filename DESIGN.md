@@ -266,7 +266,7 @@ When a new important state is introduced, update all four places together:
 - Use `aria-live="polite"` for non-blocking form feedback and `role="alert"` for failures.
 - Use `aria-busy="true"` on loading data surfaces.
 - Use `aria-pressed` for the harness state toggle group.
-- Preserve a visible `:focus-visible` ring with sufficient contrast. Interactive controls use a two-tone light/dark ring so focus remains visible on both the warm light surfaces and the dark navigation rail.
+- Preserve a visible `:focus-visible` ring with sufficient contrast. Interactive controls use a two-tone light/dark ring so focus remains visible on both warm light surfaces and the dark navigation rail. Interactive controls use a two-tone light/dark ring so focus remains visible on both the warm light surfaces and the dark navigation rail.
 - Primary mobile navigation controls maintain at least a 44×44 CSS-pixel target; browser coverage checks the menu and close controls at mobile/tablet widths.
 - Keep heading levels in document order.
 - Prefer Playwright roles, labels, and visible text. Use `data-testid` only for harness roots and state boundaries that do not have a better semantic locator.
