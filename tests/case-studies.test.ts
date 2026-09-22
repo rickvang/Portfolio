@@ -7,6 +7,7 @@ import {
   caseStudySchema,
   getApprovedCaseStudies,
   getApprovedCaseStudyBySlug,
+  getCaseStudyBySlug,
   importedCaseStudyDrafts,
 } from "@/lib/case-studies";
 
@@ -27,6 +28,8 @@ describe("case-study content contract", () => {
     ]);
     expect(authoredCaseStudyDrafts.every((caseStudy) => caseStudy.reviewStatus === "draft")).toBe(true);
     expect(caseStudyCatalog).toHaveLength(4);
+    expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudyDrafts[0]);
+    expect(getApprovedCaseStudyBySlug("ai-systems")).toBeUndefined();
     expect(getApprovedCaseStudies()).toEqual([]);
   });
 
