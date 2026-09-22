@@ -28,7 +28,7 @@ test("public work stays approval-gated", async ({ page }) => {
 
   await page.goto("/work/design-systems");
   await expect(page).toHaveTitle("Case study not found | Rick Vang");
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);
   await expect(page.getByText(/design system for improving consistency/i)).toHaveCount(0);
 });
 
