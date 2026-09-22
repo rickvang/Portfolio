@@ -35,7 +35,8 @@ tests/                   Vitest unit tests and Playwright browser tests
 - Supabase access is isolated behind `src/lib/supabase/` and `src/lib/posts.ts`; components should not create raw clients.
 - `supabase/migrations/` is the schema source of truth. Remote changes must be applied through migration files, not ad hoc dashboard edits.
 - Every exposed table must enable RLS and define policies for each intended role.
-- `/api/health` is a lightweight operational probe and must not expose secrets or private content. It returns HTTP success for process liveness, while its body distinguishes `ready` from `degraded` dependency readiness so local fixture-mode startup checks do not deadlock.
+- `/api/health` is a lightweight operational probe and must not expose secrets or private content. It returns HTTP success for process liveness, while its body distinguishes `ready` from `degraded` dependency readiness so local fixture-mode startup checks do not deadlock. It returns HTTP success for process liveness, while its body distinguishes `ready` from `degraded` dependency readiness so local fixture-mode startup checks do not deadlock.
+- `src/middleware.ts` combines two request boundaries: production rejection for `/dev/harness/:path*`, and request-scoped Supabase SSR session refresh for `/admin/:path*` when configuration exists.
 - `src/middleware.ts` combines two request boundaries: production rejection for `/dev/harness/:path*`, and request-scoped Supabase SSR session refresh for `/admin/:path*` when configuration exists.
 - `/dev/harness` is guarded by the production environment check and exists only to exercise behavior locally.
 - Core component states are addressable with `/dev/harness?state=<state>`. `/dev/harness/shell` adds deterministic public-shell route/drawer state, and `/dev/harness/case-study` adds deterministic draft case-study rendering; all use production components and all remain local-only.
