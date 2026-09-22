@@ -23,7 +23,7 @@ The current system is CSS-variable based. Tailwind and a third-party component l
 | Design tokens and global primitives | `src/app/globals.css` | Add or update tokens here before scattering new values through components. |
 | Reusable presentation and interaction | `src/components/` | Components receive data and callbacks; they do not create external-service clients. |
 | Deterministic component states | `fixtures/seed.json`, `src/lib/fixtures.ts` | Add fixture data and type changes together. |
-| State catalog | `src/components/harness-playground.tsx` | Make important states visible and direct-linkable through `/dev/harness?state=...`. |
+| State catalog | `src/components/harness-playground.tsx`, `src/app/dev/harness/` | Make important states visible and direct-linkable through the core state matrix plus specialized shell and case-study harness routes. |
 | Product and data boundaries | `src/app/`, `src/lib/` | Keep route orchestration, adapters, validation, and auth outside presentation components. |
 
 ## Tokens
@@ -118,7 +118,8 @@ These are the reusable components currently in `src/components/`.
 
 | Component | Role | Inputs | Important states |
 | --- | --- | --- | --- |
-| `SiteShell` | Persistent public navigation and content frame | `children` | Desktop rail; mobile closed/open drawer; active route; keyboard Escape/Tab trap; no-JS fallback |
+| `SiteShell` | Public pathname-aware wrapper around the shared frame | `children` | Current public route state |
+| `SiteShellFrame` | Persistent public navigation/content frame used by production routes and local verification | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
 | `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
 | `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft review with provenance/evidence |
 | `EditorialDraftPreview` | Local-only review surface for source-backed article drafts | `draft` | Draft article, evidence details, source provenance, curation notes |
@@ -211,7 +212,7 @@ Every important interactive component should have a short interaction specificat
 
 **Accessibility contract:** active route uses `aria-current="page"` plus a visible marker, not color alone. The mobile toggle exposes `aria-expanded` and `aria-controls`; the open drawer uses `role="dialog"` and `aria-modal="true"`. A no-JavaScript navigation list preserves access to the public routes. Reduced-motion users get final-state rendering without chapter/drawer/backdrop/feedback animation.
 
-**Verification:** Playwright covers rail visibility and active state on default desktop, drawer behavior at mobile/tablet widths, Escape/focus return, route focus handoff, viewport overflow, and reduced-motion final-state behavior. Dedicated visual snapshots remain a Phase 6 harness task.
+**Verification:** Playwright covers rail visibility and active state on default desktop, drawer behavior at mobile/tablet widths, Escape/focus return, route focus handoff, touch-target minimums, focus-ring visibility, motion interruption, viewport overflow, and reduced-motion final-state behavior. `/dev/harness/shell` reuses `SiteShellFrame` for deterministic route/drawer states, and CI uploads visual verification captures.
 
 ### Prioritized interaction map
 
@@ -238,6 +239,17 @@ The harness accepts `success`, `loading`, `empty`, `error`, `disabled`, and `lon
 | `disabled` | Fixture content remains inspectable | Inputs and submit are disabled | Actions are visible but disabled |
 | `long-content` | Expanded fixtures exercise wrapping and density | Form remains usable | Long-title metadata fixture |
 
+### Specialized harness routes
+
+The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces that need deterministic URL-addressable state use the same production components through specialized local-only routes:
+
+| Surface | Route | Deterministic inputs | Verification purpose |
+| --- | --- | --- | --- |
+| Public shell | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
+| Case study | `/dev/harness/case-study?slug=<draft-slug>` | Any typed case-study draft slug | Shared template first viewport, long content, section navigation, evidence/provenance review, responsive behavior, visual capture |
+
+Both specialized routes return not-found in production through the same environment guard as the main development harness. They do not create a second implementation of the shell or case-study renderer.
+
 When a new important state is introduced, update all four places together:
 
 1. `HarnessState` and fixture helpers in `src/lib/fixtures.ts`;
@@ -253,6 +265,7 @@ When a new important state is introduced, update all four places together:
 - Use `aria-busy="true"` on loading data surfaces.
 - Use `aria-pressed` for the harness state toggle group.
 - Preserve a visible `:focus-visible` ring with sufficient contrast.
+- Primary mobile navigation controls maintain at least a 44×44 CSS-pixel target; browser coverage checks the menu and close controls at mobile/tablet widths.
 - Keep heading levels in document order.
 - Prefer Playwright roles, labels, and visible text. Use `data-testid` only for harness roots and state boundaries that do not have a better semantic locator.
 - Do not use color alone to communicate status; pair it with text or a semantic label.
@@ -267,7 +280,7 @@ Public navigation and content use a `900px` shell breakpoint; internal grids kee
 - content determines height; fixed heights remain limited to loading placeholders and minimum card rhythm;
 - test long titles, long excerpts, drawer focus behavior, and route navigation at both mobile and tablet widths.
 
-The Playwright suite includes default desktop plus dedicated mobile and tablet projects.
+The Playwright suite includes default desktop plus dedicated mobile and tablet projects. The mobile/tablet journeys check long-content overflow, drawer focus behavior, 44×44 navigation targets, immediate motion interruption, and reduced-motion final states.
 
 ## Content presentation
 
@@ -288,7 +301,8 @@ Before a UI change is complete:
 1. Start with the relevant harness state, for example `/dev/harness?state=long-content`.
 2. Verify keyboard focus, labels, empty/error feedback, and responsive layout.
 3. Run the narrowest relevant test while iterating.
-4. Run the full baseline before handoff:
+4. For material visual changes, inspect the deterministic captures generated by `tests/e2e/visual.spec.ts`: home first viewport, mobile drawer, case-study first viewport, and reduced-motion drawer. CI uploads them as the `visual-verification-captures` artifact for 14 days. These are review captures; semantic/CSS/browser assertions remain the automated regression gate rather than a brittle pixel-diff baseline.
+5. Run the full baseline before handoff:
 
 ```bash
 pnpm lint
