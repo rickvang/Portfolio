@@ -79,10 +79,38 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 
 - Standard card radius: `--radius: 1rem`; pills use `999px` radius for buttons, tags, and compact controls.
 - Cards use `--shadow: 0 18px 50px rgb(23 22 20 / 8%)`.
-- Rail links and active markers use short `150ms ease` state transitions; buttons retain the small `1px` hover lift.
-- Loading indicators use an `800ms linear` rotation.
-- The shell does not run an intro animation or delay route content. Chapter-style route motion remains a Phase 3 concern.
-- `prefers-reduced-motion: reduce` globally removes nonessential animation/transition duration and smooth scrolling.
+- Motion uses semantic duration/easing tokens: `--motion-fast: 150ms`, `--motion-standard: 240ms`, `--motion-slow: 320ms`, `--ease-standard: cubic-bezier(0.2, 0, 0, 1)`, and `--ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1)`.
+- Public page entry is a non-blocking `240ms` chapter reveal from 0.96 opacity and a 0.625rem vertical offset; content exists in the DOM immediately and does not wait for animation completion.
+- Mobile drawer entry uses `240ms` emphasized easing with a 1rem horizontal offset; the backdrop fades over `150ms`. Close is intentionally immediate so Escape, route selection, and focus recovery win over decoration.
+- Rail state, hover/focus, and feedback transitions use the `150ms` fast token.
+- Loading indicators remain an `800ms linear` functional animation.
+- There is no splash intro, scroll-jacking, autoplay cinematic sequence, or animation prerequisite for reading/navigation.
+- `prefers-reduced-motion: reduce` removes the chapter, drawer, backdrop, and feedback animations; it also removes smooth scrolling and collapses other transitions to effectively immediate state changes.
+
+## Cinematic motion contract
+
+Motion supports continuity and hierarchy; it never carries the only copy of state or delays task completion.
+
+| Pattern | Trigger | Duration / easing | Interruption | Repeat behavior | Reduced motion |
+| --- | --- | --- | --- | --- | --- |
+| Active rail marker + link state | Route/pathname changes, hover, or focus | `150ms` / `--ease-standard` | The newest route/pointer/focus state wins immediately; CSS transitions reverse naturally | Every applicable route or interaction state change | State changes immediately; active text + marker remain visible |
+| Public chapter entry | A public route/page node mounts | `240ms` / `--ease-standard` | Navigation/unmount cancels the prior animation; the next route begins from its own current state | Once per public page mount, including direct loads | No animation; content renders at final opacity/position |
+| Mobile drawer entry | Menu changes from closed to open | drawer `240ms` / `--ease-emphasized`; backdrop `150ms` / `--ease-standard` | Escape, backdrop/close action, or route selection closes immediately; no exit animation is allowed to delay focus recovery | Every explicit open | No animation; drawer appears in final position |
+| Mobile drawer close | Escape, close control, backdrop, or route selection | `0ms` intentional | Close/focus recovery is authoritative | Every close | Same immediate behavior |
+| Button / link affordance | Hover or focus state changes | `150ms` / `--ease-standard` | Latest pointer/focus state wins; transitions may reverse | Every interaction | Effectively immediate |
+| Feedback message entry | Success/error feedback node appears | `150ms` / `--ease-standard` | New feedback replaces/cancels the prior node animation | Once per newly mounted feedback message | No animation |
+| Case-study entry | Shared case-study page mounts | Inherits public chapter entry until the case-study template introduces a justified override | Navigation/unmount wins | Once per case-study mount | Inherits final-state rendering |
+| Media reveal | Media is added and approved for a case study | **Not implemented yet.** Default requirement is visible content without JS; any later reveal must stay within `240ms` and use existing easing tokens | Scrolling/navigation must never leave media hidden | At most once per media item per page mount | Media renders immediately |
+
+### Motion implementation rules
+
+1. Prefer CSS transitions/animations for presentational motion; do not add a motion dependency while these patterns remain expressible in the platform.
+2. Keep entering content visible throughout the effect. The current chapter reveal begins at 0.96 opacity rather than 0.
+3. Close, cancellation, route navigation, browser history, keyboard input, and focus recovery take priority over completing an animation.
+4. Do not queue animations. If state changes while an effect is running, current state becomes authoritative.
+5. Motion may repeat when a user explicitly repeats an interaction or mounts a new route; it must not loop for decoration.
+6. A pattern is not implementation-complete until its reduced-motion behavior is defined and verified.
+7. Case-study section continuity and media reveal stay at the contract level until their Phase 4 surfaces exist; do not create hidden placeholder DOM solely to demonstrate motion.
 
 ## Component inventory
 
@@ -118,7 +146,7 @@ Every important interactive component should have a short interaction specificat
 1. **Purpose** — the user goal and the boundary of the component.
 2. **Anatomy** — semantic elements, labels, actions, and feedback regions.
 3. **States** — default, hover, focus, pressed, disabled, loading, success, error, empty, and long-content states that apply.
-4. **Transitions** — what triggers each state, what feedback appears, and how the user recovers or cancels.
+4. **Transitions and motion** — what triggers each state; duration and easing when animated; interruption/cancellation behavior; repeat behavior; feedback; and recovery.
 5. **Keyboard and focus** — native tab order, activation keys, focus visibility, and any intentional focus movement.
 6. **Validation and safety** — client/server validation, data transmission, confirmation, and destructive-action rules.
 7. **Responsive behavior** — layout changes, touch targets, wrapping, and overflow expectations.
@@ -159,15 +187,15 @@ Every important interactive component should have a short interaction specificat
 
 **States:** desktop rail; mobile drawer closed; mobile drawer open; active-route state; keyboard focus; reduced motion; no-JavaScript fallback navigation.
 
-**Transitions:** desktop route state changes are immediate except for the short active-marker/color transition. Opening the drawer locks body scrolling and moves focus into the drawer. Explicit close or Escape closes the drawer and returns focus to the menu button. Selecting a route closes the drawer and moves focus to the persistent main-content region without queueing decorative motion.
+**Transitions:** active rail state uses the fast motion token. Opening the drawer runs the documented 240ms drawer / 150ms backdrop entry while body scrolling is locked and focus moves into the drawer. Explicit close, backdrop close, Escape, or route selection interrupts immediately rather than waiting for an exit animation. Explicit close or Escape returns focus to the menu button; route selection moves focus to the persistent main-content region. Reopening repeats the entry motion; no animation is queued.
 
 **Keyboard and focus:** rail links remain in native document order. The drawer traps Tab/Shift+Tab only while open and closes on Escape. The global skip link targets `#main-content`.
 
 **Responsive behavior:** the fixed rail is used above `900px`; at `900px` and below it is replaced by the sticky mobile bar and drawer. Public content drops its rail offset at the same breakpoint.
 
-**Accessibility contract:** active route uses `aria-current="page"` plus a visible marker, not color alone. The mobile toggle exposes `aria-expanded` and `aria-controls`; the open drawer uses `role="dialog"` and `aria-modal="true"`. A no-JavaScript navigation list preserves access to the public routes.
+**Accessibility contract:** active route uses `aria-current="page"` plus a visible marker, not color alone. The mobile toggle exposes `aria-expanded` and `aria-controls`; the open drawer uses `role="dialog"` and `aria-modal="true"`. A no-JavaScript navigation list preserves access to the public routes. Reduced-motion users get final-state rendering without chapter/drawer/backdrop/feedback animation.
 
-**Verification:** Playwright covers rail visibility and active state on default desktop, drawer behavior at mobile/tablet widths, Escape/focus return, and viewport overflow. Reduced motion is enforced in CSS and will receive a dedicated visual snapshot in the later motion/harness phase.
+**Verification:** Playwright covers rail visibility and active state on default desktop, drawer behavior at mobile/tablet widths, Escape/focus return, route focus handoff, viewport overflow, and reduced-motion final-state behavior. Dedicated visual snapshots remain a Phase 6 harness task.
 
 ### Prioritized interaction map
 
