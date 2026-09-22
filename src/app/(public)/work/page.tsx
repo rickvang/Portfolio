@@ -7,7 +7,7 @@ export default function WorkPage() {
     <div className="public-page">
       <section className="hero public-hero">
         <p className="eyebrow">Work</p>
-        <h1>Selected systems and product design work.</h1>
+        <h1>Selected work.</h1>
         <p className="lede">
           Public case studies appear here only after their imported or authored content has been reviewed and approved.
         </p>
