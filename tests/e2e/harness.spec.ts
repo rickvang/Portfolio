@@ -49,3 +49,24 @@ test("harness previews the attributed public-source draft", async ({ page }) => 
     "https://www.rickvang.com/",
   );
 });
+
+
+test("harness exercises both imported drafts through the shared case-study template", async ({ page }) => {
+  await page.goto("/dev/harness");
+
+  const integrations = page.getByTestId("case-study-review-multi-product-integrations");
+  const designSystems = page.getByTestId("case-study-review-design-systems");
+
+  await expect(integrations).toHaveAttribute("data-case-study-status", "draft");
+  await expect(designSystems).toHaveAttribute("data-case-study-status", "draft");
+
+  await expect(integrations.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
+  await expect(designSystems.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
+
+  await expect(integrations.getByRole("navigation", { name: "Case study sections" })).toContainText("Overview");
+  await expect(integrations.getByRole("navigation", { name: "Case study sections" })).toContainText("Outcomes");
+  await expect(designSystems.getByText("Lightweight governance", { exact: true })).toBeVisible();
+
+  await expect(integrations.getByText(/client intellectual property/i)).toBeVisible();
+  await expect(designSystems.getByText(/client intellectual property/i)).toBeVisible();
+});
