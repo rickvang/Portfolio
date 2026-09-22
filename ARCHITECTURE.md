@@ -27,7 +27,7 @@ tests/                   Vitest unit tests and Playwright browser tests
 - `src/lib/case-studies.ts` adapts case-study sources into the shared typed contract, validates section order and evidence references, and exposes explicit approval filtering plus approved-by-slug lookup.
 - `src/lib/public-routes.ts` is the canonical public route-shape contract used by navigation and public-route implementation.
 - `src/app/(public)/layout.tsx` is the public routing boundary. It applies `SiteShell` without wrapping `/admin`, `/api`, or `/dev/harness`.
-- `src/components/site-shell.tsx` owns the persistent desktop rail and accessible mobile drawer; route pages should not duplicate primary navigation markup.
+- `src/components/site-shell.tsx` owns the persistent desktop rail and accessible mobile drawer. `SiteShell` supplies the live pathname; `SiteShellFrame` accepts an explicit pathname/initial drawer state so the local harness can exercise the exact production frame without duplicating it.
 - `src/components/case-study-template.tsx` is the single case-study detail renderer. Public routes use public mode only after approval filtering; `/dev/harness` may use review mode for draft provenance/evidence inspection.
 - `/work` and `/work/[slug]` are publication boundaries: draft case studies must resolve to the empty index state or 404 rather than render publicly.
 - `src/components/` owns presentation and interaction; it should not reach directly into external services.
@@ -37,8 +37,10 @@ tests/                   Vitest unit tests and Playwright browser tests
 - Every exposed table must enable RLS and define policies for each intended role.
 - `/api/health` is a lightweight operational probe and must not expose secrets or private content.
 - `/dev/harness` is guarded by the production environment check and exists only to exercise behavior locally.
-- Harness states are addressable with `?state=<state>` and expose `data-harness-state` for stable browser assertions.
+- Core component states are addressable with `/dev/harness?state=<state>`. `/dev/harness/shell` adds deterministic public-shell route/drawer state, and `/dev/harness/case-study` adds deterministic draft case-study rendering; all use production components and all remain local-only.
+- Harness roots expose stable state/test boundaries only where semantic locators are insufficient.
 - GitHub Actions validates the local Supabase migration, seed, RLS, and pgTAP database-test boundary in an ephemeral Docker-backed job; remote project credentials are intentionally separate from ordinary CI.
+- The browser suite writes four deterministic visual verification PNGs under `test-results/visual-snapshots/`; CI uploads them as a short-lived review artifact even if later verification fails.
 
 ## Verification surface
 
