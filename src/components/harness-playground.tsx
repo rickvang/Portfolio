@@ -11,6 +11,7 @@ import { ImportedContentPreview } from "@/components/imported-content-preview";
 import { PostList } from "@/components/post-list";
 import { DeletePostForm } from "@/components/post-status-actions";
 import { ProjectList } from "@/components/project-list";
+import { WorkLedPreviewHarness } from "@/components/work-led-preview-harness";
 import { caseStudyCatalog } from "@/lib/case-studies";
 import { personaLedDesignDraft } from "@/lib/editorial-drafts";
 import { importedContent } from "@/lib/imported-content";
