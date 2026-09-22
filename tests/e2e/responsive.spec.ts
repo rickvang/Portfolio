@@ -40,3 +40,20 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
   const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(hasHorizontalOverflow).toBe(false);
 });
+
+
+test.describe("reduced motion", () => {
+  test.use({ reducedMotion: "reduce" });
+
+  test("public shell renders motion patterns at their final state", async ({ page }) => {
+    await page.goto("/");
+
+    await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
+
+    const menuButton = page.getByRole("button", { name: "Open site navigation" });
+    await menuButton.click();
+
+    await expect(page.getByRole("dialog", { name: "Site navigation" })).toHaveCSS("animation-name", "none");
+    await expect(page.locator(".mobile-drawer-backdrop")).toHaveCSS("animation-name", "none");
+  });
+});
