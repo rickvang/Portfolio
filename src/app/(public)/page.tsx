@@ -33,10 +33,6 @@ export default async function HomePage() {
                 About me
               </Link>
             </div>
-            <div className="hero-index" aria-label="Portfolio orientation">
-              <span>Recent projects</span>
-              <span>{String(caseStudies.length).padStart(2, "0")} case studies</span>
-            </div>
           </div>
         </div>
       </section>
