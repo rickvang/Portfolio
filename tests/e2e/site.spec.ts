@@ -3,13 +3,25 @@ import { expect, test } from "@playwright/test";
 test("homepage is driven by approved portfolio content", async ({ page }) => {
   await page.goto("/");
 
-  await expect(page.getByRole("heading", { name: "Hi, I'm Rick.", exact: true })).toBeVisible();
-  await expect(page.getByText(/product design leader driven by creating systems/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: "View all work" })).toHaveAttribute("href", "/work");
+  await expect(
+    page.getByRole("heading", {
+      name: "Designing human-centered systems for what's next.",
+      exact: true,
+    }),
+  ).toBeVisible();
+  await expect(page.getByText(/I design product and design systems for complex environments/i)).toBeVisible();
+  await expect(page.getByRole("link", { name: "See selected work ↓" })).toHaveAttribute(
+    "href",
+    "#selected-work",
+  );
+  await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
+  await expect(page.locator(".site-rail")).toHaveCount(0);
   await expect(
     page.getByRole("heading", { name: "How the product parts relate", exact: true }),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Other approved case studies", exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Different problems. A consistent systems approach.", exact: true }),
+  ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
@@ -18,11 +30,11 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(page.getByText("30+", { exact: true })).toBeVisible();
 
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });
-  await expect(navigation.getByRole("link", { name: "Home" })).toHaveAttribute("aria-current", "page");
   await expect(navigation.getByRole("link", { name: "Work" })).toHaveAttribute("href", "/work");
   await expect(navigation.getByRole("link", { name: "Notes" })).toHaveAttribute("href", "/notes");
   await expect(navigation.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
   await expect(navigation.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+  await expect(page.getByRole("link", { name: "Rick Vang, home" })).toHaveAttribute("href", "/");
   await expect(page.locator('a[href^="/dev/harness"]')).toHaveCount(0);
 });
 
@@ -46,8 +58,10 @@ test("approved imported work is public through the shared case-study routes", as
 
   await page.goto("/work/multi-product-integrations");
   await expect(page).toHaveTitle("Multi Product Integrations | Rick Vang");
+  await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
-  await expect(page.getByRole("navigation", { name: "Case study chapters" })).toContainText("Exploration");
+  await expect(page.getByRole("heading", { name: "Fragmentation was the starting condition." })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Start with people and workflows." })).toBeVisible();
   await expect(page.getByText(/client intellectual property/i)).toBeVisible();
 
   await page.goto("/work/design-systems");
@@ -105,4 +119,3 @@ test("health endpoint reports service readiness", async ({ request }) => {
     status: "degraded",
   });
 });
-

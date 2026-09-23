@@ -28,24 +28,29 @@ test("approved work index presents each project's distinct structure", async ({ 
   await expect(page.locator(".project-preview img")).toHaveCount(0);
 });
 
-test("mobile home reveals a concrete project signal in the first viewport", async ({ page }) => {
+test("mobile home uses the working-index structure without horizontal overflow", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/");
 
-  const featuredProject = page.getByRole("heading", {
+  await expect(
+    page.getByRole("heading", {
+      level: 1,
+      name: "Designing human-centered systems for what's next.",
+      exact: true,
+    }),
+  ).toBeInViewport({ ratio: 1 });
+
+  const selectedWork = page.getByRole("heading", {
     level: 2,
-    name: "Multi Product Integrations",
+    name: "Different problems. A consistent systems approach.",
     exact: true,
   });
-  await expect(featuredProject).toBeInViewport({ ratio: 1 });
-  await expect(
-    page.getByText(/A shared framework connects capabilities/),
-  ).toBeInViewport({ ratio: 1 });
-  await expect(
-    page.getByRole("heading", { name: "How the product parts relate", exact: true }),
-  ).toBeInViewport({ ratio: 1 });
-  await expect(page.getByText("Unified framework", { exact: true })).toBeInViewport();
-  await expect(page.locator(".project-topology-node").first()).toBeInViewport({ ratio: 0.8 });
+  await selectedWork.scrollIntoViewIfNeeded();
+  await expect(selectedWork).toBeVisible();
+
+  const integrationRow = page.locator('[data-practice-work="multi-product-integrations"]');
+  await expect(integrationRow.getByRole("heading", { name: "Multi Product Integrations" })).toBeVisible();
+  await expect(integrationRow.locator(".practice-work-preview")).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 
   await page.locator("nextjs-portal").evaluateAll((portals) => {
@@ -53,6 +58,7 @@ test("mobile home reveals a concrete project signal in the first viewport", asyn
   });
   await page.screenshot({
     animations: "disabled",
+    fullPage: true,
     path: "test-results/visual-snapshots/home-mobile-first-viewport.png",
   });
 });

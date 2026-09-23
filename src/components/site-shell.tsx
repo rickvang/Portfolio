@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { PersonalPracticeShell } from "@/components/personal-practice-shell";
 import { publicRoutes } from "@/lib/public-routes";
 
 const navigationItems = [
@@ -17,6 +18,10 @@ const navigationItems = [
 function routeIsActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+function usesPersonalPracticePilot(pathname: string) {
+  return pathname === "/" || pathname === "/work/multi-product-integrations";
 }
 
 type NavigationLinksProps = {
@@ -200,9 +205,12 @@ export function SiteShellFrame({
   );
 }
 
-
 export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
+
+  if (usesPersonalPracticePilot(pathname)) {
+    return <PersonalPracticeShell pathname={pathname}>{children}</PersonalPracticeShell>;
+  }
 
   return <SiteShellFrame pathname={pathname}>{children}</SiteShellFrame>;
 }

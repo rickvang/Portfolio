@@ -24,7 +24,7 @@ test("work-to-experience patterns stack and wrap without horizontal overflow", a
 
 
 test("mobile public navigation traps focus and returns it on Escape", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/work");
 
   const menuButton = page.getByRole("button", { name: "Open site navigation" });
   await expect(menuButton).toBeVisible();
@@ -68,10 +68,9 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
 test.describe("reduced motion", () => {
   test("public shell renders motion patterns at their final state", async ({ page }) => {
     await page.emulateMedia({ reducedMotion: "reduce" });
-    await page.goto("/");
+    await page.goto("/work");
 
     await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
-    await expect(page.locator(".home-work-hero")).toHaveCSS("animation-name", "none");
 
     const menuButton = page.getByRole("button", { name: "Open site navigation" });
     await menuButton.click();
