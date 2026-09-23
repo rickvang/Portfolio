@@ -7,6 +7,7 @@ import {
 
 type ExperiencePresentationProps = {
   caseStudy: CaseStudy;
+  headingLevel: 3 | 4;
   mode: "preview" | "detail";
   audience?: ProjectPresentationAudience;
 };
@@ -37,9 +38,12 @@ function getEvidenceSections(
 export function ExperiencePresentation({
   audience = "public",
   caseStudy,
+  headingLevel,
   mode,
 }: ExperiencePresentationProps) {
   const presentation = getProjectPresentation(caseStudy, audience);
+  const Heading = headingLevel === 3 ? "h3" : "h4";
+  const Subheading = headingLevel === 3 ? "h4" : "h5";
   const headingId = "experience-" + caseStudy.id + "-" + mode + "-heading";
   const contextsHeadingId = caseStudy.id + "-" + mode + "-contexts-heading";
 
@@ -50,7 +54,7 @@ export function ExperiencePresentation({
         className="experience-presentation experience-presentation-unavailable"
         data-presentation-kind="unavailable"
       >
-        <h4 id={headingId}>{presentation.title}</h4>
+        <Heading className="experience-presentation-title" id={headingId}>{presentation.title}</Heading>
         <p>{presentation.message}</p>
       </section>
     );
@@ -64,14 +68,14 @@ export function ExperiencePresentation({
       className={"experience-presentation experience-presentation-" + presentation.kind}
       data-presentation-kind={presentation.kind}
     >
-      <h4 id={headingId}>{presentation.title}</h4>
+      <Heading className="experience-presentation-title" id={headingId}>{presentation.title}</Heading>
       <p className="experience-presentation-intro">{presentation.intro}</p>
 
       {presentation.kind === "topology" && (
         <div className="project-topology">
           <div className="project-topology-hub">
             <div>
-              <h5>{presentation.hub.title}</h5>
+              <Subheading>{presentation.hub.title}</Subheading>
               <p>{presentation.hub.summary}</p>
             </div>
           </div>
@@ -87,7 +91,7 @@ export function ExperiencePresentation({
           <div className="pattern-matrix">
             {presentation.groups.map((group) => (
               <section className="pattern-matrix-group" key={group.id}>
-                <h5>{group.title}</h5>
+                <Subheading>{group.title}</Subheading>
                 <p>{group.rationale}</p>
                 {renderItems(group.items)}
               </section>
@@ -97,7 +101,7 @@ export function ExperiencePresentation({
             aria-labelledby={contextsHeadingId}
             className="experience-contexts"
           >
-            <h5 id={contextsHeadingId}>Contexts named in the source</h5>
+            <Subheading id={contextsHeadingId}>Contexts named in the source</Subheading>
             <ul>
               {presentation.contexts.map((context) => (
                 <li key={context}>{context}</li>
@@ -127,7 +131,7 @@ export function ExperiencePresentation({
 
       {mode === "detail" && evidenceSections.length > 0 && (
         <nav aria-label="Source sections for this presentation" className="experience-source-trace">
-          <h5>Source trail</h5>
+          <Subheading>Source trail</Subheading>
           <ul>
             {evidenceSections.map((section) => (
               <li key={section.kind}>
@@ -140,8 +144,8 @@ export function ExperiencePresentation({
 
       {mode === "detail" && (
         <ArtifactFrame
-          label="Original case-study media"
-          note="Source media remains deferred pending ownership, client-IP, and disclosure review. This presentation uses approved text only."
+          label="Original interface imagery"
+          note="No original product screens are shown or reconstructed; this visual summarizes the approved case-study text."
           state="deferred"
         />
       )}

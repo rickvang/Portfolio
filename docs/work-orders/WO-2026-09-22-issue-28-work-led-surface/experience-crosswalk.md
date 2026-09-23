@@ -5,7 +5,7 @@
 - Preceding surface work: [#28 — work-led surface rebuild](https://github.com/rickvang/Portfolio/issues/28)
 - Input source: approved project copy imported from [rickvang.com](https://www.rickvang.com/projects)
 - Source capture: `content/imports/rickvang.com.json`, captured and reviewed 2026-09-22; normalized authored record: `content/drafts/case-studies.json`
-- Status: authored interpretation for implementation review; human cold-reader evaluation is still pending.
+- Status: authored interpretation revised after an independent model-based cold-reader review; responsive re-read remains pending.
 
 This crosswalk preserves the boundary between source evidence and design interpretation. The observed-work and visitor-response rows below are interpretations or hypotheses, not user research, measured project outcomes, or client-approved interface descriptions. The source images remain deferred because the imported record has no useful approval, caption, or alt-text metadata for reuse.
 
@@ -50,14 +50,21 @@ Stable IDs resolve to the authored System section item titles; they are generate
 - Revisit the integrations map if a cold reader infers that capability position is a sequence or technical dependency, or if the approved source no longer supports a shared framework.
 - Revisit the design-system matrix if a reader infers chronology, exact density rules, or client-specific screens, or if a group cannot be tied to authored source items.
 
-## Human cold-reader check
+## Independent cold-reader review — 2026-09-22
 
-No independent cold-reader session has been conducted. Synthetic harness fixtures and implementation inspection do not satisfy this criterion. Before treating the feeling hypotheses as supported, show the public preview and detail surfaces to a reviewer who has not seen this crosswalk or the profile labels. Ask open questions without supplying terms from the profile:
+A separate cloud reviewer first inspected the public preview as a first-time visitor, then compared its interpretation with Issue #30. The reviewer visited Home, Work, Multi Product Integrations, and Design Systems at **1363×936 desktop** and **400×849 mobile**. It reported no horizontal overflow at the mobile viewport. This was a model-based qualitative review, not a human usability study or evidence of user-research prevalence.
 
-1. What work or system do you think these items describe?
-2. How do you think the items relate to each other? What, if anything, looks ordered?
-3. Which parts feel shared, and where does the source suggest variation?
-4. What would you want to check before trusting the presentation as a description of the original work?
+### Findings
 
-Record the reviewer's exact interpretation in a follow-up revision, including confusion and unsupported inferences. The first pattern passes only if the reader identifies one shared framework and does not infer an order/dependency. The second passes only if the reader can distinguish shared foundations/governance from application and recognizes that density differs by context without claiming exact values. Treat this as qualitative feedback from one reader, not user research prevalence or validation of business outcomes.
+- **Home and Work:** Each project’s broad purpose was understandable, but the common thread between them was left to inference. The Work page also felt like a long single column, with a large gap between its introduction and projects.
+- **Multi Product Integrations:** The five named capabilities were legible. Their list did not expose handoffs or a cross-product workflow, and a browser click timeout prevented verification of the mobile Menu interaction.
+- **Design Systems:** Governance, shared foundations, density, and patterns were identifiable, but the page offered no examples to compare. It correctly avoided claiming exact density values.
+- **Evidence limits:** The written sections provide source-backed accounts of personas, workflows, workshops, testing, governance, and foundations. Original interface media is not approved for reuse, and the source provides qualitative outcome claims without measurements.
 
+### Revision and remaining gates
+
+- This revision adds an explicit shared thread on Home and Work, shortens the Work introduction-to-project transition, and gives the shared presentation headings levels appropriate to their page context.
+- Public media copy now explains that the diagrams summarize approved text and do not reproduce original screens. No source image, fabricated interface, metric, or causal claim was added.
+- The source's unquantified outcomes and absent approved media remain evidence boundaries; resolving them requires new approved source material.
+- The Menu interaction remains unverified by this cold read. Existing responsive browser coverage exercises the mobile drawer, but it must be rerun against the revised PR before relying on it.
+- Repeat the cold read on the updated preview to check whether the shared thread is now understood. Keep the result qualitative and keep Issue #30 open until the remaining verification gates pass.

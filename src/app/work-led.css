@@ -294,7 +294,28 @@
 }
 
 .work-index-intro {
+  padding-bottom: clamp(2rem, 4vw, 3rem);
   padding-top: clamp(2.5rem, 7vw, 5rem);
+}
+
+.work-index-intro + .work-index-projects {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.work-throughline {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 1rem 0 0;
+  max-width: 62ch;
+}
+
+.work-throughline strong {
+  color: var(--foreground);
+}
+
+.work-throughline a {
+  color: var(--accent-ink);
+  text-underline-offset: 0.16em;
 }
 
 .work-index-intro h1 {
@@ -307,7 +328,7 @@
   min-width: 0;
 }
 
-.experience-presentation > h4 {
+.experience-presentation-title {
   font-size: clamp(1.1rem, 1.8vw, 1.35rem);
   margin: 0 0 0.5rem;
 }
@@ -319,16 +340,16 @@
   max-width: 68ch;
 }
 
-.project-topology-hub h5,
+.project-topology-hub :is(h4, h5),
 .project-topology-members > p,
-.pattern-matrix-group h5,
-.experience-contexts h5,
-.experience-source-trace h5 {
+.pattern-matrix-group :is(h4, h5),
+.experience-contexts :is(h4, h5),
+.experience-source-trace :is(h4, h5) {
   font-size: 0.85rem;
   margin: 0;
 }
 
-.project-topology-hub h5 {
+.project-topology-hub :is(h4, h5) {
   color: var(--surface);
 }
 

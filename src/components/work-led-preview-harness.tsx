@@ -22,7 +22,7 @@ export function WorkLedPreviewHarness() {
       </div>
       <div className="project-preview-list">
         {caseStudies.map((caseStudy) => (
-          <ProjectPreview caseStudy={caseStudy} key={caseStudy.id} />
+          <ProjectPreview caseStudy={caseStudy} headingLevel={3} key={caseStudy.id} />
         ))}
       </div>
       <div aria-label="Text and long-content fallback examples" className="presentation-fixture-list">
@@ -30,13 +30,13 @@ export function WorkLedPreviewHarness() {
           <p className="eyebrow">Synthetic harness fixture</p>
           <h3>Text-only fallback</h3>
           <p>This example has no structured client details or images; it is not client work.</p>
-          <ProjectPreview caseStudy={presentationHarnessFixtures.textOnly} reviewOnly />
+          <ProjectPreview caseStudy={presentationHarnessFixtures.textOnly} headingLevel={4} reviewOnly />
         </article>
         <article className="presentation-fixture">
           <p className="eyebrow">Synthetic harness fixture</p>
           <h3>Long and dense content</h3>
           <p>This example tests wrapping and density; it is not client work.</p>
-          <ProjectPreview caseStudy={presentationHarnessFixtures.longContent} reviewOnly />
+          <ProjectPreview caseStudy={presentationHarnessFixtures.longContent} headingLevel={4} reviewOnly />
         </article>
       </div>
       <ArtifactFrame

@@ -4,9 +4,9 @@
 
 - Work-order ID: WO-2026-09-22-issue-28-work-led-surface
 - Title: Portfolio work-to-experience translation and work-led surfaces
-- Status: ready-for-review
+- Status: revision-in-progress
 - Created: 2026-09-22
-- Last updated: 2026-09-22 (draft PR, issue links, and Current Work reconciled)
+- Last updated: 2026-09-22 (cold-reader review recorded; PR #31 revisions in progress)
 - Requester: Riley / repository owner
 - Current owner: Riley Morgan / Codex implementation for Current Work CW-39
 - Request mode: update and prototype
@@ -27,7 +27,7 @@
 | --- | --- | --- | --- | --- | --- | --- |
 | ART-001 | Work Order | `docs/work-orders/WO-2026-09-22-issue-28-work-led-surface/work-order.md` | Current branch | Riley Morgan / Codex | reviewed | Continuation of CW-39 / Issue #28, extended by Issue #30. |
 | ART-002 | UX evidence and design crosswalk | `docs/work-orders/WO-2026-09-22-issue-28-work-led-surface/experience-crosswalk.md` | Current branch | Riley Morgan / Codex | reviewed | Source-backed interpretations; reader response remains a hypothesis. |
-| ART-003 | Product implementation and tests | `src/lib/experience-profiles.ts`, `src/lib/project-presentation.ts`, `src/components/experience-presentation.tsx`, `src/components/project-preview.tsx`, and associated pages/styles/tests | Current branch | Portfolio | reviewed | All mutations stay in Portfolio; repository checks pass. |
+| ART-003 | Product implementation and tests | `src/lib/experience-profiles.ts`, `src/lib/project-presentation.ts`, `src/components/experience-presentation.tsx`, `src/components/project-preview.tsx`, and associated pages/styles/tests | Current branch | Portfolio | reviewed | All mutations stay in Portfolio; previously recorded checks need a fresh run after the current revisions. |
 | ART-004 | GitHub issue | https://github.com/rickvang/Portfolio/issues/30 | Live issue | Repository owner | open | User-directed progress link update; keep issue open. |
 | ART-005 | Stacked draft PR | https://github.com/rickvang/Portfolio/pull/31 | Branch `codex/issue-30-work-to-experience` | Portfolio | active | Draft PR #31 targets `feat/issue-28-work-led-surface` at PR #29's head; no merge/deploy. |
 
@@ -43,10 +43,10 @@
 - Risk or consequence level: medium; presentation can misstate client work or reveal unapproved media if source and approval boundaries fail
 - Uncertainty level: moderate; source copy is approved for public use, but relationships and desired reader response are interpretations
 - Audience or role: portfolio visitors; a hiring or collaboration reader is a working assumption, not user research
-- Evidence available and missing: imported approved text, source sections, existing client-IP disclaimer; no approved screenshots with useful alt text/captions; no independent cold-reader feedback yet
+- Evidence available and missing: imported approved text, source sections, and client-IP disclaimer; no approved screenshots with useful alt text/captions; an independent model-based cold-reader review is recorded in the crosswalk; no quantitative outcome measures are available.
 - Constraints and authorization boundary: use only approved facts; keep draft review local; no fabricated/recreated client UI; do not merge or deploy
 - Success criteria: distinguish observed work qualities, interface qualities, and intended feelings; record evidence and alternatives; name thematic direction in words; use Clarity/Compose/Differentiate/Refine/Reduce noise as observable prompts; select evidence-based reusable patterns; render semantic responsive content with clear fallback; preserve media and approval gates
-- Stopping condition: code and work artifacts are reviewable through an open stacked draft PR and issue link; human cold-reader results are either recorded or explicitly pending
+- Stopping condition: code and work artifacts are reviewable through the open stacked draft PR and issue link; cold-reader findings are recorded, resulting revisions are reviewed on the updated preview, and required checks pass.
 
 ### Routing decision
 
@@ -349,3 +349,13 @@ No modeled responses are claimed. The harness only exercises component states.
 - Closed by: not closed
 - Closed at: not closed
 
+
+## 12. Independent cold-reader close-out review — 2026-09-22
+
+A separate cloud reviewer inspected Home, Work, and both case studies before reading Issue #30's acceptance criteria. It reviewed each page at 1363×936 desktop and 400×849 mobile and reported no horizontal overflow at the mobile size. This was a model-based qualitative read, not a human usability study.
+
+The reviewer could explain each project's broad purpose but inferred the relationship between them. It found the Work index's introduction-to-project transition too spacious. It could identify the integrations capabilities and Design Systems groupings, while noting that neither page shows original interfaces or examples. The source narratives provide qualitative outcomes but no measurements. The browser interaction for the mobile Menu timed out, so its behavior was not established by this review.
+
+This PR revision adds an explicit throughline to Home and Work, reduces the Work index transition gap, corrects contextual heading levels, and replaces process-oriented media wording with a visitor-facing explanation. It keeps original images deferred and adds no invented screens, outcome metrics, or causal claims. The remaining evidence limits and review observations are detailed in [experience-crosswalk.md](experience-crosswalk.md).
+
+**Current close-out state:** revision in progress. Re-read the updated preview, rerun required Portfolio verification after the revision, and confirm mobile drawer behavior. Keep Issue #30 and draft PR #31 open; do not merge or deploy under this work order.

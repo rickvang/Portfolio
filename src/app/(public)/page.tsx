@@ -5,6 +5,7 @@ import { ContactForm } from "@/components/contact-form";
 import { PostList } from "@/components/post-list";
 import { ProfileStats } from "@/components/profile-stats";
 import { ProjectPreview } from "@/components/project-preview";
+import { WorkThroughline } from "@/components/work-throughline";
 import { getApprovedCaseStudies } from "@/lib/case-studies";
 import { getApprovedImportedProfile } from "@/lib/imported-content";
 import { getPublishedPosts } from "@/lib/posts";
@@ -46,11 +47,12 @@ export default async function HomePage() {
                 <Link href={workHref(featuredCaseStudy.slug)}>{featuredCaseStudy.title}</Link>
               </h2>
               <p>{featuredCaseStudy.summary}</p>
+              <WorkThroughline />
               <Link className="text-link" href={workHref(featuredCaseStudy.slug)}>
                 Explore the case study
               </Link>
             </div>
-            <ProjectPreview caseStudy={featuredCaseStudy} />
+            <ProjectPreview caseStudy={featuredCaseStudy} headingLevel={3} />
           </article>
         ) : (
           <div className="home-featured-work state-card" data-testid="home-work-empty">

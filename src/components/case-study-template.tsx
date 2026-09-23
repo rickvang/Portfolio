@@ -113,7 +113,11 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
                     {section.items &&
                       section.kind === "system-practice" &&
                       caseStudy.reviewStatus === "approved" && (
-                        <ExperiencePresentation caseStudy={caseStudy} mode="detail" />
+                        <ExperiencePresentation
+                          caseStudy={caseStudy}
+                          headingLevel={showSectionHeading ? 4 : 3}
+                          mode="detail"
+                        />
                       )}
 
                     {section.items &&
