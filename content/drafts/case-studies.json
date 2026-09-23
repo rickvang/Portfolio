@@ -192,7 +192,7 @@
       {
         "kind": "outcomes",
         "title": "Outcomes",
-        "body": "The documented operating model now provides an explicit resume order, clear orchestration versus execution boundaries, a reusable handoff packet, evidence-status rules, contribution dispositions, and completion gates. Repository validation for the Riley continuity change passed at the recorded implementation checkpoint. This draft does not claim measured productivity, quality, or cost improvements.",
+        "body": "The documented operating model now provides an explicit resume order, clear orchestration versus execution boundaries, a reusable handoff packet, evidence-status rules, contribution dispositions, and completion gates. Repository validation for the Riley continuity change passed at the recorded implementation checkpoint. This case study does not claim measured productivity, quality, or cost improvements.",
         "evidence": [
           {
             "sourceId": "pl-riley-work-order",
@@ -207,7 +207,7 @@
       {
         "kind": "reflection",
         "title": "Reflection",
-        "body": "The durable design move was separating control-plane continuity from specialist execution, and stable recovery state from freshness-sensitive operational truth. That makes the system easier to resume and inspect without pretending a tracker is the live system. Before publication, this reflection should be reviewed against real usage evidence; no efficiency metric is asserted here.",
+        "body": "The durable design move was separating control-plane continuity from specialist execution, and stable recovery state from freshness-sensitive operational truth. That makes the system easier to resume and inspect without pretending a tracker is the live system. This reflection is limited to the documented operating model and recorded implementation evidence; no efficiency metric is asserted here.",
         "evidence": [
           {
             "sourceId": "pl-work-orders",
@@ -221,9 +221,9 @@
       }
     ],
     "curationNotes": [
-      "Draft is synthesized from current Persona-Library contracts and completed orchestration work; it is not user research.",
+      "Synthesized from current Persona-Library contracts and completed orchestration work; it is not user research.",
       "No productivity, cost, quality, or adoption metric is claimed because no attributable measurement was found in the source set.",
-      "Review first-person role framing and any screenshots before publication."
+      "Published without screenshots; add only source-approved visuals in a later media review."
     ]
   },
   {
@@ -434,7 +434,7 @@
       {
         "kind": "outcomes",
         "title": "Outcomes",
-        "body": "The work produced documented route/content contracts, a persistent responsive navigation shell, semantic visual and motion tokens, reusable case-study components, and automated coverage for keyboard, mobile/tablet, reduced-motion, and publication-gate behavior. This draft describes implementation artifacts and checks; it does not claim hiring, conversion, or user-research outcomes.",
+        "body": "The work produced documented route/content contracts, a persistent responsive navigation shell, semantic visual and motion tokens, reusable case-study components, and automated coverage for keyboard, mobile/tablet, reduced-motion, and publication-gate behavior. This case study describes implementation artifacts and checks; it does not claim hiring, conversion, or user-research outcomes.",
         "evidence": [
           {
             "sourceId": "portfolio-design",
@@ -467,9 +467,9 @@
       }
     ],
     "curationNotes": [
-      "This draft is an implementation-practice case study, not a claim of user-research validation.",
+      "This is an implementation-practice case study, not a claim of user-research validation.",
       "Outcome language is limited to inspectable artifacts and checks; hiring, conversion, usability, and business impact remain unmeasured.",
-      "Review screenshots and final production state after the redesign stack is merged before publication."
+      "Published without screenshots; add only source-approved visuals in a later media review."
     ]
   }
 ]
