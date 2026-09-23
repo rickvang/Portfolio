@@ -21,7 +21,7 @@ test("detail pages trace the presentation to visible source sections", async ({ 
   await expect(trace.getByRole("link", { name: "Exploration" })).toBeVisible();
   await expect(trace.getByRole("link", { name: "System / practice" })).toBeVisible();
   await expect(trace.getByRole("link", { name: "Outcomes" })).toBeVisible();
-  await expect(page.getByText("Source media remains deferred pending ownership, client-IP, and disclosure review.")).toBeVisible();
+  await expect(page.getByText("No original product screens are shown or reconstructed; this visual summarizes the approved case-study text.")).toBeVisible();
 
   await overviewLink.focus();
   await expect(overviewLink).toBeFocused();

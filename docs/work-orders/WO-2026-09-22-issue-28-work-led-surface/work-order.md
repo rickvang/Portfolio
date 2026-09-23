@@ -359,3 +359,5 @@ The reviewer could explain each project's broad purpose but inferred the relatio
 This PR revision adds an explicit throughline to Home and Work, reduces the Work index transition gap, corrects contextual heading levels, and replaces process-oriented media wording with a visitor-facing explanation. It keeps original images deferred and adds no invented screens, outcome metrics, or causal claims. The remaining evidence limits and review observations are detailed in [experience-crosswalk.md](experience-crosswalk.md).
 
 **Current close-out state:** revision in progress. Re-read the updated preview, rerun required Portfolio verification after the revision, and confirm mobile drawer behavior. Keep Issue #30 and draft PR #31 open; do not merge or deploy under this work order.
+
+**Latest CI result:** the first run on this revision passed install, lint, typecheck, unit tests, Supabase local schema, and Vercel preview deployment. The browser suite passed 36 checks; one assertion still expected the removed internal media-review sentence. The existing assertion now checks the visitor-facing replacement, and CI must pass on the updated commit before close-out.
