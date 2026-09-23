@@ -63,7 +63,7 @@ The requester said “go ahead” after approving the implementation plan for Is
 
 ## Current phase
 
-Phase 1 — repository implementation. Branch created from current `main`. Next: update public font/shell primitives and the Home + Multi Product Integrations pilot, then open a PR and use GitHub CI/Vercel preview as verification because this runtime cannot clone GitHub or run the repository locally.
+Phase 1–3 implementation is complete on the branch: the pilot font variables, route-scoped horizontal shell, Working Index Home, source-backed Multi Product Integrations editorial renderer, browser contracts, and DESIGN.md update are in place. Local execution remains unavailable because the runtime cannot resolve github.com. Next: inspect the branch diff, open the scoped PR, and use GitHub CI/Vercel preview as the verification path.
 
 ## Runtime limitation / fallback
 
@@ -83,4 +83,4 @@ The work is complete when:
 
 ## Next action
 
-Implement Phase 1 typography and public shell, then update Home and Multi Product Integrations against the approved CW-52 spec.
+Inspect the complete branch diff, open the Issue #36 PR, then evaluate CI, preview status, and any review findings before merge.
