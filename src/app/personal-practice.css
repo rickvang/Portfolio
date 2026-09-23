@@ -1,5 +1,90 @@
 /* Issue #39 refinement: Personal Practice / Working Archive */
 
+/* Issue #43 exploration: keep A as the exact production control.
+   B/C derive canvas-adjacent semantic roles from an authored seed.
+   These relationships are provisional project candidates, not universal values. */
+
+.practice-shell.practice-color-b {
+  --color-study-seed: #f7f6f2;
+  --background: #f7f6f2;
+  --surface: #fffefc;
+  --surface-muted: #e8e7e4;
+  --surface-strong: #dcdcd9;
+  --border: #cfcfcc;
+}
+
+.practice-shell.practice-color-c {
+  --color-study-seed: #f4f5f3;
+  --background: #f4f5f3;
+  --surface: #fdfdfc;
+  --surface-muted: #e5e6e4;
+  --surface-strong: #dadad9;
+  --border: #cdcdcc;
+}
+
+@supports (color: oklch(from white l c h)) {
+  .practice-shell:is(.practice-color-b, .practice-color-c) {
+    --background: var(--color-study-seed);
+    --surface: oklch(from var(--color-study-seed) calc(l + 0.025) calc(c * 0.55) h);
+    --surface-muted: oklch(from var(--color-study-seed) calc(l - 0.045) calc(c * 0.8) h);
+    --surface-strong: oklch(from var(--color-study-seed) calc(l - 0.08) calc(c * 0.75) h);
+    --border: oklch(from var(--color-study-seed) calc(l - 0.12) calc(c * 0.7) h);
+  }
+}
+
+.practice-color-study {
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  border: 1px solid var(--border);
+  bottom: 1rem;
+  box-shadow: 0 0.5rem 2rem rgb(23 22 20 / 8%);
+  font-size: 0.72rem;
+  padding: 0.65rem 0.75rem;
+  position: fixed;
+  right: 1rem;
+  z-index: 80;
+}
+
+.practice-color-study > p {
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin: 0 0 0.45rem;
+  text-transform: uppercase;
+}
+
+.practice-color-study nav {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.practice-color-study a {
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.practice-color-study a[aria-current="page"] {
+  color: var(--foreground);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+@media (max-width: 620px) {
+  .practice-color-study {
+    bottom: 0.65rem;
+    left: 0.65rem;
+    right: 0.65rem;
+  }
+
+  .practice-color-study nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.9rem;
+  }
+}
+
+
+
 .practice-shell {
   background: var(--background);
   color: var(--foreground);

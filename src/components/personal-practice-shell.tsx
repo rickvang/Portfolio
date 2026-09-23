@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 import { publicRoutes } from "@/lib/public-routes";
 
@@ -7,6 +10,14 @@ const navigationItems = [
   { href: publicRoutes.about, index: "02", label: "About" },
   { href: publicRoutes.contact, index: "03", label: "Contact" },
 ] as const;
+
+type ColorCandidate = "a" | "b" | "c";
+
+const colorCandidateLabels: Record<ColorCandidate, string> = {
+  a: "A · current",
+  b: "B · reduced warm chroma",
+  c: "C · near-neutral",
+};
 
 function routeIsActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
@@ -21,8 +32,28 @@ export function PersonalPracticeShell({
   children,
   pathname,
 }: PersonalPracticeShellProps) {
+  const [colorStudy, setColorStudy] = useState<{
+    enabled: boolean;
+    candidate: ColorCandidate;
+  }>({ enabled: false, candidate: "a" });
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("color");
+    const candidate: ColorCandidate =
+      requested === "b" || requested === "c" ? requested : "a";
+
+    setColorStudy({
+      enabled: requested === "a" || requested === "b" || requested === "c",
+      candidate,
+    });
+  }, []);
+
   return (
-    <div className="practice-shell" data-testid="personal-practice-shell">
+    <div
+      className={`practice-shell practice-color-${colorStudy.candidate}`}
+      data-color-candidate={colorStudy.candidate}
+      data-testid="personal-practice-shell"
+    >
       <a className="skip-link practice-skip-link" href="#main-content">
         Skip to content
       </a>
@@ -67,6 +98,23 @@ export function PersonalPracticeShell({
       <main className="practice-content" id="main-content" tabIndex={-1}>
         {children}
       </main>
+
+      {colorStudy.enabled && (
+        <aside aria-label="Color study controls" className="practice-color-study">
+          <p>Background study</p>
+          <nav aria-label="Color candidates">
+            {(["a", "b", "c"] as const).map((candidate) => (
+              <a
+                aria-current={colorStudy.candidate === candidate ? "page" : undefined}
+                href={`${pathname}?color=${candidate}`}
+                key={candidate}
+              >
+                {colorCandidateLabels[candidate]}
+              </a>
+            ))}
+          </nav>
+        </aside>
+      )}
     </div>
   );
 }
