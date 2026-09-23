@@ -12,12 +12,26 @@ export function EditorialDraftPreview({ draft }: EditorialDraftPreviewProps) {
       data-testid={`editorial-draft-${draft.slug}`}
     >
       <div className="case-study-review-banner" role="note">
-        <strong>{draft.reviewStatus === "review-ready" ? "Review-ready article." : "Draft article."}</strong>{" "}
-        This article is not connected to the public posts adapter and remains unpublished.
+        <strong>
+          {draft.reviewStatus === "published"
+            ? "Published article."
+            : draft.reviewStatus === "review-ready"
+              ? "Review-ready article."
+              : "Draft article."}
+        </strong>{" "}
+        {draft.reviewStatus === "published"
+          ? "This source-backed article is connected to the public Notes adapter."
+          : "This article remains unpublished until its status is explicitly promoted."}
       </div>
 
       <header className="editorial-draft-header">
-        <p className="eyebrow">{draft.reviewStatus === "review-ready" ? "Review-ready article" : "Draft article"}</p>
+        <p className="eyebrow">
+          {draft.reviewStatus === "published"
+            ? "Published article"
+            : draft.reviewStatus === "review-ready"
+              ? "Review-ready article"
+              : "Draft article"}
+        </p>
         <h2>{draft.title}</h2>
         <p className="lede">{draft.excerpt}</p>
       </header>
