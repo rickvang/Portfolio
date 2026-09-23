@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   CASE_STUDY_SECTION_ORDER,
-  authoredCaseStudyDrafts,
+  authoredCaseStudies,
   caseStudyCatalog,
   caseStudySchema,
   getApprovedCaseStudies,
@@ -13,31 +13,30 @@ import {
 } from "@/lib/case-studies";
 
 describe("case-study content contract", () => {
-  it("promotes explicitly approved imported projects", () => {
+  it("promotes explicitly approved imported and authored projects", () => {
     expect(importedCaseStudies.map((caseStudy) => caseStudy.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
     ]);
     expect(importedCaseStudies.every((caseStudy) => caseStudy.reviewStatus === "approved")).toBe(true);
-    expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
-      "multi-product-integrations",
-      "design-systems",
-    ]);
-  });
-
-  it("keeps authored editorial case studies review-ready but unpublished", () => {
-    expect(authoredCaseStudyDrafts.map((caseStudy) => caseStudy.slug)).toEqual([
+    expect(authoredCaseStudies.map((caseStudy) => caseStudy.slug)).toEqual([
       "ai-systems",
       "ui-design-practices",
     ]);
-    expect(authoredCaseStudyDrafts.every((caseStudy) => caseStudy.reviewStatus === "review-ready")).toBe(true);
-    expect(caseStudyCatalog).toHaveLength(4);
-    expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudyDrafts[0]);
-    expect(getApprovedCaseStudyBySlug("ai-systems")).toBeUndefined();
+    expect(authoredCaseStudies.every((caseStudy) => caseStudy.reviewStatus === "approved")).toBe(true);
     expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
+      "ai-systems",
+      "ui-design-practices",
     ]);
+  });
+
+  it("keeps explicitly approved authored case studies public through the shared gate", () => {
+    expect(caseStudyCatalog).toHaveLength(4);
+    expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
+    expect(getApprovedCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
+    expect(getApprovedCaseStudyBySlug("ui-design-practices")).toEqual(authoredCaseStudies[1]);
   });
 
   it("groups evidence-backed sections into the reusable chapter model", () => {
@@ -73,8 +72,8 @@ describe("case-study content contract", () => {
     }
   });
 
-  it("keeps authored draft evidence resolvable", () => {
-    for (const caseStudy of authoredCaseStudyDrafts) {
+  it("keeps authored case-study evidence resolvable", () => {
+    for (const caseStudy of authoredCaseStudies) {
       const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
 
       for (const section of caseStudy.sections) {

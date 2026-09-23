@@ -191,18 +191,13 @@ function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
 
 export const importedCaseStudies = importedContent.projects.map(importedProjectToCaseStudy);
 
-const authoredCaseStudyDraftsSchema = z
-  .array(caseStudySchema)
-  .min(1)
-  .refine((caseStudies) => caseStudies.every((caseStudy) => caseStudy.reviewStatus !== "approved"), {
-    message: "Authored case-study review sources must remain unpublished until explicitly approved elsewhere.",
-  });
+const authoredCaseStudySourceSchema = z.array(caseStudySchema).min(1);
 
-export const authoredCaseStudyDrafts = authoredCaseStudyDraftsSchema.parse(authoredCaseStudySource);
+export const authoredCaseStudies = authoredCaseStudySourceSchema.parse(authoredCaseStudySource);
 
 export const caseStudyCatalog: CaseStudy[] = [
   ...importedCaseStudies,
-  ...authoredCaseStudyDrafts,
+  ...authoredCaseStudies,
 ];
 
 export function getApprovedCaseStudies(

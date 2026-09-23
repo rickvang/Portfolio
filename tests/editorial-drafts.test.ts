@@ -1,12 +1,19 @@
 import { describe, expect, it } from "vitest";
 
-import { personaLedDesignDraft } from "@/lib/editorial-drafts";
+import {
+  getPublishedEditorialNoteBySlug,
+  getPublishedEditorialNotes,
+  personaLedDesignDraft,
+} from "@/lib/editorial-drafts";
 
 describe("persona-led design editorial draft", () => {
-  it("is review-ready, unpublished, and source-backed", () => {
-    expect(personaLedDesignDraft.reviewStatus).toBe("review-ready");
+  it("is explicitly published and source-backed", () => {
+    expect(personaLedDesignDraft.reviewStatus).toBe("published");
+    expect(personaLedDesignDraft.publishedOn).toBe("2026-09-23");
     expect(personaLedDesignDraft.slug).toBe("persona-led-design-discovery");
     expect(personaLedDesignDraft.sections).toHaveLength(6);
+    expect(getPublishedEditorialNotes()).toEqual([personaLedDesignDraft]);
+    expect(getPublishedEditorialNoteBySlug("persona-led-design-discovery")).toEqual(personaLedDesignDraft);
 
     const sourceIds = new Set(personaLedDesignDraft.sources.map((source) => source.id));
     for (const section of personaLedDesignDraft.sections) {

@@ -22,11 +22,16 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "How I work", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),
+  ).toBeVisible();
   await expect(page.getByRole("heading", { name: "About", exact: true })).toBeVisible();
 
   await expect(page.getByText("Fixture post", { exact: true })).toHaveCount(0);
-  await expect(page.locator("#notes")).toHaveCount(0);
 
   await expect(page.getByText("11+", { exact: true })).toBeVisible();
   await expect(page.getByText("14+", { exact: true })).toBeVisible();
@@ -74,23 +79,33 @@ test("approved imported work is public through the shared case-study routes", as
   await expect(page.getByText(/client intellectual property/i)).toBeVisible();
 });
 
-test("authored editorial drafts remain unavailable on public routes", async ({ page }) => {
-  for (const slug of ["ai-systems", "ui-design-practices"]) {
-    await page.goto(`/work/${slug}`);
-    await expect(page).toHaveTitle("Case study not found | Rick Vang");
-    await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);
-  }
+test("existing authored AI work is public through its intended routes", async ({ page }) => {
+  await page.goto("/work/ai-systems");
+  await expect(page).toHaveTitle("AI Systems | Rick Vang");
+  await expect(page.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
+  await expect(page.locator(".case-study-hero .lede")).toContainText("repository-backed orchestration system");
+
+  await page.goto("/work/ui-design-practices");
+  await expect(page).toHaveTitle("UI Design Practices | Rick Vang");
+  await expect(page.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
+  await expect(page.locator(".case-study-hero .lede")).toContainText("staged design-to-implementation practice");
 
   await page.goto("/notes/persona-led-design-discovery");
-  await expect(page).toHaveTitle("Note not found | Rick Vang");
-  await expect(page.getByText(/AI personas are most useful to my design process/i)).toHaveCount(0);
+  await expect(page).toHaveTitle("Persona-led Design Starts Before the Screen | Rick Vang");
+  await expect(
+    page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText(/AI personas are most useful to my design process/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Frame the problem before selecting personas" })).toBeVisible();
 });
 
-test("public notes stay empty until genuine authored posts are published", async ({ page }) => {
+test("public notes include source-controlled publications without fixture leakage", async ({ page }) => {
   await page.goto("/notes");
 
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
-  await expect(page.getByText("No notes published yet.", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),
+  ).toBeVisible();
   await expect(page.getByText("Fixture post", { exact: true })).toHaveCount(0);
   await expect(
     page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Notes" }),

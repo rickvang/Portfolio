@@ -1,6 +1,6 @@
 # Portfolio content and route contracts
 
-Issue #6 Phase 1 established the content and route contracts. Later phases now consume those contracts, but implementation still does not turn imported draft content into published content.
+Issue #6 Phase 1 established the content and route contracts. Later phases now consume those contracts with explicit record-level publication decisions for imported and authored content.
 
 ## Public route contract
 
@@ -29,7 +29,7 @@ A case study contains:
 - stable `id` and route `slug`;
 - title, summary, and category;
 - optional source-backed role and scope;
-- `reviewStatus`: `draft` or `approved`;
+- `reviewStatus`: `draft`, `review-ready`, or `approved`;
 - client-IP disclaimer when applicable;
 - one or more attributed sources;
 - ordered sections with source-linked evidence;
@@ -62,16 +62,16 @@ The first imported rickvang.com projects are adapted into the shared schema with
 - their original public case-study URL;
 - the captured source date;
 - the existing client-IP disclaimer;
-- draft status;
+- explicit record-level approval status;
 - only source-backed sections currently available: overview, exploration, system/practice, and outcomes.
 
-The adapter does not modify `content/imports/rickvang.com.json` and does not promote those drafts.
+The adapter does not infer publication from source capture. Each imported record carries its own explicit approval state.
 
 ## Publication boundary
 
-`getApprovedCaseStudies()` gates public indexes and `getApprovedCaseStudyBySlug()` gates public detail routes. With the current imported set both return no publishable case studies because both records remain drafts.
+`getApprovedCaseStudies()` gates public indexes and `getApprovedCaseStudyBySlug()` gates public detail routes. Imported client work and the authored AI Systems / UI Design Practices case studies are public only because those individual records now carry explicit `approved` status.
 
-Approval is an explicit content decision. It must not be inferred from the existence of imported content, successful validation, or a route being implemented.
+Approval remains an explicit content decision. It must not be inferred from the existence of source material, successful validation, or a route being implemented.
 
 
 ## Shared rendering boundary
@@ -81,29 +81,28 @@ Approval is an explicit content decision. It must not be inferred from the exist
 - public mode, reachable only after the route has resolved an approved record;
 - review mode, reachable from the local-only development harness and allowed to expose source provenance, evidence notes, and curation notes for draft review.
 
-Both current imported drafts are exercised through review mode so layout and section behavior can be verified without changing their publication status. Their public `/work/[slug]` URLs intentionally return 404 until approval.
+Review mode remains available for provenance/evidence inspection regardless of publication state. Public `/work/[slug]` routes still resolve only records carrying explicit `approved` status.
 
 
 ## Published notes boundary
 
-The public Notes routes are backed by the Supabase publication boundary.
+The public Notes routes merge two explicit publication sources behind `src/lib/posts.ts`:
 
-- `getPublishedPosts()` returns only records explicitly marked `published` with a publication timestamp that is not in the future.
-- `getPublishedPostBySlug()` uses the same published-only boundary for detail routes.
-- If the public content service is unavailable or intentionally bypassed for deterministic browser tests, public Notes resolve to an empty list / not-found detail rather than deterministic fixture content.
-- Deterministic post fixtures remain available through the local development harness and focused component tests. They are not authored portfolio content and must not be presented as if they were published notes.
-- Draft editorial material remains separate from the Supabase publication adapter until it has its own explicit approval and publication decision.
+- source-controlled authored editorial records carrying `reviewStatus: "published"`;
+- Supabase rows explicitly marked `published` with a publication timestamp that is not in the future.
+- `getPublishedPosts()` merges and sorts both sources.
+- `getPublishedPostBySlug()` resolves the source-controlled publication first, then the Supabase publication boundary.
+- If Supabase is unavailable or intentionally bypassed for deterministic browser tests, source-controlled published Notes still render while deterministic fixture posts remain local/test-only.
+- Deterministic post fixtures remain available through the local development harness and focused component tests. They are not authored portfolio content.
 
-This keeps test determinism and public authorship as separate concerns.
+This keeps test determinism, source-controlled authorship, and the hosted author workflow as separate concerns without creating competing public route contracts.
 
-## Authored editorial drafts
+## Authored editorial content
 
-Phase 5 adds three source-backed review artifacts under `content/drafts/`:
+Phase 5 originally introduced three source-backed review artifacts under `content/drafts/`. Issue #41 records the later explicit publication decision:
 
-- `AI Systems` — a case-study draft grounded in Persona-Library orchestration, Work Order, and shared problem-context contracts;
-- `UI Design Practices` — a case-study draft grounded in the Portfolio redesign plan/interaction work and the Persona-Library UX practice;
-- `Persona-led Design Starts Before the Screen` — an article draft describing bounded persona selection and questioning during exploration while explicitly preserving synthetic-evidence limits.
+- `AI Systems` — approved public case study grounded in Persona-Library orchestration, Work Order, and shared problem-context contracts;
+- `UI Design Practices` — approved public case study grounded in the Portfolio redesign plan/interaction work and the Persona-Library UX practice;
+- `Persona-led Design Starts Before the Screen` — published source-controlled Note describing bounded persona selection and questioning during exploration while explicitly preserving synthetic-evidence limits.
 
-The two case studies are parsed into the normal case-study catalog but the authored source file is guarded so every record must remain `draft`. The article uses its own typed editorial-draft contract and is not connected to `getPublishedPosts()` or any Supabase publication path.
-
-All three artifacts are reviewable through `/dev/harness` only. Browser tests verify their draft status and verify that `/work/ai-systems`, `/work/ui-design-practices`, and `/notes/persona-led-design-discovery` do not expose the draft content publicly.
+The historical `content/drafts/` path remains the source location, but path naming is not publication authority. Record status is authoritative. The harness continues to expose provenance and curation detail for these records even after publication.

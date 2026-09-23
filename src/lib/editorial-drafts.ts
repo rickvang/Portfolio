@@ -16,13 +16,22 @@ const editorialDraftSchema = z
     slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     title: z.string().min(1),
     excerpt: z.string().min(1),
-    reviewStatus: z.enum(["draft", "review-ready"]),
+    reviewStatus: z.enum(["draft", "review-ready", "published"]),
+    publishedOn: z.string().date().optional(),
     sources: z.array(caseStudySourceSchema).min(1),
     intro: z.array(z.string().min(1)).min(1),
     sections: z.array(editorialSectionSchema).min(1),
     curationNotes: z.array(z.string().min(1)).min(1),
   })
   .superRefine((draft, context) => {
+    if (draft.reviewStatus === "published" && !draft.publishedOn) {
+      context.addIssue({
+        code: "custom",
+        message: "Published editorial content requires publishedOn.",
+        path: ["publishedOn"],
+      });
+    }
+
     const sourceIds = new Set(draft.sources.map((source) => source.id));
     const sectionIds = new Set<string>();
 
@@ -51,3 +60,16 @@ const editorialDraftSchema = z
 export const personaLedDesignDraft = editorialDraftSchema.parse(editorialDraftSource);
 
 export type EditorialDraft = z.infer<typeof editorialDraftSchema>;
+
+export function getPublishedEditorialNotes(
+  drafts: readonly EditorialDraft[] = [personaLedDesignDraft],
+): EditorialDraft[] {
+  return drafts.filter((draft) => draft.reviewStatus === "published");
+}
+
+export function getPublishedEditorialNoteBySlug(
+  slug: string,
+  drafts: readonly EditorialDraft[] = [personaLedDesignDraft],
+): EditorialDraft | undefined {
+  return getPublishedEditorialNotes(drafts).find((draft) => draft.slug === slug);
+}

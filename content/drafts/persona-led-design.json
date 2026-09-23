@@ -3,7 +3,7 @@
   "slug": "persona-led-design-discovery",
   "title": "Persona-led Design Starts Before the Screen",
   "excerpt": "A practical method for structuring AI personas as bounded design collaborators before exploration, then questioning them during design without mistaking synthetic perspective for user evidence.",
-  "reviewStatus": "review-ready",
+  "reviewStatus": "published",
   "sources": [
     {
       "id": "pl-ux-practice",
@@ -150,8 +150,9 @@
     }
   ],
   "curationNotes": [
-    "Draft article describes a working method derived from current Persona-Library design and collaboration contracts.",
+    "Published article describes a working method derived from current Persona-Library design and collaboration contracts.",
     "Synthetic persona responses are explicitly not framed as observed user research.",
-    "Review first-person phrasing and add concrete design screenshots/examples only after the associated portfolio surfaces are approved."
-  ]
+    "Concrete design screenshots/examples remain deferred until their associated portfolio surfaces are approved for reuse."
+  ],
+  "publishedOn": "2026-09-23"
 }
