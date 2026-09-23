@@ -164,7 +164,7 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
           <p className="eyebrow">Content boundary</p>
           <h2 id="posts-heading">Posts preview</h2>
         </div>
-        <PostList posts={postsForState(state)} state={state} />
+        <PostList posts={postsForState(state)} showStatus state={state} />
       </section>
 
       <section className="harness-section" aria-labelledby="author-workflow-heading">
