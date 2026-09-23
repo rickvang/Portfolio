@@ -45,7 +45,7 @@ export default async function HomePage() {
               <span className="practice-kicker">A current systems view</span>
               <span>Source-backed</span>
             </div>
-            <ProjectPreview caseStudy={featuredCaseStudy} headingLevel={2} />
+            <ProjectPreview caseStudy={featuredCaseStudy} headingLevel={3} />
           </article>
         ) : (
           <div className="practice-hero-artifact practice-empty-state" data-testid="home-work-empty">
