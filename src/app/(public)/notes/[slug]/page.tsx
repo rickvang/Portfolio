@@ -52,8 +52,17 @@ export default async function NotePage({ params }: NotePageProps) {
       <h1>{post.title}</h1>
       {post.excerpt && <p className="lede">{post.excerpt}</p>}
       <div className="post-content">
-        {post.content.split("\n").map((paragraph, index) => (
-          <p key={`${post.id}-${index}`}>{paragraph}</p>
+        {post.content.map((paragraph, index) => (
+          <p key={`${post.id}-intro-${index}`}>{paragraph}</p>
+        ))}
+
+        {post.sections.map((section) => (
+          <section aria-labelledby={`${post.slug}-${section.id}`} key={section.id}>
+            <h2 id={`${post.slug}-${section.id}`}>{section.heading}</h2>
+            {section.body.map((paragraph, index) => (
+              <p key={`${post.id}-${section.id}-${index}`}>{paragraph}</p>
+            ))}
+          </section>
         ))}
       </div>
     </article>
