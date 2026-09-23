@@ -48,7 +48,7 @@ Refine the merged Personal Practice / Working Archive pilot after rendered revie
 
 ## Current phase
 
-Implementation. Branch created from current `main` at `c7271337e20be8d7d03340c4506531b74e46e46a`. Next: update public fixture behavior, pilot shell/type/IA, and browser contracts.
+Implementation complete on the branch. The pilot now uses a light persistent rail and Inter-only typography; Home is simplified to Intro → Selected Work → How I work → optional Notes → About; deterministic post fixtures no longer fall through the public publication adapter; public Notes and browser/unit contracts are updated. Next: open the scoped PR and verify through GitHub CI/Vercel preview.
 
 ## Completion boundary
 
