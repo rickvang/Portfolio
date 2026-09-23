@@ -5,7 +5,7 @@
     "title": "AI Systems",
     "summary": "A repository-backed orchestration system that separates persona roles, shared context, durable work state, and live tool state so complex AI-assisted work can be routed and resumed without turning one orchestrator into every specialist.",
     "category": "AI Systems",
-    "reviewStatus": "review-ready",
+    "reviewStatus": "approved",
     "sources": [
       {
         "id": "pl-agents",
@@ -232,7 +232,7 @@
     "title": "UI Design Practices",
     "summary": "A staged design-to-implementation practice for turning an ambiguous portfolio redesign into information architecture, visual tokens, interaction contracts, reusable components, and browser-verifiable behavior.",
     "category": "UI Design Practice",
-    "reviewStatus": "review-ready",
+    "reviewStatus": "approved",
     "sources": [
       {
         "id": "portfolio-issue-6",
