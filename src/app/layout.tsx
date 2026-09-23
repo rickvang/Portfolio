@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { env } from "@/lib/env";
 
 import "./globals.css";
+import "./work-led.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),

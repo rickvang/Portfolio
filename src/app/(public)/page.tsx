@@ -16,7 +16,7 @@ export default async function HomePage() {
 
   return (
     <div className="public-page">
-      <section className="hero public-hero editorial-hero" id="top">
+      <section className="content-section editorial-section" id="top">
         <p className="hero-coordinate">{profile?.eyebrow ?? "Portfolio"}</p>
         <div className="editorial-hero-grid">
           <div className="editorial-hero-statement">
@@ -32,10 +32,6 @@ export default async function HomePage() {
               <Link className="button button-secondary" href={publicRoutes.about}>
                 About me
               </Link>
-            </div>
-            <div className="hero-index" aria-label="Portfolio orientation">
-              <span>Recent projects</span>
-              <span>{String(caseStudies.length).padStart(2, "0")} case studies</span>
             </div>
           </div>
         </div>

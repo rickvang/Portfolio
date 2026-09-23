@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { ProjectPreview } from "@/components/project-preview";
 import type { CaseStudy } from "@/lib/case-studies";
 import { workHref } from "@/lib/public-routes";
 
@@ -26,12 +27,9 @@ export function CaseStudyList({
   }
 
   return (
-    <div aria-label="Case studies" className="case-study-card-grid">
+    <div aria-label="Case studies" className="project-preview-list">
       {caseStudies.map((caseStudy) => (
-        <article className="case-study-card" key={caseStudy.id}>
-          <div className="project-card-meta">
-            <span className="tag">{caseStudy.category}</span>
-          </div>
+        <article className="project-preview" data-project-preview={caseStudy.slug} key={caseStudy.id}>
           <h3>
             <Link href={workHref(caseStudy.slug)}>{caseStudy.title}</Link>
           </h3>
@@ -39,6 +37,7 @@ export function CaseStudyList({
           <Link className="text-link" href={workHref(caseStudy.slug)}>
             Read case study
           </Link>
+          <ProjectPreview caseStudy={caseStudy} />
         </article>
       ))}
     </div>
