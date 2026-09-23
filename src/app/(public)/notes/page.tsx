@@ -14,7 +14,7 @@ export default async function NotesPage() {
       </section>
 
       <section aria-label="Published notes" className="content-section">
-        <PostList posts={posts} />
+        <PostList headingLevel={2} posts={posts} />
       </section>
     </div>
   );
