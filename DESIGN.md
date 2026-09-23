@@ -16,6 +16,21 @@ The portfolio uses a cinematic editorial foundation for systems-oriented product
 
 The current system is CSS-variable based. Tailwind and a third-party component library are not required for this application.
 
+## Approved pilot — Personal Practice / Working Archive
+
+Issue #36 introduces an intentionally isolated public pilot on **Home** and **Multi Product Integrations**. It does not yet replace the entire public system.
+
+- The pilot uses a quiet horizontal header instead of the persistent charcoal rail.
+- Fraunces is the authored/display face; Inter is the body and interface face. They are loaded through `next/font` and applied only inside the pilot shell.
+- The narrow Home composition follows a Working Index: identity, source-backed project structure, compact selected-work rows, notes, practice, then About/contact.
+- Selected Work is treated as an index/list rather than a generic card grid. Source-backed presentations may appear as supporting artifacts on wider layouts; narrow rows stay text-first until approved media exists.
+- Authentic/source-backed project evidence remains authoritative. Generated lifestyle scenes and unapproved legacy Framer media are not evidence and must not be presented as project artifacts.
+- Multi Product Integrations uses a source-backed editorial sequence built from the approved Overview, Exploration, System / practice, and Outcomes sections. Missing role, reflection, metrics, or media are omitted rather than inferred.
+- The existing publication gate, experience-profile resolution, source traces, client-IP disclaimer, keyboard/focus contract, reduced-motion behavior, and harness boundaries remain authoritative.
+- Non-pilot public routes continue using the existing rail system until the pilot is reviewed and an explicit rollout decision is made.
+
+The pilot is successful only if the rendered Home and Multi Product Integrations experience preserves the approved evidence while feeling personal, authored, and easy to scan at desktop and narrow widths. Review the pilot before propagating its typography or shell to other public routes.
+
 ## System ownership
 
 | Concern | Location | Rule |
