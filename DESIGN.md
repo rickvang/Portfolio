@@ -85,13 +85,82 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 Use the following patterns deliberately rather than decorating every section:
 
 1. **Content-led hierarchy** — once source-backed portfolio content is approved, use the actual project names, project language, biography, evidence, and artifacts as the primary hierarchy. Do not replace specific work with generic portfolio slogans merely to fill a composition.
-2. **First-viewport thesis** — one dominant statement, one supporting column, and one small orientation line. Do not put a card grid above the thesis.
+2. **Work-forward first viewport** — keep identity concise and bring a substantial source-backed project preview into the first viewport or its immediate transition. Do not let a manifesto, profile statistics, or a project count displace the first real project signal.
 3. **Asymmetry with recovery** — use one controlled offset or unequal-column moment, then return to the shared content grid so the page remains easy to scan.
 4. **Numbered orientation** — the global rail uses 01–05 indices and long-form case studies use chapter numbers. Numbers support wayfinding; they do not replace text labels.
 5. **Chapter scale** — case-study chapter headings are the largest long-form landmarks beneath the page title. Nested source sections remain smaller and may disappear when their title duplicates the chapter name.
 6. **Warm neutral surfaces** — use background/surface contrast, spacing, and rules before adding more boxes. Cards are reserved for discrete items, evidence, or interactive surfaces.
 7. **Accent discipline** — orange identifies authored emphasis, active state, and selected landmarks. It should not become a decorative wash or substitute for hierarchy.
 8. **Layout choice** — use the asymmetric homepage pattern for thesis-led landing pages, the split section pattern for paired explanation/action content, and the chapter pattern for evidence-heavy long-form work. Do not force the chapter pattern onto short notes or utility pages.
+
+## Work-to-experience translation
+
+Use this seven-layer chain when a project needs more than a title and summary:
+
+| Layer | Question | Portfolio rule |
+| --- | --- | --- |
+| Evidence | Which approved fact, artifact, decision, constraint, or outcome supports the presentation? | Name the source and keep the claim within its limits. A source image remains unavailable until reuse is approved. |
+| Reader goal | What relationship, sequence, comparison, or decision should a visitor understand? | State the visitor's task before choosing a visual pattern. |
+| Observed work/system qualities | What structural qualities are supported by the evidence? | Separate source facts from interpretation. Relational, modular, governed, and adaptable describe the work only when a cited fact supports the reading. |
+| Experiential qualities | What should the interface make perceptible or easier to read? | Describe interface behavior such as legible, coherent, paced, or scannable. Do not use these as claims about project outcomes. |
+| Intended-feeling hypothesis | What human response might follow, and what would support or contradict it? | Orientation, confidence, clarity, and competence are hypotheses. They are not verified because profile metadata names them. |
+| Translation pattern | Which curated action best serves the reader goal and experience qualities? | Select map, trace, assemble, compare, reveal, or instrument with an evidence-based rationale and an invalidating condition. |
+| Semantic presentation contract | Which semantic structure, responsive rule, fallback, and motion behavior render the choice? | Existing components and tokens render an authored choice. There is no automatic feeling-to-layout or quality-to-pattern engine. |
+
+Keep the shared case-study chapter sequence as the information-architecture boundary. A project profile may choose a presentation within a relevant chapter, while source sections, provenance, approval filtering, and the client-IP note remain authoritative. Home and Work previews use the same typed presentation contract in a compact form.
+
+### Worked example: Multi Product Integrations
+
+- **Evidence:** the approved overview describes a unified framework across fragmented products; exploration describes persona and workflow mapping; system details name modular layouts, persona-shaped dashboards, records and chat, reusable settings, and workflow completion; outcomes describe operational visibility and reduced administrative/rework burden without numeric measures.
+- **Reader goal:** understand which documented product surfaces relate through the shared framework.
+- **Observed qualities:** relational, modular, stateful, and operational; each interpretation points to overview, exploration, system, or outcome evidence.
+- **Experiential qualities:** make the shared relationship legible and navigation precise.
+- **Feeling hypothesis:** a reader may feel oriented if they can identify the framework and its capabilities. A reader who assumes an undocumented execution order weakens the hypothesis.
+- **Pattern:** a hub with an unordered capability list, plus source-section links in detail. Its position communicates membership only; it has no arrows, direction, or sequence.
+- **Presentation contract:** semantic headings and lists; one-column fallback at narrow widths; static motion; source media stays deferred; thin or unknown projects use a text-first summary.
+
+### Worked example: Design Systems
+
+- **Evidence:** approved exploration describes pattern/scenario audits, workshops, usage analysis, testing, and developer feedback. Approved system details name collaborators, a core library, lightweight governance, token foundations, density across marketing and enterprise-product surfaces, and reusable workflow templates/patterns.
+- **Reader goal:** understand how governance and shared foundations support reusable patterns across different surface needs.
+- **Observed qualities:** governed, layered, reusable, and adaptable. The source names two density contexts but does not define exact density values.
+- **Experiential qualities:** make system structure coherent and scannable so a reader can compare authored groups.
+- **Feeling hypothesis:** a reader may feel clear and capable if they can distinguish stewardship, shared foundations, and application. Exact density rules or chronology inferred from layout would contradict that hypothesis.
+- **Pattern:** an explicitly authored matrix groups governance, shared foundations, and application. A separate context list names marketing and enterprise-product surfaces. Group membership is stable item data, not array-position slicing.
+- **Presentation contract:** labelled groups and lists, not a staged flow; groups stack at narrow widths; static motion; text-first fallback; no reconstructed screens.
+
+See the full evidence-to-presentation crosswalk in the active Portfolio Work Order for source notes, alternatives, invalidating conditions, and reviewer questions. Keep intended feelings in that work record and typed profile data; do not expose them as user-facing labels. Use [Issue #5](https://github.com/rickvang/Portfolio/issues/5) for the broader visual-quality rubric rather than duplicating it here.
+
+### Agent-facing reasoning scaffold
+
+Use this scaffold when translating approved code, content, or system evidence into a portfolio experience. It records a human decision path; it does not select a theme, component, or layout automatically. The short thematic direction is an authored lens before pattern selection, not an eighth translation layer and not a visitor-facing claim.
+
+1. **Name the theme in words.** Write one concise phrase about the documented work, such as “connected operations across a shared product environment” or “a governed foundation that supports deliberate variation.” Cite the source facts that make the phrase apt.
+2. **State the reader goal and evidence.** Name the relationship, sequence, comparison, or decision the reader should understand. Point to the approved section, item, artifact, decision, constraint, or outcome that supports each claim. If the evidence cannot support the relationship, use text-first content.
+3. **Separate the qualities.** Record observed work/system qualities with their evidence, experiential qualities as interface intentions, and intended feelings as hypotheses. Do not let an archetype replace evidence or a reader goal.
+4. **Choose and challenge a pattern.** Explain how the pattern serves both the goal and intended experience. Compare at least one plausible alternative and name a condition that would invalidate the choice. Use a spectrum only when its position changes a concrete presentation decision; never score an archetype or map it automatically to a layout.
+5. **Write the presentation contract.** Specify semantic structure, stable item membership, responsive behavior, keyboard/focus, motion and reduced-motion behavior, media permission, and text-first fallback. Keep the contract in the existing shared case-study structure.
+
+Before handoff, use these five reflection prompts as observable questions rather than scores:
+
+| Lens | Observable question |
+| --- | --- |
+| Clarity | Can a reader who has not seen the profile explain the main relationship from visible labels and content? Which phrase or grouping is ambiguous? |
+| Compose | Does hierarchy show what belongs together and the intended reading order without implying an unsupported process? Can every grouping be traced to authored evidence? |
+| Differentiate | Does each project vary where the source evidence differs, while shared navigation, semantics, and tokens remain consistent? Can the reader name the reason for the difference? |
+| Refine | Do alignment, spacing, labels, and source links help a reader scan, compare, and check evidence with keyboard or touch? Which element interrupts that task? |
+| Reduce noise | Can any unsupported decoration, repeated claim, invented connector, or unneeded label be removed without losing evidence or wayfinding? |
+
+The reasoning profile is distinct from the UI harness. Profiles keep the evidence and authored design rationale reviewable; the local harness renders real components with approved and explicitly synthetic fixtures so the visual, responsive, keyboard, fallback, and reduced-motion behavior can be inspected. Harness success does not establish that a feeling hypothesis is true.
+
+### Presentation anti-patterns
+
+- Do not infer an arrow, dependency, workflow order, metric, or exact screen from visual proximity or from a general mention of connections.
+- Do not group items by array position, number an unverified sequence, or select a pattern from an unexplained project slug.
+- Do not convert feelings or archetype adjectives into numeric scores, CSS classes, tokens, or automatic layout choices.
+- Do not add fake product UI, stock or generated screenshots, or source media whose reuse has not been classified.
+- Do not invent pattern groups when the source is thin; render the approved text in its existing order and state what is absent.
+- Do not add a semantic token for a single project. A repeated need across at least two surfaces must justify and document a token.
 
 ### Shape, elevation, and motion
 
@@ -144,6 +213,9 @@ These are the reusable components currently in `src/components/`.
 | `SiteShellFrame` | Persistent public navigation/content frame used by production routes and local verification | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
 | `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
 | `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft/review-ready rendering with chapter map, provenance, and evidence |
+| `ProjectPreview` | Home/Work preview of an approved case study | `caseStudy` | Curated system map, pattern matrix, or text-first fallback |
+| `ExperiencePresentation` | Compact preview and detail presentation under the shared case-study information architecture | `caseStudy`, `mode`, optional local-review audience | Approved evidence-backed profile; text-first for unknown/thin approved content; unavailable for draft public presentation |
+| `ArtifactFrame` | Media or text-derived artifact boundary | `label`, explicit `state`, optional `note` | Derived text view, deferred media, redacted source detail; deferred/redacted states cannot receive media children |
 | `ProfileStats` | Reusable compact experience summary driven by approved profile data | `stats` | Homepage/About experience counts; semantic `dl` that collapses from three columns to one using existing surface/border tokens |
 | `EditorialDraftPreview` | Local-only review surface for source-backed article drafts | `draft` | Draft or review-ready article, evidence details, source provenance, curation notes |
 | `ContactForm` | Contact form boundary | `disabled`, `initialStatus` | Idle, success, error, disabled |
@@ -188,6 +260,8 @@ Every important interactive component should have a short interaction specificat
 - **Review mode:** is local-harness only and adds an explicit draft/review-ready banner, source provenance, curation notes, and per-section evidence details without changing the underlying content.
 - **Chapter navigation:** existing typed sections are grouped into the canonical path `Context → Personas → Exploration → System → Outcomes`. A chapter appears only when at least one evidence-backed section maps to it; missing chapters stay absent rather than receiving invented filler.
 - **Section detail:** source sections remain individually addressable inside a chapter so imported provenance and review evidence stay attached to their original content unit.
+- **Project translation:** an approved system-practice section may use ExperiencePresentation when profile evidence and stable item membership validate. The profile must not replace, reorder, or invent source facts. Unknown or thin approved content uses its original text and item order.
+- **Evidence trace:** detail presentations link to their source sections. Review evidence remains available only in review mode.
 - **Client-IP note:** remains attached whenever the case-study record carries the imported disclaimer.
 - **Responsive behavior:** desktop uses a sticky local chapter index beside reading content; at the public shell breakpoint the index becomes static and precedes the chapters.
 - **Motion:** chapter blocks use capped CSS-first entry staging. Anchor navigation is immediate and never depends on JavaScript animation.
@@ -250,6 +324,21 @@ The following existing surfaces use the template above. ContactForm is the repre
 | Primary navigation / `SiteShell` | Move among Home, Work, Notes, About, and Contact while preserving orientation. | Desktop uses a persistent rail with text plus an active marker; mobile uses an explicitly named drawer, Escape close, focus containment while open, focus return on explicit close, and a `<noscript>` fallback. Primary destinations never depend on hover or motion. | Browser coverage verifies active-route semantics, desktop rail visibility, mobile drawer open/close, Escape, focus return, and no horizontal overflow. |
 | Harness controls | Select a deterministic fixture state and restore the baseline. | Use a labeled button group with `aria-pressed`; state changes are local and synchronous; reset returns to `success`; direct URL state is accepted only from the known state union. | `/dev/harness` exposes all six fixture states, a reset control, `data-harness-state`, and stable state-region selectors. |
 
+### Experience presentation interaction specification
+
+- **User goal:** understand a project's source-backed system structure from a compact preview or a relevant case-study chapter.
+- **Product boundary:** server-rendered Portfolio content; presentation components do not fetch from or transmit to external services.
+- **Anatomy:** a named presentation heading, sourced summary or relationship, semantic list/group structure, and source-section links in detail. ArtifactFrame names the media state and explains its boundary.
+- **States:** approved curated profile; unknown or thin approved content in text-first order; draft unavailable in public mode and text-only in local review; deferred or redacted media; dense and long content.
+- **Transitions:** map and matrix content is static. Source-trail anchors use native links and browser history. No interaction depends on motion.
+- **Keyboard and focus:** use native link tab order and the global visible focus ring. No scripted focus movement or custom activation keys.
+- **Validation and safety:** a profile resolves only when approval, evidence references, and every stable item membership match. Deferred/redacted ArtifactFrame variants cannot receive media children. No data is transmitted.
+- **Responsive behavior:** existing shell/content breakpoints apply; topology, matrix groups, and text lists stack at narrow widths and may not cause horizontal overflow.
+- **Accessibility:** headings and unordered lists expose structure in source/read order. Source links use the section's visible title. Artifact state is named in text and not conveyed by color alone.
+- **Harness and verification:** the local-only harness includes both approved projects, synthetic text-only and long-content examples marked as non-client fixtures, deferred media, redacted media, keyboard links, and reduced-motion checks.
+- **Recovery and fallback:** if a profile item or its evidence disappears, use the approved source summary and remaining items in authored order. If content is not approved, public presentation is unavailable.
+- **Open evaluation:** intended feelings remain hypotheses until a reader who has not seen profile metadata identifies the relationship or system structure from the surface.
+
 ## State matrix
 
 The harness accepts `success`, `loading`, `empty`, `error`, `disabled`, and `long-content` through the visible controls or a direct URL such as `/dev/harness?state=error`.
@@ -291,6 +380,8 @@ When a new important state is introduced, update all four places together:
 - Preserve a visible `:focus-visible` ring with sufficient contrast. Light surfaces use the global light/dark two-tone ring; charcoal rail/drawer controls use a light inner outline plus orange outer ring.
 - Primary mobile navigation controls maintain at least a 44×44 CSS-pixel target; browser coverage checks the menu and close controls at mobile/tablet widths.
 - Keep heading levels in document order.
+- Express topology with a named heading and unordered list; express a matrix with labelled sections and lists. Do not rely on colour, line position, or motion to convey a relationship.
+- Deferred and redacted artifact states explain why media is absent and never render a substitute image or hidden screenshot.
 - Prefer Playwright roles, labels, and visible text. Use `data-testid` only for harness roots and state boundaries that do not have a better semantic locator.
 - Do not use color alone to communicate status; pair it with text or a semantic label.
 
@@ -301,6 +392,7 @@ Public navigation and content use a `900px` shell breakpoint; internal grids kee
 - above `900px`: public routes use the fixed `17rem` rail and offset content column;
 - at `900px` and below: the rail is removed from layout and replaced with the sticky mobile bar plus drawer;
 - at `760px` and below: project, post, split, harness, and relevant admin grids collapse to one column;
+- at `620px` and below: topology panels, authored matrix groups, and text lists stack in source/read order;
 - content determines height; fixed heights remain limited to loading placeholders and minimum card rhythm;
 - test long titles, long excerpts, drawer focus behavior, and route navigation at both mobile and tablet widths.
 
@@ -317,6 +409,8 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 - Public posts are rendered only when their status is `published`.
 - Draft, archived, and unpublished content must not leak through public components or metadata.
 - Preserve the client-IP disclaimer when importing case-study material from the existing site.
+- A project profile is a curated presentation adapter, not publication approval. It may resolve only for reviewStatus approved and for evidence/item references that still exist in the case-study source. Draft review mode uses the source text only.
+- The homepage keeps identity concise and presents the first approved project preview beside it at desktop widths; at narrow widths that preview follows immediately after the introduction.
 - Treat testimonials and personal contact information as reviewable content, not automatic fixtures.
 
 ## Verification workflow
@@ -324,10 +418,11 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 Before a UI change is complete:
 
 1. Start with the relevant harness state, for example `/dev/harness?state=long-content`.
-2. Verify keyboard focus, labels, empty/error feedback, and responsive layout.
-3. Run the narrowest relevant test while iterating.
-4. For material visual changes, inspect the deterministic captures generated by `tests/e2e/visual.spec.ts`: home first viewport, mobile drawer, case-study first viewport, and reduced-motion drawer. CI uploads them as the `visual-verification-captures` artifact for 14 days. These are review captures; semantic/CSS/browser assertions remain the automated regression gate rather than a brittle pixel-diff baseline.
-5. Run the full baseline before handoff:
+2. Inspect /dev/harness for both approved case studies, the text-only fallback, synthetic long-content fixture, deferred and redacted artifact states, and local-only review states.
+3. Verify keyboard focus, labels, empty/error feedback, reduced motion, and responsive layout without horizontal overflow.
+4. Run the narrowest relevant test while iterating.
+5. For material visual changes, inspect the deterministic captures generated by `tests/e2e/visual.spec.ts`: home first viewport, mobile drawer, case-study first viewport, and reduced-motion drawer. CI uploads them as the `visual-verification-captures` artifact for 14 days. These are review captures; semantic/CSS/browser assertions remain the automated regression gate rather than a brittle pixel-diff baseline.
+6. Run the full baseline before handoff:
 
 ```bash
 pnpm lint
@@ -362,3 +457,4 @@ Issue #6 Phase 7 closes the recorded UI/release audit findings as follows:
 - **Destructive-action confirmation:** `DeletePostForm` requires an explicit native checkbox and `deletePost` independently validates the confirmation value before auth or deletion; the harness verifies that an unchecked form cannot submit and that the confirmed path reaches the server boundary.
 - **Production harness link:** public browser coverage asserts no `/dev/harness` link is exposed; the development surfaces remain guarded from production.
 - **Health/readiness semantics:** `/api/health` reports `status: "ready"` only when Supabase is configured and otherwise reports `status: "degraded"` with `readiness.overall: false`, while keeping the liveness response available for local/CI startup checks.
+

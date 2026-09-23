@@ -37,7 +37,7 @@ export function CaseStudyList({
           <Link className="text-link" href={workHref(caseStudy.slug)}>
             Read case study
           </Link>
-          <ProjectPreview caseStudy={caseStudy} />
+          <ProjectPreview caseStudy={caseStudy} headingLevel={4} />
         </article>
       ))}
     </div>

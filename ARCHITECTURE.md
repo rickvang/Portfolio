@@ -43,6 +43,17 @@ tests/                   Vitest unit tests and Playwright browser tests
 - GitHub Actions validates the local Supabase migration, seed, RLS, and pgTAP database-test boundary in an ephemeral Docker-backed job; remote project credentials are intentionally separate from ordinary CI.
 - The browser suite writes four deterministic visual verification PNGs under `test-results/visual-snapshots/`; CI uploads them as a short-lived review artifact even if later verification fails.
 
+## Work-to-experience presentation
+
+- `src/lib/experience-profiles.ts` stores deliberately authored, project-specific interpretations across evidence, reader goal, observed work qualities, experiential qualities, feeling hypotheses, selected patterns, alternatives, invalidating conditions, and semantic presentation contracts.
+- `src/lib/project-presentation.ts` is the resolution boundary. It only resolves a public profile for an approved case study when every evidence source/note and every stable system item ID still matches. A changed or incomplete profile falls back to the source summary and authored item order. Drafts resolve to unavailable in public mode; the review audience exposes text only.
+- `src/components/experience-presentation.tsx` renders the resolved discriminated presentation as headings and unordered lists or labelled groups. Detail presentations link to visible source sections. Home, Work, and the case-study detail share this renderer.
+- `src/components/project-preview.tsx` is the compact Home/Work wrapper. It does not own project-specific rules.
+- Stable IDs are derived from section kind and source item title and are explicit in each presentation profile. Matrix membership is not inferred from item order.
+- `ArtifactFrame` accepts child media only in its derived state. Deferred and redacted variants are text-only so a missing source image cannot be replaced by fabricated client UI.
+- The local-only work-led harness may use explicitly synthetic, non-client fixtures to exercise text-only and dense content. These fixtures are not part of approved public case-study data.
+- Feeling hypotheses and pattern choices are authored human decisions; there is no automatic feeling-to-layout or quality-to-pattern selector.
+
 ## Verification surface
 
 The project intentionally exposes the same checks an agent or developer needs to use:
@@ -56,3 +67,4 @@ pnpm build
 ```
 
 Use `pnpm seed` and `pnpm reset` when a local JSON fixture file needs to be created or removed. Use `pnpm supabase:start` and `pnpm supabase:reset` only when Docker is available. The app can run without Supabase credentials, but the posts adapter requires the two public Supabase environment variables.
+

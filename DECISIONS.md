@@ -39,3 +39,12 @@ The redesign motion contract uses semantic CSS duration/easing tokens and small 
 Navigation, Escape, explicit close, browser history, and focus recovery are authoritative. Motion is canceled or superseded when those states change; animations are not queued and no exit animation may delay drawer close or route focus. Reduced-motion users receive final-state rendering without chapter, drawer, backdrop, or feedback animation.
 
 Revisit a motion dependency only if a later approved interaction requires coordinated stateful choreography that cannot remain accessible, interruptible, progressively enhanced, and maintainable with the platform primitives already in use.
+
+## 2026-09-22 — Translate approved case-study evidence through authored experience profiles
+
+Project previews may use a curated visual grammar only when a seven-layer work-to-experience profile records the approved evidence, visitor goal, interpreted work qualities, intended interface qualities, testable feeling hypotheses, selected pattern and alternatives, and semantic presentation contract. The profile is a human-authored interpretation, never a heuristic layout engine.
+
+Public presentation requires approved case-study status and matching source notes plus complete stable item membership. If that contract is incomplete, use a text-first rendering in source order; drafts remain unavailable publicly. Integrations use a hub and unordered membership list because its source supports a shared framework but no execution sequence. Design Systems uses authored groups and explicit context labels because its source distinguishes reusable practice and two surface contexts but supplies no exact density measurements or rollout order.
+
+Source images remain deferred until reuse is approved. Do not reconstruct client screens or represent synthetic harness fixtures as project work. Revisit the selected patterns if a cold reader infers an unsupported order, dependency, exact density rule, outcome, or screen detail.
+

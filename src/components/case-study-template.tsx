@@ -1,4 +1,5 @@
 import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
+import { ExperiencePresentation } from "@/components/experience-presentation";
 
 type CaseStudyTemplateProps = {
   caseStudy: CaseStudy;
@@ -109,16 +110,27 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
 
                     {section.body && <p className="case-study-copy">{section.body}</p>}
 
-                    {section.items && (
-                      <div className="case-study-item-grid">
-                        {section.items.map((item) => (
-                          <article className="case-study-item" key={item.title}>
-                            {showSectionHeading ? <h4>{item.title}</h4> : <h3>{item.title}</h3>}
-                            <p>{item.summary}</p>
-                          </article>
-                        ))}
-                      </div>
-                    )}
+                    {section.items &&
+                      section.kind === "system-practice" &&
+                      caseStudy.reviewStatus === "approved" && (
+                        <ExperiencePresentation
+                          caseStudy={caseStudy}
+                          headingLevel={showSectionHeading ? 4 : 3}
+                          mode="detail"
+                        />
+                      )}
+
+                    {section.items &&
+                      (section.kind !== "system-practice" || caseStudy.reviewStatus !== "approved") && (
+                        <div className="case-study-item-grid">
+                          {section.items.map((item) => (
+                            <article className="case-study-item" key={item.id ?? item.title}>
+                              {showSectionHeading ? <h4>{item.title}</h4> : <h3>{item.title}</h3>}
+                              <p>{item.summary}</p>
+                            </article>
+                          ))}
+                        </div>
+                      )}
 
                     {reviewMode && (
                     <details className="case-study-evidence">
@@ -179,3 +191,4 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
     </article>
   );
 }
+

@@ -1,36 +1,56 @@
 import type { ReactNode } from "react";
 
-type ArtifactFrameState = "derived" | "deferred";
+type ArtifactFrameProps =
+  | {
+      children: ReactNode;
+      label: string;
+      note?: string;
+      state: "derived";
+    }
+  | {
+      children?: never;
+      label: string;
+      note?: string;
+      state: "deferred" | "redacted";
+    };
 
-type ArtifactFrameProps = {
-  children?: ReactNode;
-  label: string;
-  note?: string;
-  state?: ArtifactFrameState;
-};
-
-const stateLabels: Record<ArtifactFrameState, string> = {
-  derived: "Content-derived view",
+const stateLabels = {
+  derived: "Text-derived view",
   deferred: "Source media deferred",
-};
+  redacted: "Source detail withheld",
+} as const;
 
-export function ArtifactFrame({ children, label, note, state = "derived" }: ArtifactFrameProps) {
+const placeholderMessages = {
+  deferred:
+    "Source media is not shown while ownership and client-disclosure review is incomplete.",
+  redacted:
+    "Client-specific source detail is withheld. No replacement screen or illustration is shown.",
+} as const;
+
+export function ArtifactFrame({ children, label, note, state }: ArtifactFrameProps) {
   return (
     <figure className="artifact-frame" data-artifact-state={state}>
       <div className="artifact-frame-header">
-        <span className="artifact-frame-label">{label}</span>
+        <strong className="artifact-frame-label">{label}</strong>
         <span className="artifact-frame-state">{stateLabels[state]}</span>
       </div>
       <div className="artifact-frame-body">
-        {children ??
-          (state === "deferred" ? (
-            <div className="artifact-frame-empty">
-              <strong>Source media deferred</strong>
-              <p>The original project media is not shown in this state.</p>
-            </div>
-          ) : null)}
+        {state === "derived" ? (
+          children
+        ) : (
+          <div className="artifact-frame-empty" role="note">
+            <strong>{state === "deferred" ? "Media not included" : "Source detail withheld"}</strong>
+            <p>{placeholderMessages[state]}</p>
+          </div>
+        )}
       </div>
-      {note && <figcaption>{note}</figcaption>}
+      <figcaption>
+        {note ??
+          (state === "derived"
+            ? "This view is composed from the approved case-study text."
+            : placeholderMessages[state])}
+      </figcaption>
     </figure>
   );
 }
+

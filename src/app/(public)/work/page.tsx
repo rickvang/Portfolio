@@ -1,4 +1,5 @@
 import { CaseStudyList } from "@/components/case-study-list";
+import { WorkThroughline } from "@/components/work-throughline";
 import { getApprovedCaseStudies } from "@/lib/case-studies";
 
 export default function WorkPage() {
@@ -6,22 +7,20 @@ export default function WorkPage() {
 
   return (
     <div className="public-page">
-      <section className="hero public-hero">
-        <p className="eyebrow">Work</p>
-        <h1>Recent projects.</h1>
-        <p className="lede">
-          Client-protective case studies from the existing portfolio, now carried forward through the shared typed
-          content model.
-        </p>
+      <section aria-labelledby="work-page-heading" className="content-section work-index-intro">
+        <p className="eyebrow">Approved case studies</p>
+        <h1 id="work-page-heading">Work</h1>
+        <WorkThroughline />
       </section>
 
-      <section aria-labelledby="work-index-heading" className="content-section">
+      <section aria-labelledby="work-index-heading" className="content-section work-index-projects">
         <div className="section-heading">
-          <p className="eyebrow">Case studies</p>
-          <h2 id="work-index-heading">Selected work</h2>
+          <p className="eyebrow">Selected work</p>
+          <h2 id="work-index-heading">Projects</h2>
         </div>
         <CaseStudyList caseStudies={caseStudies} />
       </section>
     </div>
   );
 }
+

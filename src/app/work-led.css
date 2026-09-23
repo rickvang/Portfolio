@@ -235,3 +235,247 @@
     min-height: 0;
   }
 }
+
+.home-work-hero {
+  align-items: start;
+  display: grid;
+  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(13rem, 0.72fr) minmax(0, 1.28fr);
+  padding-top: clamp(2.5rem, 7vw, 5rem);
+}
+
+.home-work-copy {
+  align-self: center;
+  max-width: 33rem;
+}
+
+.home-work-copy h1 {
+  font-size: clamp(3rem, 6.7vw, 5.8rem);
+  letter-spacing: -0.055em;
+  line-height: 0.98;
+  margin: 1.25rem 0 1.5rem;
+  max-width: 10ch;
+}
+
+.home-work-copy .lede {
+  max-width: 44ch;
+}
+
+.home-featured-work {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: grid;
+  gap: 1.25rem;
+  min-width: 0;
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.home-featured-heading h2 {
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  letter-spacing: -0.035em;
+  margin-bottom: 0.75rem;
+  max-width: 20ch;
+}
+
+.home-featured-heading p:not(.eyebrow) {
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 58ch;
+}
+
+.home-featured-work > .project-preview-visual {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  grid-column: 1;
+  grid-row: auto;
+  padding: 0;
+}
+
+.work-index-intro {
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+  padding-top: clamp(2.5rem, 7vw, 5rem);
+}
+
+.work-index-intro + .work-index-projects {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.work-throughline {
+  color: var(--muted);
+  line-height: 1.65;
+  margin: 1rem 0 0;
+  max-width: 62ch;
+}
+
+.work-throughline strong {
+  color: var(--foreground);
+}
+
+.work-throughline a {
+  color: var(--accent-ink);
+  text-underline-offset: 0.16em;
+}
+
+.work-index-intro h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: -0.055em;
+  margin: 1rem 0;
+}
+
+.experience-presentation {
+  min-width: 0;
+}
+
+.experience-presentation-title {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  margin: 0 0 0.5rem;
+}
+
+.experience-presentation-intro {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 0 1rem;
+  max-width: 68ch;
+}
+
+.project-topology-hub :is(h4, h5),
+.project-topology-members > p,
+.pattern-matrix-group :is(h4, h5),
+.experience-contexts :is(h4, h5),
+.experience-source-trace :is(h4, h5) {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.project-topology-hub :is(h4, h5) {
+  color: var(--surface);
+}
+
+.project-topology-members > p {
+  color: var(--muted);
+  font-weight: 700;
+  margin: 0 0 0.5rem;
+}
+
+.project-topology-members,
+.experience-presentation,
+.pattern-matrix-group {
+  min-width: 0;
+}
+
+.project-topology-node,
+.pattern-matrix-item {
+  overflow-wrap: anywhere;
+}
+
+.pattern-matrix-group > p,
+.experience-contexts > p {
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.5;
+  margin: 0.5rem 0 0.75rem;
+}
+
+.pattern-matrix-group ul {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.experience-contexts {
+  border-top: 1px solid var(--border);
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+
+.experience-contexts ul,
+.experience-source-trace ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+}
+
+.experience-contexts li {
+  background: var(--surface-muted);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.4rem 0.65rem;
+}
+
+.experience-source-trace {
+  border-top: 1px solid var(--border);
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+}
+
+.experience-source-trace a {
+  color: var(--accent-ink);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-underline-offset: 0.18em;
+}
+
+.experience-presentation-empty,
+.experience-presentation-unavailable > p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.presentation-fixture-list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.presentation-fixture {
+  border-top: 1px solid var(--border);
+  min-width: 0;
+  padding-top: 1rem;
+}
+
+.presentation-fixture > h3 {
+  font-size: 1.1rem;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.presentation-fixture > p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.presentation-fixture .project-preview-visual {
+  grid-column: 1;
+  grid-row: auto;
+  padding: 1rem;
+}
+
+.artifact-frame[data-artifact-state="redacted"] .artifact-frame-body {
+  background: var(--surface-muted);
+}
+
+@media (max-width: 900px) {
+  .home-work-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .home-work-copy {
+    max-width: 42rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .presentation-fixture-list {
+    grid-template-columns: 1fr;
+  }
+
+  .home-featured-work {
+    padding: 1rem;
+  }
+}
+
