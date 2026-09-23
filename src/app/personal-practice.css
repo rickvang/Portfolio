@@ -1,0 +1,600 @@
+/* Issue #36 pilot: Personal Practice / Working Archive */
+
+.practice-shell {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-practice-sans), Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+.practice-shell :is(h1, h2, h3) {
+  font-family: var(--font-practice-editorial), Georgia, "Times New Roman", serif;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.practice-shell a {
+  text-underline-offset: 0.18em;
+}
+
+.practice-skip-link:focus {
+  z-index: 1000;
+}
+
+.practice-header {
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 1.35rem clamp(1.25rem, 4vw, 3rem);
+}
+
+.practice-wordmark {
+  font-size: 0.78rem;
+  font-weight: 750;
+  letter-spacing: 0.16em;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.practice-nav {
+  align-items: center;
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.8rem);
+}
+
+.practice-nav-link {
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 550;
+  text-decoration: none;
+}
+
+.practice-nav-link:hover,
+.practice-nav-link:focus-visible,
+.practice-nav-link.is-active {
+  color: var(--foreground);
+}
+
+.practice-nav-link.is-active {
+  text-decoration: underline;
+}
+
+.practice-content {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) 5rem;
+}
+
+.practice-content:focus {
+  outline: none;
+}
+
+.practice-shell .public-page {
+  animation: chapter-enter var(--motion-standard) var(--ease-standard) both;
+  margin: 0;
+  max-width: none;
+}
+
+.practice-kicker,
+.practice-work-meta,
+.practice-section-index {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.1em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.practice-home-hero {
+  align-items: end;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 6rem);
+  grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1.08fr);
+  padding: clamp(4.5rem, 9vw, 7.5rem) 0 clamp(3.5rem, 7vw, 5.5rem);
+}
+
+.practice-home-copy h1 {
+  font-size: clamp(3.25rem, 6vw, 4rem);
+  line-height: 1;
+  margin: 1.1rem 0 1.5rem;
+  max-width: 11ch;
+}
+
+.practice-home-copy .lede {
+  font-size: 1.18rem;
+  line-height: 1.62;
+  max-width: 43ch;
+}
+
+.practice-hero-links {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.practice-text-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.practice-hero-artifact {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+}
+
+.practice-hero-artifact-label {
+  align-items: baseline;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.practice-hero-artifact-label span:last-child {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.practice-hero-artifact .project-preview-visual {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+.practice-section {
+  border-top: 1px solid var(--border);
+  padding: clamp(3.25rem, 6vw, 5rem) 0;
+}
+
+.practice-home-hero + .practice-section {
+  border-top: 0;
+}
+
+.practice-section-heading {
+  align-items: end;
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-bottom: 1.75rem;
+}
+
+.practice-section-heading h2 {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  line-height: 1.05;
+  margin: 0.3rem 0 0;
+}
+
+.practice-section-heading > p:last-child {
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 38ch;
+}
+
+.practice-work-index {
+  border-top: 1px solid var(--border);
+}
+
+.practice-work-row {
+  align-items: start;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: clamp(1rem, 3vw, 2rem);
+  grid-template-columns: 2rem minmax(14rem, 0.82fr) minmax(18rem, 1.18fr) 2rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem) 0;
+}
+
+.practice-work-number {
+  color: var(--muted);
+  font-size: 0.72rem;
+  margin: 0.35rem 0 0;
+}
+
+.practice-work-copy h3 {
+  font-size: clamp(1.45rem, 2.2vw, 1.7rem);
+  line-height: 1.12;
+  margin: 0.45rem 0 0.65rem;
+}
+
+.practice-work-copy h3 a {
+  text-decoration: none;
+}
+
+.practice-work-copy > p:last-child {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 42ch;
+}
+
+.practice-work-preview .project-preview-visual {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+.practice-work-preview .project-preview-meta {
+  margin-bottom: 0.75rem;
+}
+
+.practice-work-arrow {
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  display: inline-flex;
+  height: 2rem;
+  justify-content: center;
+  margin-top: 0.15rem;
+  text-decoration: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    transform var(--motion-fast) var(--ease-standard);
+  width: 2rem;
+}
+
+.practice-work-row:hover .practice-work-arrow,
+.practice-work-arrow:focus-visible {
+  border-color: var(--foreground);
+  transform: translateX(0.15rem);
+}
+
+.practice-home-notes .post-grid {
+  display: block;
+}
+
+.practice-home-notes .post-card {
+  align-items: baseline;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  box-shadow: none;
+  display: grid;
+  gap: 0.75rem 1.25rem;
+  grid-template-columns: 6rem minmax(0, 0.8fr) minmax(0, 1.2fr);
+  min-height: 0;
+  padding: 1rem 0;
+}
+
+.practice-home-notes .post-card:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.practice-home-notes .post-card .eyebrow {
+  color: var(--muted);
+  font-size: 0.68rem;
+  grid-column: 1;
+  margin: 0;
+}
+
+.practice-home-notes .post-card h3 {
+  font-family: var(--font-practice-editorial), Georgia, serif;
+  font-size: 1.1rem;
+  grid-column: 2;
+  margin: 0;
+}
+
+.practice-home-notes .post-card > p:last-child {
+  color: var(--muted);
+  font-size: 0.85rem;
+  grid-column: 3;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.practice-practice-grid,
+.practice-about-grid {
+  display: grid;
+  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.practice-practice-copy,
+.practice-about-copy {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 48ch;
+}
+
+.practice-principles {
+  border-top: 1px solid var(--border);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.practice-principles li {
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  padding: 1rem 0;
+}
+
+.practice-principles span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.practice-principles strong {
+  display: block;
+  font-family: var(--font-practice-editorial), Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.practice-principles p {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.practice-about-grid .profile-stats {
+  margin-top: 1.75rem;
+}
+
+/* Case-study pilot */
+
+.practice-case-study {
+  padding-bottom: 4rem;
+}
+
+.practice-case-study-hero {
+  max-width: 54rem;
+  padding: clamp(4rem, 8vw, 7rem) 0 clamp(3rem, 6vw, 5rem);
+}
+
+.practice-back-link {
+  color: var(--muted);
+  display: inline-flex;
+  font-size: 0.82rem;
+  gap: 0.45rem;
+  margin-bottom: 3rem;
+  text-decoration: none;
+}
+
+.practice-case-study-hero h1 {
+  font-size: clamp(3.3rem, 7vw, 5.1rem);
+  line-height: 0.98;
+  margin: 0.8rem 0 1.4rem;
+  max-width: 11ch;
+}
+
+.practice-case-study-hero .lede {
+  font-size: clamp(1.08rem, 2vw, 1.25rem);
+  line-height: 1.65;
+  max-width: 48ch;
+}
+
+.practice-case-study-section {
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  grid-template-columns: 3rem minmax(0, 1fr);
+  padding: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.practice-case-study-section > div {
+  max-width: 54rem;
+}
+
+.practice-case-study-section h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  line-height: 1.08;
+  margin: 0.5rem 0 1.2rem;
+  max-width: 17ch;
+}
+
+.practice-case-study-copy {
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.78;
+  max-width: 62ch;
+}
+
+.practice-case-study-system .experience-presentation {
+  margin-top: 2rem;
+}
+
+.practice-case-study-note {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  margin-top: 1rem;
+  padding: 2rem 0 0 3rem;
+}
+
+.practice-case-study-note p:last-child {
+  line-height: 1.65;
+  max-width: 58ch;
+}
+
+@media (max-width: 900px) {
+  .practice-home-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-hero-artifact {
+    max-width: 42rem;
+  }
+
+  .practice-work-row {
+    grid-template-columns: 2rem minmax(0, 1fr) 2rem;
+  }
+
+  .practice-work-copy {
+    grid-column: 2;
+  }
+
+  .practice-work-preview {
+    grid-column: 2 / 4;
+  }
+
+  .practice-work-arrow {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .practice-practice-grid,
+  .practice-about-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .practice-header {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    padding-block: 1rem;
+  }
+
+  .practice-nav {
+    gap: 1rem;
+    justify-content: space-between;
+    order: 2;
+    width: 100%;
+  }
+
+  .practice-nav-link {
+    font-size: 0.78rem;
+  }
+
+  .practice-content {
+    padding-bottom: 3.5rem;
+  }
+
+  .practice-home-hero {
+    gap: 2rem;
+    padding: 3.25rem 0 2.75rem;
+  }
+
+  .practice-home-copy h1 {
+    font-size: clamp(2.55rem, 12vw, 2.75rem);
+    line-height: 1.04;
+    margin: 0.8rem 0 1rem;
+  }
+
+  .practice-home-copy .lede {
+    font-size: 1rem;
+    line-height: 1.52;
+  }
+
+  .practice-hero-links {
+    margin-top: 1.25rem;
+  }
+
+  .practice-hero-artifact .experience-presentation-intro,
+  .practice-hero-artifact .project-preview-meta {
+    display: none;
+  }
+
+  .practice-section {
+    padding: 2.75rem 0;
+  }
+
+  .practice-section-heading {
+    align-items: start;
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  .practice-section-heading h2 {
+    font-size: 1.8rem;
+  }
+
+  .practice-work-row {
+    gap: 0.8rem;
+    grid-template-columns: 1.6rem minmax(0, 1fr) 2rem;
+    padding: 1.25rem 0;
+  }
+
+  .practice-work-preview {
+    display: none;
+  }
+
+  .practice-work-copy h3 {
+    font-size: 1.25rem;
+    margin: 0.25rem 0 0.45rem;
+  }
+
+  .practice-work-copy > p:last-child {
+    font-size: 0.86rem;
+  }
+
+  .practice-work-meta {
+    font-size: 0.64rem;
+  }
+
+  .practice-home-notes .post-card {
+    align-items: start;
+    gap: 0.25rem 0.8rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .practice-home-notes .post-card .eyebrow {
+    grid-column: 1;
+  }
+
+  .practice-home-notes .post-card h3 {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .practice-home-notes .post-card > p:last-child {
+    display: none;
+  }
+
+  .practice-case-study-hero {
+    padding: 3.25rem 0 2.75rem;
+  }
+
+  .practice-back-link {
+    margin-bottom: 2rem;
+  }
+
+  .practice-case-study-hero h1 {
+    font-size: 2.75rem;
+    line-height: 1;
+  }
+
+  .practice-case-study-section {
+    gap: 0.75rem;
+    grid-template-columns: 1fr;
+    padding: 2.75rem 0;
+  }
+
+  .practice-section-index {
+    margin-bottom: 0.25rem;
+  }
+
+  .practice-case-study-section h2 {
+    font-size: 1.9rem;
+  }
+
+  .practice-case-study-note {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .practice-shell .public-page {
+    animation: none;
+  }
+
+  .practice-work-arrow {
+    transition: none;
+  }
+}
