@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 
 import { env } from "@/lib/env";
 
@@ -12,11 +12,6 @@ const inter = Inter({
   variable: "--font-practice-sans",
 });
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-practice-editorial",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: "Rick Vang",
@@ -26,7 +21,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${fraunces.variable}`}>{children}</body>
+      <body className={inter.variable}>{children}</body>
     </html>
   );
 }

@@ -6,6 +6,8 @@ import { noteHref } from "@/lib/public-routes";
 type PostListProps = {
   posts: PostListItem[];
   state?: HarnessState;
+  showStatus?: boolean;
+  headingLevel?: 2 | 3;
 };
 
 type PostListItem = {
@@ -16,12 +18,18 @@ type PostListItem = {
   status: "draft" | "published" | "archived";
 };
 
-export function PostList({ posts, state = "success" }: PostListProps) {
+export function PostList({
+  posts,
+  state = "success",
+  showStatus = false,
+  headingLevel = 3,
+}: PostListProps) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   if (state === "loading") {
     return (
       <div aria-busy="true" aria-label="Loading posts" className="state-card" data-testid="posts-state">
         <span aria-hidden="true" className="spinner" />
-        <p>Loading posts…</p>
+        <p>Loading notes…</p>
       </div>
     );
   }
@@ -29,8 +37,8 @@ export function PostList({ posts, state = "success" }: PostListProps) {
   if (state === "error") {
     return (
       <div className="state-card state-card-error" data-testid="posts-state" role="alert">
-        <p className="state-card-title">Posts could not load.</p>
-        <p>Use the retry path once the Supabase adapter is connected.</p>
+        <p className="state-card-title">Notes could not load.</p>
+        <p>Please try again later.</p>
       </div>
     );
   }
@@ -38,8 +46,7 @@ export function PostList({ posts, state = "success" }: PostListProps) {
   if (posts.length === 0) {
     return (
       <div className="state-card" data-testid="posts-state">
-        <p className="state-card-title">No posts yet.</p>
-        <p>Create the first approved post in the content workflow.</p>
+        <p className="state-card-title">No notes published yet.</p>
       </div>
     );
   }
@@ -48,10 +55,10 @@ export function PostList({ posts, state = "success" }: PostListProps) {
     <div aria-label="Posts" className="post-grid" data-testid="posts-state">
       {posts.map((post) => (
         <article className="post-card" key={post.id}>
-          <p className="eyebrow">{post.status}</p>
-          <h3>
+          {showStatus && <p className="eyebrow">{post.status}</p>}
+          <Heading>
             <Link href={noteHref(post.slug)}>{post.title}</Link>
-          </h3>
+          </Heading>
           <p>{post.excerpt ?? "No excerpt yet."}</p>
         </article>
       ))}

@@ -18,18 +18,20 @@ The current system is CSS-variable based. Tailwind and a third-party component l
 
 ## Approved pilot — Personal Practice / Working Archive
 
-Issue #36 introduces an intentionally isolated public pilot on **Home** and **Multi Product Integrations**. It does not yet replace the entire public system.
+Issue #36 established the initial Personal Practice / Working Archive pilot on **Home** and **Multi Product Integrations**. Issue #39 refines that pilot after rendered review.
 
-- The pilot uses a quiet horizontal header instead of the persistent charcoal rail.
-- Fraunces is the authored/display face; Inter is the body and interface face. They are loaded through `next/font` and applied only inside the pilot shell.
-- The narrow Home composition follows a Working Index: identity, source-backed project structure, compact selected-work rows, notes, practice, then About/contact.
-- Selected Work is treated as an index/list rather than a generic card grid. Source-backed presentations may appear as supporting artifacts on wider layouts; narrow rows stay text-first until approved media exists.
+- Desktop pilot routes use a **persistent light/warm left rail** for orientation. The rail should stay quiet enough that the work remains visually primary. Below the shell breakpoint it becomes a compact sticky top navigation.
+- **Inter is the only pilot typeface.** Hierarchy comes from weight, scale, spacing, and composition; the pilot no longer uses a display serif.
+- Home follows a strict evidence-first order: **Intro → Selected Work → How I work → optional Notes → About / Contact**.
+- Selected Work remains an index/list rather than a generic card grid.
+- “How I work” is compact supporting context, not a second manifesto competing with project evidence.
+- Notes appear on Home only when genuine public authored posts exist. Deterministic fixture posts belong to the local/test harness and must never be used as public publication fallback content.
 - Authentic/source-backed project evidence remains authoritative. Generated lifestyle scenes and unapproved legacy Framer media are not evidence and must not be presented as project artifacts.
-- Multi Product Integrations uses a source-backed editorial sequence built from the approved Overview, Exploration, System / practice, and Outcomes sections. Missing role, reflection, metrics, or media are omitted rather than inferred.
+- Multi Product Integrations keeps the source-backed editorial sequence introduced in Issue #36. Missing role, reflection, metrics, or media remain omitted rather than inferred.
 - The existing publication gate, experience-profile resolution, source traces, client-IP disclaimer, keyboard/focus contract, reduced-motion behavior, and harness boundaries remain authoritative.
-- Non-pilot public routes continue using the existing rail system until the pilot is reviewed and an explicit rollout decision is made.
+- Non-pilot public routes continue using the existing rail system until an explicit rollout decision is made.
 
-The pilot is successful only if the rendered Home and Multi Product Integrations experience preserves the approved evidence while feeling personal, authored, and easy to scan at desktop and narrow widths. Review the pilot before propagating its typography or shell to other public routes.
+The refined pilot is successful only if a reader can orient quickly, reach real work before biography or secondary content dominates, and distinguish authored portfolio content from test fixtures or internal workflow state.
 
 ## System ownership
 
