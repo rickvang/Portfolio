@@ -5,11 +5,11 @@ import { workHref } from "@/lib/public-routes";
 export function WorkThroughline() {
   return (
     <p className="work-throughline">
-      <strong>Shared thread:</strong> system design at two scopes.{" "}
+      <strong>Across these separate projects, the common thread is systems design:</strong>{" "}
       <Link href={workHref("multi-product-integrations")}>Multi Product Integrations</Link>{" "}
-      connects product surfaces and workflows within a shared framework;{" "}
+      connects workflows across a fragmented product ecosystem;{" "}
       <Link href={workHref("design-systems")}>Design Systems</Link>{" "}
-      organizes shared foundations, governance, and reusable patterns across contexts.
+      gives teams shared, governed foundations for consistent patterns across distinct contexts.
     </p>
   );
 }
