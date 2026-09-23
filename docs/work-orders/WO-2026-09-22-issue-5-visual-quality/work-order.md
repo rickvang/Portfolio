@@ -6,7 +6,7 @@
 - Status: active
 - Created: 2026-09-22
 - Repository: `rickvang/Portfolio`
-- Branch: `codex/issue-5-visual-quality-rubric`, based on open PR #31 head `5cb26d1`
+- Branch: `codex/issue-5-visual-quality-rubric`, based on `main` after PR #31 merged (base `9bbb820`).
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/5
 - Related reusable-method issue: https://github.com/rickvang/SkillRepo/issues/9
 - Current Work: `CW-42`
@@ -27,7 +27,8 @@ Formalize the Portfolio-specific visual-quality rubric and review workflow in `D
 - Issue #5 excludes a redesign, production publishing/deployment, new component or design-tool dependencies, and copied Persona-Library or Operating Pack content.
 - Do not create or modify Persona-Library records or Operating Pack files. Use those repositories only for read-only comparison.
 - Do not introduce a numerical beauty/quality score or an automatic theme/feeling-to-layout rule.
-- PR #31 remains an open draft with a cold-reader review pending. This work is stacked on its current head and must not be merged or deployed as part of Issue #30.
+- Portfolio PR #31 merged to `main` on 2026-09-23. Its model-based cold-reader evaluation is complete and remains distinct from human usability research.
+- The prior instruction to keep PR #32 draft/unmerged was superseded by the requester's explicit merge authorization on 2026-09-23. Issue #5 remains open unless separately closed; PR #32 uses `Refs #5`, not a closing keyword.
 
 ## Scope
 
@@ -51,10 +52,9 @@ The comparison found a gap for a portable method connecting evidence, thematic w
 
 ## Evidence and baseline
 
-- Portfolio #30's seven-layer translation and both source-backed examples live in `DESIGN.md` and the linked Issue #30 Work Order. Its current state is open PR #31 at head `5cb26d1`.
-- PR #31's latest CI run passed and generated a `visual-verification-captures` artifact. The artifact was not opened during this source-level review.
-- The independent cold-reader evaluation for Issue #30 remains pending. Feeling statements remain hypotheses.
-- The initial review record is [initial-visual-quality-review.md](initial-visual-quality-review.md). It inspects source structure, realistic content, design rules, and state boundaries; it does not claim rendered visual sign-off.
+- Portfolio #30's seven-layer translation and both source-backed examples merged to `main` through PR #31 (merge `9bbb8207b6f2d5140180c5be4a82e468817c4a56`).
+- The independent Issue #30 cold-reader evaluation is complete as a model-based review. It found the throughline understandable and the projects distinguishable, while concrete examples/outcomes remain abstract; source media remains unapproved and outcomes are unquantified. Feeling statements remain hypotheses.
+- The initial review record is [initial-visual-quality-review.md](initial-visual-quality-review.md); it now includes a rendered supplement for Home and Work/`ProjectPreview` at 1440×1000 and 390×844, with explicit evidence limits.
 
 ## Completion boundary
 
@@ -62,9 +62,9 @@ Complete when `DESIGN.md` contains the Portfolio-specific rubric, review record,
 
 ## Current phase and next action
 
-- Phase: local implementation complete; repository review pending.
-- Blocker: the Skill Creator validator could not start because the bundled Python runtime does not include PyYAML. Manual front-matter, whitespace, and local-link checks passed.
-- Next action: refresh the issue-specific review PRs' checks and feedback, then record any required fixes. Keep Portfolio PR #31 and its dependent #5 PR in draft; do not merge or deploy as part of this work.
+- Phase: Portfolio rubric and rendered review complete; final PR #32 preflight and merge pending.
+- Validation limitation: the SkillRepo Skill Creator validator could not start because its bundled Python runtime lacked PyYAML; manual front-matter, whitespace, and local-link checks passed before PR #10 merged.
+- Next action: refresh PR #32 head/base, checks, reviews, unresolved threads, and linked-issue effects; then merge on `main` as authorized. Leave Issue #5 open unless separately authorized for closure.
 
 ## Validation record
 
@@ -72,4 +72,5 @@ Complete when `DESIGN.md` contains the Portfolio-specific rubric, review record,
 - Portfolio documentation diff check: `git diff --check` passed; only `DESIGN.md` is modified in the issue-5 source diff, with the Work Order and initial review as new documents.
 - SkillRepo package documentation check: required `name`/`description` front matter, no trailing whitespace, and all relative Markdown links verified across five package documents. The packaged Skill Creator `quick_validate.py` could not run (`ModuleNotFoundError: No module named 'yaml'`).
 - Portfolio `pnpm verify` was not run. Its script includes lint, typecheck, Vitest, and build; these changes are documentation-only, and tests were not requested.
-- Rendered visual sign-off remains unclaimed: PR #31's screenshot artifact was not opened, and the independent cold-reader review remains pending.
+- Rendered review completed on the PR #32 preview: Home and Work/`ProjectPreview` at 1440×1000 and 390×844. No 390px horizontal overflow; mobile navigation opens/closes with Escape and returns focus. The first mobile preview is approximately 1,155 CSS px tall. Sample token contrast values and all review limits are recorded in the linked review file.
+- Evidence limits: source images remain deferred; no tablet, zoom, reduced-motion, assistive-technology, Work-console, or human usability review is claimed. The model-based #30 cold read is complete and is not human testing.
