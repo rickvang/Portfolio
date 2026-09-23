@@ -1,5 +1,6 @@
-import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
 import { ExperiencePresentation } from "@/components/experience-presentation";
+import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
+import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
 
 type CaseStudyTemplateProps = {
   caseStudy: CaseStudy;
@@ -7,6 +8,10 @@ type CaseStudyTemplateProps = {
 };
 
 export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTemplateProps) {
+  if (mode === "public" && caseStudy.slug === "multi-product-integrations") {
+    return <PersonalPracticeCaseStudy caseStudy={caseStudy} />;
+  }
+
   const reviewMode = mode === "review";
   const chapters = getCaseStudyChapters(caseStudy);
   const statusLabel =
