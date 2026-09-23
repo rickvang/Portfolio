@@ -32,19 +32,11 @@ describe("case-study content contract", () => {
     ]);
   });
 
-  it("keeps authored editorial case studies review-ready but unpublished", () => {
-    expect(authoredCaseStudyDrafts.map((caseStudy) => caseStudy.slug)).toEqual([
-      "ai-systems",
-      "ui-design-practices",
-    ]);
-    expect(authoredCaseStudyDrafts.every((caseStudy) => caseStudy.reviewStatus === "review-ready")).toBe(true);
+  it("keeps explicitly approved authored case studies public through the shared gate", () => {
     expect(caseStudyCatalog).toHaveLength(4);
-    expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudyDrafts[0]);
-    expect(getApprovedCaseStudyBySlug("ai-systems")).toBeUndefined();
-    expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
-      "multi-product-integrations",
-      "design-systems",
-    ]);
+    expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
+    expect(getApprovedCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
+    expect(getApprovedCaseStudyBySlug("ui-design-practices")).toEqual(authoredCaseStudies[1]);
   });
 
   it("groups evidence-backed sections into the reusable chapter model", () => {
@@ -81,7 +73,7 @@ describe("case-study content contract", () => {
   });
 
   it("keeps authored case-study evidence resolvable", () => {
-    for (const caseStudy of authoredCaseStudyDrafts) {
+    for (const caseStudy of authoredCaseStudies) {
       const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
 
       for (const section of caseStudy.sections) {
