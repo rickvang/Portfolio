@@ -8,7 +8,16 @@ type CaseStudyTemplateProps = {
 export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTemplateProps) {
   const reviewMode = mode === "review";
   const chapters = getCaseStudyChapters(caseStudy);
-  const statusLabel = caseStudy.reviewStatus === "review-ready" ? "Review-ready content." : "Draft review surface.";
+  const statusLabel =
+    caseStudy.reviewStatus === "approved"
+      ? "Approved content."
+      : caseStudy.reviewStatus === "review-ready"
+        ? "Review-ready content."
+        : "Draft review surface.";
+  const statusMessage =
+    caseStudy.reviewStatus === "approved"
+      ? "This source-backed content is eligible for public rendering."
+      : "This content is not eligible for public rendering until its status is explicitly changed to approved.";
 
   return (
     <article
@@ -18,8 +27,7 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
     >
       {reviewMode && (
         <div className="case-study-review-banner" role="note">
-          <strong>{statusLabel}</strong> This content is not eligible for public rendering until its status is
-          explicitly changed to approved.
+          <strong>{statusLabel}</strong> {statusMessage}
         </div>
       )}
 

@@ -134,7 +134,7 @@ function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
     title: project.title,
     summary: project.summary,
     category: project.category,
-    reviewStatus: importedContent.source.reviewStatus,
+    reviewStatus: project.reviewStatus,
     clientIpDisclaimer: importedContent.source.clientIpDisclaimer,
     sources: [
       {
@@ -150,32 +150,32 @@ function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
         kind: "overview",
         title: "Overview",
         body: project.summary,
-        evidence: evidence("Imported summary; remains draft until reviewed."),
+        evidence: evidence("Imported summary from the approved public source."),
       },
       {
         kind: "exploration",
         title: "Exploration",
         body: project.discovery,
-        evidence: evidence("Imported discovery material; remains draft until reviewed."),
+        evidence: evidence("Imported discovery material from the approved public source."),
       },
       {
         kind: "system-practice",
         title: "System / practice",
         items: project.solutionSections,
-        evidence: evidence("Imported solution sections; remains draft until reviewed."),
+        evidence: evidence("Imported solution sections from the approved public source."),
       },
       {
         kind: "outcomes",
         title: "Outcomes",
         body: project.outcomes,
-        evidence: evidence("Imported outcomes; remains draft until reviewed."),
+        evidence: evidence("Imported outcomes from the approved public source."),
       },
     ],
     curationNotes: project.curationNotes,
   });
 }
 
-export const importedCaseStudyDrafts = importedContent.projects.map(importedProjectToCaseStudy);
+export const importedCaseStudies = importedContent.projects.map(importedProjectToCaseStudy);
 
 const authoredCaseStudyDraftsSchema = z
   .array(caseStudySchema)
@@ -187,7 +187,7 @@ const authoredCaseStudyDraftsSchema = z
 export const authoredCaseStudyDrafts = authoredCaseStudyDraftsSchema.parse(authoredCaseStudySource);
 
 export const caseStudyCatalog: CaseStudy[] = [
-  ...importedCaseStudyDrafts,
+  ...importedCaseStudies,
   ...authoredCaseStudyDrafts,
 ];
 
@@ -203,7 +203,6 @@ export function getCaseStudyBySlug(
 ): CaseStudy | undefined {
   return caseStudies.find((caseStudy) => caseStudy.slug === slug);
 }
-
 
 export function getApprovedCaseStudyBySlug(
   slug: string,

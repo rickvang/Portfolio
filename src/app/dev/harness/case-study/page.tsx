@@ -30,8 +30,7 @@ export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHa
           <p className="eyebrow">Local-only case-study verification</p>
           <h1>Case-study harness</h1>
           <p className="lede">
-            The shared detail renderer with draft provenance and evidence visible for deterministic visual,
-            responsive, long-content, and accessibility checks.
+            The shared detail renderer with review provenance and evidence visible for deterministic visual, responsive, long-content, and accessibility checks.
           </p>
         </div>
         <a className="button button-secondary" href="/dev/harness">
@@ -41,7 +40,7 @@ export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHa
 
       <section className="harness-section harness-section-single" aria-labelledby="case-study-harness-heading">
         <div>
-          <p className="eyebrow">Draft fixture</p>
+          <p className="eyebrow">{caseStudy.reviewStatus} fixture</p>
           <h2 id="case-study-harness-heading">{caseStudy.title}</h2>
         </div>
         <CaseStudyTemplate caseStudy={caseStudy} mode="review" />

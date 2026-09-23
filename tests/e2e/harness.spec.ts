@@ -36,12 +36,13 @@ test("contact form exposes success and disabled interaction states", async ({ pa
   await expect(page.getByTestId("contact-form").getByRole("button", { name: "Send message" })).toBeDisabled();
 });
 
-test("harness previews the attributed public-source draft", async ({ page }) => {
+test("harness previews the attributed approved public source", async ({ page }) => {
   await page.goto("/dev/harness");
 
   const preview = page.getByTestId("imported-content-preview");
   await expect(preview).toBeVisible();
-  await expect(preview).toContainText("Review status: draft");
+  await expect(preview).toContainText("Profile status: approved");
+  await expect(preview).toContainText("Source capture: reviewed");
   await expect(preview).toContainText("Multi Product Integrations");
   await expect(preview).toContainText("Design Systems");
   await expect(preview.getByRole("link", { name: "Review the captured source" })).toHaveAttribute(
@@ -50,15 +51,14 @@ test("harness previews the attributed public-source draft", async ({ page }) => 
   );
 });
 
-
-test("harness exercises both imported drafts through the shared case-study template", async ({ page }) => {
+test("harness exercises approved imported work through the shared case-study template", async ({ page }) => {
   await page.goto("/dev/harness");
 
   const integrations = page.getByTestId("case-study-review-multi-product-integrations");
   const designSystems = page.getByTestId("case-study-review-design-systems");
 
-  await expect(integrations).toHaveAttribute("data-case-study-status", "draft");
-  await expect(designSystems).toHaveAttribute("data-case-study-status", "draft");
+  await expect(integrations).toHaveAttribute("data-case-study-status", "approved");
+  await expect(designSystems).toHaveAttribute("data-case-study-status", "approved");
 
   await expect(integrations.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(designSystems.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
@@ -67,10 +67,11 @@ test("harness exercises both imported drafts through the shared case-study templ
   await expect(integrations.getByRole("navigation", { name: "Case study chapters" })).toContainText("Outcomes");
   await expect(designSystems.getByText("Lightweight governance", { exact: true })).toBeVisible();
 
+  await expect(integrations).toContainText("Approved content.");
+  await expect(integrations).toContainText("eligible for public rendering");
   await expect(integrations.getByText(/client intellectual property/i)).toBeVisible();
   await expect(designSystems.getByText(/client intellectual property/i)).toBeVisible();
 });
-
 
 test("harness exposes authored editorial drafts without publishing them", async ({ page }) => {
   await page.goto("/dev/harness");
@@ -99,7 +100,6 @@ test("harness exposes authored editorial drafts without publishing them", async 
   await expect(article).toContainText("Synthetic persona responses are explicitly not framed as observed user research.");
 });
 
-
 test("shell harness exposes deterministic active-route state", async ({ page }) => {
   await page.goto("/dev/harness/shell?route=work");
 
@@ -119,7 +119,6 @@ test("case-study harness can deep-link to an authored draft", async ({ page }) =
   await expect(caseStudy.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
   await expect(caseStudy).toContainText("This content is not eligible for public rendering");
 });
-
 
 test("destructive post action requires explicit confirmation", async ({ page }) => {
   await page.goto("/dev/harness");

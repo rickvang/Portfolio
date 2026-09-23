@@ -2,6 +2,8 @@ import { z } from "zod";
 
 import importedContentSource from "../../content/imports/rickvang.com.json";
 
+const importedReviewStatusSchema = z.enum(["draft", "approved"]);
+
 const sourcePageSchema = z.object({
   url: z.string().url(),
   role: z.string().min(1),
@@ -23,13 +25,14 @@ const importedProjectSchema = z.object({
   outcomes: z.string().min(1),
   solutionSections: z.array(solutionSectionSchema).min(1),
   curationNotes: z.array(z.string().min(1)).min(1),
+  reviewStatus: importedReviewStatusSchema,
 });
 
 const importedContentSchema = z.object({
   source: z.object({
     site: z.literal("rickvang.com"),
     capturedAt: z.string().date(),
-    reviewStatus: z.literal("draft"),
+    captureStatus: z.enum(["captured", "reviewed"]),
     clientIpDisclaimer: z.string().min(1),
     sourcePages: z.array(sourcePageSchema).min(1),
   }),
@@ -45,6 +48,7 @@ const importedContentSchema = z.object({
         label: z.string().min(1),
       }),
     ).min(1),
+    reviewStatus: importedReviewStatusSchema,
   }),
   projects: z.array(importedProjectSchema).min(1),
 });
@@ -53,3 +57,9 @@ export const importedContent = importedContentSchema.parse(importedContentSource
 
 export type ImportedContent = z.infer<typeof importedContentSchema>;
 export type ImportedProject = ImportedContent["projects"][number];
+
+export function getApprovedImportedProfile(
+  content: ImportedContent = importedContent,
+): ImportedContent["profile"] | undefined {
+  return content.profile.reviewStatus === "approved" ? content.profile : undefined;
+}

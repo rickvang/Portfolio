@@ -116,7 +116,7 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
 
       <section className="harness-section" aria-labelledby="imported-content-section-heading">
         <div>
-          <p className="eyebrow">Draft content boundary</p>
+          <p className="eyebrow">Imported content boundary</p>
           <h2 id="imported-content-section-heading">Imported source review</h2>
         </div>
         <ImportedContentPreview content={importedContent} />
@@ -125,10 +125,9 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
       <section className="harness-section" aria-labelledby="case-study-template-heading">
         <div>
           <p className="eyebrow">Shared case-study template</p>
-          <h2 id="case-study-template-heading">Draft case-study review</h2>
+          <h2 id="case-study-template-heading">Case-study content review</h2>
           <p className="lede">
-            Imported and authored drafts use the same renderer intended for approved public case studies, with
-            review-only provenance and evidence controls added locally.
+            Approved imported work and review-ready authored work use the same renderer, with provenance and evidence controls added only on the local review surface.
           </p>
         </div>
         <div className="case-study-review-stack" data-testid="case-study-review-stack">

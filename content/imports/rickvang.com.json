@@ -2,7 +2,7 @@
   "source": {
     "site": "rickvang.com",
     "capturedAt": "2026-09-22",
-    "reviewStatus": "draft",
+    "captureStatus": "reviewed",
     "clientIpDisclaimer": "The work displayed here shows my methodology and interface design strategies with real customers, but may differ from what was implemented due to project constraints. The contents have also been modified to protect client intellectual property.",
     "sourcePages": [
       {
@@ -28,6 +28,7 @@
     ]
   },
   "profile": {
+    "reviewStatus": "approved",
     "eyebrow": "Available for Work",
     "headline": "Hi, I'm Rick.",
     "summary": "I'm a product design leader driven by creating systems that give people tools to stop fighting fires so they can do the things they're passionate about.",
@@ -84,7 +85,8 @@
         "Normalized the source category typo from 'Enerprise B2B' to 'Enterprise B2B'.",
         "Kept the case study at the public, client-protective level of detail from the source page.",
         "Source images remain deferred until asset ownership and hosting are reviewed."
-      ]
+      ],
+      "reviewStatus": "approved"
     },
     {
       "id": "design-systems",
@@ -124,7 +126,8 @@
       "curationNotes": [
         "Kept governance, foundations, density, templates, and patterns as separate content concepts for future structured rendering.",
         "Source images remain deferred until asset ownership and hosting are reviewed."
-      ]
+      ],
+      "reviewStatus": "approved"
     }
   ]
 }
