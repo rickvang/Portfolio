@@ -259,7 +259,7 @@ h3 {
   min-height: 12rem;
 }
 
-.post-card h3 a {
+.post-card :is(h2, h3) a {
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.15em;
 }
