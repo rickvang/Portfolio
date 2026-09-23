@@ -5,7 +5,7 @@
 - Preceding surface work: [#28 — work-led surface rebuild](https://github.com/rickvang/Portfolio/issues/28)
 - Input source: approved project copy imported from [rickvang.com](https://www.rickvang.com/projects)
 - Source capture: `content/imports/rickvang.com.json`, captured and reviewed 2026-09-22; normalized authored record: `content/drafts/case-studies.json`
-- Status: authored interpretation revised after an independent model-based cold-reader review; responsive re-read remains pending.
+- Status: post-revision model-based cold read completed 2026-09-23; the shared relation and project distinction are legible. Human usability research remains unperformed.
 
 This crosswalk preserves the boundary between source evidence and design interpretation. The observed-work and visitor-response rows below are interpretations or hypotheses, not user research, measured project outcomes, or client-approved interface descriptions. The source images remain deferred because the imported record has no useful approval, caption, or alt-text metadata for reuse.
 
@@ -61,10 +61,34 @@ A separate cloud reviewer first inspected the public preview as a first-time vis
 - **Design Systems:** Governance, shared foundations, density, and patterns were identifiable, but the page offered no examples to compare. It correctly avoided claiming exact density values.
 - **Evidence limits:** The written sections provide source-backed accounts of personas, workflows, workshops, testing, governance, and foundations. Original interface media is not approved for reuse, and the source provides qualitative outcome claims without measurements.
 
-### Revision and remaining gates
+### Revision and close-out status
 
 - This revision adds an explicit shared thread on Home and Work, shortens the Work introduction-to-project transition, and gives the shared presentation headings levels appropriate to their page context.
-- Public media copy now explains that the diagrams summarize approved text and do not reproduce original screens. No source image, fabricated interface, metric, or causal claim was added.
+- Public media copy explains that the diagrams summarize approved text and do not reproduce original screens. No source image, fabricated interface, metric, or causal claim was added.
 - The source's unquantified outcomes and absent approved media remain evidence boundaries; resolving them requires new approved source material.
-- The Menu interaction remains unverified by this cold read. Existing responsive browser coverage exercises the mobile drawer, but it must be rerun against the revised PR before relying on it.
-- Repeat the cold read on the updated preview to check whether the shared thread is now understood. Keep the result qualitative and keep Issue #30 open until the remaining verification gates pass.
+- The post-revision reader check below confirms the shared thread and main distinction without profile metadata. No further copy change is needed for the issue's reader-understanding criterion.
+- The mobile menu opens and dismisses on the updated preview. A separate responsive check found no horizontal overflow at 400×849 on Home and /work.
+- Keep Issue #30 open and PR #31 draft under the existing review boundary; do not merge or deploy to production.
+
+## Post-revision independent cold-reader review — 2026-09-23
+
+A separate model-based reviewer read the public interface before consulting Issue #30, source profiles, or earlier review notes. It inspected Home and /work at **1363×936 desktop** and **400×849 mobile**. This was an independent qualitative model read, not human usability research or evidence of population-level comprehension.
+
+### First interpretation
+
+The reviewer could explain the relationship and the main difference, especially on /work. The visible wording that shaped that reading was:
+
+> Across these separate projects, the common thread is systems design:
+
+- Multi Product Integrations “connects workflows across a fragmented product ecosystem.”
+- Design Systems “gives teams shared, governed foundations for consistent patterns across distinct contexts.”
+
+Home repeats this framing; /work adds “How the product parts relate” for integrations and “Governance, foundations, and use patterns” for Design Systems, with named groups and contexts.
+
+### Interaction and visual-check limits
+
+The mobile menu opened as a navigation dialog with Home, Work, Notes, About, and Contact; dismissing it restored focus to the menu toggle. The reviewer verified both requested viewport sizes and inspected accessible page snapshots. The DevTools screenshot endpoint timed out, so the independent review did not include a complete screenshot-based visual pass. A separate responsive check on the same updated preview found no horizontal overflow at 400×849 on Home and /work.
+
+### Remaining ambiguity and evidence limits
+
+The category-level distinction is understandable, but the practical boundary between “framework” and “design system” remains abstract. The copy does not give concrete day-to-day users, before/after examples, or quantified outcomes. “Text-derived view” also makes the presentation feel like a structured evidence view rather than a conventional image-led case study. Original source media is not approved for reuse, and the approved narratives contain qualitative outcome claims without measurements. These gaps remain visible constraints; they do not justify inventing screens, metrics, or emotional results.

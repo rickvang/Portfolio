@@ -4,9 +4,9 @@
 
 - Work-order ID: WO-2026-09-22-issue-28-work-led-surface
 - Title: Portfolio work-to-experience translation and work-led surfaces
-- Status: revision-in-progress
+- Status: close-out review complete; stacked draft PR remains open
 - Created: 2026-09-22
-- Last updated: 2026-09-22 (cold-reader review recorded; PR #31 revisions in progress)
+- Last updated: 2026-09-23 (post-revision cold read and responsive/menu review recorded; PR #31 remains draft)
 - Requester: Riley / repository owner
 - Current owner: Riley Morgan / Codex implementation for Current Work CW-39
 - Request mode: update and prototype
@@ -14,7 +14,7 @@
 - Change mode and domain: source-backed UX translation, public portfolio UI, typed presentation boundary, harness, and verification
 - Reconciliation requirement: reconcile Current Work CW-39 and issue #30 with the final branch, draft PR, work packet, and validation results
 - Explicit authorization and target: implement Issue #30 in `rickvang/Portfolio`, stacked on the current Issue #29 head; publish a draft PR and update Issue #30 with artifact links. Do not merge, deploy, publish to production, or close the issue.
-- Stopping condition: locally verified implementation and evidence artifacts are linked from an open stacked draft PR and Issue #30; document any remaining human evaluation gate.
+- Stopping condition: implementation, evidence, reader review, and checks are reviewable through the open stacked draft PR and Issue #30; document that human usability research is not claimed.
 
 ## Artifact home and index
 
@@ -59,7 +59,7 @@
 - Selected Personas and Skills: Portfolio UX/UI/frontend route; Persona-Library `component-builder` practice applied for semantic pattern and interaction specification
 - Selected reference IDs and examples: Portfolio Issues #28 and #30; approved import at `content/imports/rickvang.com.json`; UX Work Order Template in Persona-Library
 - Minimum gates: approval/evidence validation, semantic and keyboard access, responsive wrapping, fallback coverage, unit/browser verification, no media fabrication
-- Conditional gates: source media/IP review if any source image is added; independent cold-reader check before hypotheses can be treated as supported
+- Conditional gates: source-media/IP review remains required before any source image is added; the model-based cold read supports the visible structural explanation only, not human response or feeling hypotheses.
 - Gates skipped with reason: formal participant research is outside this portfolio-page change and no participant access is provided; use source review plus implementation inspection and keep qualitative hypotheses provisional
 - Question that would materially change the route: whether approved media with usable captions/alt text and reuse permissions becomes available
 
@@ -109,7 +109,7 @@ Trace approved facts through a visitor goal, interpreted work qualities, interfa
 - Drafts remain unavailable on public routes; incomplete approved profiles fail to source-ordered text.
 - The public Home and Work surfaces prioritize approved work, and detail includes source-section trace links.
 - Responsive/keyboard/reduced-motion behavior and thin/long content have deterministic harness/browser coverage.
-- Human cold-reader check is recorded as pending until an independent reader actually completes it.
+- Independent model-based cold-reader review completed 2026-09-23; human/user response and feeling hypotheses remain unvalidated.
 
 ### Known constraints
 
@@ -124,14 +124,14 @@ Trace approved facts through a visitor goal, interpreted work qualities, interfa
 | E-001 | Approved Integration overview, exploration, system items, and outcomes | sourced | `content/imports/rickvang.com.json` and normalized case-study record | No numeric outcome values or directional task order. |
 | E-002 | Approved Design Systems exploration and system items | sourced | same import and normalized record | No exact density measurements or rollout order. |
 | E-003 | Existing curation/media review notes | sourced | Portfolio issue #28 and imported case-study record | Source images remain deferred; no usable alt-text/caption data. |
-| E-004 | Candidate presentation semantics and responsive behavior | recommendation | `DESIGN.md` and `experience-crosswalk.md` | Must be checked against implementation and browser suite. |
+| E-004 | Candidate presentation semantics and responsive behavior | recommendation | `DESIGN.md` and `experience-crosswalk.md` | Checked against implementation and browser suite; independent reader result is recorded in Section 12. |
 | E-005 | Synthetic thin/dense fallback examples | synthetic_assumption | `fixtures/seed.json` and local harness | Tests rendering only; not client work or participant evidence. |
 
 ### Unknowns and validation questions
 
 | Unknown ID | Unknown | Why it matters | Next validation method | Owner |
 | --- | --- | --- | --- | --- |
-| U-001 | Do cold readers infer the intended relationship without unsupported order or density claims? | Feeling hypotheses and pattern clarity cannot be established from code alone. | Independent reader follows the script in `experience-crosswalk.md`; capture interpretation and confusion verbatim. | Requester/reviewer |
+| U-001 | Does the visible interface communicate the relationship without implying unsupported order or density? | One model-based reader can assess the visible explanation but cannot establish real-user prevalence or feelings. | Independent model-based review completed 2026-09-23; findings and limits are in `experience-crosswalk.md`. Human research was not conducted. | Riley / Codex |
 | U-002 | Are original source images cleared for reuse and sufficiently described? | Client IP and accessibility; current image content must stay absent. | Obtain explicit reuse approval and metadata through a future authorized content task. | Repository owner |
 
 ## 2. Contextual workflow and tool discovery
@@ -140,8 +140,8 @@ Trace approved facts through a visitor goal, interpreted work qualities, interfa
 
 - Why contextual discovery is or is not warranted: no unfamiliar user workflow is being introduced; this is a portfolio reading experience over approved historical work. Source inspection is appropriate for claims, but it cannot establish visitor comprehension.
 - Target role or segment: prospective collaborator/hiring reader, assumed from portfolio purpose and not validated.
-- Real-user research available: no.
-- Proposed session, interview, observation, or usability task: one independent cold reader inspects the preview and detail views without reading this profile, then explains the relationship and any apparent order.
+- Real-user research available: no; one model-based cold read is recorded, not user research.
+- Evaluation performed: one independent model-based first read of Home and Work at 1363×936 and 400×849, plus mobile-menu open/dismiss. The exact interpretation and limits are in `experience-crosswalk.md`; this was not a human usability session.
 - Access, consent, and safety constraints: do not expose private client details; do not call a synthetic response real feedback; avoid leading prompts.
 
 ### Workflow map
@@ -151,7 +151,7 @@ Trace approved facts through a visitor goal, interpreted work qualities, interfa
 | W-001 | Visitor opens Home or Work | Project identity and useful first signal | Public site | Native link to case study | Return to compact approved summary if profile cannot resolve | implementation target |
 | W-002 | Visitor scans project structure | Named parts and relationship | ExperiencePresentation | Source-trail anchor on detail | Text-first authored order if evidence/membership check fails | interpretation |
 | W-003 | Visitor checks detail evidence | Supporting section and media status | CaseStudyTemplate | Navigate among visible sections | Source media stays deferred; no substitute screen | sourced boundary |
-| W-004 | Reviewer evaluates relationship | Open explanation without profile terminology | Independent reviewer | Reviewer reports first interpretation | Revise pattern or record a pass with limitations | pending |
+| W-004 | Reviewer evaluates relationship | Open explanation without profile terminology | Independent model-based reviewer | First interpretation recorded in crosswalk | Revise pattern or record a pass with limitations | pass with limitations |
 
 ### Tool and system inventory
 
@@ -159,18 +159,18 @@ Trace approved facts through a visitor goal, interpreted work qualities, interfa
 | --- | --- | --- | --- | --- |
 | Approved Portfolio case-study record | Project copy, section items, source references, approval state | known | `src/lib/case-studies.ts` and imported content | Public presentation allowed only when approved. |
 | Local `/dev/harness` | Deterministic preview and fallback states | known | Portfolio harness route | Must remain local-only and production-blocked. |
-| Independent cold reader | Qualitative comprehension check | unverified | planned task in crosswalk | Requester to select reviewer; no user contact will be sent by this task. |
+| Independent cold reader | Model-based qualitative comprehension check | completed 2026-09-23; not human research | Result in crosswalk | No participant contact or human usability claim. |
 
 ### Participant records
 
 | Participant ID | Type | Role/task | Source or construction basis | Evidence status | Open validation |
 | --- | --- | --- | --- | --- | --- |
-| P-001 | independent human reviewer, not yet selected | Explain how the visible project items relate | Future reviewer who has not read profile labels | unknown | Session has not happened; no result may be claimed. |
+| P-001 | no human participant recruited | N/A | No human study was conducted; separate model-based review is documented below. | not applicable | No human-participant result is claimed. |
 | P-SYN-001 | synthetic harness fixture | Check fallback and long-content rendering | Local non-client seed copy | synthetic_assumption | Not evidence of comprehension or demand. |
 
 ### Synthetic participant prompt and responses
 
-No modeled responses are claimed. The harness only exercises component states.
+No synthetic-user or human-participant responses are claimed. The harness only exercises component states. The separate model-based cold read is recorded below and is not user research.
 
 ## 3. Content and information architecture
 
@@ -196,7 +196,7 @@ No modeled responses are claimed. The harness only exercises component states.
 
 | Alternative ID | Structure or navigation model | Strength | Risk or tradeoff | Evidence status | Selected / parked / no-go |
 | --- | --- | --- | --- | --- | --- |
-| IA-001 | Framework hub and unordered capability list | Shows shared membership | Can be misread as architecture if lines/arrows imply dependencies | sourced + interpreted | selected with no arrows and cold-reader gate |
+| IA-001 | Framework hub and unordered capability list | Shows shared membership | Can be misread as architecture if lines/arrows imply dependencies | sourced + interpreted | selected with no arrows; model-based reader found the shared relation legible |
 | IA-002 | Explicit group matrix with context labels | Makes shared practice and variations scannable | Groups are interpretations and may look chronological | authored from evidence | selected with fixed group labels and no stage numbers |
 | IA-003 | Numbered workflow / rollout sequence | Familiar scan pattern | Unsupported by source and risks inventing sequence | unsupported | no-go |
 | IA-004 | Source-ordered plain text | Faithful and robust to thin evidence | Less visual comparison | source-backed fallback | selected for invalid/thin profiles |
@@ -235,45 +235,45 @@ No modeled responses are claimed. The harness only exercises component states.
 
 | Condition | Expected transformation or requirement | Checked? | Evidence/status | Finding or open question |
 | --- | --- | --- | --- | --- |
-| Narrow width | Patterns stack without horizontal overflow | pending browser run | mobile Playwright project | Fill after verification |
-| Long content | Long summaries and labels wrap within cards/groups | pending browser run | synthetic dense fixture | Fill after verification |
-| Zoom or text expansion | Native document flow expands vertically | heuristic; browser run pending | CSS layout | Verify no fixed-height clipping |
-| Keyboard or alternate input | Native anchors tab in reading order; visible focus | pending browser run | E2E | No scripted focus movement |
-| Semantic order and focus | Headings precede group lists and source links | implementation inspection | React markup and E2E | Confirm against browser accessibility tree as practical |
-| Contrast or motion | Existing tokens; static map/matrix and unchanged reduced-motion state | pending browser run | CSS and media-query implementation | Verify existing shell and content colors |
+| Narrow width | Patterns stack without horizontal overflow | checked 2026-09-23 | E2E viewport suite and updated preview at 400×849 | No horizontal overflow on Home and /work. |
+| Long content | Long summaries and labels wrap within cards/groups | passed in E2E run 77 | synthetic dense fixture and browser suite | Long-content coverage passed; no failure was reported. |
+| Zoom or text expansion | Native document flow expands vertically | not checked | CSS layout | No separate browser-zoom/text-expansion claim is made. |
+| Keyboard or alternate input | Native anchors tab in reading order; visible focus | E2E passed; menu dismissal restores focus | E2E keyboard source trace and updated-preview menu check | No separate keyboard-only usability session was conducted. |
+| Semantic order and focus | Headings precede group lists and source links | E2E passed; menu focus restoration observed | React markup, E2E, and updated-preview menu check | No full manual accessibility audit is claimed. |
+| Contrast or motion | Existing tokens; static map/matrix and unchanged reduced-motion state | reduced-motion E2E passed; contrast not re-audited | CSS tokens and browser suite | No separate contrast audit is claimed. |
 
 ## 5. Prototype and evaluation
 
 - Risky question: does the selected visual structure communicate the intended relationship without suggesting an unsupported process, architecture, or exact density specification?
 - Prototype or test artifact: public Home, Work, case-study detail, and local-only `/dev/harness` previews.
-- Method: implementation inspection and browser tests; independent cold-reader session still pending.
+- Method: implementation inspection, browser tests, and one independent model-based cold-reader session completed 2026-09-23.
 - Scope tested: profile resolution, content membership, public approval boundary, source-link structure, synthetic fallback and dense states, and responsive behavior.
-- Scope not tested: real visitor comprehension, actual client screen reuse, or business/outcome claims.
+- Scope not tested: human/real-visitor comprehension (the model read is qualitative), actual client screen reuse, zoom/text expansion, or business/outcome measurement.
 - Evidence status: source facts are sourced; the design interpretations are recommendations; feeling claims remain hypotheses.
-- Findings: fill after build/test and independent reader review.
+- Findings: the revised Home and Work copy made the common systems-design thread and the main project distinction legible; practical outcomes remain abstract. See the crosswalk for exact wording and limitations.
 - Assumptions and unknowns: documented in U-001/U-002 and the experience crosswalk.
-- Next validation action: ask a reviewer unfamiliar with the profiles to complete the four open questions in the crosswalk; do not supply the profile terms first.
+- Next validation action: no further U-001 close-out read is required; later human usability or source-media review would be a separately authorized follow-up.
 
 ## 6. IA-to-UI traceability
 
 - Matrix ID: CW-39-issue-30-traceability
-- Revision: 2026-09-22
-- Coverage result: implementation acceptance covered; independent reader result remains pending
-- Unserved or blocked rows: human cold-reader comprehension is pending; source media remains intentionally blocked.
+- Revision: 2026-09-23
+- Coverage result: implementation acceptance and model-based reader result recorded; human usability is not claimed.
+- Unserved or blocked rows: approved source media and quantified human outcomes remain unavailable; media stays intentionally blocked.
 - Orphan check: complete; PR #31 lists all 23 intended changed files and issue/Work Order links resolve to the same branch.
 - Owner: Riley Morgan / Codex
-- Next correction: capture an independent reader's interpretation; revise only if the crosswalk invalidators are triggered.
+- Next correction: no copy correction is needed for the current reader-understanding criterion; revisit only if an invalidator is triggered or approved evidence changes.
 
 | Acceptance item | Evidence in implementation | Verification |
 | --- | --- | --- |
-| Repeatable agent-facing reasoning and aesthetic lens | `DESIGN.md` reasoning scaffold, `experienceProfiles.thematicDirection`, and work-order crosswalk | unit profile completeness; human comprehension review still pending |
-| Evidence-backed patterns for both projects | `src/lib/experience-profiles.ts` and `experience-crosswalk.md` | unit assertions and independent reviewer |
+| Repeatable agent-facing reasoning and aesthetic lens | `DESIGN.md` reasoning scaffold, `experienceProfiles.thematicDirection`, and work-order crosswalk | unit profile completeness; model-based comprehension review recorded, not a human study |
+| Evidence-backed patterns for both projects | `src/lib/experience-profiles.ts` and `experience-crosswalk.md` | unit assertions and cold-reader interpretation recorded in the crosswalk |
 | Stable data-defined membership | section/title IDs and explicit profile ID groups | resolver membership tests |
 | Draft/public boundary | `getProjectPresentation` audience and route approval filter | unit/E2E public boundary tests |
 | Text-only, long-content, deferred and redacted states | local-only work-led harness and fixture | E2E and viewport checks |
-| Home/Work first signal | public page composition and shared preview | E2E assertions and visual inspection |
+| Home/Work first signal | public page composition and shared preview | E2E assertions, responsive screenshots/snapshots, and updated-preview checks |
 | No unsupported client media | `ArtifactFrame` discriminated props and no media source | typecheck, source inspection, rendered state assertions |
-| Human comprehension | script in crosswalk | pending independent session |
+| Model-based cold read | script and result in crosswalk | Pass with limitations; no human usability study or feeling validation claimed |
 
 ## 7. Decisions and tradeoffs
 
@@ -289,18 +289,18 @@ No modeled responses are claimed. The harness only exercises component states.
 | Phase | Owner | Status | Output or link | Evidence status | Gate result | Smallest next action |
 | --- | --- | --- | --- | --- | --- | --- |
 | Scope and frame | Riley Morgan / Codex | complete | issue #30 and this packet | sourced request | pass | none |
-| Context and tool discovery | Riley Morgan / Codex | complete | approved import review | source facts known; reader response unknown | skipped with reason: product discovery unavailable and not required to state copy | none |
-| Content and IA | Riley Morgan / Codex | complete | experience crosswalk and profiles | source-backed with curated interpretations | pass | independent reader remains a separate evaluation gate |
+| Context and tool discovery | Riley Morgan / Codex | complete | approved import review | source facts known; human response and feelings remain unvalidated | skipped with reason: product discovery unavailable and not required to state copy | none |
+| Content and IA | Riley Morgan / Codex | complete | experience crosswalk and profiles | source-backed with curated interpretations | pass; revised shared thread passed model-based review | no further action under this gate |
 | Visual and interaction | Portfolio | complete | shared renderer, previews, harness | authored pattern contracts | pass | none |
-| Prototype and evaluation | Requester/reviewer | blocked on external reader | local harness and cold-reader script | synthetic fixtures only | blocked: reviewer session not yet performed | select independent reviewer |
-| Handoff and QA | Riley Morgan / Codex | complete | [draft PR #31](https://github.com/rickvang/Portfolio/pull/31), Issue #30, and CW-39 | build + 32 unit tests + 37 browser tests pass | pass | independent cold-reader evaluation remains open |
+| Prototype and evaluation | Riley Morgan / Codex | complete with limitations | updated preview and cold-reader report | model-based qualitative read; no human session | pass for the issue's visible-relationship criterion | no further implementation action; preserve stated issue/PR boundary |
+| Handoff and QA | Riley Morgan / Codex | complete | [draft PR #31](https://github.com/rickvang/Portfolio/pull/31), Issue #30, and CW-39 | implementation checks passed on the reviewed code head; documentation update will receive normal CI | pass on reviewed head | confirm latest CI on the documentation-update head; do not merge/deploy |
 
 ## 9. Handoffs and recovery
 
 | From | To | Revision | Accepted evidence/decisions | Open questions | Blocker or fallback | Required output | Next action | Acknowledged |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Issue #30 request | Riley Morgan / Codex | R-001 | full implementation requested; stack on #29; no merge/deploy | cold-reader result | continue implementation; leave human result pending | tested change, work packet, draft PR, issue links | finish validation and publish artifacts | yes |
-| Riley Morgan / Codex | independent reviewer | pending | crosswalk and open questions | meaning inferred by a cold reader | if no reviewer is available, retain explicit pending status | concise interpretation and confusion record | requester selects reviewer | no |
+| Issue #30 request | Riley Morgan / Codex | R-001 | full implementation requested; stack on #29; no merge/deploy | model-based reader result recorded; human response not validated | preserve no-merge/no-deploy boundary | tested change, work packet, draft PR, issue links | record close-out and verify latest CI | yes |
+| Riley Morgan / Codex | independent model-based reviewer | R-002 | revised preview and neutral first-reader prompt; no source/profile/PR context supplied | concrete outcomes remain abstract; model read is not human research | screenshot endpoint timed out; accessible page snapshots and interaction state were used | first interpretation, wording, remaining ambiguity, and menu result | recorded in crosswalk; no copy change needed for the criterion | yes |
 
 ## 10. Handoff, implementation QA, and reconciliation
 
@@ -312,7 +312,7 @@ No modeled responses are claimed. The harness only exercises component states.
 - Responsive rules: list/group stacks and wraps without horizontal overflow.
 - Accessibility requirements: semantic headings/lists, native source anchors, visible focus, static reduced-motion behavior.
 - Implementation questions: none blocking the code; independent comprehension and image reuse are not resolved.
-- Known limitations: feeling hypotheses not validated by real reader; media absent by design.
+- Known limitations: feeling hypotheses are not validated by human users; outcomes are unquantified; approved source media remains absent by design.
 - Owner and revision: Portfolio / current branch, revision to be set at draft PR.
 
 ### Built-versus-designed QA
@@ -322,7 +322,7 @@ No modeled responses are claimed. The harness only exercises component states.
 - Widths, inputs, zoom, or environments checked: Playwright default desktop plus 390px mobile and 768px tablet; keyboard focus on native detail trace link
 - Content and overflow checked: approved records, draft public metadata/noindex, synthetic labels, no source images, and no horizontal overflow at mobile/tablet widths
 - Findings: authored groups remain legible and source links work; unsupported sequence and fabricated media are absent
-- What was not checked: independent reader session, zoom beyond browser defaults, and source-media reuse rights
+- What was not checked: human/user comprehension, post-revision detail-route cold reading, zoom beyond browser defaults, and source-media reuse rights
 - Corrections required: none for implementation QA; E2E assertions were aligned to the current work-led hierarchy
 - Recheck status: pass; all 37 Playwright tests pass
 
@@ -332,32 +332,42 @@ No modeled responses are claimed. The harness only exercises component states.
 - Initiating contract: Issue #30 and Current Work CW-39
 - Direct dependents: Portfolio DESIGN.md, architecture, decisions, tests, GitHub Issue #30
 - Required updates: link work packet and draft PR from issue; update Current Work with resulting state
-- Optional follow-ups: conduct cold-reader review; separately review source-media reuse
-- Reconciliation status: complete; Issue #30 and Current Work CW-39 link to draft PR #31 and the evidence packet
+- Optional follow-ups: conduct human usability research only if later authorized; separately review source-media reuse
+- Reconciliation status: complete; Issue #30 and Current Work CW-39 link to draft PR #31 and the updated evidence packet
 - Link: [Current Work CW-39](https://app.notion.com/p/3e3cd82535ff81199040fc1bbd07f5a5); [Issue #30](https://github.com/rickvang/Portfolio/issues/30); [draft PR #31](https://github.com/rickvang/Portfolio/pull/31)
 
 ## 11. Close or no-go
 
 - Concrete deliverable, decision, prototype, implementation, or action plan: seven-layer interpretation, agent-facing scaffold, two project patterns, shared renderer, local harness, passing build/unit/browser suites, and stacked draft PR #31
-- Success criterion addressed: all implementation and local verification criteria; independent cold-reader evaluation remains open
+- Success criterion addressed: implementation and verification criteria, including the independent model-based reader check; the visible relationship criterion passed with limitations.
 - Contribution or decision dispositions: Portfolio only; no shared-repository write is authorized
-- Evidence limitations: no independent cold-reader result, no quantitative outcomes, and no approved media
-- Remaining unknowns: U-001 and U-002
-- What was not tested: cold-reader understanding until an independent reviewer participates
-- Final gate: ready-for-review; local checks pass and human evaluation remains a separate review gate
-- Next action or explicit completion boundary: requester/reviewer completes the crosswalk's independent cold-reader check; keep Issue #30 open until that interpretation is recorded
+- Evidence limitations: model-based review only (no human usability research), no quantitative outcomes, and no approved source media.
+- Remaining unknowns: U-002 source-media approval; human response, feelings, and quantitative outcomes were not validated by this model-based review.
+- What was not tested: real visitor comprehension or outcomes, detail-route comprehension in the post-revision read, and source-media reuse permission.
+- Final gate: implementation, checks on the reviewed code head, and the model-based reader-understanding criterion pass; no human research is claimed.
+- Next action or explicit completion boundary: no further implementation action under the current scope; keep Issue #30 open and PR #31 draft, with no merge or production deployment.
 - Closed by: not closed
 - Closed at: not closed
 
 
-## 12. Independent cold-reader close-out review — 2026-09-22
+## 12. Independent cold-reader close-out reviews — 2026-09-22 and 2026-09-23
+
+### Initial review — 2026-09-22
 
 A separate cloud reviewer inspected Home, Work, and both case studies before reading Issue #30's acceptance criteria. It reviewed each page at 1363×936 desktop and 400×849 mobile and reported no horizontal overflow at the mobile size. This was a model-based qualitative read, not a human usability study.
 
 The reviewer could explain each project's broad purpose but inferred the relationship between them. It found the Work index's introduction-to-project transition too spacious. It could identify the integrations capabilities and Design Systems groupings, while noting that neither page shows original interfaces or examples. The source narratives provide qualitative outcomes but no measurements. The browser interaction for the mobile Menu timed out, so its behavior was not established by this review.
 
-This PR revision adds an explicit throughline to Home and Work, reduces the Work index transition gap, corrects contextual heading levels, and replaces process-oriented media wording with a visitor-facing explanation. It keeps original images deferred and adds no invented screens, outcome metrics, or causal claims. The remaining evidence limits and review observations are detailed in [experience-crosswalk.md](experience-crosswalk.md).
+### Post-revision independent cold read — 2026-09-23
 
-**Current close-out state:** revision in progress. Re-read the updated preview, rerun required Portfolio verification after the revision, and confirm mobile drawer behavior. Keep Issue #30 and draft PR #31 open; do not merge or deploy under this work order.
+A separate model-based reviewer inspected the updated public Home and /work pages before reading the issue, source profiles, or earlier review. It checked 1363×936 desktop and 400×849 mobile viewports. It concluded that a visitor can explain the shared relationship and main distinction from the visible copy: both projects concern systems design; Multi Product Integrations connects workflows across a fragmented product ecosystem, while Design Systems gives teams shared, governed foundations for consistent patterns across distinct contexts. The same throughline is explicit on Home and /work.
 
-**Latest CI result:** the first run on this revision passed install, lint, typecheck, unit tests, Supabase local schema, and Vercel preview deployment. The browser suite passed 36 checks; one assertion still expected the removed internal media-review sentence. The existing assertion now checks the visitor-facing replacement, and CI must pass on the updated commit before close-out.
+The reviewer opened the mobile navigation, confirmed the dialog exposed Home, Work, Notes, About, and Contact, dismissed it, and confirmed focus returned to the menu toggle. A separate responsive check on the updated preview found no horizontal overflow at 400×849 on Home and /work.
+
+The reviewer-understanding acceptance criterion passes. Remaining ambiguity is the abstract practical boundary between a framework and a design system; the interface lacks concrete day-to-day user examples, before/after comparisons, and quantified outcomes. The reviewer also found the text-derived diagrams more evidence-like than a conventional visual case-study narrative. Screenshot capture timed out, so the cold read relied on accessible page snapshots and interaction state rather than a complete screenshot-based visual review. This was a model-based qualitative check, not human usability research or proof of emotional outcomes.
+
+This PR revision adds an explicit throughline to Home and Work, reduces the Work index transition gap, corrects contextual heading levels, and replaces process-oriented media wording with a visitor-facing explanation. It keeps original images deferred and adds no invented screens, outcome metrics, or causal claims. No further copy change is needed to meet the visible-relationship criterion. Original media and quantitative outcomes remain unavailable without new approved source material.
+
+**Current close-out state:** the model-based reader-understanding criterion passes with the limitations above. Keep Issue #30 open and draft PR #31 open under the existing authorization; do not merge, close, or deploy to production under this work order.
+
+**Implementation CI before this documentation update:** GitHub Actions run 77 completed successfully on `ae1dad76c5e6c2584969e91391d5fc289a861085`; Vercel reported success for the corresponding preview deployment. The stale copy assertion was updated to guard the throughline and case-study links. The documentation-only close-out commit receives the normal branch checks; the PR status will reflect the resulting head.
