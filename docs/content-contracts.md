@@ -84,6 +84,18 @@ Approval is an explicit content decision. It must not be inferred from the exist
 Both current imported drafts are exercised through review mode so layout and section behavior can be verified without changing their publication status. Their public `/work/[slug]` URLs intentionally return 404 until approval.
 
 
+## Published notes boundary
+
+The public Notes routes are backed by the Supabase publication boundary.
+
+- `getPublishedPosts()` returns only records explicitly marked `published` with a publication timestamp that is not in the future.
+- `getPublishedPostBySlug()` uses the same published-only boundary for detail routes.
+- If the public content service is unavailable or intentionally bypassed for deterministic browser tests, public Notes resolve to an empty list / not-found detail rather than deterministic fixture content.
+- Deterministic post fixtures remain available through the local development harness and focused component tests. They are not authored portfolio content and must not be presented as if they were published notes.
+- Draft editorial material remains separate from the Supabase publication adapter until it has its own explicit approval and publication decision.
+
+This keeps test determinism and public authorship as separate concerns.
+
 ## Authored editorial drafts
 
 Phase 5 adds three source-backed review artifacts under `content/drafts/`:
