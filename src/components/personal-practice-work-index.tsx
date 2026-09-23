@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { ProjectPreview } from "@/components/project-preview";
 import type { CaseStudy } from "@/lib/case-studies";
 import { workHref } from "@/lib/public-routes";
 
@@ -37,10 +36,6 @@ export function PersonalPracticeWorkIndex({
               <Link href={workHref(caseStudy.slug)}>{caseStudy.title}</Link>
             </h3>
             <p>{caseStudy.summary}</p>
-          </div>
-
-          <div className="practice-work-preview">
-            <ProjectPreview caseStudy={caseStudy} headingLevel={4} />
           </div>
 
           <Link
