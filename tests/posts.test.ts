@@ -1,8 +1,31 @@
 import { describe, expect, it } from "vitest";
 
-import { getPublishedPostBySlug, getPublishedPosts } from "@/lib/posts";
+import { getPublishedPostBySlug, getPublishedPosts, mergePublishedPosts, type PublishedPost } from "@/lib/posts";
 
 describe("posts adapter", () => {
+  it("deduplicates merged publications by slug with source-controlled precedence", () => {
+    const authored: PublishedPost = {
+      id: "authored",
+      slug: "same-note",
+      title: "Authored note",
+      excerpt: null,
+      content: ["Authored"],
+      status: "published",
+      publishedAt: "2026-09-23T00:00:00.000Z",
+      source: "source-controlled",
+      sections: [],
+    };
+    const database: PublishedPost = {
+      ...authored,
+      id: "database",
+      title: "Database note",
+      source: "supabase",
+      publishedAt: "2026-09-24T00:00:00.000Z",
+    };
+
+    expect(mergePublishedPosts([authored], [database])).toEqual([authored]);
+  });
+
   it("publishes source-controlled authored notes without fixture fallback", async () => {
     const posts = await getPublishedPosts();
 

@@ -66,12 +66,31 @@ function supabaseToPublishedPost(post: Post): PublishedPost {
   };
 }
 
-function sortPublishedPosts(posts: PublishedPost[]) {
-  return posts.sort((a, b) => {
+function sortPublishedPosts(posts: readonly PublishedPost[]) {
+  return [...posts].sort((a, b) => {
     const aTime = a.publishedAt ? Date.parse(a.publishedAt) : 0;
     const bTime = b.publishedAt ? Date.parse(b.publishedAt) : 0;
     return bTime - aTime;
   });
+}
+
+export function mergePublishedPosts(
+  authored: readonly PublishedPost[],
+  databasePosts: readonly PublishedPost[],
+): PublishedPost[] {
+  const bySlug = new Map<string, PublishedPost>();
+
+  for (const post of authored) {
+    bySlug.set(post.slug, post);
+  }
+
+  for (const post of databasePosts) {
+    if (!bySlug.has(post.slug)) {
+      bySlug.set(post.slug, post);
+    }
+  }
+
+  return sortPublishedPosts([...bySlug.values()]);
 }
 
 export function hasSupabaseConfig() {
@@ -85,21 +104,27 @@ export async function getPublishedPosts(): Promise<PublishedPost[]> {
 
   if (!hasSupabaseConfig()) return sortPublishedPosts(authored);
 
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("status", "published")
-    .not("published_at", "is", null)
-    .lte("published_at", new Date().toISOString())
-    .order("published_at", { ascending: false });
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("status", "published")
+      .not("published_at", "is", null)
+      .lte("published_at", new Date().toISOString())
+      .order("published_at", { ascending: false });
 
-  if (error) {
-    throw new Error(`Unable to load published posts: ${error.message}`);
+    if (error) {
+      console.error("Unable to load Supabase published posts; using source-controlled posts.", error);
+      return sortPublishedPosts(authored);
+    }
+
+    const databasePosts = ((data ?? []) as Post[]).map(supabaseToPublishedPost);
+    return mergePublishedPosts(authored, databasePosts);
+  } catch (error) {
+    console.error("Unable to reach Supabase published posts; using source-controlled posts.", error);
+    return sortPublishedPosts(authored);
   }
-
-  const databasePosts = ((data ?? []) as Post[]).map(supabaseToPublishedPost);
-  return sortPublishedPosts([...authored, ...databasePosts]);
 }
 
 export async function getPublishedPostBySlug(slug: string): Promise<PublishedPost | null> {
@@ -108,21 +133,27 @@ export async function getPublishedPostBySlug(slug: string): Promise<PublishedPos
 
   if (!hasSupabaseConfig()) return null;
 
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("posts")
-    .select("*")
-    .eq("slug", slug)
-    .eq("status", "published")
-    .not("published_at", "is", null)
-    .lte("published_at", new Date().toISOString())
-    .maybeSingle();
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("posts")
+      .select("*")
+      .eq("slug", slug)
+      .eq("status", "published")
+      .not("published_at", "is", null)
+      .lte("published_at", new Date().toISOString())
+      .maybeSingle();
 
-  if (error) {
-    throw new Error(`Unable to load published post: ${error.message}`);
+    if (error) {
+      console.error("Unable to load Supabase published post.", error);
+      return null;
+    }
+
+    return data ? supabaseToPublishedPost(data as Post) : null;
+  } catch (error) {
+    console.error("Unable to reach Supabase published post.", error);
+    return null;
   }
-
-  return data ? supabaseToPublishedPost(data as Post) : null;
 }
 
 export async function getAuthorPosts(authorId: string): Promise<Post[]> {
