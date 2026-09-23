@@ -42,11 +42,12 @@ test("mobile home uses the working-index structure without horizontal overflow",
 
   const selectedWork = page.getByRole("heading", {
     level: 2,
-    name: "Different problems. A consistent systems approach.",
+    name: "Selected work",
     exact: true,
   });
   await selectedWork.scrollIntoViewIfNeeded();
   await expect(selectedWork).toBeVisible();
+  await expect(page.getByTestId("practice-rail")).toBeVisible();
 
   const integrationRow = page.locator('[data-practice-work="multi-product-integrations"]');
   await expect(integrationRow.getByRole("heading", { name: "Multi Product Integrations" })).toBeVisible();
