@@ -50,7 +50,7 @@ test("mobile home uses the working-index structure without horizontal overflow",
 
   const integrationRow = page.locator('[data-practice-work="multi-product-integrations"]');
   await expect(integrationRow.getByRole("heading", { name: "Multi Product Integrations" })).toBeVisible();
-  await expect(integrationRow.locator(".practice-work-preview")).toHaveCSS("display", "none");
+  await expect(integrationRow.locator(".practice-work-preview")).toHaveCount(0);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 
   await page.locator("nextjs-portal").evaluateAll((portals) => {
