@@ -19,7 +19,7 @@ test("harness can deep-link to a fixture state", async ({ page }) => {
   await page.goto("/dev/harness?state=empty");
 
   await expect(page.getByTestId("harness-root")).toHaveAttribute("data-harness-state", "empty");
-  await expect(page.getByTestId("posts-state")).toContainText("No posts yet.");
+  await expect(page.getByTestId("posts-state")).toContainText("No notes published yet.");
   await expect(page.getByTestId("admin-workflow-preview")).toHaveAttribute("data-workflow-state", "empty");
 });
 
