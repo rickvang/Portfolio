@@ -34,7 +34,7 @@ Use their existing evidence and copy. Do not replace them with newly invented co
 
 ## Current phase
 
-Implementation. Branch created from current main after PR #40. Next: update authored publication schemas/status, public Notes adapter/detail rendering, docs, and tests.
+Implementation is assembled on the branch. The authored case-study gate now permits explicit approved records; AI Systems and UI Design Practices are approved; Persona-led Design Starts Before the Screen is published through the merged source-controlled/Supabase Notes adapter; docs and tests are updated. Intermediate Vercel preview failures were caused by commit-by-commit branch deployment while the old authored-content gate was still active. The next step is one stable PR/CI verification pass.
 
 ## Completion boundary
 
