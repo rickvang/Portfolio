@@ -82,8 +82,8 @@ test("detail pages trace the presentation to visible source sections", async ({ 
   await expect(page.locator("#multi-product-integrations-overview")).toBeVisible();
 });
 
-test("unapproved case studies remain out of public work routes", async ({ page }) => {
-  await page.goto("/work/ai-systems");
+test("unknown case studies remain out of public work routes", async ({ page }) => {
+  await page.goto("/work/not-a-published-case-study");
 
   await expect(page).toHaveTitle("Case study not found | Rick Vang");
   await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);

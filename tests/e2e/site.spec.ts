@@ -83,12 +83,12 @@ test("existing authored AI work is public through its intended routes", async ({
   await page.goto("/work/ai-systems");
   await expect(page).toHaveTitle("AI Systems | Rick Vang");
   await expect(page.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
-  await expect(page.getByText(/repository-backed orchestration system/i)).toBeVisible();
+  await expect(page.locator(".case-study-hero .lede")).toContainText("repository-backed orchestration system");
 
   await page.goto("/work/ui-design-practices");
   await expect(page).toHaveTitle("UI Design Practices | Rick Vang");
   await expect(page.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
-  await expect(page.getByText(/staged design-to-implementation practice/i)).toBeVisible();
+  await expect(page.locator(".case-study-hero .lede")).toContainText("staged design-to-implementation practice");
 
   await page.goto("/notes/persona-led-design-discovery");
   await expect(page).toHaveTitle("Persona-led Design Starts Before the Screen | Rick Vang");

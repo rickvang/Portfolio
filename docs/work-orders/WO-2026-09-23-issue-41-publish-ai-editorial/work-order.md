@@ -34,7 +34,7 @@ Use their existing evidence and copy. Do not replace them with newly invented co
 
 ## Current phase
 
-Implementation is assembled on the branch. The authored case-study gate now permits explicit approved records; AI Systems and UI Design Practices are approved; Persona-led Design Starts Before the Screen is published through the merged source-controlled/Supabase Notes adapter; docs and tests are updated. Intermediate Vercel preview failures were caused by commit-by-commit branch deployment while the old authored-content gate was still active. The next step is one stable PR/CI verification pass.
+Implementation is assembled on the branch. The authored case-study gate permits explicit approved records; AI Systems and UI Design Practices are approved; Persona-led Design Starts Before the Screen is published through the merged source-controlled/Supabase Notes adapter; docs and tests are updated. The stabilized preview now builds successfully. CI #102 passed lint, typecheck, unit tests, and database checks; its remaining Playwright failures were stale assertions from the pre-publication state and are corrected in the next atomic verification commit.
 
 ## Completion boundary
 
