@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import {
   CASE_STUDY_SECTION_ORDER,
-  authoredCaseStudyDrafts,
+  authoredCaseStudies,
   caseStudyCatalog,
   caseStudySchema,
   getApprovedCaseStudies,
@@ -13,15 +13,22 @@ import {
 } from "@/lib/case-studies";
 
 describe("case-study content contract", () => {
-  it("promotes explicitly approved imported projects", () => {
+  it("promotes explicitly approved imported and authored projects", () => {
     expect(importedCaseStudies.map((caseStudy) => caseStudy.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
     ]);
     expect(importedCaseStudies.every((caseStudy) => caseStudy.reviewStatus === "approved")).toBe(true);
+    expect(authoredCaseStudies.map((caseStudy) => caseStudy.slug)).toEqual([
+      "ai-systems",
+      "ui-design-practices",
+    ]);
+    expect(authoredCaseStudies.every((caseStudy) => caseStudy.reviewStatus === "approved")).toBe(true);
     expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
+      "ai-systems",
+      "ui-design-practices",
     ]);
   });
 
@@ -73,7 +80,7 @@ describe("case-study content contract", () => {
     }
   });
 
-  it("keeps authored draft evidence resolvable", () => {
+  it("keeps authored case-study evidence resolvable", () => {
     for (const caseStudy of authoredCaseStudyDrafts) {
       const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
 
