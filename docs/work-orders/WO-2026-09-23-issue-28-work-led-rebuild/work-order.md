@@ -73,7 +73,7 @@ Phase 3 — complete. `pnpm verify` passed (lint, typecheck, 32 unit tests, and 
 
 The independent visual finish review found that the 390×844 first viewport cut off before showing any topology capabilities. I tightened the mobile-only spacing and shortened the explanatory copy without removing the note that the topology is not a workflow sequence. The updated screenshot now shows the framework, its “Includes” relationship, the full first capability, and the start of the second. An assertion checks that the first capability is in view, and the targeted check, full verification, and all 38 browser checks pass. The independent reviewer confirmed the finding is resolved and reported no new material visual issues.
 
-Phase 4 — complete. PR #33 is open, ready for review, and mergeable. Its head is `7f14e9277d1e2010811ecef844b2266aa23cd6e8`; base `main` was `fd302c04630f828b213da45f61527cbdd3be0e38` when opened. GitHub Actions CI run 84 and the Vercel preview status succeeded. Cursor's approval automation approved the PR; its note says Bugbot was not present, so that automated-review signal was skipped. No unresolved inline review threads were returned.
+Phase 4 — complete. PR #33 is open, ready for review, and mergeable. The implementation commit is `7f14e9277d1e2010811ecef844b2266aa23cd6e8`; subsequent branch commits only update this Work Order. GitHub Actions CI run 85 passed all verification and Supabase schema jobs, and the Vercel preview status succeeded. Cursor's approval automation approved the implementation; its note says Bugbot was not present, so that automated-review signal was skipped. No unresolved inline review threads were returned.
 
 The Vercel deployment is a PR preview only. The PR remains unmerged because Portfolio's production-deployment gate requires explicit authorization.
 
@@ -91,7 +91,7 @@ Next action: if production deployment is authorized, refresh the PR head/base, C
 - The E2E runner owns and cleans up its temporary development server; no persistent test port was left running.
 - The Impeccable engine detector could not run because its binary download is blocked by the current network policy. Issue #28 and DESIGN.md provide the design direction; review the rendered output and record this tooling limit rather than inventing a replacement direction.
 - Independent reviewer confirmed the focused mobile fix and reported no new material visual issues.
-- PR #33 is open and mergeable. GitHub Actions CI run 84 and the Vercel preview status succeeded; the automated Cursor review approved it, with Bugbot skipped because it was unavailable. No unresolved inline review threads were returned.
+- PR #33 is open and mergeable. GitHub Actions CI run 85 and the Vercel preview status succeeded; the automated Cursor review approved the implementation, with Bugbot skipped because it was unavailable. No unresolved inline review threads were returned.
 - No production merge or deployment occurred; explicit authorization is still required.
 - Refresh PR head/base, checks, reviews, unresolved threads, mergeability, and linked-issue effects before final close-out.
 
