@@ -73,16 +73,16 @@ test("harness exercises approved imported work through the shared case-study tem
   await expect(designSystems.getByText(/client intellectual property/i)).toBeVisible();
 });
 
-test("harness exposes authored editorial drafts without publishing them", async ({ page }) => {
+test("harness exposes authored editorial sources with their publication state", async ({ page }) => {
   await page.goto("/dev/harness");
 
   const aiSystems = page.getByTestId("case-study-review-ai-systems");
   const uiPractices = page.getByTestId("case-study-review-ui-design-practices");
   const article = page.getByTestId("editorial-draft-persona-led-design-discovery");
 
-  await expect(aiSystems).toHaveAttribute("data-case-study-status", "review-ready");
-  await expect(uiPractices).toHaveAttribute("data-case-study-status", "review-ready");
-  await expect(article).toHaveAttribute("data-editorial-status", "review-ready");
+  await expect(aiSystems).toHaveAttribute("data-case-study-status", "approved");
+  await expect(uiPractices).toHaveAttribute("data-case-study-status", "approved");
+  await expect(article).toHaveAttribute("data-editorial-status", "published");
 
   await expect(aiSystems.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
   await expect(uiPractices.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
@@ -115,9 +115,9 @@ test("case-study harness can deep-link to an authored draft", async ({ page }) =
   await page.goto("/dev/harness/case-study?slug=ai-systems");
 
   const caseStudy = page.getByTestId("case-study-review-ai-systems");
-  await expect(caseStudy).toHaveAttribute("data-case-study-status", "review-ready");
+  await expect(caseStudy).toHaveAttribute("data-case-study-status", "approved");
   await expect(caseStudy.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
-  await expect(caseStudy).toContainText("This content is not eligible for public rendering");
+  await expect(caseStudy).toContainText("eligible for public rendering");
 });
 
 test("destructive post action requires explicit confirmation", async ({ page }) => {
