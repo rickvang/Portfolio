@@ -130,7 +130,7 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
           <p className="eyebrow">Shared case-study template</p>
           <h2 id="case-study-template-heading">Case-study content review</h2>
           <p className="lede">
-            Approved imported work and review-ready authored work use the same renderer, with provenance and evidence controls added only on the local review surface.
+            Approved imported and authored work use the same renderer, with provenance and evidence controls added only on the local review surface.
           </p>
         </div>
         <div className="case-study-review-stack" data-testid="case-study-review-stack">
@@ -145,7 +145,7 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
           <p className="eyebrow">Editorial draft</p>
           <h2 id="editorial-draft-heading">Persona-led design article review</h2>
           <p className="lede">
-            This source-backed article remains separate from the published post adapter until editorial approval.
+            This source-backed article is published through the public Notes adapter while the harness preserves its provenance and editorial review details.
           </p>
         </div>
         <EditorialDraftPreview draft={personaLedDesignDraft} />
