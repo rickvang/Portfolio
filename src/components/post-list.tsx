@@ -7,6 +7,7 @@ type PostListProps = {
   posts: PostListItem[];
   state?: HarnessState;
   showStatus?: boolean;
+  headingLevel?: 2 | 3;
 };
 
 type PostListItem = {
@@ -17,7 +18,13 @@ type PostListItem = {
   status: "draft" | "published" | "archived";
 };
 
-export function PostList({ posts, state = "success", showStatus = false }: PostListProps) {
+export function PostList({
+  posts,
+  state = "success",
+  showStatus = false,
+  headingLevel = 3,
+}: PostListProps) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   if (state === "loading") {
     return (
       <div aria-busy="true" aria-label="Loading posts" className="state-card" data-testid="posts-state">
@@ -49,9 +56,9 @@ export function PostList({ posts, state = "success", showStatus = false }: PostL
       {posts.map((post) => (
         <article className="post-card" key={post.id}>
           {showStatus && <p className="eyebrow">{post.status}</p>}
-          <h3>
+          <Heading>
             <Link href={noteHref(post.slug)}>{post.title}</Link>
-          </h3>
+          </Heading>
           <p>{post.excerpt ?? "No excerpt yet."}</p>
         </article>
       ))}
