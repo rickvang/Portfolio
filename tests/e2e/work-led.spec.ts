@@ -3,6 +3,22 @@ import { expect, test } from "@playwright/test";
 test("approved work index presents each project's distinct structure", async ({ page }) => {
   await page.goto("/work");
 
+  const throughline = page.locator(".work-throughline");
+  await expect(throughline).toContainText(
+    "Across these separate projects, the common thread is systems design:",
+  );
+  await expect(throughline).toContainText("connects workflows across a fragmented product ecosystem");
+  await expect(throughline).toContainText(
+    "gives teams shared, governed foundations for consistent patterns across distinct contexts.",
+  );
+  await expect(
+    throughline.getByRole("link", { name: "Multi Product Integrations" }),
+  ).toHaveAttribute("href", "/work/multi-product-integrations");
+  await expect(throughline.getByRole("link", { name: "Design Systems" })).toHaveAttribute(
+    "href",
+    "/work/design-systems",
+  );
+
   await expect(page.getByRole("heading", { name: "How the product parts relate" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Unified framework" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Governance, foundations, and use patterns" })).toBeVisible();
@@ -59,4 +75,3 @@ test("both work patterns stay visible with reduced motion", async ({ page }) => 
   await expect(page.getByRole("heading", { name: "Governance, foundations, and use patterns" })).toBeVisible();
   await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
 });
-
