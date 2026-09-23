@@ -32,7 +32,7 @@ This document records the local-first import from the public Framer site. The fi
 - Keep phone/email, third-party testimonials, credentials, brand marks, and source images out of the public content model until separately reviewed.
 - Do not write imported material to Supabase automatically.
 - Keep source URLs and curation notes next to imported content so future edits remain attributable.
-- Authored AI Systems, UI Design Practices, and persona-led design content remain separate `review-ready` records and are not approved by this import decision.
+- Authored AI Systems, UI Design Practices, and persona-led design content remain separate from the rickvang.com import. Their later publication is governed by their own explicit record statuses, not by this import decision.
 
 ## Current public promotion
 
@@ -41,7 +41,9 @@ The approved records drive:
 - homepage positioning and About summary;
 - the reusable experience-summary stats component;
 - the public Work index;
-- public detail routes for Multi Product Integrations and Design Systems through the shared `CaseStudyTemplate`.
+- public detail routes for Multi Product Integrations and Design Systems through the shared `CaseStudyTemplate`;
+- separately authored AI Systems and UI Design Practices case studies through their own explicit approval states;
+- the source-controlled persona-led design Note through its explicit published state.
 
 If profile approval is withdrawn, Home and About remain available with a neutral review-state fallback instead of failing the route. Project publication remains independent per record.
 
@@ -52,5 +54,4 @@ The old Framer site remains the provenance source until a separate launch/cutove
 1. Audit source case-study imagery and classify each asset as safe to reuse, redact, recreate, or omit.
 2. Decide whether testimonials should be carried forward and whether attribution/permission needs reconfirmation.
 3. Decide whether credentials, brand marks, LinkedIn, email, or phone belong in the redesigned surface.
-4. Replace the remaining fixture note content when real writing is approved.
 5. Use the approved work/content inventory as the basis for the next visual surface pass rather than inventing generic portfolio copy.
