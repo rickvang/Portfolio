@@ -1,6 +1,6 @@
 # Work-to-experience crosswalk — Issue #30
 
-- Work Order: [WO-2026-09-22-issue-28-work-led-surface](work-order.md)
+- Work Order: [WO-2026-09-23-issue-30-work-to-experience](work-order.md) (archived)
 - GitHub issue: [#30 — Translate work into an experience](https://github.com/rickvang/Portfolio/issues/30)
 - Preceding surface work: [#28 — work-led surface rebuild](https://github.com/rickvang/Portfolio/issues/28)
 - Input source: approved project copy imported from [rickvang.com](https://www.rickvang.com/projects)
@@ -68,7 +68,7 @@ A separate cloud reviewer first inspected the public preview as a first-time vis
 - The source's unquantified outcomes and absent approved media remain evidence boundaries; resolving them requires new approved source material.
 - The post-revision reader check below confirms the shared thread and main distinction without profile metadata. No further copy change is needed for the issue's reader-understanding criterion.
 - The mobile menu opens and dismisses on the updated preview. A separate responsive check found no horizontal overflow at 400×849 on Home and /work.
-- Keep Issue #30 open and PR #31 draft under the existing review boundary; do not merge or deploy to production.
+- Issue #30 closed 2026-09-23 after PR #31 merged to `main`. Product follow-on: Current Work CW-52.
 
 ## Post-revision independent cold-reader review — 2026-09-23
 
