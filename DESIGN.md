@@ -346,8 +346,8 @@ Every important interactive component should have a short interaction specificat
 - **Client-IP note:** remains attached whenever the case-study record carries the imported disclaimer.
 - **Responsive behavior:** desktop uses a sticky local chapter index beside reading content; at the public shell breakpoint the index becomes static and precedes the chapters.
 - **Motion:** chapter blocks use capped CSS-first entry staging. Anchor navigation is immediate and never depends on JavaScript animation.
-- **Publication safety:** `CaseStudyList` and `/work/[slug]` consume only `reviewStatus: "approved"` data. Both `draft` and `review-ready` records remain local-review only until explicit publication approval changes their status.
-- **Verification:** unit coverage checks approval filtering/lookup and chapter grouping; browser coverage checks imported drafts and authored review-ready work through review mode and proves public detail URLs still return 404.
+- **Publication safety:** `CaseStudyList` and `/work/[slug]` consume only `reviewStatus: "approved"` data. `draft` and `review-ready` records remain local-review only; authored source location does not override record status.
+- **Verification:** unit coverage checks approval filtering/lookup and chapter grouping; browser coverage verifies approved imported and authored work publicly while the harness preserves provenance/evidence review.
 
 ### Representative interaction specification: `ContactForm`
 
