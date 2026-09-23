@@ -10,30 +10,33 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
     }),
   ).toBeVisible();
   await expect(page.getByText(/I design product and design systems for complex environments/i)).toBeVisible();
-  await expect(page.getByRole("link", { name: "See selected work ↓" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: "View selected work ↓" })).toHaveAttribute(
     "href",
     "#selected-work",
   );
+
   await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
-  await expect(page.locator(".site-rail")).toHaveCount(0);
-  await expect(
-    page.getByRole("heading", { name: "How the product parts relate", exact: true }),
-  ).toBeVisible();
-  await expect(
-    page.getByRole("heading", { name: "Different problems. A consistent systems approach.", exact: true }),
-  ).toBeVisible();
+  await expect(page.getByTestId("practice-rail")).toBeVisible();
+  await expect(page.locator(".practice-header")).toHaveCount(0);
+
+  await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "How I work", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "About", exact: true })).toBeVisible();
+
+  await expect(page.getByText("Fixture post", { exact: true })).toHaveCount(0);
+  await expect(page.locator("#notes")).toHaveCount(0);
+
   await expect(page.getByText("11+", { exact: true })).toBeVisible();
   await expect(page.getByText("14+", { exact: true })).toBeVisible();
   await expect(page.getByText("30+", { exact: true })).toBeVisible();
 
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });
   await expect(navigation.getByRole("link", { name: "Work" })).toHaveAttribute("href", "/work");
-  await expect(navigation.getByRole("link", { name: "Notes" })).toHaveAttribute("href", "/notes");
   await expect(navigation.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
   await expect(navigation.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+  await expect(navigation.getByRole("link", { name: "Notes" })).toHaveCount(0);
   await expect(page.getByRole("link", { name: "Rick Vang, home" })).toHaveAttribute("href", "/");
   await expect(page.locator('a[href^="/dev/harness"]')).toHaveCount(0);
 });
@@ -83,16 +86,19 @@ test("authored editorial drafts remain unavailable on public routes", async ({ p
   await expect(page.getByText(/AI personas are most useful to my design process/i)).toHaveCount(0);
 });
 
-test("public notes provide a list and detail route", async ({ page }) => {
+test("public notes stay empty until genuine authored posts are published", async ({ page }) => {
   await page.goto("/notes");
 
-  await expect(page.getByRole("heading", { name: "Latest notes" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
+  await expect(page.getByText("No notes published yet.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Fixture post", { exact: true })).toHaveCount(0);
   await expect(
     page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Notes" }),
   ).toHaveAttribute("aria-current", "page");
+
   await page.goto("/notes/fixture-post");
-  await expect(page.getByRole("heading", { name: "Fixture post", exact: true })).toBeVisible();
-  await expect(page.locator(".post-content")).toContainText("Replace this fixture with approved content before production use.");
+  await expect(page).toHaveTitle("Note not found | Rick Vang");
+  await expect(page.locator('meta[name="robots"]').first()).toHaveAttribute("content", /noindex/);
 });
 
 test("admin route explains missing Supabase configuration locally", async ({ page }) => {
