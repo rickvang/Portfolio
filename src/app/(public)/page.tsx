@@ -5,7 +5,6 @@ import { ContactForm } from "@/components/contact-form";
 import { PostList } from "@/components/post-list";
 import { ProfileStats } from "@/components/profile-stats";
 import { ProjectPreview } from "@/components/project-preview";
-import { WorkThroughline } from "@/components/work-throughline";
 import { getApprovedCaseStudies } from "@/lib/case-studies";
 import { getApprovedImportedProfile } from "@/lib/imported-content";
 import { getPublishedPosts } from "@/lib/posts";
@@ -26,7 +25,6 @@ export default async function HomePage() {
       >
         <div className="home-work-copy">
           <p className="hero-coordinate">{profile?.eyebrow ?? "Portfolio"}</p>
-          <p className="eyebrow">Product design leadership</p>
           <h1 id="home-title">{profile?.headline ?? "Rick Vang"}</h1>
           <p className="lede">{profile?.summary ?? "Profile content is under review."}</p>
           <div className="hero-actions">
@@ -42,17 +40,14 @@ export default async function HomePage() {
         {featuredCaseStudy ? (
           <article className="home-featured-work">
             <div className="home-featured-heading">
-              <p className="eyebrow">Featured project</p>
               <h2>
                 <Link href={workHref(featuredCaseStudy.slug)}>{featuredCaseStudy.title}</Link>
               </h2>
-              <p>{featuredCaseStudy.summary}</p>
-              <WorkThroughline />
-              <Link className="text-link" href={workHref(featuredCaseStudy.slug)}>
-                Explore the case study
-              </Link>
             </div>
             <ProjectPreview caseStudy={featuredCaseStudy} headingLevel={3} />
+            <Link className="text-link" href={workHref(featuredCaseStudy.slug)}>
+              Explore the case study
+            </Link>
           </article>
         ) : (
           <div className="home-featured-work state-card" data-testid="home-work-empty">

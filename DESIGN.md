@@ -474,8 +474,18 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 - Draft, archived, and unpublished content must not leak through public components or metadata.
 - Preserve the client-IP disclaimer when importing case-study material from the existing site.
 - A project profile is a curated presentation adapter, not publication approval. It may resolve only for reviewStatus approved and for evidence/item references that still exist in the case-study source. Draft review mode uses the source text only.
-- The homepage keeps identity concise and presents the first approved project preview beside it at desktop widths; at narrow widths that preview follows immediately after the introduction.
+- The homepage keeps identity concise and presents the first approved project preview beside it at desktop widths; at narrow widths the project title, factual pattern explanation, and content-derived structure follow immediately after the introduction.
 - Treat testimonials and personal contact information as reviewable content, not automatic fixtures.
+
+### Work-led patterns and anti-patterns
+
+- **Home preview:** pair one concise identity statement with a source-backed project title and its content-derived structure. At narrow widths, put the project's own pattern directly after that introduction.
+- **Work index:** use the shared throughline to explain the relationship between separate projects, then let each preview show its own evidence-backed structure.
+- **Integrations topology:** use a named framework and an unordered capability list when the source establishes membership but not execution order. Do not add arrows or sequence numbers without source evidence.
+- **Design-systems matrix:** group only authored, evidence-backed practices and label the source-named contexts. Do not imply chronology or exact density values the source does not give.
+- **Artifact boundary:** label text-derived diagrams as derived. Keep source media deferred or redacted until each asset has human approval and an accessible description; never replace it with stock or fabricated product UI.
+- **Chapter boundary:** retain shared chapters for wayfinding and provenance, but select a visual pattern from the chapter's evidence. Do not make every project a uniform title-and-summary card or force one artifact grammar through the whole case study.
+- **Evidence over decoration:** a project count, repeated eyebrow, oversized generic thesis, or ornamental marker cannot stand in for a project name, concrete relationship, artifact type, decision, or supported outcome. Move shared synthesis to the Work index instead of repeating it inside every project preview.
 
 ## Verification workflow
 

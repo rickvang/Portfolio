@@ -6,7 +6,9 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Hi, I'm Rick.", exact: true })).toBeVisible();
   await expect(page.getByText(/product design leader driven by creating systems/i)).toBeVisible();
   await expect(page.getByRole("link", { name: "View all work" })).toHaveAttribute("href", "/work");
-  await expect(page.getByText("Featured project", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "How the product parts relate", exact: true }),
+  ).toBeVisible();
   await expect(page.getByRole("heading", { name: "Other approved case studies", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();

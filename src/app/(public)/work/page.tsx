@@ -8,15 +8,13 @@ export default function WorkPage() {
   return (
     <div className="public-page">
       <section aria-labelledby="work-page-heading" className="content-section work-index-intro">
-        <p className="eyebrow">Approved case studies</p>
         <h1 id="work-page-heading">Work</h1>
         <WorkThroughline />
       </section>
 
       <section aria-labelledby="work-index-heading" className="content-section work-index-projects">
         <div className="section-heading">
-          <p className="eyebrow">Selected work</p>
-          <h2 id="work-index-heading">Projects</h2>
+          <h2 id="work-index-heading">Selected projects</h2>
         </div>
         <CaseStudyList caseStudies={caseStudies} />
       </section>
