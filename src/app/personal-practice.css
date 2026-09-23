@@ -190,7 +190,7 @@
   border-bottom: 1px solid var(--border);
   display: grid;
   gap: clamp(1rem, 3vw, 2rem);
-  grid-template-columns: 2rem minmax(14rem, 0.82fr) minmax(18rem, 1.18fr) 2rem;
+  grid-template-columns: 2rem minmax(0, 1fr) 2rem;
   padding: clamp(1.5rem, 3vw, 2.2rem) 0;
 }
 
@@ -216,17 +216,6 @@
   line-height: 1.55;
   margin: 0;
   max-width: 42ch;
-}
-
-.practice-work-preview .project-preview-visual {
-  background: transparent;
-  border: 0;
-  border-radius: 0;
-  padding: 0;
-}
-
-.practice-work-preview .project-preview-meta {
-  margin-bottom: 0.75rem;
 }
 
 .practice-work-arrow {
@@ -438,10 +427,6 @@
     grid-column: 2;
   }
 
-  .practice-work-preview {
-    grid-column: 2 / 4;
-  }
-
   .practice-work-arrow {
     grid-column: 3;
     grid-row: 1;
@@ -519,10 +504,6 @@
     gap: 0.8rem;
     grid-template-columns: 1.6rem minmax(0, 1fr) 2rem;
     padding: 1.25rem 0;
-  }
-
-  .practice-work-preview {
-    display: none;
   }
 
   .practice-work-copy h3 {
