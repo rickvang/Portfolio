@@ -230,7 +230,7 @@ export const experienceProfiles = [
       kind: "topology",
       title: "How the product parts relate",
       intro:
-        "The approved case study describes one framework across a fragmented product ecosystem. These capabilities are shown as parts of that framework; their positions do not imply execution order.",
+        "A shared framework connects capabilities across fragmented products. Their placement here is illustrative, not a workflow sequence.",
       hub: {
         title: "Unified framework",
         summary: "Standardize processes, consolidate data, and integrate workflows.",

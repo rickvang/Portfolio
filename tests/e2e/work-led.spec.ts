@@ -28,6 +28,35 @@ test("approved work index presents each project's distinct structure", async ({ 
   await expect(page.locator(".project-preview img")).toHaveCount(0);
 });
 
+test("mobile home reveals a concrete project signal in the first viewport", async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/");
+
+  const featuredProject = page.getByRole("heading", {
+    level: 2,
+    name: "Multi Product Integrations",
+    exact: true,
+  });
+  await expect(featuredProject).toBeInViewport({ ratio: 1 });
+  await expect(
+    page.getByText(/A shared framework connects capabilities/),
+  ).toBeInViewport({ ratio: 1 });
+  await expect(
+    page.getByRole("heading", { name: "How the product parts relate", exact: true }),
+  ).toBeInViewport({ ratio: 1 });
+  await expect(page.getByText("Unified framework", { exact: true })).toBeInViewport();
+  await expect(page.locator(".project-topology-node").first()).toBeInViewport({ ratio: 0.8 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+
+  await page.locator("nextjs-portal").evaluateAll((portals) => {
+    portals.forEach((portal) => portal.remove());
+  });
+  await page.screenshot({
+    animations: "disabled",
+    path: "test-results/visual-snapshots/home-mobile-first-viewport.png",
+  });
+});
+
 test("detail pages trace the presentation to visible source sections", async ({ page }) => {
   await page.goto("/work/multi-product-integrations");
 
