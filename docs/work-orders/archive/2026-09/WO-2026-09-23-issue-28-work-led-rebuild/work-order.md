@@ -1,7 +1,7 @@
 # Work Order — Issue #28 work-led surface rebuild
 
 - Work Order ID: WO-2026-09-23-issue-28-work-led-rebuild
-- Status: active
+- Status: complete
 - Created: 2026-09-23
 - Last updated: 2026-09-23
 - Repository: rickvang/Portfolio
@@ -69,32 +69,27 @@ The targeted 390×844 Playwright check passes. The rendered first viewport now i
 
 ## Current phase and next action
 
-Phase 3 — complete. `pnpm verify` passed (lint, typecheck, 32 unit tests, and production build). `pnpm test:e2e` passed all 38 browser checks across desktop, tablet, and mobile projects. The first full browser run exposed one stale assertion for a removed generic eyebrow; the assertion now targets the actual project evidence, and the full suite passes.
+Phase 3 — complete. `pnpm verify` passed (lint, typecheck, 32 unit tests, and production build). `pnpm test:e2e` passed all 38 browser checks across desktop, tablet, and mobile projects. A stale eyebrow assertion was updated, and the full suite passed.
 
-The independent visual finish review found that the 390×844 first viewport cut off before showing any topology capabilities. I tightened the mobile-only spacing and shortened the explanatory copy without removing the note that the topology is not a workflow sequence. The updated screenshot now shows the framework, its “Includes” relationship, the full first capability, and the start of the second. An assertion checks that the first capability is in view, and the targeted check, full verification, and all 38 browser checks pass. The independent reviewer confirmed the finding is resolved and reported no new material visual issues.
+The independent visual finish review identified a mobile viewport issue. I tightened mobile spacing and copy; the updated 390×844 capture shows the framework, its “Includes” relationship, the full first capability, and the start of the second. The targeted check, full verification, all 38 browser checks, and independent visual review passed.
 
-Phase 4 — complete. PR #33 is open, ready for review, and mergeable. The implementation commit is `7f14e9277d1e2010811ecef844b2266aa23cd6e8`; subsequent branch commits only update this Work Order. GitHub Actions CI run 85 passed all verification and Supabase schema jobs, and the Vercel preview status succeeded. Cursor's approval automation approved the implementation; its note says Bugbot was not present, so that automated-review signal was skipped. No unresolved inline review threads were returned.
+Phase 4 — complete. PR #33 merged to `main` at `f0039321778c7b54e7f6231b949979e52773a6a9`. GitHub Actions CI run 86 succeeded on the final PR head; GitHub's Vercel status is success. Issue #28 closed automatically on merge. No unresolved inline review threads were found before merge.
 
-The Vercel deployment is a PR preview only. The PR remains unmerged because Portfolio's production-deployment gate requires explicit authorization.
+Phase 5 — complete. No source media was reused; asset-level approval remains deferred. This Work Order is archived under `docs/work-orders/archive/2026-09/WO-2026-09-23-issue-28-work-led-rebuild/`.
 
-Phase 5 — waiting for deployment authorization before merge.
-
-Next action: if production deployment is authorized, refresh the PR head/base, CI and preview status, review submissions, unresolved threads, mergeability, and linked-issue effect; merge only if the gates still pass.
-
+Next action: none. Issue #28 and its authorized PR are complete.
 ## Validation
 
-- Baseline desktop and post-change 390×844 mobile Home captures were inspected. The targeted mobile Playwright check proves the project title, evidence-based pattern explanation, and topology hub heading fit the first viewport without horizontal overflow.
-- `pnpm verify` passed: lint, TypeScript, all 32 unit tests, and the production build.
+- Baseline desktop and post-change 390×844 mobile captures were inspected. The targeted mobile Playwright check proves the project title, evidence-based pattern explanation, and topology hub heading fit the first viewport without horizontal overflow.
+- `pnpm verify` passed: lint, TypeScript, all 32 unit tests, and production build.
 - `pnpm test:e2e` passed: all 38 browser checks across desktop, tablet, and mobile configurations, including responsive, focus, and reduced-motion coverage.
 - Final desktop 1440×1000 and mobile 390×844 captures were visually reviewed. The homepage presents the actual project pattern earlier, with no horizontal overflow on mobile.
-- The independent review identified the first mobile capture as incomplete because it hid all topology capabilities. The revised capture and regression assertion now bring the first capability into the viewport while retaining the source qualification about sequence.
+- The independent review identified the first mobile capture as incomplete because it hid all topology capabilities. The revised capture and regression assertion bring the first capability into the viewport while retaining the source qualification about sequence.
 - The E2E runner owns and cleans up its temporary development server; no persistent test port was left running.
-- The Impeccable engine detector could not run because its binary download is blocked by the current network policy. Issue #28 and DESIGN.md provide the design direction; review the rendered output and record this tooling limit rather than inventing a replacement direction.
-- Independent reviewer confirmed the focused mobile fix and reported no new material visual issues.
-- PR #33 is open and mergeable. GitHub Actions CI run 85 and the Vercel preview status succeeded; the automated Cursor review approved the implementation, with Bugbot skipped because it was unavailable. No unresolved inline review threads were returned.
-- No production merge or deployment occurred; explicit authorization is still required.
-- Refresh PR head/base, checks, reviews, unresolved threads, mergeability, and linked-issue effects before final close-out.
+- The Impeccable engine detector could not run because its binary download is blocked by the current network policy. Issue #28 and DESIGN.md provide the design direction; the limitation is recorded rather than replaced with an invented direction.
+- PR #33 merged to main as f0039321778c7b54e7f6231b949979e52773a6a9 after explicit requester authorization. GitHub Actions CI run 86 and the final Vercel status succeeded; issue #28 closed automatically.
+- No old Framer media or fabricated product imagery was reused. Asset-level media approval remains deferred.
 
 ## Completion boundary
 
-The Issue #28 scope is implemented and documented; harness states exist for applicable rich, deferred, dense, redacted, text-first, responsive, focus, and reduced-motion cases; applicable checks pass or limitations are explicit; PR #33 is open and its current checks/review signals pass apart from the unavailable Bugbot signal. The issue remains open until the PR merges. Merge would deploy to production and remains gated on explicit authorization; source-media reuse remains deferred pending human approval.
+Issue #28 is complete. PR #33 merged to `main` as `f0039321778c7b54e7f6231b949979e52773a6a9`; GitHub Actions CI run 86 succeeded; the final Vercel status succeeded; issue #28 closed automatically. The work-led hierarchy, differentiated integrations and design-systems patterns, DESIGN.md guidance, harness coverage, and verification are recorded above. No old Framer assets or fabricated product imagery were reused. Asset-level media approval remains a separate future decision. This terminal Work Order is archived at `docs/work-orders/archive/2026-09/WO-2026-09-23-issue-28-work-led-rebuild/work-order.md`.
