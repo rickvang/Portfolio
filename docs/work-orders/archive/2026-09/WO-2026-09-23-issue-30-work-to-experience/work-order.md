@@ -2,23 +2,25 @@
 
 ## Header
 
-- Work-order ID: WO-2026-09-22-issue-28-work-led-surface
-- Title: Portfolio work-to-experience translation and work-led surfaces
-- Status: close-out review complete; stacked draft PR remains open
+- Work-order ID: WO-2026-09-23-issue-30-work-to-experience
+- Title: Portfolio work-to-experience translation (Issue #30)
+- Status: complete
 - Created: 2026-09-22
-- Last updated: 2026-09-23 (post-revision cold read and responsive/menu review recorded; PR #31 remains draft)
+- Last updated: 2026-09-23 (implementation merged on `main`; Work Order archived)
 - Requester: Riley / repository owner
-- Current owner: Riley Morgan / Codex implementation for Current Work CW-39
+- Current owner: Riley Morgan / ai-orchestrator
 - Request mode: update and prototype
 - Proportionality tier: feature
 - Change mode and domain: source-backed UX translation, public portfolio UI, typed presentation boundary, harness, and verification
-- Reconciliation requirement: reconcile Current Work CW-39 and issue #30 with the final branch, draft PR, work packet, and validation results
-- Explicit authorization and target: implement Issue #30 in `rickvang/Portfolio`, stacked on the current Issue #29 head; publish a draft PR and update Issue #30 with artifact links. Do not merge, deploy, publish to production, or close the issue.
-- Stopping condition: implementation, evidence, reader review, and checks are reviewable through the open stacked draft PR and Issue #30; document that human usability research is not claimed.
+- Reconciliation requirement: reconcile Current Work CW-27 and issue #30 with merged PR #31 and this archived Work Order
+- GitHub issue: https://github.com/rickvang/Portfolio/issues/30 (closed 2026-09-23)
+- Merged implementation: https://github.com/rickvang/Portfolio/pull/31 (`bcbbf961deb121cde555c4a1cfd96539593d2b6b`)
+- Follow-on product work: Current Work CW-52 (experience-mode redesign; media and copy enrichment deferred there)
+- Stopping condition: framework implementation delivered on `main`; deferred media, narrative depth, and human validation are explicitly out of scope for this Work Order.
 
 ## Artifact home and index
 
-- Artifact home: `docs/work-orders/WO-2026-09-22-issue-28-work-led-surface/`
+- Artifact home: `docs/work-orders/archive/2026-09/WO-2026-09-23-issue-30-work-to-experience/`
 - Work Order file: this file
 - Current concrete deliverable: an agent-facing thematic and quality-reflection scaffold; seven-layer evidence-to-experience translation for both approved projects; shared semantic presentation on Home/Work/detail; and a deterministic local harness with fallbacks.
 - Specialized artifact links: [Experience crosswalk](experience-crosswalk.md); [DESIGN.md](../../../DESIGN.md); [ARCHITECTURE.md](../../../ARCHITECTURE.md); [DECISIONS.md](../../../DECISIONS.md).
@@ -29,7 +31,7 @@
 | ART-002 | UX evidence and design crosswalk | `docs/work-orders/WO-2026-09-22-issue-28-work-led-surface/experience-crosswalk.md` | Current branch | Riley Morgan / Codex | reviewed | Source-backed interpretations; reader response remains a hypothesis. |
 | ART-003 | Product implementation and tests | `src/lib/experience-profiles.ts`, `src/lib/project-presentation.ts`, `src/components/experience-presentation.tsx`, `src/components/project-preview.tsx`, and associated pages/styles/tests | Current branch | Portfolio | reviewed | All mutations stay in Portfolio; previously recorded checks need a fresh run after the current revisions. |
 | ART-004 | GitHub issue | https://github.com/rickvang/Portfolio/issues/30 | Live issue | Repository owner | open | User-directed progress link update; keep issue open. |
-| ART-005 | Stacked draft PR | https://github.com/rickvang/Portfolio/pull/31 | Branch `codex/issue-30-work-to-experience` | Portfolio | active | Draft PR #31 targets `feat/issue-28-work-led-surface` at PR #29's head; no merge/deploy. |
+| ART-005 | Implementation PR | https://github.com/rickvang/Portfolio/pull/31 | Merged to `main` 2026-09-23 | Portfolio | complete | Delivers Issue #30 framework on `main`. |
 
 ## Project context and reference routing
 
@@ -368,6 +370,6 @@ The reviewer-understanding acceptance criterion passes. Remaining ambiguity is t
 
 This PR revision adds an explicit throughline to Home and Work, reduces the Work index transition gap, corrects contextual heading levels, and replaces process-oriented media wording with a visitor-facing explanation. It keeps original images deferred and adds no invented screens, outcome metrics, or causal claims. No further copy change is needed to meet the visible-relationship criterion. Original media and quantitative outcomes remain unavailable without new approved source material.
 
-**Current close-out state:** the model-based reader-understanding criterion passes with the limitations above. Keep Issue #30 open and draft PR #31 open under the existing authorization; do not merge, close, or deploy to production under this work order.
+**Terminal close-out (2026-09-23):** Issue #30 framework scope is complete on `main` via merged PR #31. The model-based reader-understanding criterion passes with documented limitations. Issue #30 is closed; source media approval, richer examples/outcomes, and human feeling validation are tracked under Current Work CW-52, not this Work Order.
 
-**Implementation CI before this documentation update:** GitHub Actions run 77 completed successfully on `ae1dad76c5e6c2584969e91391d5fc289a861085`; Vercel reported success for the corresponding preview deployment. The stale copy assertion was updated to guard the throughline and case-study links. The documentation-only close-out commit receives the normal branch checks; the PR status will reflect the resulting head.
+**Archive location:** `docs/work-orders/archive/2026-09/WO-2026-09-23-issue-30-work-to-experience/work-order.md`
