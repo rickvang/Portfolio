@@ -3,14 +3,19 @@ import Link from "next/link";
 import type { CaseStudy } from "@/lib/case-studies";
 import { workHref } from "@/lib/public-routes";
 
+type PersonalPracticeWorkItem = {
+  caseStudy: CaseStudy;
+  summary?: string;
+};
+
 type PersonalPracticeWorkIndexProps = {
-  caseStudies: readonly CaseStudy[];
+  items: readonly PersonalPracticeWorkItem[];
 };
 
 export function PersonalPracticeWorkIndex({
-  caseStudies,
+  items,
 }: PersonalPracticeWorkIndexProps) {
-  if (caseStudies.length === 0) {
+  if (items.length === 0) {
     return (
       <div className="practice-empty-state">
         <p>Case studies are under review.</p>
@@ -20,7 +25,7 @@ export function PersonalPracticeWorkIndex({
 
   return (
     <div aria-label="Selected work" className="practice-work-index">
-      {caseStudies.map((caseStudy, index) => (
+      {items.map(({ caseStudy, summary }, index) => (
         <article
           className="practice-work-row"
           data-practice-work={caseStudy.slug}
@@ -35,7 +40,7 @@ export function PersonalPracticeWorkIndex({
             <h3>
               <Link href={workHref(caseStudy.slug)}>{caseStudy.title}</Link>
             </h3>
-            <p>{caseStudy.summary}</p>
+            <p>{summary ?? caseStudy.summary}</p>
           </div>
 
           <Link

@@ -5,11 +5,13 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 
   await expect(
     page.getByRole("heading", {
-      name: "Designing human-centered systems for what's next.",
+      name: "I design complex product systems—and the systems teams use to build them.",
       exact: true,
     }),
   ).toBeVisible();
-  await expect(page.getByText(/I design product and design systems for complex environments/i)).toBeVisible();
+  await expect(
+    page.getByText(/I work across product architecture, design systems, and AI-assisted workflows/i),
+  ).toBeVisible();
   await expect(page.getByRole("link", { name: "View selected work ↓" })).toHaveAttribute(
     "href",
     "#selected-work",
@@ -20,10 +22,25 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(page.locator(".practice-header")).toHaveCount(0);
 
   await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
+  const selectedWork = page.locator("#selected-work");
+  const workRows = selectedWork.locator(".practice-work-row");
+  await expect(workRows).toHaveCount(4);
+  await expect(workRows.nth(0).getByRole("heading")).toHaveText("Multi Product Integrations");
+  await expect(workRows.nth(1).getByRole("heading")).toHaveText("AI Systems");
+  await expect(workRows.nth(2).getByRole("heading")).toHaveText("Design Systems");
+  await expect(workRows.nth(3).getByRole("heading")).toHaveText("UI Design Practices");
+  await expect(
+    selectedWork.getByText(/Turning a fragmented ecosystem of products, workflows, and data/i),
+  ).toBeVisible();
+  await expect(
+    selectedWork.getByText(/Building a durable operating system for collaborating with specialized AI agents/i),
+  ).toBeVisible();
+  await expect(
+    selectedWork.getByText(/Creating reusable product foundations and lightweight governance/i),
+  ).toBeVisible();
+  await expect(
+    selectedWork.getByText(/Turning design principles into a repeatable design-to-implementation practice/i),
+  ).toBeVisible();
   await expect(page.getByRole("heading", { name: "How I work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(

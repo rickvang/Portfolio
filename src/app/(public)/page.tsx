@@ -8,10 +8,38 @@ import { getApprovedImportedProfile } from "@/lib/imported-content";
 import { getPublishedPosts } from "@/lib/posts";
 import { publicRoutes } from "@/lib/public-routes";
 
+const homepageWork = [
+  {
+    slug: "multi-product-integrations",
+    summary:
+      "Turning a fragmented ecosystem of products, workflows, and data into a shared framework for a more coherent product experience.",
+  },
+  {
+    slug: "ai-systems",
+    summary:
+      "Building a durable operating system for collaborating with specialized AI agents across repositories, tools, and interruptions.",
+  },
+  {
+    slug: "design-systems",
+    summary:
+      "Creating reusable product foundations and lightweight governance to improve consistency across a complex legacy environment.",
+  },
+  {
+    slug: "ui-design-practices",
+    summary:
+      "Turning design principles into a repeatable design-to-implementation practice with explicit interaction, accessibility, and verification contracts.",
+  },
+] as const;
+
 export default async function HomePage() {
   const profile = getApprovedImportedProfile();
   const caseStudies = getApprovedCaseStudies();
   const posts = await getPublishedPosts();
+
+  const selectedWork = homepageWork.flatMap((item) => {
+    const caseStudy = caseStudies.find((candidate) => candidate.slug === item.slug);
+    return caseStudy ? [{ caseStudy, summary: item.summary }] : [];
+  });
 
   return (
     <div className="public-page practice-home">
@@ -21,10 +49,13 @@ export default async function HomePage() {
         id="top"
       >
         <div className="practice-home-copy">
-          <h1 id="home-title">Designing human-centered systems for what&apos;s next.</h1>
+          <h1 id="home-title">
+            I design complex product systems—and the systems teams use to build them.
+          </h1>
           <p className="lede">
-            I design product and design systems for complex environments—turning fragmented
-            products and ways of working into clearer, more useful experiences.
+            I work across product architecture, design systems, and AI-assisted workflows—connecting
+            fragmented experiences, building reusable foundations, and improving how teams make and
+            maintain software.
           </p>
           <div className="practice-hero-links">
             <a className="practice-text-link" href="#selected-work">
@@ -44,9 +75,12 @@ export default async function HomePage() {
       >
         <div className="practice-section-heading">
           <h2 id="selected-work-heading">Selected work</h2>
-          <p>Complex product and system problems, shown through the decisions and structures behind them.</p>
+          <p>
+            Product architecture, AI orchestration, reusable foundations, and implementation
+            practice—shown through the systems and decisions behind the work.
+          </p>
         </div>
-        <PersonalPracticeWorkIndex caseStudies={caseStudies} />
+        <PersonalPracticeWorkIndex items={selectedWork} />
       </section>
 
       <section
@@ -62,7 +96,7 @@ export default async function HomePage() {
         <div className="practice-how-grid">
           <article className="practice-principle">
             <span aria-hidden="true">01</span>
-            <strong>Connect fragmented products.</strong>
+            <strong>Connect fragmented systems.</strong>
             <p>Use shared frameworks to make separate workflows and capabilities easier to understand together.</p>
           </article>
           <article className="practice-principle">
