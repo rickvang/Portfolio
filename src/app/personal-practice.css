@@ -1,5 +1,43 @@
 /* Issue #39 refinement: Personal Practice / Working Archive */
 
+
+@keyframes practice-rail-enter {
+  from {
+    opacity: 0.01;
+    transform: translateX(-0.45rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes practice-rise-in {
+  from {
+    opacity: 0.01;
+    transform: translateY(0.5rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes practice-rule-reveal {
+  from {
+    opacity: 0.35;
+    transform: scaleX(0);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+
 .practice-shell {
   background: var(--background);
   color: var(--foreground);
@@ -24,6 +62,7 @@
 }
 
 .practice-rail {
+  animation: practice-rail-enter 180ms var(--ease-standard) both;
   background: var(--surface);
   border-right: 1px solid var(--border);
   display: flex;
@@ -55,6 +94,26 @@
   display: grid;
   gap: 0.15rem;
   margin-block: auto;
+  position: relative;
+}
+
+.practice-nav-marker {
+  background: var(--accent);
+  border-radius: 999px;
+  height: 0.38rem;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  transition:
+    top 200ms var(--ease-standard),
+    opacity 120ms var(--ease-standard);
+  width: 0.38rem;
+}
+
+.practice-nav-marker[data-visible="true"] {
+  opacity: 1;
 }
 
 .practice-nav-link {
@@ -76,24 +135,10 @@
   letter-spacing: 0.06em;
 }
 
-.practice-nav-link::after {
-  background: transparent;
-  border-radius: 999px;
-  content: "";
-  height: 0.38rem;
-  position: absolute;
-  right: 0;
-  width: 0.38rem;
-}
-
 .practice-nav-link:hover,
 .practice-nav-link:focus-visible,
 .practice-nav-link.is-active {
   color: var(--foreground);
-}
-
-.practice-nav-link.is-active::after {
-  background: var(--accent);
 }
 
 .practice-rail-note {
@@ -114,7 +159,7 @@
 }
 
 .practice-shell .public-page {
-  animation: chapter-enter var(--motion-standard) var(--ease-standard) both;
+  animation: none;
   margin: 0;
   max-width: none;
 }
@@ -131,9 +176,34 @@
 }
 
 .practice-home-hero {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 0;
   max-width: 58rem;
   padding: clamp(4.5rem, 9vw, 7rem) 0 clamp(3.5rem, 7vw, 5rem);
+  position: relative;
+}
+
+.practice-home-hero::after {
+  animation: practice-rule-reveal 220ms 110ms var(--ease-standard) both;
+  background: var(--border);
+  bottom: 0;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform-origin: left center;
+  width: 100%;
+}
+
+.practice-home-copy h1 {
+  animation: practice-rise-in 220ms 30ms var(--ease-standard) both;
+}
+
+.practice-home-copy .lede {
+  animation: practice-rise-in 220ms 70ms var(--ease-standard) both;
+}
+
+.practice-home-copy .practice-hero-links {
+  animation: practice-rise-in 220ms 110ms var(--ease-standard) both;
 }
 
 .practice-home-copy h1 {
@@ -199,11 +269,20 @@
 
 .practice-work-row {
   align-items: start;
+  background: transparent;
   border-bottom: 1px solid var(--border);
   display: grid;
   gap: clamp(1rem, 3vw, 2rem);
   grid-template-columns: 2rem minmax(0, 1fr) 2rem;
   padding: clamp(1.45rem, 3vw, 2rem) 0;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+
+.practice-work-row:is(:hover, :focus-within) {
+  background: color-mix(in srgb, var(--surface) 42%, transparent);
+  border-bottom-color: color-mix(in srgb, var(--foreground) 18%, var(--border));
 }
 
 .practice-work-number {
@@ -245,10 +324,10 @@
   width: 2rem;
 }
 
-.practice-work-row:hover .practice-work-arrow,
+.practice-work-row:is(:hover, :focus-within) .practice-work-arrow,
 .practice-work-arrow:focus-visible {
   border-color: var(--foreground);
-  transform: translateX(0.15rem);
+  transform: translateX(0.2rem);
 }
 
 .practice-how-grid {
@@ -449,7 +528,7 @@
   }
 
   .practice-nav-index,
-  .practice-nav-link::after {
+  .practice-nav-marker {
     display: none;
   }
 
@@ -581,10 +660,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .practice-shell .public-page {
+  .practice-rail,
+  .practice-home-copy h1,
+  .practice-home-copy .lede,
+  .practice-home-copy .practice-hero-links,
+  .practice-home-hero::after {
     animation: none;
   }
 
+  .practice-home-hero::after {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .practice-nav-marker,
+  .practice-work-row,
   .practice-work-arrow {
     transition: none;
   }
