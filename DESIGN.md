@@ -60,7 +60,7 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 | `--surface-strong` | `#dcdcd9` | Stronger neutral separation when a muted surface is insufficient |
 | `--foreground` | `#171614` | Primary text and strong borders |
 | `--muted` | `#6b665f` | Supporting text |
-| `--border` | `#d5cfc5` | Dividers, card borders, and field borders |
+| `--border` | `#cfcfcc` | Dividers, card borders, and field borders |
 | `--accent` | `#f24c27` | Brand identity, active rail marker, large authored emphasis, button fill |
 | `--accent-hover` | `#ff6848` | Hover fill for accent actions |
 | `--accent-ink` | `#b7371c` | Small accent text and links on light surfaces |
