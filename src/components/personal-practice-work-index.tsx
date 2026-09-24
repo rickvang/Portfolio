@@ -3,25 +3,19 @@ import Link from "next/link";
 import type { CaseStudy } from "@/lib/case-studies";
 import { workHref } from "@/lib/public-routes";
 
-type PersonalPracticeWorkIndexProps = {
-  caseStudies: readonly CaseStudy[];
+type PersonalPracticeWorkItem = {
+  caseStudy: CaseStudy;
+  summary?: string;
 };
 
-const homepageSummaries: Partial<Record<CaseStudy["slug"], string>> = {
-  "multi-product-integrations":
-    "Turning a fragmented ecosystem of products, workflows, and data into a shared framework for a more coherent product experience.",
-  "ai-systems":
-    "Building a durable operating system for collaborating with specialized AI agents across repositories, tools, and interruptions.",
-  "design-systems":
-    "Creating reusable product foundations and lightweight governance to improve consistency across a complex legacy environment.",
-  "ui-design-practices":
-    "Turning design principles into a repeatable design-to-implementation practice with explicit interaction, accessibility, and verification contracts.",
+type PersonalPracticeWorkIndexProps = {
+  items: readonly PersonalPracticeWorkItem[];
 };
 
 export function PersonalPracticeWorkIndex({
-  caseStudies,
+  items,
 }: PersonalPracticeWorkIndexProps) {
-  if (caseStudies.length === 0) {
+  if (items.length === 0) {
     return (
       <div className="practice-empty-state">
         <p>Case studies are under review.</p>
@@ -31,7 +25,7 @@ export function PersonalPracticeWorkIndex({
 
   return (
     <div aria-label="Selected work" className="practice-work-index">
-      {caseStudies.map((caseStudy, index) => (
+      {items.map(({ caseStudy, summary }, index) => (
         <article
           className="practice-work-row"
           data-practice-work={caseStudy.slug}
@@ -46,7 +40,7 @@ export function PersonalPracticeWorkIndex({
             <h3>
               <Link href={workHref(caseStudy.slug)}>{caseStudy.title}</Link>
             </h3>
-            <p>{homepageSummaries[caseStudy.slug] ?? caseStudy.summary}</p>
+            <p>{summary ?? caseStudy.summary}</p>
           </div>
 
           <Link

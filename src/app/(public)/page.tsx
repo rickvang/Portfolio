@@ -8,11 +8,27 @@ import { getApprovedImportedProfile } from "@/lib/imported-content";
 import { getPublishedPosts } from "@/lib/posts";
 import { publicRoutes } from "@/lib/public-routes";
 
-const homepageWorkOrder = [
-  "multi-product-integrations",
-  "ai-systems",
-  "design-systems",
-  "ui-design-practices",
+const homepageWork = [
+  {
+    slug: "multi-product-integrations",
+    summary:
+      "Turning a fragmented ecosystem of products, workflows, and data into a shared framework for a more coherent product experience.",
+  },
+  {
+    slug: "ai-systems",
+    summary:
+      "Building a durable operating system for collaborating with specialized AI agents across repositories, tools, and interruptions.",
+  },
+  {
+    slug: "design-systems",
+    summary:
+      "Creating reusable product foundations and lightweight governance to improve consistency across a complex legacy environment.",
+  },
+  {
+    slug: "ui-design-practices",
+    summary:
+      "Turning design principles into a repeatable design-to-implementation practice with explicit interaction, accessibility, and verification contracts.",
+  },
 ] as const;
 
 export default async function HomePage() {
@@ -20,9 +36,9 @@ export default async function HomePage() {
   const caseStudies = getApprovedCaseStudies();
   const posts = await getPublishedPosts();
 
-  const selectedCaseStudies = homepageWorkOrder.flatMap((slug) => {
-    const caseStudy = caseStudies.find((candidate) => candidate.slug === slug);
-    return caseStudy ? [caseStudy] : [];
+  const selectedWork = homepageWork.flatMap((item) => {
+    const caseStudy = caseStudies.find((candidate) => candidate.slug === item.slug);
+    return caseStudy ? [{ caseStudy, summary: item.summary }] : [];
   });
 
   return (
@@ -64,7 +80,7 @@ export default async function HomePage() {
             practice—shown through the systems and decisions behind the work.
           </p>
         </div>
-        <PersonalPracticeWorkIndex caseStudies={selectedCaseStudies} />
+        <PersonalPracticeWorkIndex items={selectedWork} />
       </section>
 
       <section

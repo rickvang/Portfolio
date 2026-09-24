@@ -43,7 +43,7 @@ The homepage transformation statements are bounded paraphrases of the approved c
 
 ## Current phase
 
-Implementation is assembled as one atomic branch commit. Next: open PR, run GitHub CI/Vercel, inspect rendered Home at desktop and narrow widths, address scoped review findings, and merge if gates pass.
+Implementation rendered correctly at desktop and narrow widths and CI #106 passed all repository gates. PR review identified one content-ownership issue: homepage-specific transformation copy had been embedded in the reusable Work Index component. The correction moves that copy into the Home route and passes explicit presentation items into the reusable component without changing rendered behavior. Next: rerun final gates and merge if clean.
 
 ## Completion boundary
 
