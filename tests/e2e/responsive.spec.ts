@@ -23,6 +23,38 @@ test("work-to-experience patterns stack and wrap without horizontal overflow", a
 });
 
 
+
+test("personal practice narrow navigation remains static", async ({ page }) => {
+  await page.setViewportSize({ width: 800, height: 900 });
+  await page.goto("/");
+
+  await expect(page.getByTestId("practice-rail")).toHaveCSS("animation-name", "none");
+});
+
+test("personal practice rail marker preserves keyboard focus when the pointer leaves", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto("/work/multi-product-integrations");
+
+  const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+  const aboutLink = navigation.getByRole("link", { name: "About" });
+  const marker = page.getByTestId("practice-nav-marker");
+
+  await aboutLink.hover();
+  await aboutLink.focus();
+  await expect(aboutLink).toBeFocused();
+  await expect(marker).toHaveAttribute("data-visible", "true");
+
+  const focusedTop = await marker.evaluate((element) => (element as HTMLElement).style.top);
+  expect(focusedTop).not.toBe("");
+
+  await page.mouse.move(1100, 24);
+
+  await expect(aboutLink).toBeFocused();
+  await expect.poll(
+    () => marker.evaluate((element) => (element as HTMLElement).style.top),
+  ).toBe(focusedTop);
+});
+
 test("mobile public navigation traps focus and returns it on Escape", async ({ page }) => {
   await page.goto("/work");
 

@@ -35,3 +35,14 @@ No animation library, parallax, looping motion, cursor effects, page-transition 
 ## Current phase
 
 Implementation is complete on the branch. GitHub CI run #112 passed database validation, lint, typecheck, unit tests, Playwright (including reduced-motion/marker contracts), visual-capture generation, and production build. Cursor review approved the change with no findings. The first Vercel preview request was rejected before build by the account build-rate limiter, not by application code. This checkpoint commit is the single controlled preview retry; do not create a retry loop.
+
+
+## Review refinement
+
+After Vercel deployment recovery, the motion preview successfully entered a real Vercel build. Codex review identified three interaction-contract gaps, all addressed in one follow-up commit:
+
+- narrow Personal Practice navigation explicitly disables the desktop rail entrance animation;
+- desktop entrance opacity now begins at a readable partial state rather than near-zero;
+- pointer leave preserves a keyboard-focused rail link before falling back to the active route.
+
+Playwright coverage now checks the static narrow rail and mixed pointer/keyboard marker behavior.

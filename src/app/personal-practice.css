@@ -3,7 +3,7 @@
 
 @keyframes practice-rail-enter {
   from {
-    opacity: 0.01;
+    opacity: 0.88;
     transform: translateX(-0.45rem);
   }
 
@@ -15,7 +15,7 @@
 
 @keyframes practice-rise-in {
   from {
-    opacity: 0.01;
+    opacity: 0.85;
     transform: translateY(0.5rem);
   }
 
@@ -498,6 +498,7 @@
 
   .practice-rail {
     align-items: center;
+    animation: none;
     border-bottom: 1px solid var(--border);
     border-right: 0;
     display: flex;

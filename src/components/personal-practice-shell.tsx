@@ -46,6 +46,22 @@ export function PersonalPracticeShell({
     positionMarker(activeLink);
   }, [positionMarker]);
 
+  const restoreFocusedOrActiveMarker = useCallback(() => {
+    const nav = navRef.current;
+    const focusedElement = document.activeElement;
+    const focusedLink =
+      nav && focusedElement instanceof HTMLElement && nav.contains(focusedElement)
+        ? focusedElement.closest<HTMLElement>(".practice-nav-link")
+        : null;
+
+    if (focusedLink) {
+      positionMarker(focusedLink);
+      return;
+    }
+
+    restoreActiveMarker();
+  }, [positionMarker, restoreActiveMarker]);
+
   useLayoutEffect(() => {
     restoreActiveMarker();
   }, [pathname, restoreActiveMarker]);
@@ -76,7 +92,7 @@ export function PersonalPracticeShell({
               restoreActiveMarker();
             }
           }}
-          onMouseLeave={restoreActiveMarker}
+          onMouseLeave={restoreFocusedOrActiveMarker}
           ref={navRef}
         >
           <span
