@@ -7,6 +7,17 @@ type PersonalPracticeWorkIndexProps = {
   caseStudies: readonly CaseStudy[];
 };
 
+const homepageSummaries: Partial<Record<CaseStudy["slug"], string>> = {
+  "multi-product-integrations":
+    "Turning a fragmented ecosystem of products, workflows, and data into a shared framework for a more coherent product experience.",
+  "ai-systems":
+    "Building a durable operating system for collaborating with specialized AI agents across repositories, tools, and interruptions.",
+  "design-systems":
+    "Creating reusable product foundations and lightweight governance to improve consistency across a complex legacy environment.",
+  "ui-design-practices":
+    "Turning design principles into a repeatable design-to-implementation practice with explicit interaction, accessibility, and verification contracts.",
+};
+
 export function PersonalPracticeWorkIndex({
   caseStudies,
 }: PersonalPracticeWorkIndexProps) {
@@ -35,7 +46,7 @@ export function PersonalPracticeWorkIndex({
             <h3>
               <Link href={workHref(caseStudy.slug)}>{caseStudy.title}</Link>
             </h3>
-            <p>{caseStudy.summary}</p>
+            <p>{homepageSummaries[caseStudy.slug] ?? caseStudy.summary}</p>
           </div>
 
           <Link
