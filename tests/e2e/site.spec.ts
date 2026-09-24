@@ -19,6 +19,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 
   await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
   await expect(page.getByTestId("practice-rail")).toBeVisible();
+  await expect(page.getByTestId("practice-nav-marker")).toHaveAttribute("data-visible", "false");
   await expect(page.locator(".practice-header")).toHaveCount(0);
 
   await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
@@ -84,6 +85,7 @@ test("approved imported work is public through the shared case-study routes", as
   await page.goto("/work/multi-product-integrations");
   await expect(page).toHaveTitle("Multi Product Integrations | Rick Vang");
   await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
+  await expect(page.getByTestId("practice-nav-marker")).toHaveAttribute("data-visible", "true");
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Fragmentation was the starting condition." })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Start with people and workflows." })).toBeVisible();

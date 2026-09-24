@@ -553,6 +553,18 @@ Issue #6 Phase 7 closes the recorded UI/release audit findings as follows:
 
 
 
+### Personal Practice motion language
+
+Issue #47 adds one restrained motion vocabulary to the Personal Practice shell:
+
+- a shared orange desktop rail marker follows the active navigation item and temporarily tracks hover/focus;
+- the rail, Home headline, supporting copy, action links, and first structural rule use a one-time entrance sequence that completes in roughly 330 ms;
+- Selected Work rows use a subtle surface/divider response and a 3–4 px arrow translation for pointer hover and keyboard focus;
+- narrow navigation remains static;
+- `prefers-reduced-motion: reduce` removes entrance animations, marker glide, and work-row translations while preserving the same visible states.
+
+Motion may reinforce orientation and affordance, but it must not carry content meaning, create required delays, loop, parallax, or replace focus/active semantics.
+
 ### Reduced warm chroma selection
 
 Issue #43 compared the shipped warm palette against lower-chroma warm and near-neutral candidates on the real Personal Practice surface. Candidate B was selected for production.
