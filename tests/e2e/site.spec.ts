@@ -5,7 +5,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 
   await expect(
     page.getByRole("heading", {
-      name: "I design complex product systems—and the systems teams use to build them.",
+      name: "Designing human-centered systems for what's next.",
       exact: true,
     }),
   ).toBeVisible();

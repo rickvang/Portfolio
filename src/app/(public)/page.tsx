@@ -50,7 +50,7 @@ export default async function HomePage() {
       >
         <div className="practice-home-copy">
           <h1 id="home-title">
-            I design complex product systems—and the systems teams use to build them.
+            Designing human-centered systems for what&apos;s next.
           </h1>
           <p className="lede">
             I work across product architecture, design systems, and AI-assisted workflows—connecting
