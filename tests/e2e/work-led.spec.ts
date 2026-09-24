@@ -35,7 +35,7 @@ test("mobile home uses the working-index structure without horizontal overflow",
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "I design complex product systems—and the systems teams use to build them.",
+      name: "Designing human-centered systems for what's next.",
       exact: true,
     }),
   ).toBeInViewport({ ratio: 1 });

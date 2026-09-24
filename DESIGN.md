@@ -23,7 +23,7 @@ Issue #36 established the initial Personal Practice / Working Archive pilot on *
 - Desktop pilot routes use a **persistent light/warm left rail** for orientation. The rail should stay quiet enough that the work remains visually primary. Below the shell breakpoint it becomes a compact sticky top navigation.
 - **Inter is the only pilot typeface.** Hierarchy comes from weight, scale, spacing, and composition; the pilot no longer uses a display serif.
 - Home follows a strict evidence-first order: **Intro → Selected Work → How I work → optional Notes → About / Contact**.
-- Home positioning should describe the actual operating range of the work rather than rely on abstract future-facing language. The approved opening is “I design complex product systems—and the systems teams use to build them.”
+- Home positioning should describe the actual operating range of the work rather than rely on abstract future-facing language. The approved opening is “Designing human-centered systems for what’s next.” The supporting line carries the concrete product-architecture, design-system, and AI-assisted-workflow specificity.
 - Home Selected Work uses homepage-specific transformation statements while canonical case-study summaries remain unchanged. The intentional homepage order is Multi Product Integrations → AI Systems → Design Systems → UI Design Practices so product-system depth and AI-system differentiation are visible in the first scan.
 - Selected Work remains an index/list rather than a generic card grid.
 - “How I work” is compact supporting context, not a second manifesto competing with project evidence.
@@ -54,10 +54,10 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 
 | Token | Value | Use |
 | --- | --- | --- |
-| `--background` | `#f4f1eb` | Public page and application background |
-| `--surface` | `#fffdfa` | Cards, fields, and elevated reading surfaces |
-| `--surface-muted` | `#e9e4db` | Secondary surfaces and disabled fields |
-| `--surface-strong` | `#ded7cc` | Stronger neutral separation when a muted surface is insufficient |
+| `--background` | `#f7f6f2` | Public page and application background |
+| `--surface` | `#fffefc` | Cards, fields, and elevated reading surfaces |
+| `--surface-muted` | `#e8e7e4` | Secondary surfaces and disabled fields |
+| `--surface-strong` | `#dcdcd9` | Stronger neutral separation when a muted surface is insufficient |
 | `--foreground` | `#171614` | Primary text and strong borders |
 | `--muted` | `#6b665f` | Supporting text |
 | `--border` | `#d5cfc5` | Dividers, card borders, and field borders |
@@ -551,3 +551,16 @@ Issue #6 Phase 7 closes the recorded UI/release audit findings as follows:
 - **Production harness link:** public browser coverage asserts no `/dev/harness` link is exposed; the development surfaces remain guarded from production.
 - **Health/readiness semantics:** `/api/health` reports `status: "ready"` only when Supabase is configured and otherwise reports `status: "degraded"` with `readiness.overall: false`, while keeping the liveness response available for local/CI startup checks.
 
+
+
+### Reduced warm chroma selection
+
+Issue #43 compared the shipped warm palette against lower-chroma warm and near-neutral candidates on the real Personal Practice surface. Candidate B was selected for production.
+
+- Canvas: `#f7f6f2`
+- Surface: `#fffefc`
+- Muted surface: `#e8e7e4`
+- Strong surface: `#dcdcd9`
+- Border: `#cfcfcc`
+
+Foreground, muted text, orange accent, semantic status colors, typography, spacing, IA, and content remain unchanged. The production palette uses fixed semantic tokens; the experimental A/B/C selector and candidate-generation UI do not ship.
