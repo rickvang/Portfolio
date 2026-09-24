@@ -34,4 +34,4 @@ No animation library, parallax, looping motion, cursor effects, page-transition 
 
 ## Current phase
 
-Implementation is assembled as one atomic branch commit. Next: open PR, run GitHub CI/Vercel, inspect interaction and reduced-motion behavior, address scoped review findings, and merge if clean.
+Implementation is complete on the branch. GitHub CI run #112 passed database validation, lint, typecheck, unit tests, Playwright (including reduced-motion/marker contracts), visual-capture generation, and production build. Cursor review approved the change with no findings. The first Vercel preview request was rejected before build by the account build-rate limiter, not by application code. This checkpoint commit is the single controlled preview retry; do not create a retry loop.
