@@ -20,10 +20,6 @@ function routeIsActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
-function usesPersonalPracticePilot(pathname: string) {
-  return pathname === "/" || pathname === "/work/multi-product-integrations";
-}
-
 type NavigationLinksProps = {
   pathname: string;
   onNavigate?: () => void;
@@ -208,9 +204,5 @@ export function SiteShellFrame({
 export function SiteShell({ children }: Readonly<{ children: React.ReactNode }>) {
   const pathname = usePathname();
 
-  if (usesPersonalPracticePilot(pathname)) {
-    return <PersonalPracticeShell pathname={pathname}>{children}</PersonalPracticeShell>;
-  }
-
-  return <SiteShellFrame pathname={pathname}>{children}</SiteShellFrame>;
+  return <PersonalPracticeShell pathname={pathname}>{children}</PersonalPracticeShell>;
 }

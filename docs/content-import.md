@@ -1,6 +1,6 @@
 # Content import from rickvang.com
 
-This document records the local-first import from the public Framer site. The first-party positioning, biography/experience summary, and two client-protective case studies are now explicitly approved at the individual record level for the public Next.js content path. Deferred personal contact details, third-party testimonials, credentials, brand assets, source imagery, and hosted Supabase writes remain outside this approval.
+This document records the local-first import from the public Framer site. The first-party positioning, biography/experience summary, and two client-protective case studies are now explicitly approved at the individual record level for the public Next.js content path. Two source-backed case-study images are approved for homepage previews only; remaining personal contact details, third-party testimonials, credentials, brand assets, source imagery, and hosted Supabase writes remain outside this approval.
 
 ## Source capture
 
@@ -17,11 +17,11 @@ This document records the local-first import from the public Framer site. The fi
 
 | Source page | Imported content | Status | Notes |
 | --- | --- | --- | --- |
-| `/` | availability label, “Hi, I'm Rick.” positioning, systems/firefighting summary, project links | Approved profile record | Grammar is normalized in the structured import; source images remain deferred. |
+| `/` | availability label, “Hi, I'm Rick.” positioning, systems/firefighting summary, project links | Approved profile record | Grammar is normalized in the structured import; selected project preview media is approved separately below. |
 | `/about` | about heading, biography summary, 11+/14+/30+ experience counts | Approved profile record | Email, phone, LinkedIn presentation, credentials, testimonials, and brand assets remain deferred. |
 | `/projects` | project index context and client-IP disclaimer | Source reviewed | The disclaimer stays attached to imported case-study records; source review itself does not publish projects. |
-| `/projects/multi-product-integrations` | category, summary/scope, discovery, outcomes, solution sections | Approved project record | Client-protective level of detail retained; the source category typo remains normalized. |
-| `/projects/design-systems` | category, summary/scope, discovery, outcomes, collaboration, foundations, density, templates, patterns | Approved project record | Structured into the shared case-study model; source media remains deferred. |
+| `/projects/multi-product-integrations` | category, summary/scope, discovery, outcomes, solution sections | Approved project record | Client-protective level of detail retained; the source category typo remains normalized. The public hero image is approved for the homepage preview only. |
+| `/projects/design-systems` | category, summary/scope, discovery, outcomes, collaboration, foundations, density, templates, patterns | Approved project record | Structured into the shared case-study model. The public hero image is approved for the homepage preview only; remaining source media stays deferred. |
 
 ## Curation and publication rules
 
@@ -29,7 +29,7 @@ This document records the local-first import from the public Framer site. The fi
 - New or refreshed project records default to unpublished until their own status is explicitly approved.
 - Preserve the client-IP disclaimer for imported client case studies.
 - Do not add protected client details or infer employer/client names that the source does not state.
-- Keep phone/email, third-party testimonials, credentials, brand marks, and source images out of the public content model until separately reviewed.
+- Keep phone/email, third-party testimonials, credentials, brand marks, and unreviewed source images out of the public content model until separately reviewed. The two approved homepage previews remain scoped to the source-backed images listed in the homepage visual component.
 - Do not write imported material to Supabase automatically.
 - Keep source URLs and curation notes next to imported content so future edits remain attributable.
 - Authored AI Systems, UI Design Practices, and persona-led design content remain separate from the rickvang.com import. Their later publication is governed by their own explicit record statuses, not by this import decision.
@@ -51,7 +51,7 @@ The old Framer site remains the provenance source until a separate launch/cutove
 
 ## Remaining review decisions
 
-1. Audit source case-study imagery and classify each asset as safe to reuse, redact, recreate, or omit.
+1. Audit the remaining source case-study imagery and classify each asset as safe to reuse, redact, recreate, or omit. The two approved homepage preview images are already scoped and do not authorize detail-page media.
 2. Decide whether testimonials should be carried forward and whether attribution/permission needs reconfirmation.
 3. Decide whether credentials, brand marks, LinkedIn, email, or phone belong in the redesigned surface.
 5. Use the approved work/content inventory as the basis for the next visual surface pass rather than inventing generic portfolio copy.

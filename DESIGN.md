@@ -28,7 +28,7 @@ Issue #36 established the initial Personal Practice / Working Archive pilot on *
 - Selected Work remains an index/list rather than a generic card grid.
 - “How I work” is compact supporting context, not a second manifesto competing with project evidence.
 - Notes appear on Home only when genuine public authored posts exist. Deterministic fixture posts belong to the local/test harness and must never be used as public publication fallback content.
-- Authentic/source-backed project evidence remains authoritative. Generated lifestyle scenes and unapproved legacy Framer media are not evidence and must not be presented as project artifacts.
+- Authentic/source-backed project evidence remains authoritative. Generated lifestyle scenes and unapproved legacy Framer media are not evidence and must not be presented as project artifacts. Explicitly approved source media may appear only in its recorded surface and scope.
 - Multi Product Integrations keeps the source-backed editorial sequence introduced in Issue #36. Missing role, reflection, metrics, or media remain omitted rather than inferred.
 - The existing publication gate, experience-profile resolution, source traces, client-IP disclaimer, keyboard/focus contract, reduced-motion behavior, and harness boundaries remain authoritative.
 - Non-pilot public routes continue using the existing rail system until an explicit rollout decision is made.
@@ -502,7 +502,7 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 - **Work index:** use the shared throughline to explain the relationship between separate projects, then let each preview show its own evidence-backed structure.
 - **Integrations topology:** use a named framework and an unordered capability list when the source establishes membership but not execution order. Do not add arrows or sequence numbers without source evidence.
 - **Design-systems matrix:** group only authored, evidence-backed practices and label the source-named contexts. Do not imply chronology or exact density values the source does not give.
-- **Artifact boundary:** label text-derived diagrams as derived. Keep source media deferred or redacted until each asset has human approval and an accessible description; never replace it with stock or fabricated product UI.
+- **Artifact boundary:** label text-derived diagrams as derived. Keep source media deferred or redacted until each asset has human approval and an accessible description; the approved homepage preview images are an explicit scoped exception. Never replace missing media with stock or fabricated product UI.
 - **Chapter boundary:** retain shared chapters for wayfinding and provenance, but select a visual pattern from the chapter's evidence. Do not make every project a uniform title-and-summary card or force one artifact grammar through the whole case study.
 - **Evidence over decoration:** a project count, repeated eyebrow, oversized generic thesis, or ornamental marker cannot stand in for a project name, concrete relationship, artifact type, decision, or supported outcome. Move shared synthesis to the Work index instead of repeating it inside every project preview.
 

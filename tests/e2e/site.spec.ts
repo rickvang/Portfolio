@@ -5,14 +5,14 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 
   await expect(
     page.getByRole("heading", {
-      name: "Designing human-centered systems for what's next.",
+      name: "I make complex products easier to understand, build, and evolve.",
       exact: true,
     }),
   ).toBeVisible();
   await expect(
-    page.getByText(/I work across product architecture, design systems, and AI-assisted workflows/i),
+    page.getByText(/I work across product strategy, systems design, and AI-assisted delivery/i),
   ).toBeVisible();
-  await expect(page.getByRole("link", { name: "View selected work ↓" })).toHaveAttribute(
+  await expect(page.getByRole("link", { name: "See the work ↓" })).toHaveAttribute(
     "href",
     "#selected-work",
   );
@@ -42,7 +42,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(
     selectedWork.getByText(/Turning design principles into a repeatable design-to-implementation practice/i),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "How I work", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "The throughline", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),
@@ -51,7 +51,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 
   await expect(page.getByText("Fixture post", { exact: true })).toHaveCount(0);
 
-  await expect(page.getByText("11+", { exact: true })).toBeVisible();
+  await expect(page.getByText("13+", { exact: true })).toBeVisible();
   await expect(page.getByText("14+", { exact: true })).toBeVisible();
   await expect(page.getByText("30+", { exact: true })).toBeVisible();
 
@@ -59,7 +59,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(navigation.getByRole("link", { name: "Work" })).toHaveAttribute("href", "/work");
   await expect(navigation.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
   await expect(navigation.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
-  await expect(navigation.getByRole("link", { name: "Notes" })).toHaveCount(0);
+  await expect(navigation.getByRole("link", { name: "Notes" })).toHaveAttribute("href", "/notes");
   await expect(page.getByRole("link", { name: "Rick Vang, home" })).toHaveAttribute("href", "/");
   await expect(page.locator('a[href^="/dev/harness"]')).toHaveCount(0);
 });
@@ -68,7 +68,7 @@ test("about page renders the approved biography and experience summary", async (
   await page.goto("/about");
 
   await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
-  await expect(page.getByText(/spent over a decade designing and building software/i)).toBeVisible();
+  await expect(page.getByText(/Over 13 years, I've worked at the intersection of product design/i)).toBeVisible();
   await expect(page.getByText("Years of Experience", { exact: true })).toBeVisible();
   await expect(page.getByText("Companies", { exact: true })).toBeVisible();
   await expect(page.getByText("Projects Delivered", { exact: true })).toBeVisible();
@@ -77,10 +77,14 @@ test("about page renders the approved biography and experience summary", async (
 test("approved imported work is public through the shared case-study routes", async ({ page }) => {
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { name: "Projects" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Making the system legible, then making it usable." }),
+  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
-  await expect(page.getByTestId("case-study-list-empty")).toHaveCount(0);
+  await expect(page.locator(".practice-work-row")).toHaveCount(4);
+  await expect(page.locator(".project-preview")).toHaveCount(0);
 
   await page.goto("/work/multi-product-integrations");
   await expect(page).toHaveTitle("Multi Product Integrations | Rick Vang");

@@ -13,7 +13,7 @@ export default async function NotesPage() {
         <p className="lede">Short observations and ideas from ongoing design work.</p>
       </section>
 
-      <section aria-label="Published notes" className="content-section">
+      <section aria-label="Published notes" className="content-section notes-index-section">
         <PostList headingLevel={2} posts={posts} />
       </section>
     </div>
