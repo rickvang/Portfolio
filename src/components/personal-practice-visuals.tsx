@@ -213,10 +213,12 @@ function PracticeHeroFallback() {
 
 export function PersonalPracticeWorkVisual({
   kind,
+  showHomepagePreviewMedia = false,
 }: {
   kind: PracticeWorkVisualKind;
+  showHomepagePreviewMedia?: boolean;
 }) {
-  const media = sourceMedia[kind];
+  const media = showHomepagePreviewMedia ? sourceMedia[kind] : undefined;
 
   if (media) {
     return (
@@ -236,10 +238,13 @@ export function PersonalPracticeWorkVisual({
   }
 
   return (
-    <PracticeCanvasFrame
-      className={`practice-work-visual practice-work-visual-${kind}`}
-      variant={kind}
-    />
+    <figure className={`practice-work-visual practice-work-visual-${kind}`}>
+      <PracticeCanvasFrame
+        className={`practice-work-visual-canvas practice-work-visual-${kind}`}
+        variant={kind}
+      />
+      <figcaption>Illustrative diagram</figcaption>
+    </figure>
   );
 }
 
