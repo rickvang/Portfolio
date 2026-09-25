@@ -33,10 +33,10 @@
     "headline": "Hi, I'm Rick.",
     "summary": "I'm a product design leader driven by creating systems that give people tools to stop fighting fires so they can do the things they're passionate about.",
     "aboutHeading": "A decade-long craft defined with empathy",
-    "aboutSummary": "I've spent over a decade designing and building software in multiple roles and sectors to understand how to think in systems. I've developed my skillset around consistently delivering while improving the underlying experience architecture.",
+    "aboutSummary": "Over 13 years, I've worked at the intersection of product design, systems thinking, and implementation—helping teams turn complex workflows into products people can understand and teams can evolve. I'm most useful when the challenge is bigger than a screen: clarifying the problem, finding the right structure, building reusable foundations, and carrying decisions into code. More recently, that includes shaping AI-assisted workflows with the context, review, and human judgment they need to work in practice.",
     "stats": [
       {
-        "value": "11+",
+        "value": "13+",
         "label": "Years of Experience"
       },
       {
@@ -84,7 +84,7 @@
       "curationNotes": [
         "Normalized the source category typo from 'Enerprise B2B' to 'Enterprise B2B'.",
         "Kept the case study at the public, client-protective level of detail from the source page.",
-        "Source images remain deferred until asset ownership and hosting are reviewed."
+        "The public case-study hero image is approved for the homepage preview only; remaining source imagery stays deferred."
       ],
       "reviewStatus": "approved"
     },
@@ -125,7 +125,7 @@
       ],
       "curationNotes": [
         "Kept governance, foundations, density, templates, and patterns as separate content concepts for future structured rendering.",
-        "Source images remain deferred until asset ownership and hosting are reviewed."
+        "The public case-study hero image is approved for the homepage preview only; remaining source imagery stays deferred."
       ],
       "reviewStatus": "approved"
     }

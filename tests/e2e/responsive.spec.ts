@@ -11,12 +11,12 @@ test("long-content harness state stays within the viewport", async ({ page }) =>
   expect(hasHorizontalOverflow).toBe(false);
 });
 
-test("work-to-experience patterns stack and wrap without horizontal overflow", async ({ page }) => {
+test("work index stacks and wraps without horizontal overflow", async ({ page }) => {
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { name: "How the product parts relate" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Governance, foundations, and use patterns" })).toBeVisible();
-  await expect(page.getByText("Enterprise-product surfaces", { exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Selected work" })).toBeVisible();
+  await expect(page.locator(".practice-work-row")).toHaveCount(4);
+  await expect(page.locator(".practice-work-card-link")).toHaveCount(4);
 
   const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(hasHorizontalOverflow).toBe(false);

@@ -99,6 +99,26 @@ export function hasSupabaseConfig() {
   );
 }
 
+const PUBLISHED_POSTS_TIMEOUT_MS = 1500;
+
+async function withTimeout<T>(promise: Promise<T>, timeoutMs: number) {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+  try {
+    return await Promise.race([
+      promise,
+      new Promise<never>((_, reject) => {
+        timeoutId = setTimeout(
+          () => reject(new Error(`Published posts request timed out after ${timeoutMs}ms.`)),
+          timeoutMs,
+        );
+      }),
+    ]);
+  } finally {
+    if (timeoutId) clearTimeout(timeoutId);
+  }
+}
+
 export async function getPublishedPosts(): Promise<PublishedPost[]> {
   const authored = getPublishedEditorialNotes().map(editorialToPublishedPost);
 
@@ -106,13 +126,18 @@ export async function getPublishedPosts(): Promise<PublishedPost[]> {
 
   try {
     const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("posts")
-      .select("*")
-      .eq("status", "published")
-      .not("published_at", "is", null)
-      .lte("published_at", new Date().toISOString())
-      .order("published_at", { ascending: false });
+    const { data, error } = await withTimeout(
+      Promise.resolve(
+        supabase
+          .from("posts")
+          .select("*")
+          .eq("status", "published")
+          .not("published_at", "is", null)
+          .lte("published_at", new Date().toISOString())
+          .order("published_at", { ascending: false }),
+      ),
+      PUBLISHED_POSTS_TIMEOUT_MS,
+    );
 
     if (error) {
       console.error("Unable to load Supabase published posts; using source-controlled posts.", error);

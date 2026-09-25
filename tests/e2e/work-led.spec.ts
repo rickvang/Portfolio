@@ -1,31 +1,22 @@
 import { expect, test } from "@playwright/test";
 
-test("approved work index presents each project's distinct structure", async ({ page }) => {
+test("approved work index presents each project with visual evidence", async ({ page }) => {
   await page.goto("/work");
 
-  const throughline = page.locator(".work-throughline");
-  await expect(throughline).toContainText(
-    "Across these separate projects, the common thread is systems design:",
-  );
-  await expect(throughline).toContainText("connects workflows across a fragmented product ecosystem");
-  await expect(throughline).toContainText(
-    "gives teams shared, governed foundations for consistent patterns across distinct contexts.",
-  );
   await expect(
-    throughline.getByRole("link", { name: "Multi Product Integrations" }),
-  ).toHaveAttribute("href", "/work/multi-product-integrations");
-  await expect(throughline.getByRole("link", { name: "Design Systems" })).toHaveAttribute(
-    "href",
-    "/work/design-systems",
-  );
+    page.getByRole("heading", { name: "From fragmented workflows to reusable foundations." }),
+  ).toBeVisible();
+  await expect(page.getByText("Case studies", { exact: true })).toBeVisible();
+  await expect(page.getByText("4", { exact: true })).toBeVisible();
 
-  await expect(page.getByRole("heading", { name: "How the product parts relate" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Unified framework" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Governance, foundations, and use patterns" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "People and governance" })).toBeVisible();
-  await expect(page.getByText("Marketing surfaces", { exact: true })).toBeVisible();
-  await expect(page.getByText("Enterprise-product surfaces", { exact: true })).toBeVisible();
-  await expect(page.locator(".project-preview img")).toHaveCount(0);
+  const workRows = page.locator(".practice-work-row");
+  await expect(workRows).toHaveCount(4);
+  await expect(workRows.nth(0).getByRole("heading")).toHaveText("Multi Product Integrations");
+  await expect(workRows.nth(1).getByRole("heading")).toHaveText("AI Systems");
+  await expect(workRows.nth(2).getByRole("heading")).toHaveText("Design Systems");
+  await expect(workRows.nth(3).getByRole("heading")).toHaveText("UI Design Practices");
+  await expect(page.locator(".practice-work-visual")).toHaveCount(4);
+  await expect(page.locator(".practice-work-card-link")).toHaveCount(4);
 });
 
 test("mobile home uses the working-index structure without horizontal overflow", async ({ page }) => {
@@ -35,7 +26,7 @@ test("mobile home uses the working-index structure without horizontal overflow",
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "Designing human-centered systems for what's next.",
+      name: "I make complex products easier to understand, build, and evolve.",
       exact: true,
     }),
   ).toBeInViewport({ ratio: 1 });
@@ -107,7 +98,12 @@ test("both work patterns stay visible with reduced motion", async ({ page }) => 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { name: "How the product parts relate" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Governance, foundations, and use patterns" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      name: "From fragmented workflows to reusable foundations.",
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("region", { name: "Selected work" })).toBeVisible();
+  await expect(page.locator(".practice-work-row")).toHaveCount(4);
   await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
 });
