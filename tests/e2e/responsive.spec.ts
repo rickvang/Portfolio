@@ -14,7 +14,7 @@ test("long-content harness state stays within the viewport", async ({ page }) =>
 test("work index stacks and wraps without horizontal overflow", async ({ page }) => {
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Selected work" })).toBeVisible();
   await expect(page.locator(".practice-work-row")).toHaveCount(4);
   await expect(page.locator(".practice-work-card-link")).toHaveCount(4);
 

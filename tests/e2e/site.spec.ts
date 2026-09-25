@@ -78,9 +78,11 @@ test("approved imported work is public through the shared case-study routes", as
   await page.goto("/work");
 
   await expect(
-    page.getByRole("heading", { name: "Making the system legible, then making it usable." }),
+    page.getByRole("heading", {
+      name: "From fragmented workflows to reusable foundations.",
+    }),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Selected work" })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
   await expect(page.locator(".practice-work-row")).toHaveCount(4);

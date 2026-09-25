@@ -3,7 +3,9 @@ import { expect, test } from "@playwright/test";
 test("approved work index presents each project with visual evidence", async ({ page }) => {
   await page.goto("/work");
 
-  await expect(page.getByText("Work / Selected projects", { exact: true })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "From fragmented workflows to reusable foundations." }),
+  ).toBeVisible();
   await expect(page.getByText("Case studies", { exact: true })).toBeVisible();
   await expect(page.getByText("4", { exact: true })).toBeVisible();
 
@@ -97,9 +99,11 @@ test("both work patterns stay visible with reduced motion", async ({ page }) => 
   await page.goto("/work");
 
   await expect(
-    page.getByRole("heading", { name: "Making the system legible, then making it usable." }),
+    page.getByRole("heading", {
+      name: "From fragmented workflows to reusable foundations.",
+    }),
   ).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Selected work", exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Selected work" })).toBeVisible();
   await expect(page.locator(".practice-work-row")).toHaveCount(4);
   await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
 });

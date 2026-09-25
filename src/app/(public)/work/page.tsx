@@ -41,14 +41,18 @@ export default function WorkPage() {
     <div className="public-page practice-work-page">
       <section aria-labelledby="work-page-heading" className="practice-work-hero">
         <div className="practice-work-hero-copy">
-          <p className="practice-section-index">Work / Selected projects</p>
-          <h1 id="work-page-heading">Making the system legible, then making it usable.</h1>
+          <h1 id="work-page-heading">
+            <span className="practice-work-title-wide">
+              From fragmented workflows to reusable foundations.
+            </span>
+            <span className="practice-work-title-compact">Work</span>
+          </h1>
         </div>
 
         <div className="practice-work-hero-aside">
           <p>
-            A systems practice across product architecture, design systems, and AI-assisted
-            delivery—shown through the decisions and foundations behind the work.
+            Each case study follows the decisions, foundations, and interfaces that shaped the
+            work.
           </p>
           <dl className="practice-work-facts">
             <div>
@@ -64,20 +68,9 @@ export default function WorkPage() {
       </section>
 
       <section
-        aria-labelledby="work-index-heading"
+        aria-label="Selected work"
         className="practice-section practice-work-collection"
       >
-        <div className="practice-section-heading">
-          <div>
-            <p className="practice-section-index">Index / evidence-led</p>
-            <h2 id="work-index-heading">Selected work</h2>
-          </div>
-          <p>
-            Each project asks what should be shared, what should change, and what will help teams
-            sustain the experience.
-          </p>
-        </div>
-
         <PersonalPracticeWorkIndex items={selectedWork} />
       </section>
     </div>

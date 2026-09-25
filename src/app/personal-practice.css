@@ -342,10 +342,6 @@
   max-width: 36ch;
 }
 
-.practice-work-index {
-  border-top: 1px solid var(--border);
-}
-
 .practice-work-row {
   border-bottom: 1px solid var(--border);
   isolation: isolate;
@@ -688,6 +684,10 @@
   line-height: 0.98;
   margin: 1rem 0 0;
   max-width: 10ch;
+}
+
+.practice-work-title-compact {
+  display: none;
 }
 
 .practice-work-hero-aside {
@@ -1227,11 +1227,41 @@
 
   .practice-work-hero h1 {
     font-size: clamp(2.7rem, 13vw, 4rem);
+    max-width: none;
+  }
+
+  .practice-work-title-wide {
+    display: none;
+  }
+
+  .practice-work-title-compact {
+    display: inline;
+  }
+
+  .practice-work-hero-aside {
+    max-width: 32ch;
+  }
+
+  .practice-work-hero-aside > p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .practice-work-facts {
+    margin-top: 1.25rem;
+  }
+
+  .practice-work-collection {
+    padding-top: 2.4rem;
   }
 
   .practice-work-collection .practice-section-heading {
     display: grid;
     gap: 0.7rem;
+  }
+
+  .practice-work-collection .practice-section-index {
+    display: none;
   }
 
   .practice-canvas-art {
