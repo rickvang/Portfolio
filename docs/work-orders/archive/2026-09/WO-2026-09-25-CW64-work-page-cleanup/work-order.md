@@ -1,12 +1,13 @@
 # Work Order — CW-64 Work page cleanup
 
 - Work Order ID: WO-2026-09-25-CW64-work-page-cleanup
-- Status: active
+- Status: complete on merge
 - Created: 2026-09-25
 - Last updated: 2026-09-25
 - Repository: rickvang/Portfolio
 - Branch: codex/cw64-work-page-cleanup
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/50
+- Pull request: https://github.com/rickvang/Portfolio/pull/51
 - Current Work: CW-64
 - Current Work URL: https://app.notion.com/3e5cd82535ff81029b55eafe9a3b1b0d
 - Parent Current Work: CW-63
@@ -41,7 +42,7 @@ Clean up the Work index so visitors reach source-backed project evidence sooner,
 
 ## Current phase
 
-The source-media scope correction and recommended Work-hero fallback are implemented in the clean branch. The Work index uses a visually hidden section heading to preserve h1 → h2 → project h3 structure, and derived fallback diagrams carry a visible "Illustrative diagram" figcaption. Home explicitly opts into homepage-preview media; `/work` defaults to derived visuals. Scoped implementation, visual inspection, and independent review are complete; proceed through the normal PR gates.
+The source-media scope correction and recommended Work-hero fallback are implemented in the clean branch. The Work index uses a visually hidden section heading to preserve h1 → h2 → project h3 structure, and derived fallback diagrams carry a visible "Illustrative diagram" figcaption. Home explicitly opts into homepage-preview media; `/work` defaults to derived visuals. Scoped implementation, visual inspection, independent review, and CI are complete. This archived record becomes complete when PR #51 merges; CW-64 remains active for broader image reuse and hosting approval.
 
 ## Validation
 
@@ -58,4 +59,4 @@ The source-media scope correction and recommended Work-hero fallback are impleme
 
 ## Completion boundary
 
-Complete when the Work page hierarchy and hero are cleaned up, the media scope is enforced, the scoped visual review and applicable checks pass, and CW-64 is reconciled. Do not unblock or imply broader image reuse approval.
+Complete on merge of PR #51. Do not unblock or imply broader image reuse approval in CW-64.
