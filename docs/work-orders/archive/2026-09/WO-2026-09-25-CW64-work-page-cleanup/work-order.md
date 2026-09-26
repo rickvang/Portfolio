@@ -3,7 +3,7 @@
 - Work Order ID: WO-2026-09-25-CW64-work-page-cleanup
 - Status: complete on merge
 - Created: 2026-09-25
-- Last updated: 2026-09-25
+- Last updated: 2026-09-26
 - Repository: rickvang/Portfolio
 - Branch: codex/cw64-work-page-cleanup
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/50
@@ -42,20 +42,18 @@ Clean up the Work index so visitors reach source-backed project evidence sooner,
 
 ## Current phase
 
-The source-media scope correction and recommended Work-hero fallback are implemented in the clean branch. The Work index uses a visually hidden section heading to preserve h1 → h2 → project h3 structure, and derived fallback diagrams carry a visible "Illustrative diagram" figcaption. Home explicitly opts into homepage-preview media; `/work` defaults to derived visuals. Scoped implementation, visual inspection, independent review, and CI are complete. This archived record becomes complete when PR #51 merges; CW-64 remains active for broader image reuse and hosting approval.
+The source-media scope correction and recommended Work-hero fallback are implemented in the clean branch. The Work index uses a visually hidden section heading to preserve h1 → h2 → project h3 structure, and derived fallback diagrams carry a visible "Illustrative diagram" figcaption. Home explicitly opts into homepage-preview media; `/work` defaults to derived visuals. The remote Codex review's stale Work-route E2E selectors were corrected in `work-led.spec.ts`, `site.spec.ts`, and `responsive.spec.ts`. Existing Home "Selected work" content and order assertions remain, with two media-scope assertions added for homepage-preview images and derived captions. Hosted CI for the updated PR #51 head is pending. This archived record becomes complete when PR #51 merges; CW-64 remains active for broader image reuse and hosting approval.
 
 ## Validation
 
-- `eslint .` passed.
-- `tsc --noEmit` passed.
-- `next build` passed after allowing the existing Inter font fetch from Google Fonts; the initial sandboxed attempt was blocked with `EACCES`.
+- `eslint .` and `tsc --noEmit` passed after the E2E selector correction. `next build` passed on the prior head after allowing the existing Inter font fetch from Google Fonts; the initial sandboxed build attempt was blocked with `EACCES`. App code is unchanged in the E2E follow-up.
 - Desktop browser review at 1440px showed the first project row immediately after the compact hero and no horizontal overflow.
 - Mobile browser review at 390px showed the first project at y=286px, all four illustrative captions, and no horizontal overflow (`scrollWidth=390`).
 - Browser accessibility snapshot confirmed `h1 Work` → `h2 Case studies` → project `h3` headings.
-- Impeccable detector returned no findings for the changed UI files.
-- Noor's independent static review found no remaining concrete issues.
-- `git diff --check` passed.
-- No tests have been run.
+- Impeccable detector returned no findings for the changed UI files; the E2E follow-up changed tests and documentation only.
+- Remote Codex PR review identified stale Work-route assertions. Noor's follow-up review confirmed the updated assertions match the markup and the existing Home assertions are preserved.
+- `git diff --check` passed after the E2E selector correction.
+- E2E tests have not been run locally. Hosted CI for the updated head is pending.
 
 ## Completion boundary
 
