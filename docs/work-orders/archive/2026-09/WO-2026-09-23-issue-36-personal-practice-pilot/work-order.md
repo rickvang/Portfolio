@@ -1,7 +1,7 @@
 # Work Order — Issue #36 Personal Practice / Working Archive pilot
 
 - Work Order ID: WO-2026-09-23-issue-36-personal-practice-pilot
-- Status: active
+- Status: complete
 - Created: 2026-09-23
 - Last updated: 2026-09-23
 - Repository: rickvang/Portfolio
@@ -63,11 +63,11 @@ The requester said “go ahead” after approving the implementation plan for Is
 
 ## Current phase
 
-Phase 1–3 implementation is complete on the branch: the pilot font variables, route-scoped horizontal shell, Working Index Home, source-backed Multi Product Integrations editorial renderer, browser contracts, and DESIGN.md update are in place. Local execution remains unavailable because the runtime cannot resolve github.com. Next: inspect the branch diff, open the scoped PR, and use GitHub CI/Vercel preview as the verification path.
+Complete. PR #37 merged to main as `c7271337e20be8d7d03340c4506531b74e46e46a`. GitHub CI run #95 passed database validation, lint, typecheck, unit tests, Playwright, visual-capture generation, and production build on the final PR head. Vercel preview and the resulting production deployment reached READY. Issue #36 closed through the PR's existing closing keyword.
 
 ## Runtime limitation / fallback
 
-The current container cannot resolve `github.com`, so local clone/install/test execution is unavailable. GitHub mutations will use the connected GitHub integration. Verification will use repository CI and preview checks. This limitation must remain explicit; do not claim local `pnpm verify` or `pnpm test:e2e` execution.
+The execution container could not resolve external DNS, so local clone/install/test execution was unavailable. Verification therefore used the connected GitHub integration, GitHub CI, Vercel deployment status, and a bounded remote-render fallback for desktop/mobile visual inspection. Local `pnpm verify` was not claimed.
 
 ## Completion boundary
 
@@ -81,6 +81,19 @@ The work is complete when:
 - Issue #36 closes through the existing PR closing keyword or is otherwise reconciled according to the repository contract;
 - this Work Order is archived and CW-54 is marked Done / Reference.
 
+## Validation and closeout
+
+- PR #37: merged.
+- Merge commit: `c7271337e20be8d7d03340c4506531b74e46e46a`.
+- GitHub CI run #95: success.
+- Supabase local schema job: success.
+- Lint, typecheck, unit tests, Playwright, visual-capture upload, and production build: success.
+- Vercel preview: READY on final PR head.
+- Production Vercel deployment for merge commit: READY.
+- Two automated P1 review findings were fixed before merge and their threads resolved.
+- Issue #36: closed as completed.
+- `rickvang.com` remains on the existing Framer site; custom-domain cutover was explicitly outside this workstream.
+
 ## Next action
 
-Inspect the complete branch diff, open the Issue #36 PR, then evaluate CI, preview status, and any review findings before merge.
+None for the scoped implementation. Any custom-domain cutover or full-site rollout should begin as a separate explicitly scoped workstream.
