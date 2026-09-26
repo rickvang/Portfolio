@@ -43,7 +43,20 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
     selectedWork.getByText(/Turning design principles into a repeatable design-to-implementation practice/i),
   ).toBeVisible();
   await expect(selectedWork.locator(".practice-work-visual-image")).toHaveCount(2);
-  await expect(selectedWork.locator(".practice-work-visual figcaption")).toHaveCount(2);
+  await expect(selectedWork.locator(".practice-work-visual figcaption")).toHaveText([
+    "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
+    "Illustrative diagram",
+    "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
+    "Illustrative diagram",
+  ]);
+  await expect(selectedWork.locator(".practice-work-visual-image img").nth(0)).toHaveAttribute(
+    "alt",
+    "Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view.",
+  );
+  await expect(selectedWork.locator(".practice-work-visual-image img").nth(1)).toHaveAttribute(
+    "alt",
+    "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
+  );
   await expect(page.getByRole("heading", { name: "The throughline", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(
@@ -91,11 +104,11 @@ test("approved imported work is public through the shared case-study routes", as
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
   await expect(caseStudies.locator(".practice-work-row")).toHaveCount(4);
-  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(0);
+  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(2);
   await expect(caseStudies.locator(".practice-work-visual figcaption")).toHaveText([
+    "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
     "Illustrative diagram",
-    "Illustrative diagram",
-    "Illustrative diagram",
+    "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
     "Illustrative diagram",
   ]);
   await expect(page.locator(".practice-work-facts")).toHaveCount(0);

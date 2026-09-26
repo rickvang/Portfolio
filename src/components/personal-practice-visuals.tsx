@@ -39,16 +39,21 @@ type PracticeCanvasProps = {
 
 type PracticeWorkMedia = {
   alt: string;
+  caption: string;
   src: string;
 };
 
 const sourceMedia: Partial<Record<PracticeWorkVisualKind, PracticeWorkMedia>> = {
   integrations: {
-    alt: "Interface work from the Multi Product Integrations case study",
+    alt: "Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view.",
+    caption:
+      "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
     src: "/work-media/multi-product-integrations.png",
   },
   "design-systems": {
-    alt: "Design-system work from the Design Systems case study",
+    alt: "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
+    caption:
+      "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
     src: "/work-media/design-systems.png",
   },
 };
@@ -213,12 +218,10 @@ function PracticeHeroFallback() {
 
 export function PersonalPracticeWorkVisual({
   kind,
-  showHomepagePreviewMedia = false,
 }: {
   kind: PracticeWorkVisualKind;
-  showHomepagePreviewMedia?: boolean;
 }) {
-  const media = showHomepagePreviewMedia ? sourceMedia[kind] : undefined;
+  const media = sourceMedia[kind];
 
   if (media) {
     return (
@@ -233,6 +236,7 @@ export function PersonalPracticeWorkVisual({
           sizes="(max-width: 620px) calc(100vw - 3rem), 42vw"
           src={media.src}
         />
+        <figcaption>{media.caption}</figcaption>
       </figure>
     );
   }

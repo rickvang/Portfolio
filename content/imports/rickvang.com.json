@@ -84,7 +84,7 @@
       "curationNotes": [
         "Normalized the source category typo from 'Enerprise B2B' to 'Enterprise B2B'.",
         "Kept the case study at the public, client-protective level of detail from the source page.",
-        "The public case-study hero image is approved for the homepage preview only; remaining source imagery stays deferred."
+        "Owner approval on 2026-09-26 permits this existing public hero image on Home Selected Work and the /work index; it remains hosted at public/work-media/multi-product-integrations.png. Caption: Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property."
       ],
       "reviewStatus": "approved"
     },
@@ -125,7 +125,7 @@
       ],
       "curationNotes": [
         "Kept governance, foundations, density, templates, and patterns as separate content concepts for future structured rendering.",
-        "The public case-study hero image is approved for the homepage preview only; remaining source imagery stays deferred."
+        "Owner approval on 2026-09-26 permits this existing public hero image on Home Selected Work and the /work index; it remains hosted at public/work-media/design-systems.png. Caption: Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property."
       ],
       "reviewStatus": "approved"
     }
