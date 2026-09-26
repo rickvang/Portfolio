@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("work index pairs each project with a scoped illustrative visual", async ({ page }) => {
+test("work index pairs each project with its approved image or labelled illustration", async ({ page }) => {
   await page.goto("/work");
 
   const hero = page.locator(".practice-work-hero");
@@ -24,13 +24,21 @@ test("work index pairs each project with a scoped illustrative visual", async ({
   await expect(workRows.nth(2).getByRole("heading")).toHaveText("Design Systems");
   await expect(workRows.nth(3).getByRole("heading")).toHaveText("UI Design Practices");
   await expect(caseStudies.locator(".practice-work-visual")).toHaveCount(4);
-  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(0);
+  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(2);
   await expect(caseStudies.locator(".practice-work-visual figcaption")).toHaveText([
+    "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
     "Illustrative diagram",
-    "Illustrative diagram",
-    "Illustrative diagram",
+    "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
     "Illustrative diagram",
   ]);
+  await expect(caseStudies.locator(".practice-work-visual-image img").nth(0)).toHaveAttribute(
+    "alt",
+    "Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view.",
+  );
+  await expect(caseStudies.locator(".practice-work-visual-image img").nth(1)).toHaveAttribute(
+    "alt",
+    "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
+  );
   await expect(caseStudies.locator(".practice-work-card-link")).toHaveCount(4);
 });
 

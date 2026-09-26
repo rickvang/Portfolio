@@ -14,6 +14,12 @@ const solutionSectionSchema = z.object({
   summary: z.string().min(1),
 });
 
+const previewMediaSchema = z.object({
+  src: z.string().min(1),
+  alt: z.string().min(1),
+  caption: z.string().min(1),
+});
+
 const importedProjectSchema = z.object({
   id: z.string().min(1),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
@@ -21,6 +27,7 @@ const importedProjectSchema = z.object({
   category: z.string().min(1),
   sourceUrl: z.string().url(),
   summary: z.string().min(1),
+  previewMedia: previewMediaSchema.optional(),
   discovery: z.string().min(1),
   outcomes: z.string().min(1),
   solutionSections: z.array(solutionSectionSchema).min(1),

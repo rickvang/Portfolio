@@ -460,6 +460,11 @@
   border-color: color-mix(in srgb, var(--surface) 42%, transparent);
 }
 
+.practice-work-visual-image figcaption {
+  max-width: calc(100% - 2rem);
+  width: fit-content;
+}
+
 .practice-work-row:is(:hover, :focus-within) .practice-work-visual {
   filter: saturate(1.14) contrast(1.03);
 }

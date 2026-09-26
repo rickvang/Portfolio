@@ -19,7 +19,7 @@ test("work index stacks and wraps without horizontal overflow", async ({ page })
   await expect(caseStudies).toBeVisible();
   await expect(caseStudies.locator(".practice-work-row")).toHaveCount(4);
   await expect(caseStudies.locator(".practice-work-card-link")).toHaveCount(4);
-  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(0);
+  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(2);
   await expect(caseStudies.locator(".practice-work-visual figcaption")).toHaveCount(4);
 
   const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);

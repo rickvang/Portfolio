@@ -15,13 +15,9 @@ type PersonalPracticeWorkItem = {
 
 type PersonalPracticeWorkIndexProps = {
   items: readonly PersonalPracticeWorkItem[];
-  showHomepagePreviewMedia?: boolean;
 };
 
-export function PersonalPracticeWorkIndex({
-  items,
-  showHomepagePreviewMedia = false,
-}: PersonalPracticeWorkIndexProps) {
+export function PersonalPracticeWorkIndex({ items }: PersonalPracticeWorkIndexProps) {
   if (items.length === 0) {
     return (
       <div className="practice-empty-state">
@@ -50,10 +46,7 @@ export function PersonalPracticeWorkIndex({
             </div>
 
             {visualKind && (
-              <PersonalPracticeWorkVisual
-                kind={visualKind}
-                showHomepagePreviewMedia={showHomepagePreviewMedia}
-              />
+              <PersonalPracticeWorkVisual kind={visualKind} media={caseStudy.previewMedia} />
             )}
 
             <span aria-hidden="true" className="practice-work-arrow">
