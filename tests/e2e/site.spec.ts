@@ -42,6 +42,8 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(
     selectedWork.getByText(/Turning design principles into a repeatable design-to-implementation practice/i),
   ).toBeVisible();
+  await expect(selectedWork.locator(".practice-work-visual-image")).toHaveCount(2);
+  await expect(selectedWork.locator(".practice-work-visual figcaption")).toHaveCount(2);
   await expect(page.getByRole("heading", { name: "The throughline", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(
@@ -77,15 +79,26 @@ test("about page renders the approved biography and experience summary", async (
 test("approved imported work is public through the shared case-study routes", async ({ page }) => {
   await page.goto("/work");
 
+  await expect(page.getByRole("heading", { level: 1, name: "Work", exact: true })).toBeVisible();
   await expect(
-    page.getByRole("heading", {
-      name: "From fragmented workflows to reusable foundations.",
+    page.getByText("Product architecture, design systems, and AI-assisted delivery.", {
+      exact: true,
     }),
   ).toBeVisible();
-  await expect(page.getByRole("region", { name: "Selected work" })).toBeVisible();
+  const caseStudies = page.getByRole("region", { name: "Case studies" });
+  await expect(caseStudies).toBeVisible();
+  await expect(caseStudies.getByRole("heading", { level: 2, name: "Case studies" })).toHaveCount(1);
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
-  await expect(page.locator(".practice-work-row")).toHaveCount(4);
+  await expect(caseStudies.locator(".practice-work-row")).toHaveCount(4);
+  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(0);
+  await expect(caseStudies.locator(".practice-work-visual figcaption")).toHaveText([
+    "Illustrative diagram",
+    "Illustrative diagram",
+    "Illustrative diagram",
+    "Illustrative diagram",
+  ]);
+  await expect(page.locator(".practice-work-facts")).toHaveCount(0);
   await expect(page.locator(".project-preview")).toHaveCount(0);
 
   await page.goto("/work/multi-product-integrations");

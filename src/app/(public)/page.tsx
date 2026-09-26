@@ -88,7 +88,10 @@ export default async function HomePage() {
             and what will help teams sustain it?
           </p>
         </div>
-        <PersonalPracticeWorkIndex items={selectedWork} />
+        <PersonalPracticeWorkIndex
+          items={selectedWork}
+          showHomepagePreviewMedia
+        />
       </section>
 
       <section

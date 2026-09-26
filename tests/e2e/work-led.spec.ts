@@ -1,22 +1,37 @@
 import { expect, test } from "@playwright/test";
 
-test("approved work index presents each project with visual evidence", async ({ page }) => {
+test("work index pairs each project with a scoped illustrative visual", async ({ page }) => {
   await page.goto("/work");
 
+  const hero = page.locator(".practice-work-hero");
+  await expect(hero.getByRole("heading", { level: 1, name: "Work", exact: true })).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "From fragmented workflows to reusable foundations." }),
+    hero.getByText("Product architecture, design systems, and AI-assisted delivery.", {
+      exact: true,
+    }),
   ).toBeVisible();
-  await expect(page.getByText("Case studies", { exact: true })).toBeVisible();
-  await expect(page.getByText("4", { exact: true })).toBeVisible();
+  await expect(hero.getByText("4", { exact: true })).toHaveCount(0);
+  await expect(hero.getByText("Product · systems · AI", { exact: true })).toHaveCount(0);
 
-  const workRows = page.locator(".practice-work-row");
+  const caseStudies = page.getByRole("region", { name: "Case studies" });
+  await expect(caseStudies).toBeVisible();
+  await expect(caseStudies.getByRole("heading", { level: 2, name: "Case studies" })).toHaveCount(1);
+
+  const workRows = caseStudies.locator(".practice-work-row");
   await expect(workRows).toHaveCount(4);
   await expect(workRows.nth(0).getByRole("heading")).toHaveText("Multi Product Integrations");
   await expect(workRows.nth(1).getByRole("heading")).toHaveText("AI Systems");
   await expect(workRows.nth(2).getByRole("heading")).toHaveText("Design Systems");
   await expect(workRows.nth(3).getByRole("heading")).toHaveText("UI Design Practices");
-  await expect(page.locator(".practice-work-visual")).toHaveCount(4);
-  await expect(page.locator(".practice-work-card-link")).toHaveCount(4);
+  await expect(caseStudies.locator(".practice-work-visual")).toHaveCount(4);
+  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(0);
+  await expect(caseStudies.locator(".practice-work-visual figcaption")).toHaveText([
+    "Illustrative diagram",
+    "Illustrative diagram",
+    "Illustrative diagram",
+    "Illustrative diagram",
+  ]);
+  await expect(caseStudies.locator(".practice-work-card-link")).toHaveCount(4);
 });
 
 test("mobile home uses the working-index structure without horizontal overflow", async ({ page }) => {
@@ -98,12 +113,9 @@ test("both work patterns stay visible with reduced motion", async ({ page }) => 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/work");
 
-  await expect(
-    page.getByRole("heading", {
-      name: "From fragmented workflows to reusable foundations.",
-    }),
-  ).toBeVisible();
-  await expect(page.getByRole("region", { name: "Selected work" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Work", exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "Case studies" })).toBeVisible();
   await expect(page.locator(".practice-work-row")).toHaveCount(4);
+  await expect(page.locator(".practice-work-visual figcaption")).toHaveCount(4);
   await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
 });

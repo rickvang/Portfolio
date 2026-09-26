@@ -41,36 +41,20 @@ export default function WorkPage() {
     <div className="public-page practice-work-page">
       <section aria-labelledby="work-page-heading" className="practice-work-hero">
         <div className="practice-work-hero-copy">
-          <h1 id="work-page-heading">
-            <span className="practice-work-title-wide">
-              From fragmented workflows to reusable foundations.
-            </span>
-            <span className="practice-work-title-compact">Work</span>
-          </h1>
+          <h1 id="work-page-heading">Work</h1>
         </div>
-
-        <div className="practice-work-hero-aside">
-          <p>
-            Each case study follows the decisions, foundations, and interfaces that shaped the
-            work.
-          </p>
-          <dl className="practice-work-facts">
-            <div>
-              <dt>Case studies</dt>
-              <dd>{selectedWork.length}</dd>
-            </div>
-            <div>
-              <dt>Focus</dt>
-              <dd>Product · systems · AI</dd>
-            </div>
-          </dl>
-        </div>
+        <p className="practice-work-hero-scope">
+          Product architecture, design systems, and AI-assisted delivery.
+        </p>
       </section>
 
       <section
-        aria-label="Selected work"
+        aria-labelledby="work-case-studies-heading"
         className="practice-section practice-work-collection"
       >
+        <h2 className="practice-work-visually-hidden" id="work-case-studies-heading">
+          Case studies
+        </h2>
         <PersonalPracticeWorkIndex items={selectedWork} />
       </section>
     </div>

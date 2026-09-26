@@ -433,6 +433,24 @@
   width: 100%;
 }
 
+.practice-work-visual-canvas {
+  inset: 0;
+  position: absolute;
+}
+
+.practice-work-visual figcaption {
+  background: var(--rail);
+  bottom: 1rem;
+  color: var(--rail-foreground);
+  font-size: 0.75rem;
+  font-weight: 600;
+  left: 1rem;
+  line-height: 1.3;
+  padding: 0.2rem 0.4rem;
+  position: absolute;
+  z-index: 1;
+}
+
 .practice-work-image {
   object-fit: cover;
   transition: transform var(--motion-fast) var(--ease-standard);
@@ -669,87 +687,43 @@
 .practice-work-hero {
   border-bottom: 1px solid var(--border);
   display: grid;
-  gap: clamp(2rem, 8vw, 7rem);
-  grid-template-columns: minmax(0, 1.15fr) minmax(15rem, 0.85fr);
-  padding: clamp(4.5rem, 10vw, 8rem) 0 clamp(3.5rem, 7vw, 5.5rem);
+  gap: clamp(1.5rem, 6vw, 5rem);
+  grid-template-columns: minmax(0, 0.8fr) minmax(15rem, 1.2fr);
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(2rem, 4vw, 3rem);
 }
 
 .practice-work-hero-copy {
-  max-width: 52rem;
+  max-width: 24rem;
 }
 
 .practice-work-hero h1 {
-  font-size: clamp(3rem, 7.2vw, 5.8rem);
-  letter-spacing: -0.055em;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   line-height: 0.98;
-  margin: 1rem 0 0;
-  max-width: 10ch;
+  margin: 0;
 }
 
-.practice-work-title-compact {
-  display: none;
-}
-
-.practice-work-hero-aside {
+.practice-work-hero-scope {
   align-self: end;
-  max-width: 31ch;
-  padding-bottom: 0.35rem;
-}
-
-.practice-work-hero-aside > p {
   color: var(--muted);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.6;
   margin: 0;
-}
-
-.practice-work-facts {
-  border-top: 1px solid var(--border);
-  display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin: 2rem 0 0;
-  padding-top: 0.9rem;
-}
-
-.practice-work-facts div {
-  display: grid;
-  gap: 0.35rem;
-}
-
-.practice-work-facts dt {
-  color: var(--muted);
-  font-size: 0.64rem;
-  font-weight: 650;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.practice-work-facts dd {
-  font-size: 0.9rem;
-  font-weight: 650;
-  margin: 0;
+  max-width: 40ch;
 }
 
 .practice-work-collection {
-  padding-top: clamp(3rem, 7vw, 5.5rem);
+  padding-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.practice-work-collection .practice-section-heading {
-  margin-bottom: clamp(1.5rem, 3vw, 2.2rem);
-}
-
-.practice-work-collection .practice-section-heading > div {
-  display: grid;
-  gap: 0.65rem;
-}
-
-.practice-work-collection .practice-section-heading h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-}
-
-.practice-work-collection .practice-section-index {
-  margin: 0;
+.practice-work-visually-hidden {
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 .practice-shell .public-page > .hero:not(.practice-home-hero),
@@ -1192,10 +1166,6 @@
   .practice-work-hero {
     grid-template-columns: 1fr;
   }
-
-  .practice-work-hero-aside {
-    max-width: 39ch;
-  }
 }
 
 @media (max-width: 620px) {
@@ -1222,47 +1192,21 @@
   }
 
   .practice-work-hero {
-    gap: 2.25rem;
-    padding: 3.25rem 0 2.8rem;
+    gap: 1rem;
+    padding: 2rem 0 1.5rem;
   }
 
   .practice-work-hero h1 {
-    font-size: clamp(2.7rem, 13vw, 4rem);
-    max-width: none;
+    font-size: clamp(2.6rem, 12vw, 3.6rem);
   }
 
-  .practice-work-title-wide {
-    display: none;
-  }
-
-  .practice-work-title-compact {
-    display: inline;
-  }
-
-  .practice-work-hero-aside {
-    max-width: 32ch;
-  }
-
-  .practice-work-hero-aside > p {
+  .practice-work-hero-scope {
     font-size: 1rem;
     line-height: 1.5;
   }
 
-  .practice-work-facts {
-    margin-top: 1.25rem;
-  }
-
   .practice-work-collection {
-    padding-top: 2.4rem;
-  }
-
-  .practice-work-collection .practice-section-heading {
-    display: grid;
-    gap: 0.7rem;
-  }
-
-  .practice-work-collection .practice-section-index {
-    display: none;
+    padding-top: 1rem;
   }
 
   .practice-canvas-art {
