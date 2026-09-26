@@ -57,6 +57,11 @@
       "category": "Enterprise B2B",
       "sourceUrl": "https://www.rickvang.com/projects/multi-product-integrations",
       "summary": "A unified framework for standardizing processes, consolidating data, and integrating workflows across a fragmented ecosystem of products and applications.",
+      "previewMedia": {
+        "src": "/work-media/multi-product-integrations.png",
+        "alt": "Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view.",
+        "caption": "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property."
+      },
       "discovery": "The work began by identifying core personas and mapping their workflows to create reusable domain experiences that could support future journey and experience maps.",
       "outcomes": "Designed a platform framework and collaborated to build trust with early adopters. The effort enabled real-time operational data views, reduced administrative work, and reduced UX-operations rework.",
       "solutionSections": [
@@ -84,7 +89,7 @@
       "curationNotes": [
         "Normalized the source category typo from 'Enerprise B2B' to 'Enterprise B2B'.",
         "Kept the case study at the public, client-protective level of detail from the source page.",
-        "Owner approval on 2026-09-26 permits this existing public hero image on Home Selected Work and the /work index; it remains hosted at public/work-media/multi-product-integrations.png. Caption: Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property."
+        "Owner approval on 2026-09-26 permits this existing public hero image on Home Selected Work and the /work index; it remains hosted at public/work-media/multi-product-integrations.png."
       ],
       "reviewStatus": "approved"
     },
@@ -95,6 +100,11 @@
       "category": "Design Systems",
       "sourceUrl": "https://www.rickvang.com/projects/design-systems",
       "summary": "A comprehensive and scalable design system for improving consistency, accelerating development workflows, and extending legacy capabilities for future growth.",
+      "previewMedia": {
+        "src": "/work-media/design-systems.png",
+        "alt": "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
+        "caption": "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property."
+      },
       "discovery": "Audited and prioritized existing patterns and user scenarios, then used stakeholder workshops, usage analysis, user testing, and developer feedback to align goals and feasibility.",
       "outcomes": "Established a platform framework, built trust with early adopters, enabled real-time operational data views, reduced administrative work, and created potential to reduce UX-operations rework.",
       "solutionSections": [
@@ -125,7 +135,7 @@
       ],
       "curationNotes": [
         "Kept governance, foundations, density, templates, and patterns as separate content concepts for future structured rendering.",
-        "Owner approval on 2026-09-26 permits this existing public hero image on Home Selected Work and the /work index; it remains hosted at public/work-media/design-systems.png. Caption: Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property."
+        "Owner approval on 2026-09-26 permits this existing public hero image on Home Selected Work and the /work index; it remains hosted at public/work-media/design-systems.png."
       ],
       "reviewStatus": "approved"
     }

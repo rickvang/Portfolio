@@ -1,10 +1,11 @@
 # Work Order: Approved Case-Study Imagery on the Work Index
 
 - **Work Order ID:** `WO-2026-09-26-CW64-approved-case-study-imagery`
-- **Status:** Complete on merge
+- **Status:** In progress
 - **Created / updated:** 2026-09-26
 - **Current Work:** [CW-64](https://app.notion.com/p/3e5cd82535ff81029b55eafe9a3b1b0d)
 - **GitHub issue:** [#52 — Extend approved case-study imagery to the Work index](https://github.com/rickvang/Portfolio/issues/52)
+- **GitHub pull request:** [#53 — Reuse approved case-study images on Work index](https://github.com/rickvang/Portfolio/pull/53)
 - **Requester:** Rick
 - **Owner:** Riley Morgan / `ai-orchestrator`
 - **Operating Route:** Riley / `ai-orchestrator` → GPT-6 Luna with Ponytail → Noor review → Portfolio implementation
@@ -41,7 +42,7 @@ Both files are already hosted in the public site assets. No new asset sourcing o
 
 - Rick's owner approval authorizes reuse, current-site hosting, and captions for the two existing public hero images on the approved surfaces.
 - The original public case-study pages identify the source projects and include the client-IP disclaimer: Multi Product Integrations and Design Systems.
-- The repository already contains the two assets in `public/work-media/` and currently limits their curation notes to homepage previews.
+- The repository already contains the two assets in `public/work-media/`; typed `previewMedia` content records their hosted paths, alt text, and captions, while curation notes record the owner-approved surfaces.
 - The source import and visual mapping contain no source images for AI Systems or UI Design Practices, so those cards remain derived and visibly labelled.
 - Captions describe the visible image contents and keep the client-IP notice next to each displayed image.
 
@@ -49,6 +50,8 @@ Both files are already hosted in the public site assets. No new asset sourcing o
 
 - `src/components/personal-practice-visuals.tsx`
 - `src/components/personal-practice-work-index.tsx`
+- `src/lib/case-studies.ts`
+- `src/lib/imported-content.ts`
 - `src/app/(public)/page.tsx`
 - `src/app/personal-practice.css`
 - `content/imports/rickvang.com.json`
@@ -58,15 +61,15 @@ Both files are already hosted in the public site assets. No new asset sourcing o
 
 ## Current phase
 
-The shared media gate is removed. Home and `/work` now render the two approved source images with descriptive alt text and visible captions; the other two cards remain illustrative. Source curation notes and the design contract record the approval. Existing route assertions now encode the two-image / two-diagram scope. The branch is ready for review and hosted CI.
+PR #53 is open. Its first Vercel preview completed successfully. GitHub Actions passed lint, typecheck, unit tests, and the Supabase schema job; one end-to-end harness assertion failed because its broad text locator matched both the source disclaimer and a curation note. Codex review also asked for preview metadata to live in typed case-study content and for the active Work Order to move out of the archive. Both corrections are prepared in the clean worktree and will be included in the next PR update.
 
 ## Validation and completion boundary
 
-- Review the rendered Home and `/work` cards at desktop and mobile widths; verify captions remain readable and there is no horizontal overflow.
+- Recheck the rendered Home and `/work` cards at desktop and mobile widths after the updated preview deploys; verify captions remain readable and there is no horizontal overflow.
 - Preserve semantic `figure` / `figcaption` structure, meaningful image alternative text, the existing case-study order, and the “Illustrative diagram” labels for the other two cases.
 - Require the GitHub CI checks and current PR review/merge preflight to pass before merge. Do not deploy.
 - **Complete on merge of the linked implementation PR**, then archive this Work Order and reconcile CW-64 to its terminal state.
 
 ## Next action
 
-Open a PR for issue #52, wait for required CI and review, then refresh mergeability and linked-issue effects before merging. Reconcile CW-64 after merge.
+Publish the review and CI corrections to PR #53, then refresh the preview, CI, review threads, and mergeability. Merge only when the required gates pass; after merge, archive this Work Order and reconcile CW-64.

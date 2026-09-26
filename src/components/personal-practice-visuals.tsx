@@ -4,6 +4,8 @@ import Image from "next/image";
 import type { PointerEvent } from "react";
 import { useEffect, useRef } from "react";
 
+import type { CaseStudyPreviewMedia } from "@/lib/case-studies";
+
 export type PracticeWorkVisualKind =
   | "integrations"
   | "ai-systems"
@@ -35,27 +37,6 @@ const colors = {
 
 type PracticeCanvasProps = {
   variant: PracticeCanvasVariant;
-};
-
-type PracticeWorkMedia = {
-  alt: string;
-  caption: string;
-  src: string;
-};
-
-const sourceMedia: Partial<Record<PracticeWorkVisualKind, PracticeWorkMedia>> = {
-  integrations: {
-    alt: "Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view.",
-    caption:
-      "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
-    src: "/work-media/multi-product-integrations.png",
-  },
-  "design-systems": {
-    alt: "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
-    caption:
-      "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
-    src: "/work-media/design-systems.png",
-  },
 };
 
 export function PersonalPracticeHeroGraphic() {
@@ -218,11 +199,11 @@ function PracticeHeroFallback() {
 
 export function PersonalPracticeWorkVisual({
   kind,
+  media,
 }: {
   kind: PracticeWorkVisualKind;
+  media?: CaseStudyPreviewMedia;
 }) {
-  const media = sourceMedia[kind];
-
   if (media) {
     return (
       <figure

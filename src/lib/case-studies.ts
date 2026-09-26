@@ -31,6 +31,12 @@ export const caseStudyEvidenceSchema = z.object({
   note: z.string().min(1),
 });
 
+const caseStudyPreviewMediaSchema = z.object({
+  src: z.string().min(1),
+  alt: z.string().min(1),
+  caption: z.string().min(1),
+});
+
 const caseStudySectionItemSchema = z.object({
   id: z.string().min(1).optional(),
   title: z.string().min(1),
@@ -60,6 +66,7 @@ export const caseStudySchema = z
     scope: z.string().min(1).optional(),
     reviewStatus: reviewStatusSchema,
     clientIpDisclaimer: z.string().min(1).optional(),
+    previewMedia: caseStudyPreviewMediaSchema.optional(),
     sources: z.array(caseStudySourceSchema).min(1),
     sections: z.array(caseStudySectionSchema).min(1),
     curationNotes: z.array(z.string().min(1)).default([]),
@@ -103,6 +110,7 @@ export const caseStudySchema = z
   });
 
 export type CaseStudy = z.infer<typeof caseStudySchema>;
+export type CaseStudyPreviewMedia = z.infer<typeof caseStudyPreviewMediaSchema>;
 export type CaseStudySection = CaseStudy["sections"][number];
 export type CaseStudySectionKind = z.infer<typeof caseStudySectionKindSchema>;
 export type CaseStudyReviewStatus = z.infer<typeof reviewStatusSchema>;
@@ -147,6 +155,7 @@ function importedProjectToCaseStudy(project: ImportedProject): CaseStudy {
     category: project.category,
     reviewStatus: project.reviewStatus,
     clientIpDisclaimer: importedContent.source.clientIpDisclaimer,
+    previewMedia: project.previewMedia,
     sources: [
       {
         id: sourceId,

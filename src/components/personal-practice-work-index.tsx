@@ -45,7 +45,9 @@ export function PersonalPracticeWorkIndex({ items }: PersonalPracticeWorkIndexPr
               <p>{summary ?? caseStudy.summary}</p>
             </div>
 
-            {visualKind && <PersonalPracticeWorkVisual kind={visualKind} />}
+            {visualKind && (
+              <PersonalPracticeWorkVisual kind={visualKind} media={caseStudy.previewMedia} />
+            )}
 
             <span aria-hidden="true" className="practice-work-arrow">
               <span>→</span>
