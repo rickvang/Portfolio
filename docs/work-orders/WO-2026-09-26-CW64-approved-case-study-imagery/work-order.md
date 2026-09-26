@@ -61,7 +61,7 @@ Both files are already hosted in the public site assets. No new asset sourcing o
 
 ## Current phase
 
-PR #53 is open. Its first Vercel preview completed successfully. GitHub Actions passed lint, typecheck, unit tests, and the Supabase schema job; one end-to-end harness assertion failed because its broad text locator matched both the source disclaimer and a curation note. Codex review also asked for preview metadata to live in typed case-study content and for the active Work Order to move out of the archive. Both corrections are prepared in the clean worktree and will be included in the next PR update.
+PR #53 is open with corrective commit f305b82. Typed previewMedia content now carries image paths, alt text, and captions into the shared visual; curation notes no longer repeat the client-IP disclaimer, and this active Work Order is stored outside archive. The first hosted CI run passed lint, typecheck, 33 unit tests, and Supabase schema validation but failed one E2E harness locator due to duplicated text. The new GitHub Actions run and Vercel preview are in progress.
 
 ## Validation and completion boundary
 
@@ -72,4 +72,4 @@ PR #53 is open. Its first Vercel preview completed successfully. GitHub Actions 
 
 ## Next action
 
-Publish the review and CI corrections to PR #53, then refresh the preview, CI, review threads, and mergeability. Merge only when the required gates pass; after merge, archive this Work Order and reconcile CW-64.
+Review the current Vercel preview at desktop and mobile widths and inspect the current CI visual artifact; refresh required checks, approval, unresolved review threads, mergeability, main/default base, and the #52 closing effect immediately before merge. After merging #53, archive this Work Order and reconcile CW-64.
