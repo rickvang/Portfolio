@@ -1,7 +1,7 @@
 # Work Order: Approved Case-Study Imagery on the Work Index
 
 - **Work Order ID:** `WO-2026-09-26-CW64-approved-case-study-imagery`
-- **Status:** In progress
+- **Status:** Complete
 - **Created / updated:** 2026-09-26
 - **Current Work:** [CW-64](https://app.notion.com/p/3e5cd82535ff81029b55eafe9a3b1b0d)
 - **GitHub issue:** [#52 — Extend approved case-study imagery to the Work index](https://github.com/rickvang/Portfolio/issues/52)
@@ -27,12 +27,12 @@ On 2026-09-26, Rick approved broader case-study image reuse, hosting, and captio
 | Multi Product Integrations | `public/work-media/multi-product-integrations.png` | [Public source case study](https://www.rickvang.com/projects/multi-product-integrations) | Home Selected Work and `/work` | Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view. | Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property. |
 | Design Systems | `public/work-media/design-systems.png` | [Public source case study](https://www.rickvang.com/projects/design-systems) | Home Selected Work and `/work` | Collage of interface patterns, color and contrast scales, and typography examples from a design system. | Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property. |
 
-Both files are already hosted in the public site assets. No new asset sourcing or external hosting is in scope.
+Both files were already hosted in the public site assets. No new asset sourcing or external hosting was in scope.
 
 ## Boundaries
 
 - Keep the image scope on Home Selected Work and the `/work` index. Individual case-study detail routes are unchanged.
-- AI Systems and UI Design Practices have no recorded source images; keep their current diagrams labelled “Illustrative diagram.”
+- AI Systems and UI Design Practices have no recorded source images; keep their current diagrams labelled *Illustrative diagram*.
 - Do not add screenshots, stock imagery, reconstructed client interfaces, outcome claims, or project-specific facts beyond the approved source content.
 - Preserve the public source's client-IP notice that the displayed work may differ from implementation and has been modified to protect client intellectual property.
 - No production deployment or other production-state change.
@@ -59,17 +59,21 @@ Both files are already hosted in the public site assets. No new asset sourcing o
 - Relevant existing E2E assertions in `tests/e2e/site.spec.ts`, `tests/e2e/work-led.spec.ts`, and `tests/e2e/responsive.spec.ts`
 - This Work Order
 
-## Current phase
+## Outcome
 
-PR #53 is open with corrective commit f305b82. Typed previewMedia content now carries image paths, alt text, and captions into the shared visual; curation notes no longer repeat the client-IP disclaimer, and this active Work Order is stored outside archive. The first hosted CI run passed lint, typecheck, 33 unit tests, and Supabase schema validation but failed one E2E harness locator due to duplicated text. The new GitHub Actions run and Vercel preview are in progress.
+PR #53 was merged into `main` on 2026-09-26 as squash commit `218b0c0ebec59f4f0653307251c1b98888c7bff4`. GitHub auto-closed issue #52. The corrected implementation stores image paths, alt text, and captions as typed case-study `previewMedia` content, passes that metadata into the shared visual, and records the approved display surfaces in curation notes.
 
-## Validation and completion boundary
+The first hosted CI run exposed a duplicated disclaimer that made an E2E text locator ambiguous. The content and caption source were corrected, and the final CI run passed.
 
-- Recheck the rendered Home and `/work` cards at desktop and mobile widths after the updated preview deploys; verify captions remain readable and there is no horizontal overflow.
-- Preserve semantic `figure` / `figcaption` structure, meaningful image alternative text, the existing case-study order, and the “Illustrative diagram” labels for the other two cases.
-- Require the GitHub CI checks and current PR review/merge preflight to pass before merge. Do not deploy.
-- **Complete on merge of the linked implementation PR**, then archive this Work Order and reconcile CW-64 to its terminal state.
+## Validation and completion record
+
+- GitHub Actions [CI run #125](https://github.com/rickvang/Portfolio/actions/runs/36264961520) completed successfully: lint, typecheck, unit tests, Playwright E2E, build, and Supabase local schema checks passed.
+- The Vercel preview deployment succeeded at `https://portfolio-git-codex-cw64-approved-work-images-acme-dd4d.vercel.app`. Home and `/work` were manually reviewed at desktop width; the approved images and captions were visible, while the two remaining cards stayed labelled as illustrative diagrams.
+- `tests/e2e/responsive.spec.ts` passed its mobile-width responsive and overflow assertions, including the 390px viewport.
+- Both outdated Codex inline review threads were resolved. The merge preflight confirmed the PR targeted the current default branch and was cleanly mergeable.
+- No local tests were run; validation came from the hosted CI run.
+- No production deployment was requested or performed.
 
 ## Next action
 
-Review the current Vercel preview at desktop and mobile widths and inspect the current CI visual artifact; refresh required checks, approval, unresolved review threads, mergeability, main/default base, and the #52 closing effect immediately before merge. After merging #53, archive this Work Order and reconcile CW-64.
+None. The approved imagery change, issue, and Work Order lifecycle are complete.
