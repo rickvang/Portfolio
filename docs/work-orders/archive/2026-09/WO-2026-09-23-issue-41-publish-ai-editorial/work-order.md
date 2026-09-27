@@ -4,7 +4,7 @@
 - Status: complete
 - Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-23
-- Last updated: 2026-09-23
+- Last updated: 2026-09-27
 - Repository: rickvang/Portfolio
 - Branch: codex/issue-41-publish-ai-editorial
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/41
@@ -34,6 +34,8 @@ Use their existing evidence and copy. Do not replace them with newly invented co
 - Imported client work keeps its current approval state and evidence contracts.
 
 ## Current phase
+
+Terminal reconciliation on 2026-09-27: linked Portfolio Issue #41 is closed and the implementation is already represented on current `main`. Applicable repository CI/review/preview/deployment completion evidence remains in the linked GitHub records and Current Work history. The earlier branch/PR instructions in this packet are superseded; this Work Order is historical evidence only.
 
 Implementation is assembled on the branch. The authored case-study gate permits explicit approved records; AI Systems and UI Design Practices are approved; Persona-led Design Starts Before the Screen is published through the merged source-controlled/Supabase Notes adapter; docs and tests are updated. The stabilized preview now builds successfully. CI #103 passed all repository gates and the Vercel preview reached READY. PR review then identified two adapter edge cases: remote Supabase failure should not suppress locally published Notes, and database rows must not duplicate a source-controlled slug. Both are addressed together with source-controlled precedence and graceful remote fallback before final merge verification.
 
