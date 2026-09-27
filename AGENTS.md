@@ -24,7 +24,7 @@ Persona Workspace, Persona-Library, SkillRepo, operating-packs, and tool-repo ma
 
 - Use pnpm and the Node version declared in `package.json`.
 - Read `ARCHITECTURE.md` and `DECISIONS.md` before changing system boundaries.
-- Read `DESIGN.md` before making visual changes or adding reusable components.
+- Read `DESIGN.md` first before visual changes or reusable component work, then load only the task-specific reference from `docs/design/` named by its selective-routing table. Do not read the entire design reference set by default.
 - For reusable component work, use the canonical `component-builder` method from `SkillRepo` when it is available in the shared workspace.
 - When reusable Skills, Playbooks, Operating Packs, or Tool-use recipes are relevant, use their canonical source rather than copying their full procedure into Portfolio. Portfolio's local architecture, design, source code, tests, and current live state remain authoritative for Portfolio-specific implementation.
 - Keep product content separate from reusable UI and infrastructure.
