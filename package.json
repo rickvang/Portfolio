@@ -22,7 +22,8 @@
     "supabase:reset": "pnpm dlx supabase db reset",
     "supabase:push": "pnpm dlx supabase db push",
     "supabase:types": "pnpm dlx supabase gen types typescript --local > src/lib/supabase/database.types.ts",
-    "verify": "pnpm lint && pnpm typecheck && pnpm test && pnpm build"
+    "verify": "pnpm validate:design && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "validate:design": "node scripts/validate-design-contract.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "0.7.0",
