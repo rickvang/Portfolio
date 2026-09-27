@@ -3,7 +3,8 @@
 ## Header
 
 - Work Order ID: `WO-2026-09-22-issue-5-visual-quality`
-- Status: active
+- Status: complete
+- Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-22
 - Repository: `rickvang/Portfolio`
 - Branch: `codex/issue-5-visual-quality-rubric`, based on `main` after PR #31 merged (base `9bbb820`).
@@ -60,7 +61,11 @@ The comparison found a gap for a portable method connecting evidence, thematic w
 
 Complete when `DESIGN.md` contains the Portfolio-specific rubric, review record, decision gates, and refinement ownership; the portable SkillRepo package contains its method, examples, and governed library; the initial source-level review is recorded; applicable documentation/package checks are reported accurately; and Current Work is reconciled. Keep the linked issues open for normal repository review. No production deployment is in scope.
 
-## Current phase and next action
+## Terminal checkpoint
+
+Terminal reconciliation on 2026-09-27: linked Portfolio Issue #5 is closed and the implementation is already represented on current `main`. Applicable repository CI/review/preview/deployment completion evidence remains in the linked GitHub records and Current Work history. The earlier branch/PR instructions in this packet are superseded; this Work Order is historical evidence only.
+
+- Next action: None — terminal historical record.
 
 - Phase: Portfolio rubric and rendered review complete; final PR #32 preflight and merge pending.
 - Validation limitation: the SkillRepo Skill Creator validator could not start because its bundled Python runtime lacked PyYAML; manual front-matter, whitespace, and local-link checks passed before PR #10 merged.

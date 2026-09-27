@@ -1,9 +1,10 @@
 # Work Order — Issue #44 homepage positioning and work hierarchy
 
 - Work Order ID: WO-2026-09-23-issue-44-homepage-positioning
-- Status: active
+- Status: complete
+- Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-23
-- Last updated: 2026-09-23
+- Last updated: 2026-09-27
 - Repository: rickvang/Portfolio
 - Branch: codex/issue-44-homepage-positioning
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/44
@@ -42,6 +43,8 @@ Translate the broad portfolio research into a content-first homepage pass withou
 The homepage transformation statements are bounded paraphrases of the approved case-study summaries and sections already present in the Portfolio content sources. The underlying source records remain unchanged.
 
 ## Current phase
+
+Terminal reconciliation on 2026-09-27: linked Portfolio Issue #44 is closed and the implementation is already represented on current `main`. Applicable repository CI/review/preview/deployment completion evidence remains in the linked GitHub records and Current Work history. The earlier branch/PR instructions in this packet are superseded; this Work Order is historical evidence only.
 
 Implementation rendered correctly at desktop and narrow widths and CI #106 passed all repository gates. PR review identified one content-ownership issue: homepage-specific transformation copy had been embedded in the reusable Work Index component. The correction moves that copy into the Home route and passes explicit presentation items into the reusable component without changing rendered behavior. Next: rerun final gates and merge if clean.
 

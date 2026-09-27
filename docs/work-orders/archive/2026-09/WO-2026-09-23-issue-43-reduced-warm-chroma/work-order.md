@@ -1,9 +1,10 @@
 # Work Order — Issue #43 reduced warm chroma production selection
 
 - Work Order ID: WO-2026-09-23-issue-43-reduced-warm-chroma
-- Status: active
+- Status: complete
+- Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-23
-- Last updated: 2026-09-23
+- Last updated: 2026-09-27
 - Repository: rickvang/Portfolio
 - Branch: codex/issue-43-reduced-warm-chroma
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/43
@@ -41,4 +42,12 @@ Do not merge the experimental color selector/query behavior. This branch starts 
 
 ## Next action
 
+None — terminal historical record. Any new work requires a new scoped issue under the current recovery-footprint policy.
+
 Open the scoped PR, run all repository gates, inspect Home and Multi Product Integrations at desktop/narrow widths, and merge if review and deployment checks pass.
+
+## Terminal checkpoint
+
+Terminal reconciliation on 2026-09-27: linked Portfolio Issue #43 is closed and the implementation is already represented on current `main`. Applicable repository CI/review/preview/deployment completion evidence remains in the linked GitHub records and Current Work history. The earlier branch/PR instructions in this packet are superseded; this Work Order is historical evidence only.
+
+- Next action: None — terminal historical record.

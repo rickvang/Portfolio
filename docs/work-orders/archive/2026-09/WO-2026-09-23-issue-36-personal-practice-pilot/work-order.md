@@ -1,9 +1,10 @@
 # Work Order — Issue #36 Personal Practice / Working Archive pilot
 
 - Work Order ID: WO-2026-09-23-issue-36-personal-practice-pilot
-- Status: active
+- Status: complete
+- Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-23
-- Last updated: 2026-09-23
+- Last updated: 2026-09-27
 - Repository: rickvang/Portfolio
 - Branch: codex/issue-36-personal-practice-pilot
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/36
@@ -63,6 +64,8 @@ The requester said “go ahead” after approving the implementation plan for Is
 
 ## Current phase
 
+Terminal reconciliation on 2026-09-27: linked Portfolio Issue #36 is closed and the implementation is already represented on current `main`. Applicable repository CI/review/preview/deployment completion evidence remains in the linked GitHub records and Current Work history. The earlier branch/PR instructions in this packet are superseded; this Work Order is historical evidence only.
+
 Phase 1–3 implementation is complete on the branch: the pilot font variables, route-scoped horizontal shell, Working Index Home, source-backed Multi Product Integrations editorial renderer, browser contracts, and DESIGN.md update are in place. Local execution remains unavailable because the runtime cannot resolve github.com. Next: inspect the branch diff, open the scoped PR, and use GitHub CI/Vercel preview as the verification path.
 
 ## Runtime limitation / fallback
@@ -82,5 +85,7 @@ The work is complete when:
 - this Work Order is archived and CW-54 is marked Done / Reference.
 
 ## Next action
+
+None — terminal historical record. Any new work requires a new scoped issue under the current recovery-footprint policy.
 
 Inspect the complete branch diff, open the Issue #36 PR, then evaluate CI, preview status, and any review findings before merge.

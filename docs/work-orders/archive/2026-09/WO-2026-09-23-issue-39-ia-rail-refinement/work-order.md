@@ -1,9 +1,10 @@
 # Work Order — Issue #39 IA + persistent rail refinement
 
 - Work Order ID: WO-2026-09-23-issue-39-ia-rail-refinement
-- Status: active
+- Status: complete
+- Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-23
-- Last updated: 2026-09-23
+- Last updated: 2026-09-27
 - Repository: rickvang/Portfolio
 - Branch: codex/issue-39-ia-rail-refinement
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/39
@@ -47,6 +48,8 @@ Refine the merged Personal Practice / Working Archive pilot after rendered revie
 - Keep non-pilot routes unchanged except where necessary to prevent fixture leakage.
 
 ## Current phase
+
+Terminal reconciliation on 2026-09-27: linked Portfolio Issue #39 is closed and the implementation is already represented on current `main`. Applicable repository CI/review/preview/deployment completion evidence remains in the linked GitHub records and Current Work history. The earlier branch/PR instructions in this packet are superseded; this Work Order is historical evidence only.
 
 Implementation complete on the branch. The pilot now uses a light persistent rail and Inter-only typography; Home is simplified to Intro → Selected Work → How I work → optional Notes → About; deterministic post fixtures no longer fall through the public publication adapter; public Notes and browser/unit contracts are updated. Next: open the scoped PR and verify through GitHub CI/Vercel preview.
 
