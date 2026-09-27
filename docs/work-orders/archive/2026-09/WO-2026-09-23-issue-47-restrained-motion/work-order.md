@@ -4,7 +4,7 @@
 - Status: complete
 - Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-23
-- Last updated: 2026-09-23
+- Last updated: 2026-09-27
 - Repository: rickvang/Portfolio
 - Branch: codex/issue-47-restrained-motion
 - GitHub issue: https://github.com/rickvang/Portfolio/issues/47
@@ -34,6 +34,8 @@ Add restrained motion polish without changing content, IA, typography, or the se
 No animation library, parallax, looping motion, cursor effects, page-transition theater, scroll-jacking, or motion-dependent meaning.
 
 ## Current phase
+
+Terminal reconciliation on 2026-09-27: linked Portfolio Issue #47 is closed and the implementation is already represented on current `main`. Applicable repository CI/review/preview/deployment completion evidence remains in the linked GitHub records and Current Work history. The earlier branch/PR instructions in this packet are superseded; this Work Order is historical evidence only.
 
 Implementation is complete on the branch. GitHub CI run #112 passed database validation, lint, typecheck, unit tests, Playwright (including reduced-motion/marker contracts), visual-capture generation, and production build. Cursor review approved the change with no findings. The first Vercel preview request was rejected before build by the account build-rate limiter, not by application code. This checkpoint commit is the single controlled preview retry; do not create a retry loop.
 
