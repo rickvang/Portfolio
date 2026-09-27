@@ -38,7 +38,7 @@ Persona Workspace, Persona-Library, SkillRepo, operating-packs, and tool-repo ma
 
 ## Work tracking
 
-- Create or link a GitHub issue for each non-trivial implementation plan. Keep scope, status, and next action visible there and link it from the Work Order.
+- Create or link a GitHub issue for each non-trivial implementation plan. Keep scope, status, and next action visible there. Link it from the Work Order when one exists; otherwise link it from Current Work or the smallest authoritative project artifact used for recovery.
 - Use one Current Work row per substantial workstream, not one row per conversational turn.
 - Before creating a Work Order, ask: **If the agent stops mid-task, can another agent resume safely from Current Work + the GitHub issue/PR + existing project artifacts without reconstructing hidden decisions?** If yes, reuse those surfaces and do not create a duplicate Work Order. If no, create/use one.
 - When a Work Order exists, link specialized artifacts rather than duplicating them.
