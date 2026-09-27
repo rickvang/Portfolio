@@ -1,7 +1,8 @@
 # Work Order — Issue #43 reduced warm chroma production selection
 
 - Work Order ID: WO-2026-09-23-issue-43-reduced-warm-chroma
-- Status: active
+- Status: complete
+- Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-23
 - Last updated: 2026-09-23
 - Repository: rickvang/Portfolio

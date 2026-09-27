@@ -3,7 +3,8 @@
 ## Header
 
 - Work Order ID: `WO-2026-09-22-issue-5-visual-quality`
-- Status: active
+- Status: complete
+- Lifecycle disposition: archived 2026-09-27 under Portfolio #55 recovery-footprint policy after linked implementation was verified terminal.
 - Created: 2026-09-22
 - Repository: `rickvang/Portfolio`
 - Branch: `codex/issue-5-visual-quality-rubric`, based on `main` after PR #31 merged (base `9bbb820`).
