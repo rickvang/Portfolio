@@ -13,8 +13,10 @@ Persona Workspace, Persona-Library, SkillRepo, operating-packs, and tool-repo ma
 - When the user's Notion Current Work tracker is available, create or resume one row at the first substantial checkpoint and use it as the concise cross-thread/cross-agent index.
 - Keep Current Work focused on durable resumable context: Work ID, current objective, owner, Operating Route, optional Parent Work ID, next action, blocker, last checkpoint, and authoritative links.
 - Reconcile Riley's durable orchestration state at workstream creation, material rerouting, cross-agent handoff, major blocker, and completion.
-- Use a repo-local Work Order for detailed execution and recovery state on non-trivial, multi-step, or interruptible work. Follow `docs/work-orders.md`.
-- Use this state hierarchy: **Current Work → repo-local Work Order → selectively refreshed live systems**.
+- Use a repo-local Work Order only when the work needs **unique durable execution/recovery state** that Current Work + the GitHub issue/PR + existing project artifacts do not already preserve. Follow `docs/work-orders.md`.
+- A bounded change may use the no-Work-Order lane when those existing surfaces already preserve objective/scope, owner/route, accepted evidence or decision boundary, blocker/next action, and completion criteria. "Small" refers to recovery footprint, not risk, semantic importance, file count, or test count.
+- Use this state hierarchy: **Current Work → Work Order when needed, otherwise the smallest authoritative issue/PR/project artifact → selectively refreshed live systems**.
+- Work Graph membership and Riley supervision remain in force when the work is a supervised node; omitting a Work Order never removes orchestration obligations.
 - GitHub, Vercel, Supabase, deployments, permissions, CI, review state, mergeability, and other independently changing systems remain freshness-sensitive authorities. Do not mirror volatile live state into Current Work merely to make the tracker look complete.
 - If Current Work cannot be updated because the required Notion tool, connection, or permission is unavailable, explicitly state **Current Work not updated** and why.
 
@@ -38,8 +40,9 @@ Persona Workspace, Persona-Library, SkillRepo, operating-packs, and tool-repo ma
 
 - Create or link a GitHub issue for each non-trivial implementation plan. Keep scope, status, and next action visible there and link it from the Work Order.
 - Use one Current Work row per substantial workstream, not one row per conversational turn.
-- Use one repo-local Work Order per substantial implementation packet. Link specialized artifacts rather than duplicating them.
-- Archive completed Work Orders under `docs/work-orders/archive/YYYY-MM/<work-order-id>/` rather than deleting them.
+- Before creating a Work Order, ask: **If the agent stops mid-task, can another agent resume safely from Current Work + the GitHub issue/PR + existing project artifacts without reconstructing hidden decisions?** If yes, reuse those surfaces and do not create a duplicate Work Order. If no, create/use one.
+- When a Work Order exists, link specialized artifacts rather than duplicating them.
+- Archive terminal Work Orders under `docs/work-orders/archive/YYYY-MM/<work-order-id>/` rather than deleting them. When the implementation PR is the final repository change, record terminal status and move the Work Order to the archive **in that same PR**. Archive-only PRs are not the normal closeout path and should not create an avoidable additional production deployment.
 - When work is already represented in Current Work, reconcile that record before reporting a material handoff, blocker, priority change, or completion.
 - When Riley decomposes a substantial outcome into child workstreams, record the parent `CW-#` in Current Work's **Parent Work ID** field.
 
