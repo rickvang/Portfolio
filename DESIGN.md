@@ -26,7 +26,7 @@ Read only the reference needed for the current task after this core contract:
 | Translating project evidence into a portfolio experience | [Work-to-experience translation](docs/design/work-to-experience.md) |
 | Detailed motion pattern timing, interruption, and reduced-motion behavior | [Motion contract](docs/design/motion.md) |
 | Component interaction specification or representative behavior examples | [Interaction specifications](docs/design/interaction-specifications.md) |
-| Personal Practice / Working Archive pilot-specific direction | [Personal Practice pilot](docs/design/examples/personal-practice-pilot.md) |
+| Home or Multi Product Integrations visual changes, or other Personal Practice / Working Archive pilot-specific direction | [Personal Practice pilot](docs/design/examples/personal-practice-pilot.md) |
 | Why a shipped design choice exists or how a prior release was hardened | [Release and design history](docs/design/history/release-history.md) |
 
 Do not load all references by default. `DESIGN.md` remains the current universal design contract; the files above provide conditional procedure, examples, or historical rationale.
