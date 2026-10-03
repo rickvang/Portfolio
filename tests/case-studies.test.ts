@@ -22,8 +22,15 @@ describe("case-study content contract", () => {
     expect(authoredCaseStudies.map((caseStudy) => caseStudy.slug)).toEqual([
       "ai-systems",
       "ui-design-practices",
+      "multi-product-integrations-revision",
+      "ai-systems-revision",
+      "design-systems-revision",
+      "ui-design-practices-revision",
     ]);
-    expect(authoredCaseStudies.every((caseStudy) => caseStudy.reviewStatus === "approved")).toBe(true);
+    expect(getApprovedCaseStudies(authoredCaseStudies).map((caseStudy) => caseStudy.slug)).toEqual([
+      "ai-systems",
+      "ui-design-practices",
+    ]);
     expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
@@ -33,10 +40,27 @@ describe("case-study content contract", () => {
   });
 
   it("keeps explicitly approved authored case studies public through the shared gate", () => {
-    expect(caseStudyCatalog).toHaveLength(4);
+    expect(caseStudyCatalog).toHaveLength(8);
     expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
     expect(getApprovedCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
     expect(getApprovedCaseStudyBySlug("ui-design-practices")).toEqual(authoredCaseStudies[1]);
+  });
+
+  it("keeps the case-study replacements reviewable without publishing them", () => {
+    for (const slug of [
+      "multi-product-integrations-revision",
+      "ai-systems-revision",
+      "design-systems-revision",
+      "ui-design-practices-revision",
+    ]) {
+      const revision = getCaseStudyBySlug(slug)!;
+      expect(revision.reviewStatus).toBe("review-ready");
+      expect(getApprovedCaseStudyBySlug(revision.slug)).toBeUndefined();
+    }
+    for (const slug of ["multi-product-integrations-revision", "ai-systems-revision"]) {
+      expect(getCaseStudyBySlug(slug)!.sources.some((source) => source.kind === "user-provided")).toBe(true);
+    }
+    expect(getApprovedCaseStudyBySlug("multi-product-integrations")).toEqual(importedCaseStudies[0]);
   });
 
   it("groups evidence-backed sections into the reusable chapter model", () => {

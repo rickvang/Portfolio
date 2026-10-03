@@ -667,8 +667,47 @@
   max-width: 62ch;
 }
 
-.practice-case-study-system .experience-presentation {
-  margin-top: 2rem;
+.practice-case-study-patterns {
+  display: grid;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.practice-case-study-patterns h3 {
+  margin: 0 0 0.5rem;
+}
+
+.contact-links {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.case-study-illustration {
+  margin: 2rem 0 0;
+  max-width: 54rem;
+}
+
+.case-study-illustration picture,
+.case-study-illustration img {
+  display: block;
+  width: 100%;
+}
+
+.case-study-illustration img {
+  height: auto;
+}
+
+.case-study-illustration figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-top: 0.8rem;
+  max-width: 65ch;
 }
 
 .practice-case-study-note {

@@ -135,6 +135,7 @@ These are the reusable components currently in `src/components/`.
 | `SiteShellFrame` | Persistent public navigation/content frame used by production routes and local verification | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
 | `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
 | `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft/review-ready rendering with chapter map, provenance, and evidence |
+| `CaseStudyIllustration` | Authored explanatory diagram within a case-study section | Typed text-derived illustration, descriptive alt text, caption, optional mobile asset | Desktop comparison; vertically arranged mobile comparison; readable caption; approval inherited from the parent record |
 | `ProjectPreview` | Home/Work preview of an approved case study | `caseStudy` | Curated system map, pattern matrix, or text-first fallback |
 | `ExperiencePresentation` | Compact preview and detail presentation under the shared case-study information architecture | `caseStudy`, `mode`, optional local-review audience | Approved evidence-backed profile; text-first for unknown/thin approved content; unavailable for draft public presentation |
 | `ArtifactFrame` | Media or text-derived artifact boundary | `label`, explicit `state`, optional `note` | Derived text view, deferred media, redacted source detail; deferred/redacted states cannot receive media children |
@@ -180,7 +181,7 @@ The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces 
 | Surface | Route | Deterministic inputs | Verification purpose |
 | --- | --- | --- | --- |
 | Public shell | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
-| Case study | `/dev/harness/case-study?slug=<draft-slug>` | Any typed case-study draft slug | Shared template first viewport, long content, section navigation, evidence/provenance review, responsive behavior, visual capture |
+| Case study | `/dev/harness/case-study?slug=<draft-slug>`; add `&view=story` for the story presentation | Any typed case-study draft slug; optional presentation view | Shared template evidence/provenance review, or the production story renderer and shell; responsive behavior and visual capture |
 
 Both specialized routes return not-found in production through the same environment guard as the main development harness. They do not create a second implementation of the shell or case-study renderer.
 
@@ -230,6 +231,7 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 - Public posts are rendered only when their status is `published`.
 - Draft, archived, and unpublished content must not leak through public components or metadata.
 - Preserve the client-IP disclaimer when importing case-study material from the existing site.
+- A section may explicitly attach a `text-derived` illustration with alt text and a caption. Diagrams explain interview facts and must be identified as derived; they do not represent original client screens. The current SVG canvas contract is 720×340 on desktop and 360×560 for optional mobile variants, selected at 620px. Both renderers use the same figure component, and record approval filtering remains authoritative.
 - A project profile is a curated presentation adapter, not publication approval. It may resolve only for reviewStatus approved and for evidence/item references that still exist in the case-study source. Draft review mode uses the source text only.
 - The homepage keeps identity concise and presents the first approved project preview beside it at desktop widths; at narrow widths the project title, factual pattern explanation, and content-derived structure follow immediately after the introduction.
 - Treat testimonials and personal contact information as reviewable content, not automatic fixtures.

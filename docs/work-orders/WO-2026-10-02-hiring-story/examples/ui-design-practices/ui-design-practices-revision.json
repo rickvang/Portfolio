@@ -1,0 +1,178 @@
+{
+  "id": "ui-design-practices-revision",
+  "slug": "ui-design-practices-revision",
+  "title": "UI Design Practices",
+  "summary": "I directed the rickvang.com redesign through decisions about project hierarchy, persistent navigation and color, then reviewed how those choices appeared in the built interface.",
+  "category": "UI Design Practice",
+  "role": "Portfolio design direction and rendered review",
+  "scope": "rickvang.com portfolio redesign",
+  "reviewStatus": "review-ready",
+  "sources": [
+    {
+      "id": "portfolio-issue-6",
+      "kind": "repository",
+      "label": "Portfolio redesign direction and implementation plan",
+      "url": "https://github.com/rickvang/Portfolio/issues/6",
+      "capturedAt": "2026-10-03"
+    },
+    {
+      "id": "portfolio-issue-4",
+      "kind": "repository",
+      "label": "Portfolio interaction specifications",
+      "url": "https://github.com/rickvang/Portfolio/issues/4",
+      "capturedAt": "2026-10-03"
+    },
+    {
+      "id": "portfolio-design",
+      "kind": "repository",
+      "label": "Portfolio design and interaction reference",
+      "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/DESIGN.md",
+      "capturedAt": "2026-10-03"
+    },
+    {
+      "id": "portfolio-issue-39",
+      "kind": "repository",
+      "label": "Rendered review: portfolio hierarchy, rail and typography",
+      "url": "https://github.com/rickvang/Portfolio/issues/39",
+      "capturedAt": "2026-10-03"
+    },
+    {
+      "id": "portfolio-rail-review",
+      "kind": "repository",
+      "label": "Accepted owner feedback and implemented rail refinement",
+      "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/docs/work-orders/archive/2026-09/WO-2026-09-23-issue-39-ia-rail-refinement/work-order.md",
+      "capturedAt": "2026-10-03"
+    },
+    {
+      "id": "portfolio-issue-43",
+      "kind": "repository",
+      "label": "Controlled palette comparison on real portfolio content",
+      "url": "https://github.com/rickvang/Portfolio/issues/43",
+      "capturedAt": "2026-10-03"
+    },
+    {
+      "id": "portfolio-palette-selection",
+      "kind": "repository",
+      "label": "Owner selection of reduced warm chroma",
+      "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/docs/work-orders/archive/2026-09/WO-2026-09-23-issue-43-reduced-warm-chroma/work-order.md",
+      "capturedAt": "2026-10-03"
+    },
+    {
+      "id": "portfolio-practice-shell",
+      "kind": "repository",
+      "label": "Portfolio desktop and mobile navigation implementation",
+      "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/src/components/personal-practice-shell.tsx",
+      "capturedAt": "2026-10-03"
+    }
+  ],
+  "sections": [
+    {
+      "kind": "overview",
+      "title": "Designing my portfolio",
+      "body": "I directed the rickvang.com redesign for hiring managers and design leaders, with a secondary path for consulting clients. I wanted readers to reach representative projects early and have room to read through the decisions behind the work. AI agents built the interface; I set the direction, reviewed the rendered pages and chose the revisions.",
+      "evidence": [
+        {
+          "sourceId": "portfolio-issue-6",
+          "note": "Confirmed audience, work-first cinematic direction, desktop rail/mobile drawer and original orange. The implementation is an AI-agent workstream, not Rick's personal coding."
+        },
+        {
+          "sourceId": "portfolio-rail-review",
+          "note": "Accepted evidence explicitly records Rick's rendered-review preference for persistent rail and rejection of serif display type."
+        },
+        {
+          "sourceId": "portfolio-palette-selection",
+          "note": "Explicitly records Rick selecting candidate B from the rendered A/B/C comparison."
+        }
+      ]
+    },
+    {
+      "kind": "context",
+      "title": "Giving the work priority",
+      "body": "The rendered pilot leaned toward an editorial publication, with supporting sections competing for attention. The revision put a short introduction before Selected Work, followed by a compact How I work section. Notes appeared only when there were actual authored posts, with background and contact later in the page. That order made project examples the main evidence for someone deciding whether to read further.",
+      "evidence": [
+        {
+          "sourceId": "portfolio-issue-39",
+          "note": "Records the rendered pilot overcorrection, competing sections and revised Home priorities. Intended scanning benefits are design reasoning, not measured user outcomes."
+        },
+        {
+          "sourceId": "portfolio-rail-review",
+          "note": "Records implemented hierarchy, conditional authored Notes and owner feedback identifying confusing Notes IA."
+        }
+      ]
+    },
+    {
+      "kind": "exploration",
+      "title": "Bringing back the rail",
+      "body": "The first redesign used a dark left rail. A later pilot replaced it with a horizontal header and serif headings, but I preferred the persistent rail and rejected the serif voice. I asked for the rail to return with a lighter treatment, keeping Work, Notes, About and Contact beside the reading column. The revision used warm, light surfaces and Inter throughout, with scale, weight and spacing handling the hierarchy. A permanent column would take too much of the reading width on a phone, so the built interface changed to a compact top bar and menu drawer. The destinations stayed the same. Opening the drawer moved keyboard focus into it, and Escape closed it and returned focus to the menu.",
+      "evidence": [
+        {
+          "sourceId": "portfolio-rail-review",
+          "note": "Accepted owner feedback and material decisions: persistent light/warm rail, sans typography, simplified Home. Does not establish Rick personally building rail code or choosing each implementation value."
+        },
+        {
+          "sourceId": "portfolio-issue-39",
+          "note": "Explains persistent orientation compared with the horizontal-header pilot and the content-primary lighter treatment."
+        },
+        {
+          "sourceId": "portfolio-practice-shell",
+          "note": "Current PersonalPracticeShell confirms the shared destinations, menu drawer, focus entry/trap and Escape focus return. Responsive CSS replaces the fixed rail with a compact bar below 900px. These are agent-built behaviors."
+        },
+        {
+          "sourceId": "portfolio-issue-4",
+          "note": "Documents keyboard/focus, responsive and state specification. Supports the design handoff method, not Rick's personal UI coding or real-user validation."
+        }
+      ]
+    },
+    {
+      "kind": "decisions",
+      "title": "Reviewing color in context",
+      "body": "The agents rendered three palettes against the same portfolio pages: the existing warm colors, a less saturated warm option and a near-neutral option. Content, typography, layout and the original orange accent stayed fixed, so the comparison showed the background alongside the work it would surround. I chose the less saturated warm option. The original orange remained for active navigation and selected emphasis, with a darker orange for small text on light surfaces.",
+      "evidence": [
+        {
+          "sourceId": "portfolio-issue-43",
+          "note": "Defines three controlled palette candidates on actual content, with non-palette variables held steady. Mood/reading benefits remain hypotheses."
+        },
+        {
+          "sourceId": "portfolio-palette-selection",
+          "note": "Records Rick choosing reduced-warm-chroma candidate B and the final static palette values."
+        },
+        {
+          "sourceId": "portfolio-design",
+          "note": "Documents original orange's semantic roles and darker accent-ink for small text on light surfaces. Specific contrast/token implementation belongs to AI agents."
+        }
+      ]
+    },
+    {
+      "kind": "outcomes",
+      "title": "The built portfolio",
+      "body": "The agents carried these choices into the shared navigation shell, homepage layout and visual styles, so the direction could be inspected in the actual portfolio at desktop and mobile widths. The design reference recorded the responsive behavior, color roles and interaction states for future changes.",
+      "evidence": [
+        {
+          "sourceId": "portfolio-rail-review",
+          "note": "Records implemented light rail, Inter-only hierarchy, homepage sequence and preserved responsive/accessibility behavior."
+        },
+        {
+          "sourceId": "portfolio-palette-selection",
+          "note": "Records selected static reduced-warm palette implementation."
+        },
+        {
+          "sourceId": "portfolio-practice-shell",
+          "note": "Inspectably implements the shared navigation artifact."
+        },
+        {
+          "sourceId": "portfolio-design",
+          "note": "Records responsive behavior, semantic color roles and interaction requirements. Outcome stays at artifact level."
+        }
+      ]
+    }
+  ],
+  "curationNotes": [
+    "Internal review only: the project is the rickvang.com portfolio redesign, not an employer engagement or evidence of Rick's personal historical UI coding.",
+    "Rick's direction and rendered selections are grounded in the confirmed Issue #6 brief and explicit accepted owner feedback/selection in the Issue #39 and #43 historical records. AI agents own detailed implementation, contrast adjustments and component behavior.",
+    "The initial dark rail, horizontal-header/serif pilot and later light-rail refinement are successive stages. Current PersonalPracticeShell includes a compact bar with menu/drawer; actual code resolves the pilot guide's shorter navigation wording.",
+    "Audience jobs, orientation benefits and palette hypotheses are design aims. No real-user study, hiring/conversion result, adoption rate or usability measurement is supplied.",
+    "Rick's specific reason for selecting palette B is not recorded beyond the rendered selection. The draft describes the controlled comparison and selection without adopting its mood/contrast hypotheses as his personal rationale.",
+    "Generic Persona-Library workflow/routing sources were assessed and omitted as project evidence. They do not establish personal work, persona responses or validation.",
+    "Existing approved ui-design-practices remains untouched. This review-ready revision requires the parent's one-time integration and a separate owner wording/publication decision."
+  ]
+}

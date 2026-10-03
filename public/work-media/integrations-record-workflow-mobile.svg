@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 560" role="img" aria-labelledby="title desc">
+  <title id="title">Learning from another team and sharing the pattern</title>
+  <desc id="desc">A page-based record workflow, another team's slide-in pattern for creating and viewing records, and adoption of the slide-in pattern into shared Figma libraries and guidelines.</desc>
+  <rect width="360" height="560" fill="#fffefc"/>
+  <g font-family="Inter, Arial, sans-serif" fill="#171614">
+    <g font-size="22" font-weight="600">
+      <text x="24" y="40">Page-based workflow</text>
+      <text x="24" y="231">Another team's pattern</text>
+      <text x="24" y="423">Our shared system</text>
+    </g>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M180 175V195M173 188L180 195L187 188" stroke="#6b665f"/>
+    <path d="M180 364V386M173 379L180 386L187 379" stroke="#b7371c"/>
+    <rect x="24" y="87" width="114" height="65" rx="4" fill="#f7f6f2" stroke="#6b665f"/>
+    <path d="M39 104H98M39 115H84" stroke="#cfcfcc"/>
+    <path d="M24 260H138V339H24" stroke="#cfcfcc" stroke-dasharray="4 5"/>
+    <rect x="76" y="260" width="62" height="79" rx="4" fill="#f7f6f2" stroke="#b7371c"/>
+    <path d="M65 280H40M47 273L40 280L47 287" stroke="#b7371c"/>
+    <rect x="24" y="447" width="88" height="59" rx="4" fill="#f7f6f2" stroke="#6b665f"/>
+    <rect x="52" y="472" width="88" height="64" rx="4" fill="#fffefc" stroke="#b7371c"/>
+    <path d="M67 489H122M67 500H107M67 511H122" stroke="#cfcfcc"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" fill="#171614">
+    <text x="39" y="140" font-size="16" font-weight="550">Record page</text>
+    <text x="84" y="310" font-size="14" font-weight="550">Record</text>
+    <text x="84" y="328" font-size="14" font-weight="550">slide-in</text>
+    <text x="38" y="466" font-size="13" font-weight="550">Library</text>
+    <text x="65" y="528" font-size="13" font-weight="550">Guidelines</text>
+    <g font-size="19" fill="#6b665f">
+      <text x="164" y="114">Page refresh</text>
+      <text x="164" y="141">+ drill-down</text>
+      <text x="164" y="290">Create / view</text>
+      <text x="164" y="317">in a slide-in</text>
+      <text x="164" y="465">Reuse in Figma</text>
+      <text x="164" y="492">components</text>
+      <text x="164" y="519">+ guidelines</text>
+    </g>
+  </g>
+</svg>

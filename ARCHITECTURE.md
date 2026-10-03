@@ -45,6 +45,7 @@ tests/                   Vitest unit tests and Playwright browser tests
 
 ## Work-to-experience presentation
 
+- Optional section illustrations are authored with the case-study record and validated as `text-derived` media. `CaseStudyIllustration` renders their local SVG assets, responsive variants, alt text and captions in both existing detail renderers. It does not select a diagram from a project slug or change record approval filtering.
 - `src/lib/experience-profiles.ts` stores deliberately authored, project-specific interpretations across evidence, reader goal, observed work qualities, experiential qualities, feeling hypotheses, selected patterns, alternatives, invalidating conditions, and semantic presentation contracts.
 - `src/lib/project-presentation.ts` is the resolution boundary. It only resolves a public profile for an approved case study when every evidence source/note and every stable system item ID still matches. A changed or incomplete profile falls back to the source summary and authored item order. Drafts resolve to unavailable in public mode; the review audience exposes text only.
 - `src/components/experience-presentation.tsx` renders the resolved discriminated presentation as headings and unordered lists or labelled groups. Detail presentations link to visible source sections. Home, Work, and the case-study detail share this renderer.

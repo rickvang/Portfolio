@@ -1,5 +1,26 @@
 import { expect, test } from "@playwright/test";
 
+test("contact offers usable direct links", async ({ page }) => {
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/contact");
+    const email = page.getByRole("link", { name: "rick@rickvang.com", exact: true });
+    const linkedIn = page.getByRole("link", { name: "Connect on LinkedIn", exact: true });
+    await expect(email).toHaveAttribute("href", "mailto:rick@rickvang.com");
+    await expect(linkedIn).toHaveAttribute("href", "https://www.linkedin.com/in/rick-vang");
+    await expect(email).toBeVisible();
+    await expect(linkedIn).toBeVisible();
+    await expect(email).toBeInViewport();
+    await expect(linkedIn).toBeInViewport();
+    await email.focus();
+    await page.keyboard.press("Tab");
+    await expect(linkedIn).toBeFocused();
+    await expect(page.getByRole("button", { name: /send/i })).toHaveCount(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
+    await page.screenshot({ path: `test-results/visual-snapshots/contact-${width}.png`, fullPage: true });
+  }
+});
+
 test("homepage is driven by approved portfolio content", async ({ page }) => {
   await page.goto("/");
 
@@ -119,8 +140,8 @@ test("approved imported work is public through the shared case-study routes", as
   await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
   await expect(page.getByTestId("practice-nav-marker")).toHaveAttribute("data-visible", "true");
   await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Fragmentation was the starting condition." })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Start with people and workflows." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Overview", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "Exploration", exact: true })).toBeVisible();
   await expect(page.getByText(/client intellectual property/i)).toBeVisible();
 
   await page.goto("/work/design-systems");

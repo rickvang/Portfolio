@@ -471,5 +471,480 @@
       "Outcome language is limited to inspectable artifacts and checks; hiring, conversion, usability, and business impact remain unmeasured.",
       "Published without screenshots; add only source-approved visuals in a later media review."
     ]
+  },
+  {
+    "id": "multi-product-integrations-revision",
+    "slug": "multi-product-integrations-revision",
+    "title": "Multi Product Integrations",
+    "summary": "Shared patterns for teams designing across multiple applications.",
+    "category": "Enterprise B2B",
+    "role": "Primary contributor to workflow patterns, Figma libraries, and guidelines",
+    "scope": "Work across engagements, including a real-estate example",
+    "reviewStatus": "review-ready",
+    "clientIpDisclaimer": "This story describes shared design practices while protecting client intellectual property.",
+    "sources": [
+      {
+        "id": "owner-interview-2026-10-02",
+        "kind": "user-provided",
+        "label": "Rick Vang's portfolio interview, October 2, 2026",
+        "capturedAt": "2026-10-02"
+      },
+      {
+        "id": "original-integrations-story",
+        "kind": "source-page",
+        "label": "Original public Multi Product Integrations story",
+        "url": "https://www.rickvang.com/projects/multi-product-integrations",
+        "capturedAt": "2026-10-02"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "Why we needed common patterns",
+        "body": "Across different places I've worked, I've seen designers solve similar problems in separate apps. Teams were defining their own workflows even where the interactions overlapped, and a lot of that work was duplicated. We wanted to define common patterns that teams could reuse. This story brings together that work, with a real-estate engagement as one example.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner described duplicated design effort and workflows across apps, and clarified that this is a compilation of work across engagements."
+          }
+        ]
+      },
+      {
+        "kind": "context",
+        "title": "What I worked on",
+        "body": "I was a primary contributor to defining the workflow patterns and representing them in the system. In the real-estate engagement, I worked with three teammates. We each took on different parts of the patterns and iterated together. The definitions and libraries came out of our combined work, with my contribution focused on the workflow patterns and a layout starter for different problem spaces.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner confirmed his primary contribution, three teammates within the real-estate example, joint iteration, and creation of the layout starter."
+          }
+        ]
+      },
+      {
+        "kind": "problem",
+        "title": "The decisions we kept repeating",
+        "body": "The work covered decisions designers make throughout an application: where close buttons belong, when to use a modal or drawer, and how to lay out information. We defined patterns for reading order, such as top to bottom and left to right, and for presenting labels and values horizontally or vertically.",
+        "illustration": {
+          "kind": "text-derived",
+          "src": "/work-media/integrations-label-value.svg",
+          "mobileSrc": "/work-media/integrations-label-value-mobile.svg",
+          "alt": "Two label/value arrangements: horizontal pairs put labels beside values; vertical pairs put labels above values.",
+          "caption": "Horizontal and vertical label/value pairs were among the patterns we defined."
+        },
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner supplied these exact pattern areas. No specific modal/drawer selection rule, close-button position, RTL implementation or label-orientation criterion has been established."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Learning from another team's record workflow",
+        "body": "Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.",
+        "illustration": {
+          "kind": "text-derived",
+          "src": "/work-media/integrations-record-workflow.svg",
+          "mobileSrc": "/work-media/integrations-record-workflow-mobile.svg",
+          "alt": "A page-based record workflow, another team's slide-in pattern for creating and viewing records, and adoption of the slide-in pattern into shared Figma libraries and guidelines.",
+          "caption": "We adopted another team's slide-in workflow and added the pattern to our shared Figma libraries and guidelines."
+        },
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner confirmed learning from other applications with more sophisticated dashboards and progressive-disclosure rules, and adoption of their record creation/viewing slide-in approach. He tentatively recalled the earlier page-refresh drill-down and prior development constraint; those historical details are retained only in internal evidence. The diagram uses a generic page-based workflow for comparison. Dashboard/list visibility, exact architecture, and any usability or speed improvement remain unconfirmed."
+          }
+        ]
+      },
+      {
+        "kind": "system-practice",
+        "title": "Putting the patterns into Figma",
+        "body": "We built Figma component libraries with guidelines for the patterns we had defined together. I also created a layout starter that designers could use when working on a different problem space. Across the pattern work, I worked with frontend developers to identify what we could and couldn't build. The frontend team implemented the code.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner identified the artifacts as primarily Figma component libraries with guidelines, confirmed his creation of a system layout starter for different problem spaces, and described collaboration with frontend developers on feasibility. The frontend team owned code implementation."
+          }
+        ]
+      },
+      {
+        "kind": "outcomes",
+        "title": "How teams adopted it",
+        "body": "The team agreed that a common system should be created, and the libraries were generally adopted across the projects I worked on. More established teams found it harder to adapt. We collaborated to identify scenarios where another team's process fit better than ours and brought those approaches into our system.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner reported general adoption across his projects, acceptance and adaptation challenges. This supports qualitative adoption only; no savings, company-wide rollout, usability result or numerical impact is asserted."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "Working revision expanded after Rick found the first version too thin, then edited with Humanizer guidance using Rick's interview answers as the voice reference. Six connected sections retain the concrete pattern areas, record-workflow example, ownership, Figma artifacts, layout starter and qualitative adoption. It remains review-ready for feedback, without publication approval.",
+      "The story is a compilation across engagements; the three teammates are attributed only to the real-estate example.",
+      "The worked example is record creation/viewing in slide-ins, learned from other applications with more developed dashboard and progressive-disclosure patterns. Rick's tentative recollection of an earlier page-refresh drill-down and development constraints remains internal. Reader-facing copy focuses on confirmed adoption, and the diagram labels a generic page-based workflow rather than claiming a reconstructed historical screen. Dashboard/list visibility and precise original architecture remain unconfirmed, so no context-preservation or performance benefit is claimed.",
+      "The original public page is background, not evidence for new interview claims. No metrics, exact unconfirmed pattern rules, RTL implementation or universal adoption claims are made.",
+      "Existing media reuse permissions remain limited to Home and the Work index."
+    ]
+  },
+  {
+    "id": "ai-systems-revision",
+    "slug": "ai-systems-revision",
+    "title": "AI Systems",
+    "summary": "An AI council for exploring product ideas through executive, manager, and worker perspectives.",
+    "category": "AI Systems",
+    "role": "Creator of the AI council",
+    "scope": "Product ideas, data perspectives, and use-case development",
+    "reviewStatus": "review-ready",
+    "sources": [
+      {
+        "id": "owner-ai-council-2026-10-03",
+        "kind": "user-provided",
+        "label": "Rick Vang's description of the AI council, October 3, 2026",
+        "capturedAt": "2026-10-03"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "Questioning a product idea",
+        "body": "I created an AI council to work through product questions we had previously been answering through assumptions. Would an idea be useful in someone's work? How might it affect an executive? Where might it offer little value? I wanted several role perspectives to help me explore those questions.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick described creating an AI council to improve product decisions where previously the team could only assume. His example questions concerned usefulness in work, executive impact, and possible lack of usefulness."
+          }
+        ]
+      },
+      {
+        "kind": "context",
+        "title": "Building the three personas",
+        "body": "The council included an executive, a manager, and a worker on the ground. Each had a compiled profile based on industry best practices and whitepapers about the role. The profiles captured typical concerns, pain points, core activities, and work done only occasionally. These details gave each AI persona a view of the role's work to use when answering.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick named the executive, manager and worker personas and confirmed compiled profiles informed by industry best practices and whitepapers, with typical role concerns, pain points, core activities and occasional activities. Specific papers and profile examples have not been supplied."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Same question, different perspectives",
+        "body": "I gave all three personas the same question and context. One question was, 'Would this product idea be useful to you in your work?' Each answered through its compiled profile. The input stayed consistent, while the role's concerns, pain points, and activities shaped the response. I could then compare how the three personas thought about the same idea and the data involved.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick explicitly confirmed that the question and context were the same for all personas, while answers came from their compiled role perspectives. The question wording paraphrases his stated examples."
+          }
+        ]
+      },
+      {
+        "kind": "system-practice",
+        "title": "Turning responses into a use case",
+        "body": "I compiled the product perspectives and different ways of thinking about the data, then used that material to create a use-case scenario. The scenario combined the roles' responses into a way to explore how someone might use the product idea in their work.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick confirmed compiling product perspectives, different ways to think about data, and creating a use-case scenario. No specific scenario steps, real-user validation, shipped result or measured improvement is claimed."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "Working revision centered on Rick's AI council and product exploration rather than the published orchestration-contract narrative. Publication remains a separate content decision.",
+      "The three participants are AI personas, not interviewed users. Their compiled industry/whitepaper profiles establish perspectives for exploration; they do not validate demand or actual role needs.",
+      "Rick cannot recall the specific product idea. A persona-aware dashboard was suggested tentatively and is not asserted as the actual example. No concrete scenario details, exact persona responses, named papers or measured outcomes are invented.",
+      "Interview provenance, drafting commentary and uncertainty stay in internal evidence and curation notes. Reader-facing prose describes the work."
+    ]
+  },
+  {
+    "id": "design-systems-revision",
+    "slug": "design-systems-revision",
+    "title": "Design Systems",
+    "summary": "Reusable styles, screen templates and workflow patterns for teams redesigning legacy capabilities.",
+    "category": "Design Systems",
+    "role": "Platform framework design with cross-team collaboration",
+    "scope": "Shared foundations, density guidance, templates and workflow patterns",
+    "reviewStatus": "review-ready",
+    "clientIpDisclaimer": "This story describes shared design practices while protecting client intellectual property.",
+    "sources": [
+      {
+        "id": "design-systems-import",
+        "kind": "repository",
+        "label": "Imported Design Systems project in content/imports/rickvang.com.json",
+        "capturedAt": "2026-09-22"
+      },
+      {
+        "id": "original-design-systems-story",
+        "kind": "source-page",
+        "label": "Original public Design Systems project",
+        "url": "https://www.rickvang.com/projects/design-systems",
+        "capturedAt": "2026-10-03"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "A common starting point",
+        "body": "An established company was redesigning legacy capabilities and needed more consistent design across the work. Existing patterns included redundant approaches, so part of the job was deciding what teams could reuse. I designed the platform framework as part of a collaborative effort to establish a core library and lightweight governance. The library brought reusable design decisions into a common starting point for the teams involved.",
+        "evidence": [
+          {
+            "sourceId": "design-systems-import",
+            "note": "Imported summary establishes consistency and legacy-capability goals; discovery establishes redundant patterns. The source supports a shared team effort, not sole authorship of the whole library."
+          },
+          {
+            "sourceId": "original-design-systems-story",
+            "note": "Scope identifies an established company reimagining legacy capabilities. Outcomes explicitly attributes platform framework design to Rick and names collaborators, a core library and lightweight governance."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Choosing what to reuse",
+        "body": "We audited existing design patterns alongside user scenarios, then prioritized where to remove duplication and improve consistency. Stakeholder workshops helped us align the goals, while feedback from developers helped us understand what was feasible. Reviewing the patterns together gave us existing work to organize and refine into the library.",
+        "evidence": [
+          {
+            "sourceId": "design-systems-import",
+            "note": "Discovery names auditing, prioritization, stakeholder workshops and developer feedback. Gathered collaborators and lightweight governance support the collaboration and prioritization account."
+          },
+          {
+            "sourceId": "original-design-systems-story",
+            "note": "Collaboration explains that gathering a team and maintaining priority were challenges. No research protocol, validation outcome or individual research ownership is claimed."
+          }
+        ]
+      },
+      {
+        "kind": "system-practice",
+        "title": "Shared foundations, different density needs",
+        "body": "The core library held reusable styles and tokens. Density needed guidance suited to the surface being designed, so we maintained a display marketing style guide alongside enterprise interface guidance. Those surfaces had different needs, even within the same system. Designers could start with shared foundations and use the density guidance that matched their surface. Keeping both sets of guidance in the system allowed reuse to accommodate those differences.",
+        "evidence": [
+          {
+            "sourceId": "design-systems-import",
+            "note": "Foundations establishes style-library and token foundations. Density supports different guidance for marketing and enterprise surfaces. No specific screen layout, spacing value, component variant, token architecture or Figma file is asserted."
+          },
+          {
+            "sourceId": "original-design-systems-story",
+            "note": "Density explicitly connects different surface needs to maintaining both a display marketing style guide and an enterprise productive-interface guideline. The relationship to the reusable foundations explains the stated artifact structure, without claiming a proven user effect."
+          }
+        ]
+      },
+      {
+        "kind": "decisions",
+        "title": "Starting a new design from a reusable screen",
+        "body": "We created a library of reusable screens that designers could duplicate and modify for a specific use case. A template carried an existing design into the new task, giving the designer a starting point they could adapt. We also defined patterns for onboarding, work creation and progression, asset and inventory management, and account configuration and settings. The templates provided screens to work from, while the patterns guided how users moved through recurring workflows. This gave designers reusable material at the level of a screen and the task it supported.",
+        "evidence": [
+          {
+            "sourceId": "design-systems-import",
+            "note": "Templates and patterns names reusable screens and the four workflow categories. This describes design artifacts and their capability, not measured productivity or adoption."
+          },
+          {
+            "sourceId": "original-design-systems-story",
+            "note": "Templates describes duplicating reusable screens and modifying them for specific use cases; Patterns describes consistent guidance through workflows and names all four categories, including account configuration and settings. The worked example explains this stated reuse method, not a reconstructed historical screen or observed time savings."
+          }
+        ]
+      },
+      {
+        "kind": "outcomes",
+        "title": "Keeping the system a shared priority",
+        "body": "Getting collaborators together and keeping the system a priority were ongoing challenges. We supported the library with documentation and incremental rollouts, and developed lightweight governance around collaborative feedback loops. I worked with early adopters to build trust in the platform framework. The documentation and feedback loops supported the team's continued work on the shared library.",
+        "evidence": [
+          {
+            "sourceId": "design-systems-import",
+            "note": "Lightweight governance names collaborative feedback loops. Outcomes attributes framework design and work with early adopters to Rick. Templates and patterns supports an adaptable starting point as an artifact capability, not a measured productivity gain."
+          },
+          {
+            "sourceId": "original-design-systems-story",
+            "note": "Discovery names documentation and incremental rollouts, but gives no cadence, audience size or adoption measure. Outcomes reports building trust with early adopters. Legacy administrative-hours and real-time-data claims are omitted pending supporting evidence and clearer attribution."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "Internal review record for the Design Systems example under CW-83 and draft PR #63. Remains review-ready; parent owns catalog integration and coordination updates.",
+      "The imported record and original project page support the narrative. The integrations owner record compiles engagements and is background only: its real-estate team size, rollout/adoption account, Figma ownership, slide-in example and exact pattern areas are not attributed to this project.",
+      "Rick's individual contribution is limited to the explicitly attributed platform framework design and early-adopter collaboration. Shared library, templates, pattern and governance work is described as collaborative. No code implementation ownership is claimed.",
+      "No metrics, research validation result, persona response, specific screen, component rule or company-wide adoption claim is established for this example.",
+      "Legacy hero-image reuse permission applies only to Home and the Work index. This candidate intentionally has no previewMedia, illustration or client-screen asset.",
+      "Three substantive passes are recorded in iterations.md. Final prose moves from context and prioritization through shared foundations/density guidance to screen/template reuse and collaborative upkeep. Reader-facing prose contains no interview provenance, recollection caveat or drafting commentary.",
+      "Remaining internal questions: confirm Rick's individual contribution to foundations, density, templates and governance before expanding personal ownership; obtain a matching project artifact and owner account before adding exact screen or component rules; substantiate any measured outcome. These gaps do not prevent review of the supported draft."
+    ]
+  },
+  {
+    "id": "ui-design-practices-revision",
+    "slug": "ui-design-practices-revision",
+    "title": "UI Design Practices",
+    "summary": "I directed the rickvang.com redesign through decisions about project hierarchy, persistent navigation and color, then reviewed how those choices appeared in the built interface.",
+    "category": "UI Design Practice",
+    "role": "Portfolio design direction and rendered review",
+    "scope": "rickvang.com portfolio redesign",
+    "reviewStatus": "review-ready",
+    "sources": [
+      {
+        "id": "portfolio-issue-6",
+        "kind": "repository",
+        "label": "Portfolio redesign direction and implementation plan",
+        "url": "https://github.com/rickvang/Portfolio/issues/6",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-issue-4",
+        "kind": "repository",
+        "label": "Portfolio interaction specifications",
+        "url": "https://github.com/rickvang/Portfolio/issues/4",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-design",
+        "kind": "repository",
+        "label": "Portfolio design and interaction reference",
+        "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/DESIGN.md",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-issue-39",
+        "kind": "repository",
+        "label": "Rendered review: portfolio hierarchy, rail and typography",
+        "url": "https://github.com/rickvang/Portfolio/issues/39",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-rail-review",
+        "kind": "repository",
+        "label": "Accepted owner feedback and implemented rail refinement",
+        "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/docs/work-orders/archive/2026-09/WO-2026-09-23-issue-39-ia-rail-refinement/work-order.md",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-issue-43",
+        "kind": "repository",
+        "label": "Controlled palette comparison on real portfolio content",
+        "url": "https://github.com/rickvang/Portfolio/issues/43",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-palette-selection",
+        "kind": "repository",
+        "label": "Owner selection of reduced warm chroma",
+        "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/docs/work-orders/archive/2026-09/WO-2026-09-23-issue-43-reduced-warm-chroma/work-order.md",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-practice-shell",
+        "kind": "repository",
+        "label": "Portfolio desktop and mobile navigation implementation",
+        "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/src/components/personal-practice-shell.tsx",
+        "capturedAt": "2026-10-03"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "Designing my portfolio",
+        "body": "I directed the rickvang.com redesign for hiring managers and design leaders, with a secondary path for consulting clients. I wanted readers to reach representative projects early and have room to read through the decisions behind the work. AI agents built the interface; I set the direction, reviewed the rendered pages and chose the revisions.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-6",
+            "note": "Confirmed audience, work-first cinematic direction, desktop rail/mobile drawer and original orange. The implementation is an AI-agent workstream, not Rick's personal coding."
+          },
+          {
+            "sourceId": "portfolio-rail-review",
+            "note": "Accepted evidence explicitly records Rick's rendered-review preference for persistent rail and rejection of serif display type."
+          },
+          {
+            "sourceId": "portfolio-palette-selection",
+            "note": "Explicitly records Rick selecting candidate B from the rendered A/B/C comparison."
+          }
+        ]
+      },
+      {
+        "kind": "context",
+        "title": "Giving the work priority",
+        "body": "The rendered pilot leaned toward an editorial publication, with supporting sections competing for attention. The revision put a short introduction before Selected Work, followed by a compact How I work section. Notes appeared only when there were actual authored posts, with background and contact later in the page. That order made project examples the main evidence for someone deciding whether to read further.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-39",
+            "note": "Records the rendered pilot overcorrection, competing sections and revised Home priorities. Intended scanning benefits are design reasoning, not measured user outcomes."
+          },
+          {
+            "sourceId": "portfolio-rail-review",
+            "note": "Records implemented hierarchy, conditional authored Notes and owner feedback identifying confusing Notes IA."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Bringing back the rail",
+        "body": "The first redesign used a dark left rail. A later pilot replaced it with a horizontal header and serif headings, but I preferred the persistent rail and rejected the serif voice. I asked for the rail to return with a lighter treatment, keeping Work, Notes, About and Contact beside the reading column. The revision used warm, light surfaces and Inter throughout, with scale, weight and spacing handling the hierarchy. A permanent column would take too much of the reading width on a phone, so the built interface changed to a compact top bar and menu drawer. The destinations stayed the same. Opening the drawer moved keyboard focus into it, and Escape closed it and returned focus to the menu.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-rail-review",
+            "note": "Accepted owner feedback and material decisions: persistent light/warm rail, sans typography, simplified Home. Does not establish Rick personally building rail code or choosing each implementation value."
+          },
+          {
+            "sourceId": "portfolio-issue-39",
+            "note": "Explains persistent orientation compared with the horizontal-header pilot and the content-primary lighter treatment."
+          },
+          {
+            "sourceId": "portfolio-practice-shell",
+            "note": "Current PersonalPracticeShell confirms the shared destinations, menu drawer, focus entry/trap and Escape focus return. Responsive CSS replaces the fixed rail with a compact bar below 900px. These are agent-built behaviors."
+          },
+          {
+            "sourceId": "portfolio-issue-4",
+            "note": "Documents keyboard/focus, responsive and state specification. Supports the design handoff method, not Rick's personal UI coding or real-user validation."
+          }
+        ]
+      },
+      {
+        "kind": "decisions",
+        "title": "Reviewing color in context",
+        "body": "The agents rendered three palettes against the same portfolio pages: the existing warm colors, a less saturated warm option and a near-neutral option. Content, typography, layout and the original orange accent stayed fixed, so the comparison showed the background alongside the work it would surround. I chose the less saturated warm option. The original orange remained for active navigation and selected emphasis, with a darker orange for small text on light surfaces.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-issue-43",
+            "note": "Defines three controlled palette candidates on actual content, with non-palette variables held steady. Mood/reading benefits remain hypotheses."
+          },
+          {
+            "sourceId": "portfolio-palette-selection",
+            "note": "Records Rick choosing reduced-warm-chroma candidate B and the final static palette values."
+          },
+          {
+            "sourceId": "portfolio-design",
+            "note": "Documents original orange's semantic roles and darker accent-ink for small text on light surfaces. Specific contrast/token implementation belongs to AI agents."
+          }
+        ]
+      },
+      {
+        "kind": "outcomes",
+        "title": "The built portfolio",
+        "body": "The agents carried these choices into the shared navigation shell, homepage layout and visual styles, so the direction could be inspected in the actual portfolio at desktop and mobile widths. The design reference recorded the responsive behavior, color roles and interaction states for future changes.",
+        "evidence": [
+          {
+            "sourceId": "portfolio-rail-review",
+            "note": "Records implemented light rail, Inter-only hierarchy, homepage sequence and preserved responsive/accessibility behavior."
+          },
+          {
+            "sourceId": "portfolio-palette-selection",
+            "note": "Records selected static reduced-warm palette implementation."
+          },
+          {
+            "sourceId": "portfolio-practice-shell",
+            "note": "Inspectably implements the shared navigation artifact."
+          },
+          {
+            "sourceId": "portfolio-design",
+            "note": "Records responsive behavior, semantic color roles and interaction requirements. Outcome stays at artifact level."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "Internal review only: the project is the rickvang.com portfolio redesign, not an employer engagement or evidence of Rick's personal historical UI coding.",
+      "Rick's direction and rendered selections are grounded in the confirmed Issue #6 brief and explicit accepted owner feedback/selection in the Issue #39 and #43 historical records. AI agents own detailed implementation, contrast adjustments and component behavior.",
+      "The initial dark rail, horizontal-header/serif pilot and later light-rail refinement are successive stages. Current PersonalPracticeShell includes a compact bar with menu/drawer; actual code resolves the pilot guide's shorter navigation wording.",
+      "Audience jobs, orientation benefits and palette hypotheses are design aims. No real-user study, hiring/conversion result, adoption rate or usability measurement is supplied.",
+      "Rick's specific reason for selecting palette B is not recorded beyond the rendered selection. The draft describes the controlled comparison and selection without adopting its mood/contrast hypotheses as his personal rationale.",
+      "Generic Persona-Library workflow/routing sources were assessed and omitted as project evidence. They do not establish personal work, persona responses or validation.",
+      "Existing approved ui-design-practices remains untouched. This review-ready revision requires the parent's one-time integration and a separate owner wording/publication decision."
+    ]
   }
 ]
