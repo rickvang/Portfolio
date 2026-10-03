@@ -180,7 +180,7 @@ The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces 
 | Surface | Route | Deterministic inputs | Verification purpose |
 | --- | --- | --- | --- |
 | Public shell | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
-| Case study | `/dev/harness/case-study?slug=<draft-slug>` | Any typed case-study draft slug | Shared template first viewport, long content, section navigation, evidence/provenance review, responsive behavior, visual capture |
+| Case study | `/dev/harness/case-study?slug=<draft-slug>`; add `&view=story` for the story presentation | Any typed case-study draft slug; optional presentation view | Shared template evidence/provenance review, or the production story renderer and shell; responsive behavior and visual capture |
 
 Both specialized routes return not-found in production through the same environment guard as the main development harness. They do not create a second implementation of the shell or case-study renderer.
 

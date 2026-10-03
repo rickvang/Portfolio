@@ -500,54 +500,139 @@
     "sections": [
       {
         "kind": "overview",
-        "title": "The same work, repeated across apps",
-        "body": "Across different engagements, I saw designers solving similar problems in separate applications. Teams repeated workflows and design work that could have been shared. This story brings together that work, with a real-estate engagement as one example.",
+        "title": "A recurring problem across products",
+        "body": "Across different engagements, I saw teams solving similar problems in separate applications. Many designers were doing work that could have been shared, while workflows were being defined repeatedly across products. I wanted to help turn those recurring decisions into patterns that teams could reuse. This story brings together that work, with a real-estate engagement as one example.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
-            "note": "Rick described a compilation across workplaces, duplicated workflows, and the real-estate example."
+            "note": "Owner described duplicated design effort and workflows across apps, and clarified that this is a compilation of work across engagements."
+          }
+        ]
+      },
+      {
+        "kind": "context",
+        "title": "My contribution within a shared effort",
+        "body": "In the real-estate engagement, I was a primary contributor to defining workflow patterns and representing them in the system. I worked with three teammates. We took on different aspects of the patterns and iterated together. The library reflected that shared effort, and my contribution included both the pattern definitions and a reusable layout starter.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner confirmed his primary contribution, three teammates within the real-estate example, joint iteration, and creation of the layout starter."
+          }
+        ]
+      },
+      {
+        "kind": "problem",
+        "title": "The decisions teams were repeating",
+        "body": "The overlap showed up in recurring layout and interaction decisions. The pattern work covered several concrete areas:",
+        "items": [
+          {
+            "id": "problem:interaction-patterns",
+            "title": "Close buttons, modals, and drawers",
+            "summary": "The definitions covered close-button placement and the use of modals and drawers across workflows."
+          },
+          {
+            "id": "problem:layout-structure",
+            "title": "Layout and reading order",
+            "summary": "We defined layout guidance around reading order, such as top to bottom and left to right."
+          },
+          {
+            "id": "problem:labels-and-values",
+            "title": "Labels and values",
+            "summary": "The patterns addressed how label/value pairs were presented horizontally or vertically."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner supplied these exact pattern areas. No specific modal/drawer selection rule, close-button position, RTL implementation or label-orientation criterion has been established."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Learning from other applications",
+        "body": "Some of the other applications had more sophisticated dashboards and rules for progressive disclosure. Comparing workflows with those teams helped us identify scenarios where their process fit better than our own. We adopted those approaches and brought them into the shared system. Record creation and viewing was one example of this collaboration.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Owner confirmed learning from other applications with more sophisticated dashboards and progressive-disclosure rules, and adoption of their record creation/viewing slide-in approach. Dashboard/list visibility remains unconfirmed."
           }
         ]
       },
       {
         "kind": "system-practice",
-        "title": "A shared starting point",
-        "body": "In the real-estate engagement, I was a primary contributor to the workflow patterns. I worked with three teammates, and we iterated together on different parts of the system. Our work took shape as Figma component libraries and guidelines. I also created a starter layout structure that designers could use in different problem spaces. The patterns covered everyday decisions such as close-button placement, when to use a modal or drawer, and how to display labels and values.",
+        "title": "How the shared work took shape",
+        "body": "The pattern definitions took shape in Figma component libraries with guidelines. Designers could use these shared artifacts when working across applications:",
+        "items": [
+          {
+            "id": "system-practice:figma-libraries",
+            "title": "Figma component libraries",
+            "summary": "Reusable components represented the layout and interaction patterns we defined together."
+          },
+          {
+            "id": "system-practice:guidelines",
+            "title": "Guidelines",
+            "summary": "The libraries were accompanied by guidance on the shared workflow and layout patterns."
+          },
+          {
+            "id": "system-practice:layout-starter",
+            "title": "A layout starter",
+            "summary": "I created a system layout structure that designers could use as a starter template when working in a different problem space."
+          }
+        ],
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
-            "note": "Rick confirmed the three teammates belong to the real-estate engagement, shared iteration, his layout starter, and the Figma libraries and guidelines."
+            "note": "Owner identified the artifacts as primarily Figma component libraries with guidelines, and confirmed his creation of a system layout starter for different problem spaces."
           }
         ]
       },
       {
         "kind": "decisions",
-        "title": "Learning from established teams",
-        "body": "The team supported creating the shared system, but established teams found it harder to adapt their existing processes. We worked together to compare approaches. When another team's process fit a scenario better than ours, we adopted it and brought it into the system.",
+        "title": "A shared pattern for creating and viewing records",
+        "body": "Creating and viewing records was one workflow where we adopted an existing approach. The change connected a specific interaction decision to our broader pattern work:",
+        "items": [
+          {
+            "id": "decisions:earlier-record-flow",
+            "title": "Earlier approach: page refresh and drill-down",
+            "summary": "As I recall, the earlier flow used a page refresh and drill-down, influenced by development constraints at the time."
+          },
+          {
+            "id": "decisions:adopted-record-flow",
+            "title": "Adopted approach: create and view in slide-ins",
+            "summary": "We adopted another application's approach to creating or viewing a record in a slide-in, and brought that workflow into our shared system."
+          },
+          {
+            "id": "decisions:frontend-feasibility",
+            "title": "Work through implementation feasibility",
+            "summary": "Across the pattern work, I collaborated with frontend developers to identify what could and could not be built. I contributed the pattern definitions and Figma work; the frontend team implemented the code."
+          }
+        ],
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
-            "note": "Rick reported team acceptance, adaptation challenges, and adopting another team's process when it fit better."
+            "note": "Owner confirmed adoption of record creation/viewing in slide-ins. He tentatively recalled the earlier page-refresh drill-down and prior development constraint, so the copy explicitly attributes those details to recollection. Dashboard/list visibility, exact architecture, and any usability or speed improvement remain unconfirmed. General frontend feasibility collaboration and code ownership were separately confirmed."
           }
         ]
       },
       {
         "kind": "outcomes",
-        "title": "From the library to the products",
-        "body": "I worked with frontend developers to understand what could and could not be built, while the frontend team implemented the code. The libraries were generally adopted across the projects I worked on. They gave designers shared patterns and a layout to start from, with guidance they could use as they worked through each project's needs.",
+        "title": "Adoption across the projects I worked on",
+        "body": "The libraries were generally adopted across the different projects I worked on. The work was well accepted by the team, with adaptation challenges among more established teams. The shared system included the Figma libraries and guidelines, my layout starter, and pattern definitions shaped by collaboration with other teams.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
-            "note": "Rick described developer feasibility collaboration, frontend-owned implementation, and general adoption across his projects. No numerical outcomes were established."
+            "note": "Owner reported general adoption across his projects, acceptance and adaptation challenges. This supports qualitative adoption only; no savings, company-wide rollout, usability result or numerical impact is asserted."
           }
         ]
       }
     ],
     "curationNotes": [
-      "Proposed replacement wording awaiting Rick's explicit content approval; this revision remains outside public routes.",
-      "The original public page supplies background, not evidence for new owner-interview claims.",
-      "The three teammates are attributed only to the real-estate example. No universal adoption, savings metric, or RTL implementation claim is made.",
-      "Existing preview media permissions remain limited to Home and the Work index."
+      "Working revision expanded after Rick found the first version too thin. It remains review-ready for feedback, without publication approval.",
+      "The story is a compilation across engagements; the three teammates are attributed only to the real-estate example.",
+      "The worked example is record creation/viewing in slide-ins, learned from other applications with more developed dashboard and progressive-disclosure patterns. Rick tentatively recalls an earlier page-refresh drill-down influenced by development constraints; the copy marks this as recollection. Dashboard/list visibility and precise original architecture remain unconfirmed, so no context-preservation or performance benefit is claimed.",
+      "The original public page is background, not evidence for new interview claims. No metrics, exact unconfirmed pattern rules, RTL implementation or universal adoption claims are made.",
+      "Existing media reuse permissions remain limited to Home and the Work index."
     ]
   }
 ]

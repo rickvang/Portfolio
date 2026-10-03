@@ -1,6 +1,6 @@
 # Portfolio hiring story and contact
 
-- Status: waiting for owner content approval; preparation verified
+- Status: active; expanded case study ready for owner review
 - Created / updated: 2026-10-02
 - Owner: Riley Morgan / ai-orchestrator; Codex executes directly
 - Current Work: [CW-83](https://app.notion.com/p/3eecd82535ff8197abd6e6b6e3550609)
@@ -30,12 +30,22 @@ Contact links were verified on Rick's [public About page](https://www.rickvang.c
 
 ## Completion and recovery
 
+Rick found the initial treatment too thin. The Vercel story route was still displaying the imported synopsis, and the separate owner-interview draft was too short. The revision now explains the pattern areas, shared Figma artifacts, layout starter, collaboration, feasibility and qualitative adoption in more detail. A `view=story` option on the existing local-only review surface shows the same production story renderer and shell, without changing public approval filtering.
+
+Rick supplied the concrete example: other applications had more sophisticated dashboards and progressive-disclosure rules, so the team adopted their approach to creating/viewing records in slide-ins. He then tentatively recalled that the earlier approach used a page refresh and drill-down because of prior development constraints. The working draft now explains the earlier approach and the adopted slide-in workflow, explicitly qualifying the earlier behavior and reason as recollection. Whether dashboard/list context remained visible is still unconfirmed and is omitted. No panel location, exact controls, measured usability effect or specific engineering limitation is invented.
+
 The proposed wording is exported to [story.md](story.md) for easy review; the typed authored record remains canonical.
 
-Verification passed: design contract, lint, typecheck, 34 unit tests, production build, and 44 browser tests. Browser coverage checks direct contact targets and keyboard focus, desktop/mobile first-screen contact links, the local owner-interview review, and exclusion of that revision from public routes. Desktop/mobile contact and full story-review screenshots were inspected. Existing primary-checkout edits remain intact.
+Verification passed for the expanded review implementation: design contract, lint, typecheck, 34 unit tests, production build, and 45 browser tests. After the final interview copy update, all eight relevant browser tests passed again in 11.5 seconds. Browser coverage checks direct contact targets and keyboard focus, desktop/mobile first-screen contact links, the local owner-interview review, the actual story presentation at desktop/mobile widths, and exclusion of that revision from public routes. Desktop/mobile contact and story-review screenshots were inspected, including the final desktop story screenshot. Existing primary-checkout edits remain intact.
 
 The first restricted build could not download the existing Google font; network-enabled verification passed. The worktree reuses the unchanged primary dependency installation through a local junction; pnpm's automatic dependency reinstall was disabled for these checks so that installation was preserved. No dependency or lockfile change is part of this work.
 
-Next action: obtain Rick's wording approval, then promote the approved replacement at the canonical slug and prepare the authorized publication step.
+Next action: Rick reviews the expanded story at http://127.0.0.1:3192/dev/harness/case-study?slug=multi-product-integrations-revision&view=story. The concrete process example is incorporated and verification is complete. An exact original architecture and dashboard background behavior are not needed to review this version; those details remain out of the draft. Keep the existing preview synopsis distinct from the review-ready replacement.
 
 The concrete preparation boundary is a readable local story review and direct contact page, with verification recorded. Publication requires the separate explicit content decision in DESIGN.md. On approval, replace the original imported story with the authored revision at the canonical slug, retain approved preview media, and verify the publication gate and public route before merging or deployment.
+
+## Checkpoint
+
+[C08 | 2026-10-02 10:21 pm] Expanded the story around the adopted record slide-in workflow and Rick's qualified recollection of the earlier page-refresh drill-down. The actual desktop/mobile story presentation is available in local review; final relevant browser verification passed. The replacement remains review-ready in draft PR #63.
+
+Native allowance observations for this turn: five-hour used 59% → 71%; weekly used 9% → 11%, within the same reset windows. These are account-wide observations and may include concurrent work; no task token count is available.

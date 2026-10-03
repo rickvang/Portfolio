@@ -1,12 +1,14 @@
 import { notFound } from "next/navigation";
 
 import { CaseStudyTemplate } from "@/components/case-study-template";
+import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
+import { PersonalPracticeShell } from "@/components/personal-practice-shell";
 import { getCaseStudyBySlug } from "@/lib/case-studies";
 
 export const dynamic = "force-dynamic";
 
 type CaseStudyHarnessPageProps = {
-  searchParams: Promise<{ slug?: string | string[] }>;
+  searchParams: Promise<{ slug?: string | string[]; view?: string | string[] }>;
 };
 
 export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHarnessPageProps) {
@@ -21,6 +23,19 @@ export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHa
 
   if (!caseStudy) {
     notFound();
+  }
+
+  if (params.view === "story") {
+    return (
+      <PersonalPracticeShell pathname="/work/multi-product-integrations">
+        <div className="public-page" data-testid="case-study-story-review">
+          <p className="case-study-review-banner" role="note">
+            Working draft for review. <a href={`?slug=${caseStudy.slug}`}>Review sources and evidence</a>
+          </p>
+          <PersonalPracticeCaseStudy caseStudy={caseStudy} />
+        </div>
+      </PersonalPracticeShell>
+    );
   }
 
   return (
