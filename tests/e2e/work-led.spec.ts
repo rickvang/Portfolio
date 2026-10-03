@@ -94,9 +94,9 @@ test("owner-interview story is readable in review and excluded from publication"
   await page.goto("/dev/harness/case-study?slug=multi-product-integrations-revision");
   const revision = page.getByTestId("case-study-review-multi-product-integrations-revision");
   await expect(revision.getByText("Review-ready content.", { exact: true })).toBeVisible();
-  await expect(revision.getByRole("heading", { name: "Learning from other applications" })).toBeVisible();
+  await expect(revision.getByRole("heading", { name: "Learning from another team's record workflow" })).toBeVisible();
   await expect(revision.getByText(/I worked with three teammates/)).toBeVisible();
-  await expect(revision.getByText(/the frontend team implemented the code/)).toBeVisible();
+  await expect(revision.getByText(/frontend team implemented the code/)).toBeVisible();
   await page.screenshot({ path: "test-results/visual-snapshots/integrations-story-review.png", fullPage: true });
   await page.goto("/work/multi-product-integrations-revision");
   await expect(page).toHaveTitle("Case study not found | Rick Vang");
@@ -109,12 +109,12 @@ test("the expanded draft can be reviewed in the actual story presentation", asyn
     const story = page.getByTestId("case-study-story-review");
     await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
     await expect(story.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
-    await expect(story.getByRole("heading", { name: "A shared pattern for creating and viewing records" })).toBeVisible();
-    await expect(story.getByRole("heading", { name: "Earlier approach: page refresh and drill-down", exact: true })).toBeVisible();
-    await expect(story.getByRole("heading", { name: "Adopted approach: create and view in slide-ins", exact: true })).toBeVisible();
+    await expect(story.getByRole("heading", { name: "Learning from another team's record workflow" })).toBeVisible();
+    await expect(story.getByText(/As I recall, our earlier approach used a page refresh and drill-down/)).toBeVisible();
+    await expect(story.getByText(/We adopted the slide-in workflow/)).toBeVisible();
     await expect(story.getByText(/more sophisticated dashboards and rules for progressive disclosure/)).toBeVisible();
     await expect(story.getByText(/I worked with three teammates/)).toBeVisible();
-    await expect(story.getByText(/the frontend team implemented the code/)).toBeVisible();
+    await expect(story.getByText(/frontend team implemented the code/)).toBeVisible();
     await expect(story.getByRole("link", { name: "Review sources and evidence" })).toHaveAttribute(
       "href", "?slug=multi-product-integrations-revision",
     );

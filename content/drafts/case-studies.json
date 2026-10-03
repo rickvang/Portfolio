@@ -479,7 +479,7 @@
     "summary": "Shared patterns for teams designing across multiple applications.",
     "category": "Enterprise B2B",
     "role": "Primary contributor to workflow patterns, Figma libraries, and guidelines",
-    "scope": "Work across engagements, with a real-estate team example",
+    "scope": "Work across engagements, including a real-estate example",
     "reviewStatus": "review-ready",
     "clientIpDisclaimer": "This story describes shared design practices while protecting client intellectual property.",
     "sources": [
@@ -500,8 +500,8 @@
     "sections": [
       {
         "kind": "overview",
-        "title": "A recurring problem across products",
-        "body": "Across different engagements, I saw teams solving similar problems in separate applications. Many designers were doing work that could have been shared, while workflows were being defined repeatedly across products. I wanted to help turn those recurring decisions into patterns that teams could reuse. This story brings together that work, with a real-estate engagement as one example.",
+        "title": "Why we needed common patterns",
+        "body": "Across different places I've worked, I've seen designers solve similar problems in separate apps. Teams were defining their own workflows even where the interactions overlapped, and a lot of that work was duplicated. We wanted to define common patterns that teams could reuse. This story brings together that work, with a real-estate engagement as one example.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
@@ -511,8 +511,8 @@
       },
       {
         "kind": "context",
-        "title": "My contribution within a shared effort",
-        "body": "In the real-estate engagement, I was a primary contributor to defining workflow patterns and representing them in the system. I worked with three teammates. We took on different aspects of the patterns and iterated together. The library reflected that shared effort, and my contribution included both the pattern definitions and a reusable layout starter.",
+        "title": "What I worked on",
+        "body": "I was a primary contributor to defining the workflow patterns and representing them in the system. In the real-estate engagement, I worked with three teammates. We each took on different parts of the patterns and iterated together. The definitions and libraries came out of our combined work, with my contribution focused on the workflow patterns and a layout starter for different problem spaces.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
@@ -522,25 +522,8 @@
       },
       {
         "kind": "problem",
-        "title": "The decisions teams were repeating",
-        "body": "The overlap showed up in recurring layout and interaction decisions. The pattern work covered several concrete areas:",
-        "items": [
-          {
-            "id": "problem:interaction-patterns",
-            "title": "Close buttons, modals, and drawers",
-            "summary": "The definitions covered close-button placement and the use of modals and drawers across workflows."
-          },
-          {
-            "id": "problem:layout-structure",
-            "title": "Layout and reading order",
-            "summary": "We defined layout guidance around reading order, such as top to bottom and left to right."
-          },
-          {
-            "id": "problem:labels-and-values",
-            "title": "Labels and values",
-            "summary": "The patterns addressed how label/value pairs were presented horizontally or vertically."
-          }
-        ],
+        "title": "The decisions we kept repeating",
+        "body": "The work covered decisions designers make throughout an application: where close buttons belong, when to use a modal or drawer, and how to lay out information. We defined patterns for reading order, such as top to bottom and left to right, and for presenting labels and values horizontally or vertically.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
@@ -550,75 +533,30 @@
       },
       {
         "kind": "exploration",
-        "title": "Learning from other applications",
-        "body": "Some of the other applications had more sophisticated dashboards and rules for progressive disclosure. Comparing workflows with those teams helped us identify scenarios where their process fit better than our own. We adopted those approaches and brought them into the shared system. Record creation and viewing was one example of this collaboration.",
+        "title": "Learning from another team's record workflow",
+        "body": "Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. As I recall, our earlier approach used a page refresh and drill-down, influenced by development constraints at the time. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
-            "note": "Owner confirmed learning from other applications with more sophisticated dashboards and progressive-disclosure rules, and adoption of their record creation/viewing slide-in approach. Dashboard/list visibility remains unconfirmed."
+            "note": "Owner confirmed learning from other applications with more sophisticated dashboards and progressive-disclosure rules, and adoption of their record creation/viewing slide-in approach. He tentatively recalled the earlier page-refresh drill-down and prior development constraint; those details remain qualified as recollection. Dashboard/list visibility, exact architecture, and any usability or speed improvement remain unconfirmed."
           }
         ]
       },
       {
         "kind": "system-practice",
-        "title": "How the shared work took shape",
-        "body": "The pattern definitions took shape in Figma component libraries with guidelines. Designers could use these shared artifacts when working across applications:",
-        "items": [
-          {
-            "id": "system-practice:figma-libraries",
-            "title": "Figma component libraries",
-            "summary": "Reusable components represented the layout and interaction patterns we defined together."
-          },
-          {
-            "id": "system-practice:guidelines",
-            "title": "Guidelines",
-            "summary": "The libraries were accompanied by guidance on the shared workflow and layout patterns."
-          },
-          {
-            "id": "system-practice:layout-starter",
-            "title": "A layout starter",
-            "summary": "I created a system layout structure that designers could use as a starter template when working in a different problem space."
-          }
-        ],
+        "title": "Putting the patterns into Figma",
+        "body": "We built Figma component libraries with guidelines for the patterns we had defined together. I also created a layout starter that designers could use when working on a different problem space. Across the pattern work, I worked with frontend developers to identify what we could and couldn't build. The frontend team implemented the code.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
-            "note": "Owner identified the artifacts as primarily Figma component libraries with guidelines, and confirmed his creation of a system layout starter for different problem spaces."
-          }
-        ]
-      },
-      {
-        "kind": "decisions",
-        "title": "A shared pattern for creating and viewing records",
-        "body": "Creating and viewing records was one workflow where we adopted an existing approach. The change connected a specific interaction decision to our broader pattern work:",
-        "items": [
-          {
-            "id": "decisions:earlier-record-flow",
-            "title": "Earlier approach: page refresh and drill-down",
-            "summary": "As I recall, the earlier flow used a page refresh and drill-down, influenced by development constraints at the time."
-          },
-          {
-            "id": "decisions:adopted-record-flow",
-            "title": "Adopted approach: create and view in slide-ins",
-            "summary": "We adopted another application's approach to creating or viewing a record in a slide-in, and brought that workflow into our shared system."
-          },
-          {
-            "id": "decisions:frontend-feasibility",
-            "title": "Work through implementation feasibility",
-            "summary": "Across the pattern work, I collaborated with frontend developers to identify what could and could not be built. I contributed the pattern definitions and Figma work; the frontend team implemented the code."
-          }
-        ],
-        "evidence": [
-          {
-            "sourceId": "owner-interview-2026-10-02",
-            "note": "Owner confirmed adoption of record creation/viewing in slide-ins. He tentatively recalled the earlier page-refresh drill-down and prior development constraint, so the copy explicitly attributes those details to recollection. Dashboard/list visibility, exact architecture, and any usability or speed improvement remain unconfirmed. General frontend feasibility collaboration and code ownership were separately confirmed."
+            "note": "Owner identified the artifacts as primarily Figma component libraries with guidelines, confirmed his creation of a system layout starter for different problem spaces, and described collaboration with frontend developers on feasibility. The frontend team owned code implementation."
           }
         ]
       },
       {
         "kind": "outcomes",
-        "title": "Adoption across the projects I worked on",
-        "body": "The libraries were generally adopted across the different projects I worked on. The work was well accepted by the team, with adaptation challenges among more established teams. The shared system included the Figma libraries and guidelines, my layout starter, and pattern definitions shaped by collaboration with other teams.",
+        "title": "How teams adopted it",
+        "body": "The team agreed that a common system should be created, and the libraries were generally adopted across the projects I worked on. More established teams found it harder to adapt. We collaborated to identify scenarios where another team's process fit better than ours and brought those approaches into our system.",
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
@@ -628,7 +566,7 @@
       }
     ],
     "curationNotes": [
-      "Working revision expanded after Rick found the first version too thin. It remains review-ready for feedback, without publication approval.",
+      "Working revision expanded after Rick found the first version too thin, then edited with Humanizer guidance using Rick's interview answers as the voice reference. Six connected sections retain the concrete pattern areas, record-workflow example, ownership, Figma artifacts, layout starter and qualitative adoption. It remains review-ready for feedback, without publication approval.",
       "The story is a compilation across engagements; the three teammates are attributed only to the real-estate example.",
       "The worked example is record creation/viewing in slide-ins, learned from other applications with more developed dashboard and progressive-disclosure patterns. Rick tentatively recalls an earlier page-refresh drill-down influenced by development constraints; the copy marks this as recollection. Dashboard/list visibility and precise original architecture remain unconfirmed, so no context-preservation or performance benefit is claimed.",
       "The original public page is background, not evidence for new interview claims. No metrics, exact unconfirmed pattern rules, RTL implementation or universal adoption claims are made.",
