@@ -60,3 +60,5 @@ The parent should integrate the JSON record into the existing catalog once, then
 [C02 | 2026-10-03 02:12 am] Grounded first narrative complete. Pass 2 rewrites the story around practical template reuse and separate density guidance, with individual framework design distinguished from collective work.
 
 [C03 | 2026-10-03 02:21 am] Three writing passes complete. The schema/export checks, 13 existing content tests and 3 local desktop/mobile/publication browser checks passed. Temporary catalog and validation files are restored/removed; port 3193 is no longer listening. The three deliverables are ready for the scoped commit and parent integration. Parent combined browser verification is pending.
+
+Parent integration and final desktop/mobile/publication checks are complete; see [Work Order C16](../../work-order.md). The record remains review-ready.

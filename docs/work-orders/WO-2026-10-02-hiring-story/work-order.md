@@ -1,7 +1,7 @@
 # Portfolio hiring story and contact
 
-- Status: active; integrations and AI council stories ready for owner review
-- Created / updated: 2026-10-02
+- Status: active; all four case-study replacements ready for owner review
+- Created / updated: 2026-10-02 / 2026-10-03
 - Owner: Riley Morgan / ai-orchestrator; Codex executes directly
 - Current Work: [CW-83](https://app.notion.com/p/3eecd82535ff8197abd6e6b6e3550609)
 - Issue: [Portfolio #62](https://github.com/rickvang/Portfolio/issues/62)
@@ -13,6 +13,8 @@
 Rick accepted leading with Multi Product Integrations and replacing the contact form with email/LinkedIn. He is comfortable replacing the complicated AI-generated representation. Prepare the replacement story for review using the interview facts. Keep it review-ready until he approves the wording. No production deployment or new content publication is authorized by this preparation.
 
 Rick then moved to the next portfolio work item, AI Systems, and described his AI council. Prepare a review-only revision focused on its product purpose, compiled persona profiles, consistent questions/context, and synthesis into a use-case scenario. Reuse the existing content model and review surface. The readable export is [ai-systems-story.md](ai-systems-story.md).
+
+Rick requested [plans for Design Systems and UI Design Practices](next-case-studies-plan.md), three substantive passes in separate chats for each, and two additional AI Systems passes. Those revisions are complete. The readable stories and pass logs live under [Design Systems](examples/design-systems/story.md) and [UI Design Practices](examples/ui-design-practices/story.md); the catalog remains the canonical application content.
 
 Preserve existing uncommitted work in the primary Portfolio checkout. This worktree starts at remote main 4cafcd20bdce0f8c24d8d4db9be892939624f437.
 
@@ -76,3 +78,5 @@ Native allowance observations for this bounded editorial correction: five-hour u
 Native allowance observations for this council-story turn: five-hour used 50% → 56%; weekly used 19% → 20%, within unchanged reset windows. These are account-wide observations and may include concurrent work; no task token count is available.
 
 [C14 | 2026-10-03 2:12 am] Rick requested plans and separate chats for the next two work examples, each with at least three substantive iterations, plus two more AI Systems passes. [The plan](next-case-studies-plan.md) defines scoped evidence, pass criteria, isolated checkouts, preview ports and one parent integration. Design Systems chat: 01a10095-0510-7ae1-ac27-37029dbceb38; UI Design Practices chat: 01a10095-1feb-7453-94e9-341ba3f0141a. Both are running and own only their example deliverables. AI Systems passes 2 and 3 are complete: the concrete question, profile context and synthesis are clearer; the final voice pass combines the role/profile sections and removes repetition. [Its pass log](ai-systems-iterations.md) records material findings and changes. All nine content-contract tests and the final desktop/mobile story, overflow and publication checks passed. Both rendered captures were inspected. Next: inspect the two finished three-pass drafts and integrate them once into the review-only catalog and existing PR.
+
+[C16 | 2026-10-03 07:28 am] The two chats finished their three substantive prose passes after resuming the final handoff interrupted by the account usage limit. The parent reviewed both stories and their evidence boundaries, brought their scoped deliverable commits into this branch, and appended each final record once to the canonical catalog. Design Systems explains shared foundations, surface-specific density guidance and reusable screens/workflow patterns. UI Design Practices describes Rick's portfolio hierarchy, rail and palette choices, with agent implementation explicitly attributed. AI Systems' two additional passes were already complete at C14. All 34 unit tests passed after integration. Both new stories passed content, layout and horizontal-overflow checks at 1280px and 390px; public detail routes and the Work index exclude both drafts. All four final captures were inspected. The original approved records remain unchanged, and no new renderer, schema, dependency, assets or production state were added. Final records remain review-ready for the existing draft PR #63; next action is owner wording review and a separate publication decision.
