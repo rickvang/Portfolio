@@ -118,6 +118,19 @@ test("the expanded draft can be reviewed in the actual story presentation", asyn
     await expect(story.getByRole("link", { name: "Review sources and evidence" })).toHaveAttribute(
       "href", "?slug=multi-product-integrations-revision",
     );
+    const illustrations = story.getByRole("img");
+    await expect(illustrations).toHaveCount(2);
+    for (let index = 0; index < 2; index++) {
+      const illustration = illustrations.nth(index);
+      await illustration.scrollIntoViewIfNeeded();
+      await expect.poll(() => illustration.evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(0);
+      const source = await illustration.evaluate((img: HTMLImageElement) => img.currentSrc);
+      expect(source.endsWith("-mobile.svg")).toBe(width === 390);
+      await story.getByRole("figure").nth(index).screenshot({
+        path: `test-results/visual-snapshots/integrations-figure-${index}-${width}.png`,
+      });
+    }
+    await expect(story.getByText(/Diagram derived from the interview/)).toHaveCount(2);
     expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
     await page.screenshot({ path: `test-results/visual-snapshots/integrations-story-${width}.png`, fullPage: true });
   }

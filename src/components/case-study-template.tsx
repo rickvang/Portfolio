@@ -1,4 +1,5 @@
 import { ExperiencePresentation } from "@/components/experience-presentation";
+import { CaseStudyIllustration } from "@/components/case-study-illustration";
 import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
 import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
 
@@ -114,6 +115,7 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
                     {showSectionHeading && <h3>{section.title}</h3>}
 
                     {section.body && <p className="case-study-copy">{section.body}</p>}
+                    {section.illustration && <CaseStudyIllustration illustration={section.illustration} />}
 
                     {section.items &&
                       section.kind === "system-practice" &&

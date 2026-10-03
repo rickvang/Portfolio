@@ -43,12 +43,20 @@ const caseStudySectionItemSchema = z.object({
   summary: z.string().min(1),
 });
 
+const caseStudyIllustrationSchema = caseStudyPreviewMediaSchema.extend({
+  kind: z.literal("text-derived"),
+  mobileSrc: z.string().min(1).optional(),
+});
+
+export type CaseStudyIllustration = z.infer<typeof caseStudyIllustrationSchema>;
+
 const caseStudySectionSchema = z
   .object({
     kind: caseStudySectionKindSchema,
     title: z.string().min(1),
     body: z.string().min(1).optional(),
     items: z.array(caseStudySectionItemSchema).min(1).optional(),
+    illustration: caseStudyIllustrationSchema.optional(),
     evidence: z.array(caseStudyEvidenceSchema).min(1),
   })
   .refine((section) => section.body !== undefined || section.items !== undefined, {

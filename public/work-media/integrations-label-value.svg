@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" role="img" aria-labelledby="title desc">
+  <title id="title">Horizontal and vertical label/value patterns</title>
+  <desc id="desc">An explanatory comparison. Horizontal pairs put the label beside its value. Vertical pairs put the label above its value.</desc>
+  <rect width="720" height="340" fill="#fffefc"/>
+  <path d="M360 28V312" stroke="#cfcfcc"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <g font-size="27" font-weight="600" fill="#171614">
+      <text x="32" y="57">Horizontal</text>
+      <text x="392" y="57">Vertical</text>
+    </g>
+    <g font-size="25" fill="#6b665f">
+      <text x="32" y="132">Label</text>
+      <text x="32" y="219">Label</text>
+      <text x="392" y="121">Label</text>
+      <text x="392" y="222">Label</text>
+    </g>
+    <g font-size="31" font-weight="550" fill="#171614">
+      <text x="178" y="133">Value</text>
+      <text x="178" y="220">Value</text>
+      <text x="392" y="162">Value</text>
+      <text x="392" y="263">Value</text>
+    </g>
+    <g font-size="22" fill="#b7371c">
+      <text x="32" y="296">Beside the label</text>
+      <text x="392" y="309">Below the label</text>
+    </g>
+  </g>
+  <g fill="none" stroke="#cfcfcc">
+    <path d="M32 158H312M32 245H312M392 180H688M392 281H688"/>
+  </g>
+  <g fill="none" stroke="#b7371c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M114 122H152M144 116L152 122L144 128"/>
+    <path d="M509 123V151M503 143L509 151L515 143"/>
+  </g>
+</svg>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" role="img" aria-labelledby="title desc">
+  <title id="title">A record page and a record slide-in panel</title>
+  <desc id="desc">A diagram derived from the interview. The earlier approach, as recalled, used a page refresh and drill-down. The adopted approach created or viewed a record in a slide-in panel. The shapes are abstract containers, not product screens.</desc>
+  <rect width="720" height="340" fill="#fffefc"/>
+  <path d="M360 28V312" stroke="#cfcfcc"/>
+  <g font-family="Inter, Arial, sans-serif">
+    <text x="32" y="57" font-size="25" font-weight="600" fill="#171614">Earlier (as recalled)</text>
+    <text x="392" y="57" font-size="27" font-weight="600" fill="#b7371c">Adopted</text>
+  </g>
+  <rect x="32" y="86" width="296" height="166" rx="5" fill="#f7f6f2" stroke="#6b665f" stroke-width="1.5"/>
+  <path d="M392 86H449M392 252H449" stroke="#cfcfcc" stroke-dasharray="4 5"/>
+  <rect x="462" y="86" width="226" height="166" rx="5" fill="#f7f6f2" stroke="#b7371c" stroke-width="1.5"/>
+  <g font-family="Inter, Arial, sans-serif" fill="#171614">
+    <g font-size="30" font-weight="550">
+      <text x="69" y="147">Record</text>
+      <text x="69" y="187">page</text>
+      <text x="486" y="143">Record</text>
+      <text x="486" y="182">panel</text>
+    </g>
+    <g font-size="22" fill="#6b665f">
+      <text x="32" y="299">Refresh + drill-down</text>
+      <text x="392" y="299">Create / view in a slide-in</text>
+    </g>
+  </g>
+</svg>

@@ -14,9 +14,17 @@ I was a primary contributor to defining the workflow patterns and representing t
 
 The work covered decisions designers make throughout an application: where close buttons belong, when to use a modal or drawer, and how to lay out information. We defined patterns for reading order, such as top to bottom and left to right, and for presenting labels and values horizontally or vertically.
 
+![Two label/value arrangements: horizontal pairs put labels beside values; vertical pairs put labels above values.](../../../public/work-media/integrations-label-value.svg)
+
+Diagram derived from the interview. These examples explain the pattern areas; they are not original project screens.
+
 ## Learning from another team's record workflow
 
 Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. As I recall, our earlier approach used a page refresh and drill-down, influenced by development constraints at the time. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.
+
+![Record workflow comparison: the earlier approach, as recalled, used a page refresh and drill-down; the adopted approach used slide-in panels for creating and viewing records.](../../../public/work-media/integrations-record-workflow.svg)
+
+Diagram derived from the interview. The earlier approach is based on my recollection. Shapes explain page versus panel, without reconstructing either product.
 
 ## Putting the patterns into Figma
 

@@ -687,6 +687,29 @@
   margin-top: 1.5rem;
 }
 
+.case-study-illustration {
+  margin: 2rem 0 0;
+  max-width: 54rem;
+}
+
+.case-study-illustration picture,
+.case-study-illustration img {
+  display: block;
+  width: 100%;
+}
+
+.case-study-illustration img {
+  height: auto;
+}
+
+.case-study-illustration figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-top: 0.8rem;
+  max-width: 65ch;
+}
+
 .practice-case-study-note {
   border-top: 1px solid var(--border);
   color: var(--muted);

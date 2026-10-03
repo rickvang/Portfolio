@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CaseStudyIllustration } from "@/components/case-study-illustration";
 import type { CaseStudy } from "@/lib/case-studies";
 import { publicRoutes } from "@/lib/public-routes";
 
@@ -39,6 +40,7 @@ export function PersonalPracticeCaseStudy({ caseStudy }: PersonalPracticeCaseStu
               {section.title === "System / practice" ? "The shared patterns." : section.title}
             </h2>
             {section.body && <p className="practice-case-study-copy">{section.body}</p>}
+            {section.illustration && <CaseStudyIllustration illustration={section.illustration} />}
             {section.items && (
               <ul className="practice-case-study-patterns">
                 {section.items.map((item) => (
