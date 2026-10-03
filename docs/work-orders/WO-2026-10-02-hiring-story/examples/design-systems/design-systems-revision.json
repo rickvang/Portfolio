@@ -1,0 +1,112 @@
+{
+  "id": "design-systems-revision",
+  "slug": "design-systems-revision",
+  "title": "Design Systems",
+  "summary": "Reusable styles, screen templates and workflow patterns for teams redesigning legacy capabilities.",
+  "category": "Design Systems",
+  "role": "Platform framework design with cross-team collaboration",
+  "scope": "Shared foundations, density guidance, templates and workflow patterns",
+  "reviewStatus": "review-ready",
+  "clientIpDisclaimer": "This story describes shared design practices while protecting client intellectual property.",
+  "sources": [
+    {
+      "id": "design-systems-import",
+      "kind": "repository",
+      "label": "Imported Design Systems project in content/imports/rickvang.com.json",
+      "capturedAt": "2026-09-22"
+    },
+    {
+      "id": "original-design-systems-story",
+      "kind": "source-page",
+      "label": "Original public Design Systems project",
+      "url": "https://www.rickvang.com/projects/design-systems",
+      "capturedAt": "2026-10-03"
+    }
+  ],
+  "sections": [
+    {
+      "kind": "overview",
+      "title": "A common starting point",
+      "body": "An established company was redesigning legacy capabilities and needed more consistent design across the work. Existing patterns included redundant approaches, so part of the job was deciding what teams could reuse. I designed the platform framework as part of a collaborative effort to establish a core library and lightweight governance. The library brought reusable design decisions into a common starting point for the teams involved.",
+      "evidence": [
+        {
+          "sourceId": "design-systems-import",
+          "note": "Imported summary establishes consistency and legacy-capability goals; discovery establishes redundant patterns. The source supports a shared team effort, not sole authorship of the whole library."
+        },
+        {
+          "sourceId": "original-design-systems-story",
+          "note": "Scope identifies an established company reimagining legacy capabilities. Outcomes explicitly attributes platform framework design to Rick and names collaborators, a core library and lightweight governance."
+        }
+      ]
+    },
+    {
+      "kind": "exploration",
+      "title": "Choosing what to reuse",
+      "body": "We audited existing design patterns alongside user scenarios, then prioritized where to remove duplication and improve consistency. Stakeholder workshops helped us align the goals, while feedback from developers helped us understand what was feasible. Reviewing the patterns together gave us existing work to organize and refine into the library.",
+      "evidence": [
+        {
+          "sourceId": "design-systems-import",
+          "note": "Discovery names auditing, prioritization, stakeholder workshops and developer feedback. Gathered collaborators and lightweight governance support the collaboration and prioritization account."
+        },
+        {
+          "sourceId": "original-design-systems-story",
+          "note": "Collaboration explains that gathering a team and maintaining priority were challenges. No research protocol, validation outcome or individual research ownership is claimed."
+        }
+      ]
+    },
+    {
+      "kind": "system-practice",
+      "title": "Shared foundations, different density needs",
+      "body": "The core library held reusable styles and tokens. Density needed guidance suited to the surface being designed, so we maintained a display marketing style guide alongside enterprise interface guidance. Those surfaces had different needs, even within the same system. Designers could start with shared foundations and use the density guidance that matched their surface. Keeping both sets of guidance in the system allowed reuse to accommodate those differences.",
+      "evidence": [
+        {
+          "sourceId": "design-systems-import",
+          "note": "Foundations establishes style-library and token foundations. Density supports different guidance for marketing and enterprise surfaces. No specific screen layout, spacing value, component variant, token architecture or Figma file is asserted."
+        },
+        {
+          "sourceId": "original-design-systems-story",
+          "note": "Density explicitly connects different surface needs to maintaining both a display marketing style guide and an enterprise productive-interface guideline. The relationship to the reusable foundations explains the stated artifact structure, without claiming a proven user effect."
+        }
+      ]
+    },
+    {
+      "kind": "decisions",
+      "title": "Starting a new design from a reusable screen",
+      "body": "We created a library of reusable screens that designers could duplicate and modify for a specific use case. A template carried an existing design into the new task, giving the designer a starting point they could adapt. We also defined patterns for onboarding, work creation and progression, asset and inventory management, and account configuration and settings. The templates provided screens to work from, while the patterns guided how users moved through recurring workflows. This gave designers reusable material at the level of a screen and the task it supported.",
+      "evidence": [
+        {
+          "sourceId": "design-systems-import",
+          "note": "Templates and patterns names reusable screens and the four workflow categories. This describes design artifacts and their capability, not measured productivity or adoption."
+        },
+        {
+          "sourceId": "original-design-systems-story",
+          "note": "Templates describes duplicating reusable screens and modifying them for specific use cases; Patterns describes consistent guidance through workflows and names all four categories, including account configuration and settings. The worked example explains this stated reuse method, not a reconstructed historical screen or observed time savings."
+        }
+      ]
+    },
+    {
+      "kind": "outcomes",
+      "title": "Keeping the system a shared priority",
+      "body": "Getting collaborators together and keeping the system a priority were ongoing challenges. We supported the library with documentation and incremental rollouts, and developed lightweight governance around collaborative feedback loops. I worked with early adopters to build trust in the platform framework. The documentation and feedback loops supported the team's continued work on the shared library.",
+      "evidence": [
+        {
+          "sourceId": "design-systems-import",
+          "note": "Lightweight governance names collaborative feedback loops. Outcomes attributes framework design and work with early adopters to Rick. Templates and patterns supports an adaptable starting point as an artifact capability, not a measured productivity gain."
+        },
+        {
+          "sourceId": "original-design-systems-story",
+          "note": "Discovery names documentation and incremental rollouts, but gives no cadence, audience size or adoption measure. Outcomes reports building trust with early adopters. Legacy administrative-hours and real-time-data claims are omitted pending supporting evidence and clearer attribution."
+        }
+      ]
+    }
+  ],
+  "curationNotes": [
+    "Internal review record for the Design Systems example under CW-83 and draft PR #63. Remains review-ready; parent owns catalog integration and coordination updates.",
+    "The imported record and original project page support the narrative. The integrations owner record compiles engagements and is background only: its real-estate team size, rollout/adoption account, Figma ownership, slide-in example and exact pattern areas are not attributed to this project.",
+    "Rick's individual contribution is limited to the explicitly attributed platform framework design and early-adopter collaboration. Shared library, templates, pattern and governance work is described as collaborative. No code implementation ownership is claimed.",
+    "No metrics, research validation result, persona response, specific screen, component rule or company-wide adoption claim is established for this example.",
+    "Legacy hero-image reuse permission applies only to Home and the Work index. This candidate intentionally has no previewMedia, illustration or client-screen asset.",
+    "Three substantive passes are recorded in iterations.md. Final prose moves from context and prioritization through shared foundations/density guidance to screen/template reuse and collaborative upkeep. Reader-facing prose contains no interview provenance, recollection caveat or drafting commentary.",
+    "Remaining internal questions: confirm Rick's individual contribution to foundations, density, templates and governance before expanding personal ownership; obtain a matching project artifact and owner account before adding exact screen or component rules; substantiate any measured outcome. These gaps do not prevent review of the supported draft."
+  ]
+}
