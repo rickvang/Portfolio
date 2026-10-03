@@ -2,22 +2,18 @@
 
 An AI council for exploring product ideas through executive, manager, and worker perspectives.
 
-## Questions I wanted to explore
+## Questioning a product idea
 
-I created an AI council to ask questions about product ideas from several points of view. I wanted a way to explore questions we had previously been answering through assumptions: would an idea be useful in someone's work, how might it affect an executive, or where might it offer little value? The council gave me different perspectives to work through those questions.
+I created an AI council to work through product questions we had previously been answering through assumptions. Would an idea be useful in someone's work? How might it affect an executive? Where might it offer little value? I wanted several role perspectives to help me explore those questions.
 
-## Building each persona's perspective
+## Building the three personas
 
-Each persona had a compiled profile based on industry best practices and whitepapers about the role. The profile described the concerns that typically came with that role, its pain points, and the activities involved in the work. It included both core activities and work that happened occasionally. These details formed the perspective each persona used when answering.
+The council included an executive, a manager, and a worker on the ground. Each had a compiled profile based on industry best practices and whitepapers about the role. The profiles captured typical concerns, pain points, core activities, and work done only occasionally. These details gave each AI persona a view of the role's work to use when answering.
 
-## Three roles at the table
+## Same question, different perspectives
 
-The council included an executive, a manager, and a worker on the ground. Each brought a perspective tied to its role. I used the council to explore a product idea through those different perspectives and compare ways of thinking about the data.
+I gave all three personas the same question and context. One question was, 'Would this product idea be useful to you in your work?' Each answered through its compiled profile. The input stayed consistent, while the role's concerns, pain points, and activities shaped the response. I could then compare how the three personas thought about the same idea and the data involved.
 
-## Same question, different answers
+## Turning responses into a use case
 
-I gave all three personas the same question and context. Each answered from the perspective built into its profile. Keeping the input consistent let me compare their responses around the same idea. The questions focused on whether the idea would be useful, how it might affect a particular role, and how someone in that role might think about the data.
-
-## From perspectives to a use case
-
-I compiled the product perspectives and the different ways of thinking about the data, then used that material to create a use-case scenario. The output brought the perspectives together so I could explore how the product idea might fit someone's work. The council's role was to help me develop that scenario and give me more to work with when considering the idea.
+I compiled the product perspectives and different ways of thinking about the data, then used that material to create a use-case scenario. The scenario combined the roles' responses into a way to explore how someone might use the product idea in their work.
