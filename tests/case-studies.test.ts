@@ -23,6 +23,7 @@ describe("case-study content contract", () => {
       "ai-systems",
       "ui-design-practices",
       "multi-product-integrations-revision",
+      "ai-systems-revision",
     ]);
     expect(getApprovedCaseStudies(authoredCaseStudies).map((caseStudy) => caseStudy.slug)).toEqual([
       "ai-systems",
@@ -37,17 +38,19 @@ describe("case-study content contract", () => {
   });
 
   it("keeps explicitly approved authored case studies public through the shared gate", () => {
-    expect(caseStudyCatalog).toHaveLength(5);
+    expect(caseStudyCatalog).toHaveLength(6);
     expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
     expect(getApprovedCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
     expect(getApprovedCaseStudyBySlug("ui-design-practices")).toEqual(authoredCaseStudies[1]);
   });
 
-  it("keeps the owner-interview replacement reviewable without publishing it", () => {
-    const revision = getCaseStudyBySlug("multi-product-integrations-revision")!;
-    expect(revision.reviewStatus).toBe("review-ready");
-    expect(revision.sources.some((source) => source.kind === "user-provided")).toBe(true);
-    expect(getApprovedCaseStudyBySlug(revision.slug)).toBeUndefined();
+  it("keeps the owner-interview replacements reviewable without publishing them", () => {
+    for (const slug of ["multi-product-integrations-revision", "ai-systems-revision"]) {
+      const revision = getCaseStudyBySlug(slug)!;
+      expect(revision.reviewStatus).toBe("review-ready");
+      expect(revision.sources.some((source) => source.kind === "user-provided")).toBe(true);
+      expect(getApprovedCaseStudyBySlug(revision.slug)).toBeUndefined();
+    }
     expect(getApprovedCaseStudyBySlug("multi-product-integrations")).toEqual(importedCaseStudies[0]);
   });
 

@@ -586,5 +586,86 @@
       "The original public page is background, not evidence for new interview claims. No metrics, exact unconfirmed pattern rules, RTL implementation or universal adoption claims are made.",
       "Existing media reuse permissions remain limited to Home and the Work index."
     ]
+  },
+  {
+    "id": "ai-systems-revision",
+    "slug": "ai-systems-revision",
+    "title": "AI Systems",
+    "summary": "An AI council for exploring product ideas through executive, manager, and worker perspectives.",
+    "category": "AI Systems",
+    "role": "Creator of the AI council",
+    "scope": "Product ideas, data perspectives, and use-case development",
+    "reviewStatus": "review-ready",
+    "sources": [
+      {
+        "id": "owner-ai-council-2026-10-03",
+        "kind": "user-provided",
+        "label": "Rick Vang's description of the AI council, October 3, 2026",
+        "capturedAt": "2026-10-03"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "Questions I wanted to explore",
+        "body": "I created an AI council to ask questions about product ideas from several points of view. I wanted a way to explore questions we had previously been answering through assumptions: would an idea be useful in someone's work, how might it affect an executive, or where might it offer little value? The council gave me different perspectives to work through those questions.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick described creating an AI council to improve product decisions where previously the team could only assume. His example questions concerned usefulness in work, executive impact, and possible lack of usefulness."
+          }
+        ]
+      },
+      {
+        "kind": "context",
+        "title": "Building each persona's perspective",
+        "body": "Each persona had a compiled profile based on industry best practices and whitepapers about the role. The profile described the concerns that typically came with that role, its pain points, and the activities involved in the work. It included both core activities and work that happened occasionally. These details formed the perspective each persona used when answering.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick confirmed compiled persona profiles informed by industry best practices and whitepapers, with typical role concerns, pain points, core activities and occasional activities. Specific papers and profile examples have not been supplied."
+          }
+        ]
+      },
+      {
+        "kind": "personas",
+        "title": "Three roles at the table",
+        "body": "The council included an executive, a manager, and a worker on the ground. Each brought a perspective tied to its role. I used the council to explore a product idea through those different perspectives and compare ways of thinking about the data.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick named these three persona roles and described compiling product perspectives and different ways to think about the data. No specific response or priority is invented for an individual role."
+          }
+        ]
+      },
+      {
+        "kind": "exploration",
+        "title": "Same question, different answers",
+        "body": "I gave all three personas the same question and context. Each answered from the perspective built into its profile. Keeping the input consistent let me compare their responses around the same idea. The questions focused on whether the idea would be useful, how it might affect a particular role, and how someone in that role might think about the data.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick explicitly confirmed that the question and context were the same for all personas, while answers came from their compiled role perspectives. The question wording paraphrases his stated examples."
+          }
+        ]
+      },
+      {
+        "kind": "system-practice",
+        "title": "From perspectives to a use case",
+        "body": "I compiled the product perspectives and the different ways of thinking about the data, then used that material to create a use-case scenario. The output brought the perspectives together so I could explore how the product idea might fit someone's work. The council's role was to help me develop that scenario and give me more to work with when considering the idea.",
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Rick confirmed compiling product perspectives, different ways to think about data, and creating a use-case scenario. No specific scenario steps, real-user validation, shipped result or measured improvement is claimed."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "Working revision centered on Rick's AI council and product exploration rather than the published orchestration-contract narrative. Publication remains a separate content decision.",
+      "The three participants are AI personas, not interviewed users. Their compiled industry/whitepaper profiles establish perspectives for exploration; they do not validate demand or actual role needs.",
+      "Rick cannot recall the specific product idea. A persona-aware dashboard was suggested tentatively and is not asserted as the actual example. No concrete scenario details, exact persona responses, named papers or measured outcomes are invented.",
+      "Interview provenance, drafting commentary and uncertainty stay in internal evidence and curation notes. Reader-facing prose describes the work."
+    ]
   }
 ]

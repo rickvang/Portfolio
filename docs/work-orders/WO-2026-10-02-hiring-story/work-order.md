@@ -1,6 +1,6 @@
 # Portfolio hiring story and contact
 
-- Status: active; expanded case study ready for owner review
+- Status: active; integrations and AI council stories ready for owner review
 - Created / updated: 2026-10-02
 - Owner: Riley Morgan / ai-orchestrator; Codex executes directly
 - Current Work: [CW-83](https://app.notion.com/p/3eecd82535ff8197abd6e6b6e3550609)
@@ -11,6 +11,8 @@
 ## Request and authorization
 
 Rick accepted leading with Multi Product Integrations and replacing the contact form with email/LinkedIn. He is comfortable replacing the complicated AI-generated representation. Prepare the replacement story for review using the interview facts. Keep it review-ready until he approves the wording. No production deployment or new content publication is authorized by this preparation.
+
+Rick then moved to the next portfolio work item, AI Systems, and described his AI council. Prepare a review-only revision focused on its product purpose, compiled persona profiles, consistent questions/context, and synthesis into a use-case scenario. Reuse the existing content model and review surface. The readable export is [ai-systems-story.md](ai-systems-story.md).
 
 Preserve existing uncommitted work in the primary Portfolio checkout. This worktree starts at remote main 4cafcd20bdce0f8c24d8d4db9be892939624f437.
 
@@ -27,7 +29,7 @@ Contact links were verified on Rick's [public About page](https://www.rickvang.c
 - Use the existing case-study review surface; add no new workflow, dependency, component framework, or service.
 - Replace the public contact form with real links; retain the form fixture in the local harness.
 - Preserve existing image permissions: Home and Work index only. No new detail-page image reuse.
-- Rick subsequently requested graphics for the case study. Create explanatory diagrams from the interview for the working draft: label/value arrangement and page versus slide-in record workflows. Captions identify them as text-derived; the earlier workflow remains qualified as recollection. Original media reuse permissions are unchanged.
+- Rick subsequently requested graphics for the case study. The working draft includes explanatory label/value and record-workflow diagrams. Captions explain the work; source provenance and tentative historical details remain internal per C12. Original media reuse permissions are unchanged.
 
 ## Completion and recovery
 
@@ -68,3 +70,7 @@ Native allowance observations for this bounded diagram revision: five-hour used 
 [C12 | 2026-10-02 11:58 pm] Rick corrected the editorial boundary: the case study should describe the work, while interview provenance, drafting commentary and tentative recollection belong in internal review records. Removed those phrases from the reader-facing body, both figure captions, the workflow labels and accessible descriptions. Captions now explain the patterns and their adoption. Tentative historical details remain in evidence/curation notes; the graphic labels a generic page-based workflow. The readable story export is synchronized. Both relevant browser tests passed, including desktop/mobile rendering and exclusion from publication. The existing draft PR and preview on port 3192 remain the review surfaces.
 
 Native allowance observations for this bounded editorial correction: five-hour used 35% → 39%; weekly used 17% → 17%, within unchanged reset windows. These are account-wide observations and may include concurrent work; no task token count is available.
+
+[C13 | 2026-10-03 1:03 am] Prepared the AI Systems council revision in the existing content model and review surface. Rick confirmed executive, manager and worker personas; all received the same question/context and answered from compiled profiles informed by industry practices and whitepapers. Profiles covered role concerns, pain points, core and occasional activities. He compiled product/data perspectives into a use-case scenario. The specific product/dashboard example remains uncertain and internal. The working story uses five connected sections, with no reader-facing interview commentary. Canonical record: `ai-systems-revision`; readable export: [ai-systems-story.md](ai-systems-story.md); review: http://127.0.0.1:3192/dev/harness/case-study?slug=ai-systems-revision&view=story . All 34 unit tests passed after catalog expectations were updated for the new record. Desktop/mobile story rendering, overflow, content and exclusion from publication passed; both screenshots were inspected. A cold public-route browser navigation timed out waiting for the full load event; the focused retry passed at DOM readiness and showed the not-found title. No application fix was required. Both story replacements remain review-ready in the existing draft PR.
+
+Native allowance observations for this council-story turn: five-hour used 50% → 56%; weekly used 19% → 20%, within unchanged reset windows. These are account-wide observations and may include concurrent work; no task token count is available.
