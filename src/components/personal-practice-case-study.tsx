@@ -1,103 +1,60 @@
 import Link from "next/link";
 
-import { ExperiencePresentation } from "@/components/experience-presentation";
-import type { CaseStudy, CaseStudySectionKind } from "@/lib/case-studies";
+import type { CaseStudy } from "@/lib/case-studies";
 import { publicRoutes } from "@/lib/public-routes";
 
 type PersonalPracticeCaseStudyProps = {
   caseStudy: CaseStudy;
 };
 
-function findSection(caseStudy: CaseStudy, kind: CaseStudySectionKind) {
-  return caseStudy.sections.find((section) => section.kind === kind);
-}
-
-export function PersonalPracticeCaseStudy({
-  caseStudy,
-}: PersonalPracticeCaseStudyProps) {
-  const overview = findSection(caseStudy, "overview");
-  const exploration = findSection(caseStudy, "exploration");
-  const system = findSection(caseStudy, "system-practice");
-  const outcomes = findSection(caseStudy, "outcomes");
-
+export function PersonalPracticeCaseStudy({ caseStudy }: PersonalPracticeCaseStudyProps) {
   return (
     <article className="practice-case-study">
       <header className="practice-case-study-hero">
         <Link className="practice-back-link" href={publicRoutes.work}>
           <span aria-hidden="true">←</span> All work
         </Link>
-        <p className="practice-kicker">{caseStudy.category}</p>
         <h1>{caseStudy.title}</h1>
         <p className="lede">{caseStudy.summary}</p>
+        {(caseStudy.role || caseStudy.scope) && (
+          <dl className="case-study-meta">
+            {caseStudy.role && <div><dt>My role</dt><dd>{caseStudy.role}</dd></div>}
+            {caseStudy.scope && <div><dt>Scope</dt><dd>{caseStudy.scope}</dd></div>}
+          </dl>
+        )}
       </header>
 
-      {overview?.body && (
+      {caseStudy.sections.map((section, index) => (
         <section
-          aria-labelledby={`${caseStudy.slug}-overview-heading`}
+          aria-labelledby={`${caseStudy.slug}-${section.kind}-heading`}
           className="practice-case-study-section"
-          id={`${caseStudy.slug}-overview`}
+          id={`${caseStudy.slug}-${section.kind}`}
+          key={section.kind}
         >
-          <p className="practice-section-index">01</p>
+          <p aria-hidden="true" className="practice-section-index">
+            {String(index + 1).padStart(2, "0")}
+          </p>
           <div>
-            <p className="practice-kicker">The system I inherited</p>
-            <h2 id={`${caseStudy.slug}-overview-heading`}>Fragmentation was the starting condition.</h2>
-            <p className="practice-case-study-copy">{overview.body}</p>
+            <h2 id={`${caseStudy.slug}-${section.kind}-heading`}>
+              {section.title === "System / practice" ? "The shared patterns." : section.title}
+            </h2>
+            {section.body && <p className="practice-case-study-copy">{section.body}</p>}
+            {section.items && (
+              <ul className="practice-case-study-patterns">
+                {section.items.map((item) => (
+                  <li key={item.id ?? item.title}>
+                    <h3>{item.title}</h3>
+                    <p className="practice-case-study-copy">{item.summary}</p>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </section>
-      )}
-
-      {exploration?.body && (
-        <section
-          aria-labelledby={`${caseStudy.slug}-exploration-heading`}
-          className="practice-case-study-section"
-          id={`${caseStudy.slug}-exploration`}
-        >
-          <p className="practice-section-index">02</p>
-          <div>
-            <p className="practice-kicker">How the problem was framed</p>
-            <h2 id={`${caseStudy.slug}-exploration-heading`}>Start with people and workflows.</h2>
-            <p className="practice-case-study-copy">{exploration.body}</p>
-          </div>
-        </section>
-      )}
-
-      {system?.items && (
-        <section
-          aria-labelledby={`${caseStudy.slug}-system-practice-heading`}
-          className="practice-case-study-section practice-case-study-system"
-          id={`${caseStudy.slug}-system-practice`}
-        >
-          <p className="practice-section-index">03</p>
-          <div>
-            <p className="practice-kicker">The resulting framework</p>
-            <h2 id={`${caseStudy.slug}-system-practice-heading`}>A shared system, without pretending the work was linear.</h2>
-            <ExperiencePresentation
-              caseStudy={caseStudy}
-              headingLevel={3}
-              mode="detail"
-            />
-          </div>
-        </section>
-      )}
-
-      {outcomes?.body && (
-        <section
-          aria-labelledby={`${caseStudy.slug}-outcomes-heading`}
-          className="practice-case-study-section"
-          id={`${caseStudy.slug}-outcomes`}
-        >
-          <p className="practice-section-index">04</p>
-          <div>
-            <p className="practice-kicker">Evidence and outcomes</p>
-            <h2 id={`${caseStudy.slug}-outcomes-heading`}>What the work enabled.</h2>
-            <p className="practice-case-study-copy">{outcomes.body}</p>
-          </div>
-        </section>
-      )}
+      ))}
 
       {caseStudy.clientIpDisclaimer && (
         <aside className="practice-case-study-note" aria-label="Client intellectual property note">
-          <p className="practice-kicker">Client work note</p>
           <p>{caseStudy.clientIpDisclaimer}</p>
         </aside>
       )}

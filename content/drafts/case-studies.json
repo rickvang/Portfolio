@@ -471,5 +471,83 @@
       "Outcome language is limited to inspectable artifacts and checks; hiring, conversion, usability, and business impact remain unmeasured.",
       "Published without screenshots; add only source-approved visuals in a later media review."
     ]
+  },
+  {
+    "id": "multi-product-integrations-revision",
+    "slug": "multi-product-integrations-revision",
+    "title": "Multi Product Integrations",
+    "summary": "Shared patterns for teams designing across multiple applications.",
+    "category": "Enterprise B2B",
+    "role": "Primary contributor to workflow patterns, Figma libraries, and guidelines",
+    "scope": "Work across engagements, with a real-estate team example",
+    "reviewStatus": "review-ready",
+    "clientIpDisclaimer": "This story describes shared design practices while protecting client intellectual property.",
+    "sources": [
+      {
+        "id": "owner-interview-2026-10-02",
+        "kind": "user-provided",
+        "label": "Rick Vang's portfolio interview, October 2, 2026",
+        "capturedAt": "2026-10-02"
+      },
+      {
+        "id": "original-integrations-story",
+        "kind": "source-page",
+        "label": "Original public Multi Product Integrations story",
+        "url": "https://www.rickvang.com/projects/multi-product-integrations",
+        "capturedAt": "2026-10-02"
+      }
+    ],
+    "sections": [
+      {
+        "kind": "overview",
+        "title": "The same work, repeated across apps",
+        "body": "Across different engagements, I saw designers solving similar problems in separate applications. Teams repeated workflows and design work that could have been shared. This story brings together that work, with a real-estate engagement as one example.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Rick described a compilation across workplaces, duplicated workflows, and the real-estate example."
+          }
+        ]
+      },
+      {
+        "kind": "system-practice",
+        "title": "A shared starting point",
+        "body": "In the real-estate engagement, I was a primary contributor to the workflow patterns. I worked with three teammates, and we iterated together on different parts of the system. Our work took shape as Figma component libraries and guidelines. I also created a starter layout structure that designers could use in different problem spaces. The patterns covered everyday decisions such as close-button placement, when to use a modal or drawer, and how to display labels and values.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Rick confirmed the three teammates belong to the real-estate engagement, shared iteration, his layout starter, and the Figma libraries and guidelines."
+          }
+        ]
+      },
+      {
+        "kind": "decisions",
+        "title": "Learning from established teams",
+        "body": "The team supported creating the shared system, but established teams found it harder to adapt their existing processes. We worked together to compare approaches. When another team's process fit a scenario better than ours, we adopted it and brought it into the system.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Rick reported team acceptance, adaptation challenges, and adopting another team's process when it fit better."
+          }
+        ]
+      },
+      {
+        "kind": "outcomes",
+        "title": "From the library to the products",
+        "body": "I worked with frontend developers to understand what could and could not be built, while the frontend team implemented the code. The libraries were generally adopted across the projects I worked on. They gave designers shared patterns and a layout to start from, with guidance they could use as they worked through each project's needs.",
+        "evidence": [
+          {
+            "sourceId": "owner-interview-2026-10-02",
+            "note": "Rick described developer feasibility collaboration, frontend-owned implementation, and general adoption across his projects. No numerical outcomes were established."
+          }
+        ]
+      }
+    ],
+    "curationNotes": [
+      "Proposed replacement wording awaiting Rick's explicit content approval; this revision remains outside public routes.",
+      "The original public page supplies background, not evidence for new owner-interview claims.",
+      "The three teammates are attributed only to the real-estate example. No universal adoption, savings metric, or RTL implementation claim is made.",
+      "Existing preview media permissions remain limited to Home and the Work index."
+    ]
   }
 ]

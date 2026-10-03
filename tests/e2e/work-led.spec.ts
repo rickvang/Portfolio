@@ -78,22 +78,28 @@ test("mobile home uses the working-index structure without horizontal overflow",
   });
 });
 
-test("detail pages trace the presentation to visible source sections", async ({ page }) => {
+test("integrations detail explains approved patterns without the generated diagram", async ({ page }) => {
   await page.goto("/work/multi-product-integrations");
 
-  const trace = page.getByRole("navigation", { name: "Source sections for this presentation" });
-  const overviewLink = trace.getByRole("link", { name: "Overview" });
-  await expect(overviewLink).toBeVisible();
-  await expect(trace.getByRole("link", { name: "Exploration" })).toBeVisible();
-  await expect(trace.getByRole("link", { name: "System / practice" })).toBeVisible();
-  await expect(trace.getByRole("link", { name: "Outcomes" })).toBeVisible();
-  await expect(page.getByText("No original product screens are shown or reconstructed; this visual summarizes the approved case-study text.")).toBeVisible();
+  const patterns = page.getByRole("region", { name: "The shared patterns." });
+  await expect(patterns.getByRole("heading", { name: "Standardized Layouts" })).toBeVisible();
+  await expect(patterns.getByRole("heading", { name: "Workflow Completion" })).toBeVisible();
+  await expect(patterns.getByRole("listitem")).toHaveCount(5);
+  await expect(page.getByRole("navigation", { name: "Source sections for this presentation" })).toHaveCount(0);
+  await expect(page.getByText("Media not included", { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "All work" })).toHaveAttribute("href", "/work");
+});
 
-  await overviewLink.focus();
-  await expect(overviewLink).toBeFocused();
-  await overviewLink.click();
-  await expect(page).toHaveURL(/#multi-product-integrations-overview$/);
-  await expect(page.locator("#multi-product-integrations-overview")).toBeVisible();
+test("owner-interview story is readable in review and excluded from publication", async ({ page }) => {
+  await page.goto("/dev/harness/case-study?slug=multi-product-integrations-revision");
+  const revision = page.getByTestId("case-study-review-multi-product-integrations-revision");
+  await expect(revision.getByText("Review-ready content.", { exact: true })).toBeVisible();
+  await expect(revision.getByRole("heading", { name: "Learning from established teams" })).toBeVisible();
+  await expect(revision.getByText(/I worked with three teammates/)).toBeVisible();
+  await expect(revision.getByText(/the frontend team implemented the code/)).toBeVisible();
+  await page.screenshot({ path: "test-results/visual-snapshots/integrations-story-review.png", fullPage: true });
+  await page.goto("/work/multi-product-integrations-revision");
+  await expect(page).toHaveTitle("Case study not found | Rick Vang");
 });
 
 test("unknown case studies remain out of public work routes", async ({ page }) => {

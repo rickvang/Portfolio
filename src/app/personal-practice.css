@@ -667,8 +667,24 @@
   max-width: 62ch;
 }
 
-.practice-case-study-system .experience-presentation {
-  margin-top: 2rem;
+.practice-case-study-patterns {
+  display: grid;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+}
+
+.practice-case-study-patterns h3 {
+  margin: 0 0 0.5rem;
+}
+
+.contact-links {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
 }
 
 .practice-case-study-note {

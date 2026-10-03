@@ -1,22 +1,21 @@
-import { ContactForm } from "@/components/contact-form";
+import contact from "../../../../content/profile/contact.json";
 
 export default function ContactPage() {
   return (
     <div className="public-page">
       <section className="hero public-hero">
-        <p className="eyebrow">Contact</p>
         <h1>Start a conversation.</h1>
         <p className="lede">
-          The contact boundary is local-first for now. It does not transmit data to an external service.
+          For product design opportunities or questions about my work, email me or connect on LinkedIn.
         </p>
-      </section>
-
-      <section aria-labelledby="contact-form-heading" className="content-section split-section">
-        <div className="section-heading">
-          <p className="eyebrow">Message</p>
-          <h2 id="contact-form-heading">What would you like to talk about?</h2>
+        <div className="contact-links">
+          <a className="button button-primary" href={`mailto:${contact.email}`}>
+            {contact.email}
+          </a>
+          <a className="button button-secondary" href={contact.linkedInUrl}>
+            Connect on LinkedIn
+          </a>
         </div>
-        <ContactForm />
       </section>
     </div>
   );
