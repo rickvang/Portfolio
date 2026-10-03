@@ -22,9 +22,9 @@ Diagram derived from the interview. These examples explain the pattern areas; th
 
 Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. As I recall, our earlier approach used a page refresh and drill-down, influenced by development constraints at the time. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.
 
-![Record workflow comparison: the earlier approach, as recalled, used a page refresh and drill-down; the adopted approach used slide-in panels for creating and viewing records.](../../../public/work-media/integrations-record-workflow.svg)
+![Three steps: our earlier page refresh and drill-down approach, as recalled; another team's slide-in pattern for creating and viewing records; and bringing the pattern into our shared Figma libraries and guidelines.](../../../public/work-media/integrations-record-workflow.svg)
 
-Diagram derived from the interview. The earlier approach is based on my recollection. Shapes explain page versus panel, without reconstructing either product.
+Diagram derived from the interview: we learned from another team's slide-in workflow and brought the pattern into our shared system. The earlier page flow is based on my recollection. These are explanatory symbols, not original product screens.
 
 ## Putting the patterns into Figma
 

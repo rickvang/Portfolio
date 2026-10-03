@@ -546,8 +546,8 @@
           "kind": "text-derived",
           "src": "/work-media/integrations-record-workflow.svg",
           "mobileSrc": "/work-media/integrations-record-workflow-mobile.svg",
-          "alt": "Record workflow comparison: the earlier approach, as recalled, used a page refresh and drill-down; the adopted approach used slide-in panels for creating and viewing records.",
-          "caption": "Diagram derived from the interview. The earlier approach is based on my recollection. Shapes explain page versus panel, without reconstructing either product."
+          "alt": "Three steps: our earlier page refresh and drill-down approach, as recalled; another team's slide-in pattern for creating and viewing records; and bringing the pattern into our shared Figma libraries and guidelines.",
+          "caption": "Diagram derived from the interview: we learned from another team's slide-in workflow and brought the pattern into our shared system. The earlier page flow is based on my recollection. These are explanatory symbols, not original product screens."
         },
         "evidence": [
           {

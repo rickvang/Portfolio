@@ -1,25 +1,43 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" role="img" aria-labelledby="title desc">
-  <title id="title">A record page and a record slide-in panel</title>
-  <desc id="desc">A diagram derived from the interview. The earlier approach, as recalled, used a page refresh and drill-down. The adopted approach created or viewed a record in a slide-in panel. The shapes are abstract containers, not product screens.</desc>
+  <title id="title">Learning from another team and sharing the pattern</title>
+  <desc id="desc">Three steps: our earlier page refresh and drill-down approach, as recalled; another team's slide-in pattern for creating and viewing records; and bringing that pattern into our shared Figma libraries and guidelines. These are explanatory symbols, not original product screens.</desc>
   <rect width="720" height="340" fill="#fffefc"/>
-  <path d="M360 28V312" stroke="#cfcfcc"/>
-  <g font-family="Inter, Arial, sans-serif">
-    <text x="32" y="57" font-size="25" font-weight="600" fill="#171614">Earlier (as recalled)</text>
-    <text x="392" y="57" font-size="27" font-weight="600" fill="#b7371c">Adopted</text>
-  </g>
-  <rect x="32" y="86" width="296" height="166" rx="5" fill="#f7f6f2" stroke="#6b665f" stroke-width="1.5"/>
-  <path d="M392 86H449M392 252H449" stroke="#cfcfcc" stroke-dasharray="4 5"/>
-  <rect x="462" y="86" width="226" height="166" rx="5" fill="#f7f6f2" stroke="#b7371c" stroke-width="1.5"/>
   <g font-family="Inter, Arial, sans-serif" fill="#171614">
-    <g font-size="30" font-weight="550">
-      <text x="69" y="147">Record</text>
-      <text x="69" y="187">page</text>
-      <text x="486" y="143">Record</text>
-      <text x="486" y="182">panel</text>
+    <g font-size="21" font-weight="600">
+      <text x="24" y="40">Our earlier</text>
+      <text x="24" y="67">approach</text>
+      <text x="262" y="40">Another team's</text>
+      <text x="262" y="67">pattern</text>
+      <text x="500" y="40">Our shared</text>
+      <text x="500" y="67">system</text>
     </g>
-    <g font-size="22" fill="#6b665f">
-      <text x="32" y="299">Refresh + drill-down</text>
-      <text x="392" y="299">Create / view in a slide-in</text>
+    <text x="24" y="91" font-size="15" fill="#6b665f">As I remember it</text>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M232 182H250M244 176L250 182L244 188" stroke="#6b665f"/>
+    <path d="M470 182H488M482 176L488 182L482 188" stroke="#b7371c"/>
+    <rect x="24" y="117" width="196" height="120" rx="5" fill="#f7f6f2" stroke="#6b665f"/>
+    <path d="M45 144H132M45 155H109" stroke="#cfcfcc"/>
+    <path d="M262 117H458V237H262" stroke="#cfcfcc" stroke-dasharray="4 5"/>
+    <rect x="353" y="117" width="105" height="120" rx="5" fill="#f7f6f2" stroke="#b7371c"/>
+    <path d="M330 144H294M301 137L294 144L301 151" stroke="#b7371c"/>
+    <rect x="511" y="126" width="117" height="91" rx="5" fill="#f7f6f2" stroke="#6b665f"/>
+    <rect x="565" y="151" width="117" height="91" rx="5" fill="#fffefc" stroke="#b7371c"/>
+    <path d="M584 179H663M584 192H650M584 205H663" stroke="#cfcfcc"/>
+  </g>
+  <g font-family="Inter, Arial, sans-serif" fill="#171614">
+    <text x="45" y="194" font-size="22" font-weight="550">Record page</text>
+    <text x="371" y="180" font-size="20" font-weight="550">Record</text>
+    <text x="371" y="205" font-size="20" font-weight="550">slide-in</text>
+    <text x="529" y="146" font-size="18" font-weight="550">Library</text>
+    <text x="584" y="231" font-size="17" font-weight="550">Guidelines</text>
+    <g font-size="18" fill="#6b665f">
+      <text x="24" y="281">Page refresh</text>
+      <text x="24" y="306">+ drill-down</text>
+      <text x="262" y="281">Create / view records</text>
+      <text x="262" y="306">in a slide-in</text>
+      <text x="500" y="281">Reuse the pattern in</text>
+      <text x="500" y="306">Figma + guidelines</text>
     </g>
   </g>
 </svg>
