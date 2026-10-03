@@ -16,15 +16,15 @@ The work covered decisions designers make throughout an application: where close
 
 ![Two label/value arrangements: horizontal pairs put labels beside values; vertical pairs put labels above values.](../../../public/work-media/integrations-label-value.svg)
 
-Diagram derived from the interview. These examples explain the pattern areas; they are not original project screens.
+Horizontal and vertical label/value pairs were among the patterns we defined.
 
 ## Learning from another team's record workflow
 
-Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. As I recall, our earlier approach used a page refresh and drill-down, influenced by development constraints at the time. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.
+Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.
 
-![Three steps: our earlier page refresh and drill-down approach, as recalled; another team's slide-in pattern for creating and viewing records; and bringing the pattern into our shared Figma libraries and guidelines.](../../../public/work-media/integrations-record-workflow.svg)
+![A page-based record workflow, another team's slide-in pattern for creating and viewing records, and adoption of the slide-in pattern into shared Figma libraries and guidelines.](../../../public/work-media/integrations-record-workflow.svg)
 
-Diagram derived from the interview: we learned from another team's slide-in workflow and brought the pattern into our shared system. The earlier page flow is based on my recollection. These are explanatory symbols, not original product screens.
+We adopted another team's slide-in workflow and added the pattern to our shared Figma libraries and guidelines.
 
 ## Putting the patterns into Figma
 

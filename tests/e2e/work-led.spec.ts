@@ -110,7 +110,6 @@ test("the expanded draft can be reviewed in the actual story presentation", asyn
     await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
     await expect(story.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
     await expect(story.getByRole("heading", { name: "Learning from another team's record workflow" })).toBeVisible();
-    await expect(story.getByText(/As I recall, our earlier approach used a page refresh and drill-down/)).toBeVisible();
     await expect(story.getByText(/We adopted the slide-in workflow/)).toBeVisible();
     await expect(story.getByText(/more sophisticated dashboards and rules for progressive disclosure/)).toBeVisible();
     await expect(story.getByText(/I worked with three teammates/)).toBeVisible();
@@ -130,7 +129,7 @@ test("the expanded draft can be reviewed in the actual story presentation", asyn
         path: `test-results/visual-snapshots/integrations-figure-${index}-${width}.png`,
       });
     }
-    await expect(story.getByText(/Diagram derived from the interview/)).toHaveCount(2);
+    await expect(story).not.toContainText(/derived from the interview|as I recall|as I remember|recollection/i);
     expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
     await page.screenshot({ path: `test-results/visual-snapshots/integrations-story-${width}.png`, fullPage: true });
   }
