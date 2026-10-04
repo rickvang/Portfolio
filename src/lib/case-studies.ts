@@ -85,6 +85,15 @@ export const caseStudySchema = z
     curationNotes: z.array(z.string().min(1)).default([]),
   })
   .superRefine((caseStudy, context) => {
+    if (caseStudy.practiceOverview && !caseStudy.sections.some(
+      (section) => section.kind === "system-practice" || section.kind === "decisions",
+    )) {
+      context.addIssue({
+        code: "custom",
+        message: "A practice overview needs a System chapter (system-practice or decisions).",
+        path: ["practiceOverview"],
+      });
+    }
     const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
     caseStudy.practiceOverview?.evidence.forEach((evidence, evidenceIndex) => {
       if (!sourceIds.has(evidence.sourceId)) {

@@ -4,8 +4,10 @@ test("practice overview and chapter links support scanning and keyboard navigati
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/work/ui-design-practices");
 
-  const overview = page.getByRole("figure", { name: "Portfolio redesign From structure to a working interface" });
+  const overview = page.getByRole("figure", { name: "Build sequence From structure to a working interface" });
   await expect(overview).toBeVisible();
+  await expect(page.locator(".case-study-hero").getByRole("figure")).toHaveCount(0);
+  await expect(page.getByRole("region", { name: "System", exact: true }).getByRole("figure")).toHaveCount(1);
   await expect(overview.getByRole("listitem")).toHaveCount(4);
   await expect(page.getByText("Source media deferred", { exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Project structure", exact: true })).toHaveCount(0);
@@ -19,6 +21,7 @@ test("practice overview and chapter links support scanning and keyboard navigati
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/#ui-design-practices-chapter-system$/);
   await expect(page.getByRole("heading", { level: 2, name: "System", exact: true })).toBeInViewport();
+  await expect(overview).toBeInViewport();
 
   for (const link of await chapters.getByRole("link").all()) {
     const target = await link.getAttribute("href");
@@ -49,7 +52,7 @@ test("practice stays readable at narrow widths and with reduced motion", async (
   }
 
   await page.goto("/dev/harness/case-study?slug=ui-design-practices");
-  await expect(page.getByRole("figure", { name: "Portfolio redesign From structure to a working interface" })).toBeVisible();
+  await expect(page.getByRole("figure", { name: "Build sequence From structure to a working interface" })).toBeVisible();
   await expect(page.getByText("Source provenance", { exact: true })).toBeVisible();
 
   await page.goto("/work/ui-design-practices-revision");

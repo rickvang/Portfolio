@@ -147,6 +147,27 @@ describe("case-study content contract", () => {
     }
   });
 
+  it("requires a System chapter for a practice overview", () => {
+    const caseStudy = getApprovedCaseStudyBySlug("ui-design-practices")!;
+    const withoutSystem = caseStudy.sections.filter(
+      (section) => section.kind !== "system-practice" && section.kind !== "decisions",
+    );
+    const result = caseStudySchema.safeParse({ ...caseStudy, sections: withoutSystem });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues).toContainEqual(expect.objectContaining({ path: ["practiceOverview"] }));
+    }
+    expect(caseStudySchema.safeParse({ ...caseStudy, practiceOverview: undefined, sections: withoutSystem }).success).toBe(true);
+    for (const kind of ["system-practice", "decisions"]) {
+      expect(caseStudySchema.safeParse({
+        ...caseStudy,
+        sections: caseStudy.sections.filter((section) =>
+          section.kind !== "system-practice" && section.kind !== "decisions" || section.kind === kind,
+        ),
+      }).success).toBe(true);
+    }
+  });
+
   it("filters mixed approval states without publishing review-ready authored work", () => {
     const reviewReady = caseStudySchema.parse({
       ...importedCaseStudies[0],
