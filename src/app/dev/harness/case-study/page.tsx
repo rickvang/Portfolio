@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 
 import { CaseStudyTemplate } from "@/components/case-study-template";
+import { AiCouncilExample, DesignSystemExample, UiPracticeExample } from "@/components/case-study-examples";
+import { IntegrationsCaseStudyExample } from "@/components/integrations-case-study-example";
 import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
 import { PersonalPracticeShell } from "@/components/personal-practice-shell";
 import { getCaseStudyBySlug } from "@/lib/case-studies";
@@ -25,14 +27,35 @@ export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHa
     notFound();
   }
 
-  if (params.view === "story") {
+  const examples = [
+    { slug: "multi-product-integrations-revision", title: "Integrations", component: IntegrationsCaseStudyExample },
+    { slug: "ai-systems-revision", title: "AI Systems", component: AiCouncilExample },
+    { slug: "design-systems-revision", title: "Design Systems", component: DesignSystemExample },
+    { slug: "ui-design-practices-revision", title: "UI Design Practices", component: UiPracticeExample },
+  ];
+  const Example = examples.find((example) => example.slug === caseStudy.slug)?.component;
+
+  if (params.view === "example" && !Example) {
+    notFound();
+  }
+
+  if (params.view === "story" || params.view === "example") {
     return (
       <PersonalPracticeShell pathname="/work/multi-product-integrations">
         <div className="public-page" data-testid="case-study-story-review">
           <p className="case-study-review-banner" role="note">
             Working draft for review. <a href={`?slug=${caseStudy.slug}`}>Review sources and evidence</a>
           </p>
-          <PersonalPracticeCaseStudy caseStudy={caseStudy} />
+          {params.view === "example" && (
+            <nav className="case-study-review-links" aria-label="Case-study examples">
+              {examples.map((example) => <a key={example.slug} href={`?slug=${example.slug}&view=example`} aria-current={example.slug === caseStudy.slug ? "page" : undefined}>{example.title}</a>)}
+            </nav>
+          )}
+          {params.view === "example" && Example ? (
+            <Example caseStudy={caseStudy} />
+          ) : (
+            <PersonalPracticeCaseStudy caseStudy={caseStudy} />
+          )}
         </div>
       </PersonalPracticeShell>
     );

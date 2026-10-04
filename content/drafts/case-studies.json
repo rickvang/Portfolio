@@ -489,7 +489,7 @@
     "id": "multi-product-integrations-revision",
     "slug": "multi-product-integrations-revision",
     "title": "Multi Product Integrations",
-    "summary": "Shared patterns for teams designing across multiple applications.",
+    "summary": "Designers were repeating similar workflow decisions across separate apps. I helped define shared patterns, Figma libraries and a layout starter that teams could reuse.",
     "category": "Enterprise B2B",
     "role": "Primary contributor to workflow patterns, Figma libraries, and guidelines",
     "scope": "Work across engagements, including a real-estate example",
@@ -537,6 +537,23 @@
         "kind": "problem",
         "title": "The decisions we kept repeating",
         "body": "The work covered decisions designers make throughout an application: where close buttons belong, when to use a modal or drawer, and how to lay out information. We defined patterns for reading order, such as top to bottom and left to right, and for presenting labels and values horizontally or vertically.",
+        "items": [
+          {
+            "id": "task-containers",
+            "title": "Task containers",
+            "summary": "Modal and drawer usage, including conventions for close-button placement."
+          },
+          {
+            "id": "reading-order",
+            "title": "Reading order",
+            "summary": "Top-to-bottom and left-to-right layout patterns."
+          },
+          {
+            "id": "information-pairs",
+            "title": "Information pairs",
+            "summary": "Horizontal and vertical arrangements for labels and values."
+          }
+        ],
         "illustration": {
           "kind": "text-derived",
           "src": "/work-media/integrations-label-value.svg",
@@ -554,7 +571,24 @@
       {
         "kind": "exploration",
         "title": "Learning from another team's record workflow",
-        "body": "Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.",
+        "body": "Some other apps had more sophisticated dashboards and rules for progressive disclosure. We found scenarios where their approach fit better than ours. We adopted the slide-in workflow for creating or viewing records and brought that pattern into our shared Figma libraries and guidelines.",
+        "items": [
+          {
+            "id": "adopted-workflow",
+            "title": "Another team’s slide-in workflow",
+            "summary": "Create or view a record"
+          },
+          {
+            "id": "shared-pattern",
+            "title": "Shared Figma libraries",
+            "summary": "Pattern and usage guidelines"
+          },
+          {
+            "id": "pattern-reuse",
+            "title": "Reuse across projects",
+            "summary": "Generally adopted in the projects I worked on"
+          }
+        ],
         "illustration": {
           "kind": "text-derived",
           "src": "/work-media/integrations-record-workflow.svg",
@@ -573,6 +607,23 @@
         "kind": "system-practice",
         "title": "Putting the patterns into Figma",
         "body": "We built Figma component libraries with guidelines for the patterns we had defined together. I also created a layout starter that designers could use when working on a different problem space. Across the pattern work, I worked with frontend developers to identify what we could and couldn't build. The frontend team implemented the code.",
+        "items": [
+          {
+            "id": "figma-libraries",
+            "title": "Figma libraries",
+            "summary": "Shared component libraries for the patterns we defined together."
+          },
+          {
+            "id": "pattern-guidelines",
+            "title": "Guidelines",
+            "summary": "Documented guidance for using the shared patterns."
+          },
+          {
+            "id": "layout-starter",
+            "title": "Layout starter",
+            "summary": "A starting structure I created for different problem spaces."
+          }
+        ],
         "evidence": [
           {
             "sourceId": "owner-interview-2026-10-02",
@@ -603,10 +654,10 @@
   {
     "id": "ai-systems-revision",
     "slug": "ai-systems-revision",
-    "title": "AI Systems",
-    "summary": "An AI council for exploring product ideas through executive, manager, and worker perspectives.",
+    "title": "AI council for product decisions",
+    "summary": "I built an AI council to examine product ideas through executive, manager and worker perspectives. Each persona assessed the same question against its own work and pain points.",
     "category": "AI Systems",
-    "role": "Creator of the AI council",
+    "role": "Created the persona framework and AI council; compared perspectives and developed a use-case scenario",
     "scope": "Product ideas, data perspectives, and use-case development",
     "reviewStatus": "review-ready",
     "sources": [
@@ -615,13 +666,25 @@
         "kind": "user-provided",
         "label": "Rick Vang's description of the AI council, October 3, 2026",
         "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "owner-persona-generator-2026-10-03",
+        "kind": "user-provided",
+        "label": "Cross-Industry Persona Generation Instructions, supplied by Rick Vang",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "owner-contractor-persona-2026-10-03",
+        "kind": "user-provided",
+        "label": "Minnesota contractor persona generated with Rick Vang's instructions, referenced ChatGPT conversation",
+        "capturedAt": "2026-10-03"
       }
     ],
     "sections": [
       {
         "kind": "overview",
         "title": "Questioning a product idea",
-        "body": "I created an AI council to work through product questions we had previously been answering through assumptions. Would an idea be useful in someone's work? How might it affect an executive? Where might it offer little value? I wanted several role perspectives to help me explore those questions.",
+        "body": "I wanted to explore whether a product idea would help an executive, a manager or a worker on the ground. Each would encounter the same idea from a different position, with different responsibilities and pain points. I created the council to bring those perspectives into product discovery.",
         "evidence": [
           {
             "sourceId": "owner-ai-council-2026-10-03",
@@ -631,34 +694,173 @@
       },
       {
         "kind": "context",
-        "title": "Building the three personas",
-        "body": "The council included an executive, a manager, and a worker on the ground. Each had a compiled profile based on industry best practices and whitepapers about the role. The profiles captured typical concerns, pain points, core activities, and work done only occasionally. These details gave each AI persona a view of the role's work to use when answering.",
+        "title": "Giving each role a working context",
+        "items": [
+          {
+            "id": "executive",
+            "title": "Executive",
+            "summary": "Compiled AI persona"
+          },
+          {
+            "id": "manager",
+            "title": "Manager",
+            "summary": "Compiled AI persona"
+          },
+          {
+            "id": "worker",
+            "title": "Worker",
+            "summary": "Compiled AI persona"
+          },
+          {
+            "id": "contractor-workflow",
+            "title": "Work from lead to closeout",
+            "summary": "Site visit, estimate, proposal, construction, change orders, inspection and closeout."
+          },
+          {
+            "id": "contractor-decision",
+            "title": "Decisions he owns",
+            "summary": "Which jobs to bid, pricing and margin, and crew and subcontractor selection."
+          },
+          {
+            "id": "contractor-trust",
+            "title": "What earns trust",
+            "summary": "Fast entry from the field, no duplicate data entry and a clear trail for approvals."
+          },
+          {
+            "id": "contractor-validate",
+            "title": "Question to test with contractors",
+            "summary": "What gets lost between you, the client, the crew and subcontractors?"
+          }
+        ],
+        "body": "I built role profiles from industry practices and whitepapers. They connected the work people do, the decisions they own and what would make a tool useful or hard to trust. A separate Minnesota contractor profile generated with the same instructions shows what that looked like.",
         "evidence": [
           {
             "sourceId": "owner-ai-council-2026-10-03",
-            "note": "Rick named the executive, manager and worker personas and confirmed compiled profiles informed by industry best practices and whitepapers, with typical role concerns, pain points, core activities and occasional activities. Specific papers and profile examples have not been supplied."
+            "note": "Rick named the executive, manager and worker personas and confirmed compiled profiles informed by industry best practices and whitepapers, with typical role concerns, pain points, core activities and occasional activities. Their specific profiles and cited papers have not been supplied; the Minnesota contractor output is a separate example."
+          },
+          {
+            "sourceId": "owner-persona-generator-2026-10-03",
+            "note": "The owner-supplied generator instructions establish the framework fields and research boundaries."
+          },
+          {
+            "sourceId": "owner-contractor-persona-2026-10-03",
+            "note": "A separate generated Minnesota contractor profile names the lead-to-closeout workflow, direct decisions about bidding/pricing/crews, trust requirements for field entry and approval trails, and a question about information lost across handoffs. The displayed items are compressed from that actual output. This contractor was not one of the three AI council participants."
+          }
+        ]
+      },
+      {
+        "kind": "problem",
+        "title": "The early answers explained usefulness",
+        "body": "Before the personas were in place, the AI reasoned about the request and explained how it would be useful. After I added the framework, the answers evaluated the request against each role’s workload and pain points. They could tell me whether it was useful from that perspective at all.",
+        "items": [
+          {
+            "id": "before-personas",
+            "title": "Before the persona framework",
+            "summary": "Reason about the request and explain how it would be useful."
+          },
+          {
+            "id": "with-personas",
+            "title": "With the persona framework",
+            "summary": "Evaluate the request against the role’s workload and pain points, including whether it is useful at all."
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "owner-ai-council-2026-10-03",
+            "note": "Owner's October 3 clarification explicitly describes before/after AI response behavior. No exact role response, concrete product, real-user validation or measured improvement is supplied."
           }
         ]
       },
       {
         "kind": "exploration",
-        "title": "Same question, different perspectives",
-        "body": "I gave all three personas the same question and context. One question was, 'Would this product idea be useful to you in your work?' Each answered through its compiled profile. The input stayed consistent, while the role's concerns, pain points, and activities shaped the response. I could then compare how the three personas thought about the same idea and the data involved.",
+      "title": "Same question, different judgments",
+        "items": [
+          {
+            "id": "shared-question",
+            "title": "Shared question",
+            "summary": "Would this product idea be useful to you in your work?"
+        },
+        {
+          "id": "priority-executive",
+          "title": "Executive",
+          "summary": "Business value, strategic priorities and organizational risk."
+        },
+        {
+          "id": "priority-manager",
+          "title": "Manager",
+          "summary": "Team performance, resource allocation and coordination."
+        },
+        {
+          "id": "priority-worker",
+          "title": "Worker",
+          "summary": "Completing daily tasks, practical tools and avoiding extra work."
+          }
+        ],
+      "body": "Each AI persona answered through its compiled role profile. Responsibilities, workload and pain points shaped the responses, so the same question produced different perspectives. I could compare whether the idea seemed useful to each role and how each thought about the data.",
         "evidence": [
           {
             "sourceId": "owner-ai-council-2026-10-03",
-            "note": "Rick explicitly confirmed that the question and context were the same for all personas, while answers came from their compiled role perspectives. The question wording paraphrases his stated examples."
+          "note": "Rick explicitly confirmed the same question/context across personas and clarified that asking the three personas the same question could produce different responses. His earlier clarification establishes evaluation against role workloads and pain points. This describes AI output behavior, not validation with real users. No exact responses or specific role disagreement are reconstructed. The question wording paraphrases his stated examples. The priority items are authored role examples; they are not recovered original profiles or observed responses."
           }
         ]
       },
       {
         "kind": "system-practice",
-        "title": "Turning responses into a use case",
-        "body": "I compiled the product perspectives and different ways of thinking about the data, then used that material to create a use-case scenario. The scenario combined the roles' responses into a way to explore how someone might use the product idea in their work.",
+        "title": "What changed for product and UX",
+        "body": "The council helped me look past a general ‘this could be useful’ answer. I could ask whose work the idea actually served, where it might add friction and what each role needed from the data. I brought those perspectives together in a use-case scenario.",
+        "items": [
+          {
+            "id": "product-direction",
+            "title": "Product direction",
+            "summary": "Before treating an idea as a priority, I could compare its value by role and identify what still needed research. That gave scope discussions a clearer basis than general usefulness."
+          },
+          {
+            "id": "ux-direction",
+            "title": "UX direction",
+            "summary": "Core and occasional tasks, decision rights and trust needs gave the scenario a structure: what each role needed to see, what they could act on and where more context was needed."
+          }
+        ],
         "evidence": [
           {
             "sourceId": "owner-ai-council-2026-10-03",
-            "note": "Rick confirmed compiling product perspectives, different ways to think about data, and creating a use-case scenario. No specific scenario steps, real-user validation, shipped result or measured improvement is claimed."
+            "note": "Rick confirmed that the personas evaluated whether ideas were useful against role workloads and pain points, and that he compiled product perspectives and ways of thinking about data into a use-case scenario. The product/UX decision implications are a bounded interpretation of that method; no specific scope decision, scenario step, real-user validation, shipped result or measured improvement is claimed."
+          },
+          {
+            "sourceId": "owner-persona-generator-2026-10-03",
+            "note": "Real research remains necessary under the generator instructions. The owner-reported outcome is a use-case scenario assembled from role perspectives, without invented scenario steps or exact persona responses."
+          }
+        ]
+      },
+      {
+        "kind": "decisions",
+        "title": "Keeping assumptions visible",
+        "body": "The generator separated evidence from assumptions, assigned confidence levels and identified questions for research with real users.",
+        "items": [
+          {
+            "id": "confidence-high",
+            "title": "High",
+            "summary": "Strong evidence from direct research or multiple reliable internal sources"
+          },
+          {
+            "id": "confidence-medium",
+            "title": "Medium",
+            "summary": "Some evidence from internal materials, SMEs or customer-facing teams"
+          },
+          {
+            "id": "confidence-low",
+            "title": "Low",
+            "summary": "Mostly inferred or synthetic"
+          },
+          {
+            "id": "confidence-unknown",
+            "title": "Unknown",
+            "summary": "Not enough evidence to support the claim"
+          }
+        ],
+        "evidence": [
+          {
+            "sourceId": "owner-persona-generator-2026-10-03",
+            "note": "The instructions require source priorities, confidence labels, separate assumptions and validation questions, and prohibit treating synthetic behavior as fact. The actual source mix and compliance of generated outputs are not established by the instructions."
           }
         ]
       }
@@ -667,14 +869,16 @@
       "Working revision centered on Rick's AI council and product exploration rather than the published orchestration-contract narrative. Publication remains a separate content decision.",
       "The three participants are AI personas, not interviewed users. Their compiled industry/whitepaper profiles establish perspectives for exploration; they do not validate demand or actual role needs.",
       "Rick cannot recall the specific product idea. A persona-aware dashboard was suggested tentatively and is not asserted as the actual example. No concrete scenario details, exact persona responses, named papers or measured outcomes are invented.",
-      "Interview provenance, drafting commentary and uncertainty stay in internal evidence and curation notes. Reader-facing prose describes the work."
+      "Interview provenance, drafting commentary and uncertainty stay in internal evidence and curation notes. Reader-facing prose describes the work.",
+      "The owner supplied the persona generator instructions on October 3. They support the framework structure and intended research discipline, not an assertion that real interviews occurred or every generated output complied. The original attachment remains the source.",
+      "A separate Minnesota contractor persona generated with those instructions was supplied through a referenced ChatGPT conversation. Four compressed details are shown as a real generator artifact, not as an original executive, manager or worker council profile or as validated customer research."
     ]
   },
   {
     "id": "design-systems-revision",
     "slug": "design-systems-revision",
     "title": "Design Systems",
-    "summary": "Reusable styles, screen templates and workflow patterns for teams redesigning legacy capabilities.",
+    "summary": "Teams redesigning legacy capabilities needed a more consistent starting point. I designed the platform framework as part of a shared library effort.",
     "category": "Design Systems",
     "role": "Platform framework design with cross-team collaboration",
     "scope": "Shared foundations, density guidance, templates and workflow patterns",
@@ -729,6 +933,18 @@
       {
         "kind": "system-practice",
         "title": "Shared foundations, different density needs",
+        "items": [
+          {
+            "id": "display-marketing",
+            "title": "Display marketing",
+            "summary": "Style guide with density guidance for this surface"
+          },
+          {
+            "id": "enterprise-interface",
+            "title": "Enterprise interface",
+            "summary": "Interface guidance for different density needs"
+          }
+        ],
         "body": "The core library held reusable styles and tokens. Density needed guidance suited to the surface being designed, so we maintained a display marketing style guide alongside enterprise interface guidance. Those surfaces had different needs, even within the same system. Designers could start with shared foundations and use the density guidance that matched their surface. Keeping both sets of guidance in the system allowed reuse to accommodate those differences.",
         "evidence": [
           {
@@ -744,6 +960,33 @@
       {
         "kind": "decisions",
         "title": "Starting a new design from a reusable screen",
+        "items": [
+          {
+            "id": "screen-templates",
+            "title": "Screen templates",
+            "summary": "Duplicate an existing screen and adapt it to a specific use case."
+          },
+          {
+            "id": "onboarding",
+            "title": "Onboarding",
+            "summary": "Shared workflow pattern"
+          },
+          {
+            "id": "work-progression",
+            "title": "Work creation and progression",
+            "summary": "Shared workflow pattern"
+          },
+          {
+            "id": "asset-inventory",
+            "title": "Asset and inventory management",
+            "summary": "Shared workflow pattern"
+          },
+          {
+            "id": "account-settings",
+            "title": "Account configuration and settings",
+            "summary": "Shared workflow pattern"
+          }
+        ],
         "body": "We created a library of reusable screens that designers could duplicate and modify for a specific use case. A template carried an existing design into the new task, giving the designer a starting point they could adapt. We also defined patterns for onboarding, work creation and progression, asset and inventory management, and account configuration and settings. The templates provided screens to work from, while the patterns guided how users moved through recurring workflows. This gave designers reusable material at the level of a screen and the task it supported.",
         "evidence": [
           {
@@ -786,7 +1029,7 @@
     "id": "ui-design-practices-revision",
     "slug": "ui-design-practices-revision",
     "title": "UI Design Practices",
-    "summary": "I directed the rickvang.com redesign through decisions about project hierarchy, persistent navigation and color, then reviewed how those choices appeared in the built interface.",
+    "summary": "I wanted hiring managers to reach representative work early. I directed the portfolio’s hierarchy, navigation and color, then reviewed the interface built by AI agents.",
     "category": "UI Design Practice",
     "role": "Portfolio design direction and rendered review",
     "scope": "rickvang.com portfolio redesign",
@@ -847,6 +1090,19 @@
         "label": "Portfolio desktop and mobile navigation implementation",
         "url": "https://github.com/rickvang/Portfolio/blob/042819bf9a489e91a067689926c56b24ff222c4e/src/components/personal-practice-shell.tsx",
         "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-rendered-artifacts",
+        "kind": "observed",
+        "label": "Current local Portfolio introduction and desktop/mobile navigation captures, excluding client media",
+        "capturedAt": "2026-10-03"
+      },
+      {
+        "id": "portfolio-palette-values",
+        "kind": "repository",
+        "label": "Recorded A/B/C color study values in globals.css and personal-practice.css",
+        "url": "https://github.com/rickvang/Portfolio/tree/0bd4ca2918d73c87736674755e3607b587d62292/src/app",
+        "capturedAt": "2026-10-03"
       }
     ],
     "sections": [
@@ -872,6 +1128,33 @@
       {
         "kind": "context",
         "title": "Giving the work priority",
+        "items": [
+          {
+            "id": "introduction",
+            "title": "Introduction",
+            "summary": "Short orientation"
+          },
+          {
+            "id": "selected-work",
+            "title": "Selected Work",
+            "summary": "Representative projects first"
+          },
+          {
+            "id": "how-i-work",
+            "title": "How I work",
+            "summary": "Compact supporting context"
+          },
+          {
+            "id": "notes",
+            "title": "Notes",
+            "summary": "When authored posts exist"
+          },
+          {
+            "id": "background-contact",
+            "title": "About and Contact",
+            "summary": "Background and next steps"
+          }
+        ],
         "body": "The rendered pilot leaned toward an editorial publication, with supporting sections competing for attention. The revision put a short introduction before Selected Work, followed by a compact How I work section. Notes appeared only when there were actual authored posts, with background and contact later in the page. That order made project examples the main evidence for someone deciding whether to read further.",
         "evidence": [
           {
@@ -887,6 +1170,28 @@
       {
         "kind": "exploration",
         "title": "Bringing back the rail",
+        "items": [
+          {
+            "id": "work",
+            "title": "Work",
+            "summary": "Navigation destination"
+          },
+          {
+            "id": "notes",
+            "title": "Notes",
+            "summary": "Navigation destination"
+          },
+          {
+            "id": "about",
+            "title": "About",
+            "summary": "Navigation destination"
+          },
+          {
+            "id": "contact",
+            "title": "Contact",
+            "summary": "Navigation destination"
+          }
+        ],
         "body": "The first redesign used a dark left rail. A later pilot replaced it with a horizontal header and serif headings, but I preferred the persistent rail and rejected the serif voice. I asked for the rail to return with a lighter treatment, keeping Work, Notes, About and Contact beside the reading column. The revision used warm, light surfaces and Inter throughout, with scale, weight and spacing handling the hierarchy. A permanent column would take too much of the reading width on a phone, so the built interface changed to a compact top bar and menu drawer. The destinations stayed the same. Opening the drawer moved keyboard focus into it, and Escape closed it and returned focus to the menu.",
         "evidence": [
           {
@@ -910,6 +1215,23 @@
       {
         "kind": "decisions",
         "title": "Reviewing color in context",
+        "items": [
+          {
+            "id": "existing-warm",
+            "title": "Existing warm",
+            "summary": "Compared in the portfolio pages"
+          },
+          {
+            "id": "reduced-warm",
+            "title": "Less saturated warm",
+            "summary": "The option I selected"
+          },
+          {
+            "id": "near-neutral",
+            "title": "Near-neutral",
+            "summary": "Compared in the portfolio pages"
+          }
+        ],
         "body": "The agents rendered three palettes against the same portfolio pages: the existing warm colors, a less saturated warm option and a near-neutral option. Content, typography, layout and the original orange accent stayed fixed, so the comparison showed the background alongside the work it would surround. I chose the less saturated warm option. The original orange remained for active navigation and selected emphasis, with a darker orange for small text on light surfaces.",
         "evidence": [
           {
