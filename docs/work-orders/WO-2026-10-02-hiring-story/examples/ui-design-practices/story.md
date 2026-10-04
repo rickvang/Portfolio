@@ -1,6 +1,6 @@
 # UI Design Practices
 
-I directed the rickvang.com redesign through decisions about project hierarchy, persistent navigation and color, then reviewed how those choices appeared in the built interface.
+I wanted hiring managers to reach representative work early. I directed the portfolio’s hierarchy, navigation and color, then reviewed the interface built by AI agents.
 
 **My role:** Portfolio design direction and rendered review
 

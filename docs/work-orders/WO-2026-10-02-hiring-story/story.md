@@ -1,6 +1,6 @@
 # Multi Product Integrations
 
-Shared patterns for teams designing across multiple applications.
+Designers were repeating similar workflow decisions across separate apps. I helped define shared patterns, Figma libraries and a layout starter that teams could reuse.
 
 ## Why we needed common patterns
 
@@ -20,7 +20,7 @@ Horizontal and vertical label/value pairs were among the patterns we defined.
 
 ## Learning from another team's record workflow
 
-Some other apps had more sophisticated dashboards and rules for progressive disclosure, or how information is revealed as people work through a task. We looked at how those teams handled similar workflows and found scenarios where their approach fit better than ours. One example was creating or viewing a record in a slide-in panel. We adopted the slide-in workflow and brought it into our system as a pattern for creating and viewing records.
+Some other apps had more sophisticated dashboards and rules for progressive disclosure. We found scenarios where their approach fit better than ours. We adopted the slide-in workflow for creating or viewing records and brought that pattern into our shared Figma libraries and guidelines.
 
 ![A page-based record workflow, another team's slide-in pattern for creating and viewing records, and adoption of the slide-in pattern into shared Figma libraries and guidelines.](../../../public/work-media/integrations-record-workflow.svg)
 

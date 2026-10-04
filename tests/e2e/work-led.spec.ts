@@ -135,6 +135,79 @@ test("the expanded draft can be reviewed in the actual story presentation", asyn
   }
 });
 
+test("the one-project example shows the work and keeps collaboration detail accessible", async ({ page }) => {
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 900 });
+    await page.goto("/dev/harness/case-study?slug=multi-product-integrations-revision&view=example");
+    const article = page.getByTestId("case-study-story-review").locator("article");
+    await expect(article.getByRole("heading", { level: 1, name: "Multi Product Integrations" })).toBeVisible();
+    await expect(article).toContainText("Designers were repeating similar workflow decisions");
+    await expect(article).toContainText("Primary contributor to workflow patterns");
+    await expect(article.getByRole("figure", { name: "One decision. Two arrangements." })).toBeVisible();
+    await expect(article.getByRole("heading", { name: "A better pattern came from another team" })).toBeVisible();
+    await expect(article.getByRole("heading", { name: "From a team workflow to a shared pattern", exact: true })).toBeVisible();
+    await expect(article.getByText("Figma libraries", { exact: true })).toBeVisible();
+    const disclosure = article.locator("summary");
+    await disclosure.focus();
+    await page.keyboard.press("Enter");
+    await expect(article.locator("details")).toHaveAttribute("open", "");
+    await expect(article.getByText(/I worked with three teammates/)).toBeVisible();
+    await expect(article.getByText(/frontend team implemented the code/)).toBeVisible();
+    await expect(article).not.toContainText(/derived from the interview|as I remember|recollection/i);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
+  }
+  await page.goto("/work/multi-product-integrations-revision");
+  await expect(page).toHaveTitle("Case study not found | Rick Vang");
+  await page.goto("/dev/harness/case-study?slug=ai-systems-revision&view=example");
+  await expect(page.getByRole("heading", { level: 1, name: "AI council for product decisions" })).toBeVisible();
+});
+
+test("project-specific examples explain supported work across desktop and mobile", async ({ page }) => {
+  test.setTimeout(60_000);
+  const examples = [
+    { slug: "ai-systems-revision", title: "AI council for product decisions", figure: "From explaining value to evaluating fit.", ownership: /Created the persona framework and AI council/, result: "What changed for product and UX", reasoning: /Each AI persona answered through its compiled role profile/ },
+    { slug: "design-systems-revision", title: "Design Systems", figure: "Shared foundations. Different surfaces.", ownership: /I designed the platform framework/, result: "Keeping the system useful", reasoning: /We audited existing design patterns alongside user scenarios/ },
+    { slug: "ui-design-practices-revision", title: "UI Design Practices", figure: "The portfolio I directed", ownership: /AI agents built the interface/, result: "The built portfolio", reasoning: /preferred the persistent rail and rejected the serif voice/ },
+  ];
+  for (const example of examples) {
+    for (const width of [1280, 390]) {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto(`/dev/harness/case-study?slug=${example.slug}&view=example`);
+      const article = page.getByTestId("case-study-story-review").locator("article");
+      await expect(article.getByRole("heading", { level: 1, name: example.title })).toBeVisible();
+      await expect(article.getByRole("figure", { name: example.figure })).toBeVisible();
+      await expect(article.getByRole("heading", { name: example.result, exact: true })).toBeVisible();
+      await expect(article.getByText(example.reasoning)).toBeVisible();
+      await expect(article).toContainText(example.ownership);
+      await expect(article).not.toContainText(/owner interview|as I remember|recollection|drafting process/i);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
+      if (example.slug === "ai-systems-revision") {
+        const generator = article.getByRole("figure", { name: "A generated profile: Minnesota contractor" });
+        await expect(generator).toContainText("Which jobs to bid");
+        await expect(generator).toContainText("What gets lost between you, the client, the crew and subcontractors?");
+        await expect(article).toContainText("The generator separated evidence from assumptions");
+        await expect(article).toContainText("Before treating an idea as a priority");
+        await expect(article).toContainText("what each role needed to see");
+      }
+      if (example.slug === "ui-design-practices-revision") {
+        await expect(article.getByRole("img")).toHaveCount(6);
+        for (const artifact of await article.getByRole("img").all()) {
+          await artifact.scrollIntoViewIfNeeded();
+          await expect(artifact).toBeVisible();
+          await expect.poll(() => artifact.evaluate((element) => (element as HTMLImageElement).complete && (element as HTMLImageElement).naturalWidth > 0)).toBe(true);
+        }
+      }
+      await page.evaluate(() => { document.documentElement.style.scrollBehavior = "auto"; window.scrollTo(0, 0); });
+      await page.screenshot({ path: `test-results/visual-snapshots/${example.slug}-example-${width}.png`, fullPage: true });
+      await expect(page.getByRole("navigation", { name: "Case-study examples" }).getByRole("link")).toHaveCount(4);
+    }
+    await page.goto(`/work/${example.slug}`);
+    await expect(page).toHaveTitle("Case study not found | Rick Vang");
+  }
+  await page.goto("/dev/harness/case-study?slug=ai-systems&view=example");
+  await expect(page.getByTestId("case-study-story-review")).toHaveCount(0);
+});
+
 test("unknown case studies remain out of public work routes", async ({ page }) => {
   await page.goto("/work/not-a-published-case-study");
 

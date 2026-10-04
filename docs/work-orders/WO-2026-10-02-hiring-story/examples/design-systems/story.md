@@ -1,6 +1,6 @@
 # Design Systems
 
-Reusable styles, screen templates and workflow patterns for teams redesigning legacy capabilities.
+Teams redesigning legacy capabilities needed a more consistent starting point. I designed the platform framework as part of a shared library effort.
 
 ## A common starting point
 
