@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { ExperiencePresentation } from "@/components/experience-presentation";
 import { CaseStudyIllustration } from "@/components/case-study-illustration";
 import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
@@ -14,6 +16,7 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
   }
 
   const reviewMode = mode === "review";
+  const practiceOverview = caseStudy.practiceOverview;
   const chapters = getCaseStudyChapters(caseStudy);
   const statusLabel =
     caseStudy.reviewStatus === "approved"
@@ -28,7 +31,11 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
 
   return (
     <article
-      className={reviewMode ? "case-study case-study-review" : "case-study"}
+      className={[
+        "case-study",
+        reviewMode && "case-study-review",
+        practiceOverview && "case-study-practice",
+      ].filter(Boolean).join(" ")}
       data-case-study-status={caseStudy.reviewStatus}
       data-testid={reviewMode ? `case-study-review-${caseStudy.slug}` : undefined}
     >
@@ -39,35 +46,62 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
       )}
 
       <header className="case-study-hero">
-        <p className="eyebrow">{caseStudy.category}</p>
-        <h1>{caseStudy.title}</h1>
-        <p className="lede">{caseStudy.summary}</p>
+        {practiceOverview && <Link className="practice-back-link" href="/work">← All work</Link>}
+        <div className={practiceOverview ? "design-practice-intro" : undefined}>
+          <div>
+            <p className="eyebrow">{caseStudy.category}</p>
+            <h1>{caseStudy.title}</h1>
+            <p className="lede">{caseStudy.summary}</p>
 
-        {(caseStudy.role || caseStudy.scope) && (
-          <dl className="case-study-meta">
-            {caseStudy.role && (
-              <div>
-                <dt>Role</dt>
-                <dd>{caseStudy.role}</dd>
-              </div>
+            {(caseStudy.role || caseStudy.scope) && (
+              <dl className="case-study-meta">
+                {caseStudy.role && (
+                  <div>
+                    <dt>Role</dt>
+                    <dd>{caseStudy.role}</dd>
+                  </div>
+                )}
+                {caseStudy.scope && (
+                  <div>
+                    <dt>Scope</dt>
+                    <dd>{caseStudy.scope}</dd>
+                  </div>
+                )}
+              </dl>
             )}
-            {caseStudy.scope && (
-              <div>
-                <dt>Scope</dt>
-                <dd>{caseStudy.scope}</dd>
-              </div>
-            )}
-          </dl>
-        )}
+          </div>
 
-        <div className="case-study-chapter-path" aria-label="Case study chapter path">
+          {practiceOverview && (
+            <figure className="design-practice-map" aria-labelledby={`${caseStudy.slug}-practice-map-title`}>
+              <figcaption id={`${caseStudy.slug}-practice-map-title`}>
+                <span className="eyebrow">Portfolio redesign</span>
+                <strong>{practiceOverview.title}</strong>
+              </figcaption>
+              <ol>
+                {practiceOverview.phases.map((phase, index) => (
+                  <li key={phase.title}>
+                    <span className="design-practice-phase-number" aria-hidden="true">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <strong>{phase.title}</strong>
+                      <p>{phase.summary}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </figure>
+          )}
+        </div>
+
+        <nav className="case-study-chapter-path" aria-label="Case study chapter path">
           {chapters.map((chapter, index) => (
-            <span key={chapter.id}>
+            <a href={`#${caseStudy.slug}-chapter-${chapter.id}`} key={chapter.id}>
               <span aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
               {chapter.label}
-            </span>
+            </a>
           ))}
-        </div>
+        </nav>
       </header>
 
       <div className="case-study-body">
@@ -119,6 +153,7 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
 
                     {section.items &&
                       section.kind === "system-practice" &&
+                      !practiceOverview &&
                       caseStudy.reviewStatus === "approved" && (
                         <ExperiencePresentation
                           caseStudy={caseStudy}
@@ -128,7 +163,7 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
                       )}
 
                     {section.items &&
-                      (section.kind !== "system-practice" || caseStudy.reviewStatus !== "approved") && (
+                      (practiceOverview || section.kind !== "system-practice" || caseStudy.reviewStatus !== "approved") && (
                         <div className="case-study-item-grid">
                           {section.items.map((item) => (
                             <article className="case-study-item" key={item.id ?? item.title}>

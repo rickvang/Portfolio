@@ -75,12 +75,26 @@ export const caseStudySchema = z
     reviewStatus: reviewStatusSchema,
     clientIpDisclaimer: z.string().min(1).optional(),
     previewMedia: caseStudyPreviewMediaSchema.optional(),
+    practiceOverview: z.object({
+      title: z.string().min(1),
+      phases: z.array(caseStudySectionItemSchema).min(1),
+      evidence: z.array(caseStudyEvidenceSchema).min(1),
+    }).optional(),
     sources: z.array(caseStudySourceSchema).min(1),
     sections: z.array(caseStudySectionSchema).min(1),
     curationNotes: z.array(z.string().min(1)).default([]),
   })
   .superRefine((caseStudy, context) => {
     const sourceIds = new Set(caseStudy.sources.map((source) => source.id));
+    caseStudy.practiceOverview?.evidence.forEach((evidence, evidenceIndex) => {
+      if (!sourceIds.has(evidence.sourceId)) {
+        context.addIssue({
+          code: "custom",
+          message: `Unknown evidence source: ${evidence.sourceId}`,
+          path: ["practiceOverview", "evidence", evidenceIndex, "sourceId"],
+        });
+      }
+    });
     const sectionKinds = new Set<string>();
     let previousIndex = -1;
 
