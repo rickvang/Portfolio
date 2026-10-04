@@ -250,7 +250,7 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 
 ### UI Design Practices presentation
 
-The approved UI Design Practices record authors an optional `practiceOverview`: a four-phase text-derived overview supported by its existing source references. It is an explanatory map, not a reconstructed product screenshot or a measured outcome. The shared template renders that data inside the System chapter, explicitly labeled Build sequence. The hero introduces the project and its chapter links; it does not present a second numbered outline. Other records retain their existing presentation.
+The approved UI Design Practices record authors an optional `practiceOverview`: a four-phase text-derived overview supported by its existing source references. It is an explanatory map, not a reconstructed product screenshot or a measured outcome. The shared template renders that data inside the System chapter, explicitly labeled Build sequence. The content schema requires a System chapter whenever a practice overview is authored, preventing the map from silently disappearing. The hero introduces the project and its chapter links; it does not present a second numbered outline. Other records retain their existing presentation.
 
 Chapter-path labels are native anchor links with visible keyboard focus. For the practice presentation, these links are the single chapter navigation at widths up to 900px; the desktop chapter index remains available above that breakpoint. Mobile anchor targets clear the sticky navigation bar. Links use browser history and Enter activation; there is no custom state, data transmission, or new motion. Existing reduced-motion rules continue to apply.
 
