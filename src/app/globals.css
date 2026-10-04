@@ -1198,7 +1198,7 @@ h3 {
   margin-top: 3rem;
 }
 
-.case-study-chapter-path > span {
+.case-study-chapter-path > a {
   align-items: center;
   border: 1px solid var(--border);
   display: inline-flex;
@@ -1207,12 +1207,18 @@ h3 {
   gap: 0.45rem;
   letter-spacing: 0.06em;
   padding: 0.45rem 0.6rem;
+  text-decoration: none;
   text-transform: uppercase;
 }
 
-.case-study-chapter-path > span > span {
+.case-study-chapter-path > a > span {
   color: var(--accent-ink);
   font-size: 0.62rem;
+}
+
+.case-study-chapter-path > a:hover {
+  background: var(--surface-muted);
+  color: var(--accent-ink);
 }
 
 .case-study-body {

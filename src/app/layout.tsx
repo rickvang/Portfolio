@@ -6,6 +6,7 @@ import { env } from "@/lib/env";
 import "./globals.css";
 import "./work-led.css";
 import "./personal-practice.css";
+import "./design-practice.css";
 
 const inter = Inter({
   subsets: ["latin"],
