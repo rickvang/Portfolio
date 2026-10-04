@@ -248,6 +248,16 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 
 ## Verification workflow
 
+### UI Design Practices presentation
+
+The approved UI Design Practices record authors an optional `practiceOverview`: a four-phase text-derived overview supported by its existing source references. It is an explanatory map, not a reconstructed product screenshot or a measured outcome. The shared template renders that data beside the introduction at wide widths and stacks it on smaller screens. Other records retain their existing presentation.
+
+Chapter-path labels are native anchor links with visible keyboard focus. For the practice presentation, these links are the single chapter navigation at widths up to 900px; the desktop chapter index remains available above that breakpoint. Mobile anchor targets clear the sticky navigation bar. Links use browser history and Enter activation; there is no custom state, data transmission, or new motion. Existing reduced-motion rules continue to apply.
+
+Practice items use aligned title/description rows, stacking on small screens, rather than the generic source-summary/media-placeholder presentation. The original sections, stable anchors, approved copy, and local review evidence remain intact. `/dev/harness/case-study?slug=ui-design-practices` exercises the same record and renderer. Unknown records keep the existing fallback; draft revisions remain unpublished.
+
+Acceptance: scan the four documented phases in the hero; use keyboard or touch to reach every chapter; read the practice and decisions without duplicate intro or missing-media UI; fit desktop, tablet, narrow mobile, and reduced-motion views without overflow. See Issue #64 and CW-88 for scoped evidence and decisions.
+
 Before a UI change is complete:
 
 1. Start with the relevant harness state, for example `/dev/harness?state=long-content`.

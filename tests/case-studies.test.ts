@@ -132,6 +132,21 @@ describe("case-study content contract", () => {
     expect(result.success).toBe(false);
   });
 
+  it("rejects a practice overview that refers to a missing evidence source", () => {
+    const caseStudy = getApprovedCaseStudyBySlug("ui-design-practices")!;
+    const result = caseStudySchema.safeParse({
+      ...caseStudy,
+      practiceOverview: {
+        ...caseStudy.practiceOverview,
+        evidence: [{ sourceId: "missing-source", note: "Unsupported phase sequence" }],
+      },
+    });
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues[0]?.path).toEqual(["practiceOverview", "evidence", 0, "sourceId"]);
+    }
+  });
+
   it("filters mixed approval states without publishing review-ready authored work", () => {
     const reviewReady = caseStudySchema.parse({
       ...importedCaseStudies[0],

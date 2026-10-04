@@ -231,6 +231,19 @@
     "slug": "ui-design-practices",
     "title": "UI Design Practices",
     "summary": "A staged design-to-implementation practice for turning an ambiguous portfolio redesign into information architecture, visual tokens, interaction contracts, reusable components, and browser-verifiable behavior.",
+    "practiceOverview": {
+      "title": "From structure to a working interface",
+      "phases": [
+        { "title": "Information architecture", "summary": "Visitor jobs, routes, content, and publication boundaries." },
+        { "title": "Visual system & navigation", "summary": "Semantic tokens, a persistent rail, and a mobile drawer." },
+        { "title": "Motion & interaction", "summary": "CSS-first motion, focus behavior, and reduced-motion support." },
+        { "title": "Shared case-study slice", "summary": "Reusable rendering with explicit verification boundaries." }
+      ],
+      "evidence": [
+        { "sourceId": "portfolio-issue-6", "note": "The approved overview establishes information architecture, visual system/navigation, motion, and shared case-study rendering as consecutive implementation phases." },
+        { "sourceId": "portfolio-design", "note": "The approved exploration, system, and outcomes describe tokens, navigation, interaction behavior, reuse, and verification." }
+      ]
+    },
     "category": "UI Design Practice",
     "reviewStatus": "approved",
     "sources": [
