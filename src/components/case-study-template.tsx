@@ -70,28 +70,6 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
               </dl>
             )}
           </div>
-
-          {practiceOverview && (
-            <figure className="design-practice-map" aria-labelledby={`${caseStudy.slug}-practice-map-title`}>
-              <figcaption id={`${caseStudy.slug}-practice-map-title`}>
-                <span className="eyebrow">Portfolio redesign</span>
-                <strong>{practiceOverview.title}</strong>
-              </figcaption>
-              <ol>
-                {practiceOverview.phases.map((phase, index) => (
-                  <li key={phase.title}>
-                    <span className="design-practice-phase-number" aria-hidden="true">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <strong>{phase.title}</strong>
-                      <p>{phase.summary}</p>
-                    </div>
-                  </li>
-                ))}
-              </ol>
-            </figure>
-          )}
         </div>
 
         <nav className="case-study-chapter-path" aria-label="Case study chapter path">
@@ -136,6 +114,28 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
                 </p>
                 <h2 id={`${caseStudy.slug}-chapter-${chapter.id}-heading`}>{chapter.label}</h2>
               </header>
+
+              {practiceOverview && chapter.id === "system" && (
+                <figure className="design-practice-map" aria-labelledby={`${caseStudy.slug}-practice-map-title`}>
+                  <figcaption id={`${caseStudy.slug}-practice-map-title`}>
+                    <span className="eyebrow">Build sequence</span>
+                    <strong>{practiceOverview.title}</strong>
+                  </figcaption>
+                  <ol>
+                    {practiceOverview.phases.map((phase, index) => (
+                      <li key={phase.title}>
+                        <span className="design-practice-phase-number" aria-hidden="true">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <div>
+                          <strong>{phase.title}</strong>
+                          <p>{phase.summary}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </figure>
+              )}
 
               {chapter.sections.map((section, sectionIndex) => {
                 const showSectionHeading = section.title !== chapter.label || sectionIndex > 0;
