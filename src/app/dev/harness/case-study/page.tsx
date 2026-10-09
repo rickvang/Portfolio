@@ -54,7 +54,7 @@ export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHa
           {params.view === "example" && Example ? (
             <Example caseStudy={caseStudy} />
           ) : (
-            <PersonalPracticeCaseStudy caseStudy={caseStudy} />
+            caseStudy.practicePresentation ? <CaseStudyTemplate caseStudy={caseStudy} /> : <PersonalPracticeCaseStudy caseStudy={caseStudy} />
           )}
         </div>
       </PersonalPracticeShell>

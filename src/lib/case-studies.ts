@@ -37,10 +37,19 @@ const caseStudyPreviewMediaSchema = z.object({
   caption: z.string().min(1),
 });
 
+const practiceMediaSchema = caseStudyPreviewMediaSchema.extend({
+  width: z.number().positive(),
+  height: z.number().positive(),
+});
+
 const caseStudySectionItemSchema = z.object({
   id: z.string().min(1).optional(),
   title: z.string().min(1),
   summary: z.string().min(1),
+  label: z.string().min(1).optional(),
+  category: z.string().min(1).optional(),
+  detail: z.string().min(1).optional(),
+  media: practiceMediaSchema.optional(),
 });
 
 const caseStudyIllustrationSchema = caseStudyPreviewMediaSchema.extend({
@@ -75,6 +84,17 @@ export const caseStudySchema = z
     reviewStatus: reviewStatusSchema,
     clientIpDisclaimer: z.string().min(1).optional(),
     previewMedia: caseStudyPreviewMediaSchema.optional(),
+    practicePresentation: z.object({
+      headlineLead: z.string().min(1),
+      headlineEmphasis: z.string().min(1),
+      heroMedia: practiceMediaSchema,
+      contextSubtitle: z.string().min(1),
+      chapterLabels: z.object({
+        context: z.string().min(1),
+        system: z.string().min(1),
+        outcomes: z.string().min(1),
+      }),
+    }).optional(),
     practiceOverview: z.object({
       title: z.string().min(1),
       phases: z.array(caseStudySectionItemSchema).min(1),
@@ -85,6 +105,25 @@ export const caseStudySchema = z
     curationNotes: z.array(z.string().min(1)).default([]),
   })
   .superRefine((caseStudy, context) => {
+    if (caseStudy.practicePresentation) {
+      for (const kind of ["context", "system-practice", "outcomes"] as const) {
+        const section = caseStudy.sections.find((item) => item.kind === kind);
+        if (!section?.body || !section.items?.length) {
+          context.addIssue({ code: "custom", message: `Practice presentation needs ${kind} copy and items.`, path: ["practicePresentation"] });
+        }
+      }
+      const examples = caseStudy.sections.find((section) => section.kind === "system-practice")?.items ?? [];
+      const ids = new Set<string>();
+      examples.forEach((item, index) => {
+        if (!item.id || ids.has(item.id) || !item.label || !item.category || !item.detail || !item.media) {
+          context.addIssue({ code: "custom", message: "Practice examples need unique IDs, labels, descriptions and local media.", path: ["practicePresentation", "examples", index] });
+        }
+        if (item.id) ids.add(item.id);
+        if (item.media && !item.media.src.startsWith("/work-media/")) {
+          context.addIssue({ code: "custom", message: "Practice media must be hosted in the portfolio.", path: ["practicePresentation", "examples", index] });
+        }
+      });
+    }
     if (caseStudy.practiceOverview && !caseStudy.sections.some(
       (section) => section.kind === "system-practice" || section.kind === "decisions",
     )) {
