@@ -17,6 +17,9 @@ for (const story of stories) {
     await expect(page.getByText("CONCEPTS FOR REVIEW", { exact: true })).toHaveCount(0);
     await expect(page.locator(".review, .rail, .signature")).toHaveCount(0);
     await expect(page.locator('.approved-story a[href^="http"]')).toHaveCount(0);
+    if (story.slug !== "ai-systems") {
+      await expect(page.getByRole("complementary", { name: "Client intellectual property note" })).toContainText("client intellectual property");
+    }
     await mkdir("test-results/visual-snapshots", { recursive: true });
     for (const width of [1440, 1024, 768, 390, 320]) {
       await page.setViewportSize({ width, height: 1000 });

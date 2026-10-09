@@ -55,7 +55,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
     selectedWork.getByText(/Turning a fragmented ecosystem of products, workflows, and data/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/Building a durable operating system for collaborating with specialized AI agents/i),
+    selectedWork.getByText(/Connecting public research, working context and cross-persona dependencies/i),
   ).toBeVisible();
   await expect(
     selectedWork.getByText(/Creating reusable product foundations and lightweight governance/i),

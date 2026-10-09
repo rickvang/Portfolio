@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 /* CW-97: owner-approved case-study content, 2026-10-09. */
-export function DesignSystemsStory() {
+export function DesignSystemsStory({ clientIpDisclaimer }: { clientIpDisclaimer?: string }) {
   return (
     <article className="approved-story" data-case-study-status="approved">
 
@@ -210,6 +210,12 @@ export function DesignSystemsStory() {
 </div>
 
 </section>
+
+{clientIpDisclaimer && (
+  <aside className="note" aria-label="Client intellectual property note">
+    <p>{clientIpDisclaimer}</p>
+  </aside>
+)}
 
 <nav className="closing" aria-label="Return from Design Systems"><Link href="/work">← Back to all work</Link>
 </nav>

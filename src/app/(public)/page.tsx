@@ -19,7 +19,7 @@ const homepageWork = [
   {
     slug: "ai-systems",
     summary:
-      "Building a durable operating system for collaborating with specialized AI agents across repositories, tools, and interruptions.",
+      "Connecting public research, working context and cross-persona dependencies to help AI assess product ideas and the workflows people need.",
     visualKind: "ai-systems",
   },
   {

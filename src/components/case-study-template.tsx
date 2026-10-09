@@ -18,10 +18,10 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
     return <UiPracticeCaseStudy caseStudy={caseStudy} />;
   }
   if (mode === "public" && caseStudy.slug === "multi-product-integrations") {
-    return <IntegrationsStory />;
+    return <IntegrationsStory clientIpDisclaimer={caseStudy.clientIpDisclaimer} />;
   }
 
-  if (mode === "public" && caseStudy.slug === "design-systems") return <DesignSystemsStory />;
+  if (mode === "public" && caseStudy.slug === "design-systems") return <DesignSystemsStory clientIpDisclaimer={caseStudy.clientIpDisclaimer} />;
   if (mode === "public" && caseStudy.slug === "ai-systems") return <AiSystemsStory />;
 
   const reviewMode = mode === "review";
