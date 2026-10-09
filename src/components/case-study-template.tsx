@@ -2,7 +2,9 @@ import Link from "next/link";
 
 import { ExperiencePresentation } from "@/components/experience-presentation";
 import { CaseStudyIllustration } from "@/components/case-study-illustration";
-import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
+import { IntegrationsStory } from "@/content/integrations-story";
+import { DesignSystemsStory } from "@/content/systems-story";
+import { AiSystemsStory } from "@/content/ai-story";
 import { UiPracticeCaseStudy } from "@/components/ui-practice-case-study";
 import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
 
@@ -16,8 +18,11 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
     return <UiPracticeCaseStudy caseStudy={caseStudy} />;
   }
   if (mode === "public" && caseStudy.slug === "multi-product-integrations") {
-    return <PersonalPracticeCaseStudy caseStudy={caseStudy} />;
+    return <IntegrationsStory />;
   }
+
+  if (mode === "public" && caseStudy.slug === "design-systems") return <DesignSystemsStory />;
+  if (mode === "public" && caseStudy.slug === "ai-systems") return <AiSystemsStory />;
 
   const reviewMode = mode === "review";
   const practiceOverview = caseStudy.practiceOverview;
