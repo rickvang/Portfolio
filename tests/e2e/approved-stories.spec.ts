@@ -29,9 +29,12 @@ for (const story of stories) {
         await page.screenshot({ path: `test-results/visual-snapshots/${story.slug}-${width}.png`, fullPage: true });
       }
     }
-    await page.locator(".approved-story .closing a").focus();
-    await page.keyboard.press("Enter");
+    const returnLink = page.locator(".approved-story .closing a");
+    await returnLink.scrollIntoViewIfNeeded();
+    await returnLink.focus();
+    await expect(returnLink).toBeFocused();
+    await returnLink.press("Enter");
     await expect(page).toHaveURL(/\/work$/);
-    await expect(page.getByRole("heading", { level: 1, name: "Work", exact: true })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
   });
 }

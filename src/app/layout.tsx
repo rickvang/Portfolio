@@ -9,6 +9,7 @@ import "./personal-practice.css";
 import "./design-practice.css";
 import "./ui-craft.css";
 import "./approved-stories.css";
+import "./supporting-pages.css";
 
 const inter = Inter({
   subsets: ["latin"],

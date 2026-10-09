@@ -11,8 +11,11 @@ test("contact offers usable direct links", async ({ page }) => {
     await expect(email).toBeVisible();
     await expect(linkedIn).toBeVisible();
     await expect(email).toBeInViewport();
+    await linkedIn.scrollIntoViewIfNeeded();
     await expect(linkedIn).toBeInViewport();
     await email.focus();
+    await page.keyboard.press("Tab");
+    await expect(page.getByRole("button", {name:"Copy email"})).toBeFocused();
     await page.keyboard.press("Tab");
     await expect(linkedIn).toBeFocused();
     await expect(page.getByRole("button", { name: /send/i })).toHaveCount(0);
@@ -103,8 +106,8 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 test("about page renders the approved biography and experience summary", async ({ page }) => {
   await page.goto("/about");
 
-  await expect(page.getByRole("heading", { name: "A decade-long craft defined with empathy" })).toBeVisible();
-  await expect(page.getByText(/Over 13 years, I've worked at the intersection of product design/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /I’m most useful/ })).toBeVisible();
+  await expect(page.getByText(/Over 13 years, I’ve worked at the intersection of product design/i)).toBeVisible();
   await expect(page.getByText("Years of Experience", { exact: true })).toBeVisible();
   await expect(page.getByText("Companies", { exact: true })).toBeVisible();
   await expect(page.getByText("Projects Delivered", { exact: true })).toBeVisible();
@@ -113,27 +116,13 @@ test("about page renders the approved biography and experience summary", async (
 test("approved imported work is public through the shared case-study routes", async ({ page }) => {
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { level: 1, name: "Work", exact: true })).toBeVisible();
-  await expect(
-    page.getByText("Product architecture, design systems, and AI-assisted delivery.", {
-      exact: true,
-    }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
   const caseStudies = page.getByRole("region", { name: "Case studies" });
   await expect(caseStudies).toBeVisible();
-  await expect(caseStudies.getByRole("heading", { level: 2, name: "Case studies" })).toHaveCount(1);
-  await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
-  await expect(caseStudies.locator(".practice-work-row")).toHaveCount(4);
-  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(2);
-  await expect(caseStudies.locator(".practice-work-visual figcaption")).toHaveText([
-    "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
-    "Illustrative diagram",
-    "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
-    "Illustrative diagram",
-  ]);
-  await expect(page.locator(".practice-work-facts")).toHaveCount(0);
-  await expect(page.locator(".project-preview")).toHaveCount(0);
+  await expect(caseStudies.locator(".project")).toHaveCount(4);
+  await expect(caseStudies.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
+  await expect(caseStudies.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
+  await expect(caseStudies.locator(".gallery-note")).toHaveCount(1);
 
   await page.goto("/work/multi-product-integrations");
   await expect(page).toHaveTitle("Multi Product Integrations | Rick Vang");

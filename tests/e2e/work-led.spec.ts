@@ -1,45 +1,19 @@
 import { expect, test } from "@playwright/test";
 
-test("work index pairs each project with its approved image or labelled illustration", async ({ page }) => {
+test("approved Work gallery pairs each project with a consistent preview and one provenance note", async ({ page }) => {
   await page.goto("/work");
-
-  const hero = page.locator(".practice-work-hero");
-  await expect(hero.getByRole("heading", { level: 1, name: "Work", exact: true })).toBeVisible();
-  await expect(
-    hero.getByText("Product architecture, design systems, and AI-assisted delivery.", {
-      exact: true,
-    }),
-  ).toBeVisible();
-  await expect(hero.getByText("4", { exact: true })).toHaveCount(0);
-  await expect(hero.getByText("Product · systems · AI", { exact: true })).toHaveCount(0);
-
-  const caseStudies = page.getByRole("region", { name: "Case studies" });
-  await expect(caseStudies).toBeVisible();
-  await expect(caseStudies.getByRole("heading", { level: 2, name: "Case studies" })).toHaveCount(1);
-
-  const workRows = caseStudies.locator(".practice-work-row");
-  await expect(workRows).toHaveCount(4);
-  await expect(workRows.nth(0).getByRole("heading")).toHaveText("Multi Product Integrations");
-  await expect(workRows.nth(1).getByRole("heading")).toHaveText("AI Systems");
-  await expect(workRows.nth(2).getByRole("heading")).toHaveText("Design Systems");
-  await expect(workRows.nth(3).getByRole("heading")).toHaveText("UI Design Practices");
-  await expect(caseStudies.locator(".practice-work-visual")).toHaveCount(4);
-  await expect(caseStudies.locator(".practice-work-visual-image")).toHaveCount(2);
-  await expect(caseStudies.locator(".practice-work-visual figcaption")).toHaveText([
-    "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
-    "Illustrative diagram",
-    "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
-    "Illustrative diagram",
-  ]);
-  await expect(caseStudies.locator(".practice-work-visual-image img").nth(0)).toHaveAttribute(
-    "alt",
-    "Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view.",
-  );
-  await expect(caseStudies.locator(".practice-work-visual-image img").nth(1)).toHaveAttribute(
-    "alt",
-    "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
-  );
-  await expect(caseStudies.locator(".practice-work-card-link")).toHaveCount(4);
+  await expect(page.getByRole("heading", {level:1, name:/Designing the parts/})).toBeVisible();
+  const gallery = page.getByRole("region", {name:"Case studies"});
+  await expect(gallery.locator(".project")).toHaveCount(4);
+  await expect(gallery.getByRole("heading", {level:3})).toHaveText(["Multi Product Integrations", "AI Systems", "Design Systems", "UI Design Practices"]);
+  await expect(gallery.locator(".project-image")).toHaveCount(4);
+  const backgrounds = await gallery.locator(".project-image").evaluateAll(elements => elements.map(e => getComputedStyle(e).background));
+  expect(new Set(backgrounds).size).toBe(1);
+  await expect(gallery.locator(".gallery-note")).toHaveText("Client screens are modified to protect intellectual property. The AI Systems and UI Design Practices previews are illustrative.");
+  await expect(gallery.locator(".caption")).toHaveCount(0);
+  for (const slug of ["multi-product-integrations", "ai-systems", "design-systems", "ui-design-practices"]) {
+    await expect(gallery.locator('[data-practice-work="'+slug+'"] a')).toHaveAttribute("href", "/work/"+slug);
+  }
 });
 
 test("mobile home uses the working-index structure without horizontal overflow", async ({ page }) => {
@@ -230,9 +204,9 @@ test("both work patterns stay visible with reduced motion", async ({ page }) => 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { level: 1, name: "Work", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
   await expect(page.getByRole("region", { name: "Case studies" })).toBeVisible();
-  await expect(page.locator(".practice-work-row")).toHaveCount(4);
-  await expect(page.locator(".practice-work-visual figcaption")).toHaveCount(4);
+  await expect(page.locator(".portfolio-pages .project")).toHaveCount(4);
+  await expect(page.locator(".gallery-note")).toHaveCount(1);
   await expect(page.locator(".public-page")).toHaveCSS("animation-name", "none");
 });
