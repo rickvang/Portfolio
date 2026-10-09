@@ -291,3 +291,15 @@ When adding a component or pattern:
 - add a deterministic fixture and harness preview for meaningful states;
 - update this document and the relevant architecture/decision record;
 - run the verification commands before completing the change.
+
+
+## Approved Work, About and Contact pages — Issue #74
+
+Owner approved the three-page CW-83 specimen and the shared neutral/grid Work preview treatment. These routes use scoped supporting-pages.css and authored content in src/content/supporting-pages.tsx. The existing Personal Practice shell, homepage and case-study renderers remain unchanged.
+
+- Work shows only approved slugs, in the accepted project order, with static image previews and one gallery-level note covering client-IP modifications and illustrative visuals. Original media reuse remains scoped to Home/Work. The new persona framework SVG is an illustrative preview of the already approved framework, not a historical screen. UI Design Practices uses a CSS illustration of layout, density and foundations.
+- About retains approved profile gating and source-backed experience counts, with the approved introduction and links from contributions to case studies.
+- Contact uses the existing contact data. Its small client component copies the email and announces success; failure leaves the email selectable and gives visible, accessible recovery guidance. No form, transmission service or new dependency.
+- Work collapses to one column at 620px; About and Contact follow the approved stacked layout at that width. The production shell retains its existing navigation and breakpoint behavior. Page links are native Next links; visible keyboard focus and reduced motion remain supported.
+
+Verify all three pages on desktop and narrow screens, approved-only gallery membership, shared preview treatment, case-study destinations, client-IP note, direct contact links, clipboard success/failure and existing navigation.
