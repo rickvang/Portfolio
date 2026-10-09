@@ -7,6 +7,8 @@ const design = readFileSync(path.join(root, 'DESIGN.md'), 'utf8');
 const agents = readFileSync(path.join(root, 'AGENTS.md'), 'utf8');
 
 const references = [
+  'docs/design/project-profile.md',
+  'docs/design/pattern-index.md',
   'docs/design/visual-quality-review.md',
   'docs/design/work-to-experience.md',
   'docs/design/motion.md',
