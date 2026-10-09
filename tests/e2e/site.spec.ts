@@ -1,5 +1,33 @@
 import { expect, test } from "@playwright/test";
 
+test("hero flows normally and stays drawn and still with reduced motion after resize", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/");
+  const frame = page.locator('[data-practice-canvas="hero"]');
+  const canvas = frame.locator("canvas");
+  await expect(frame).toHaveAttribute("data-canvas-ready", "true");
+  const pixels = () => canvas.evaluate((element: HTMLCanvasElement) => element.toDataURL());
+  const movingFrame = await pixels();
+  await expect.poll(pixels).not.toBe(movingFrame);
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await expect.poll(() => canvas.evaluate((element: HTMLCanvasElement) => {
+      const context = element.getContext("2d")!;
+      return context.getImageData(0, 0, element.width, element.height).data.some((value, index) => index % 4 === 3 && value > 0);
+    })).toBe(true);
+    // Allow ResizeObserver and the media-query change to settle before comparing frames.
+    await page.waitForTimeout(200);
+    const stillFrame = await pixels();
+    await page.mouse.move(200, 300);
+    await page.waitForTimeout(250);
+    expect(await pixels()).toBe(stillFrame);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+    await page.screenshot({ path: `test-results/visual-snapshots/hero-flow-${width}.png` });
+  }
+});
+
 test("contact offers usable direct links", async ({ page }) => {
   for (const width of [1280, 390]) {
     await page.setViewportSize({ width, height: 900 });
@@ -81,7 +109,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
     "alt",
     "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
   );
-  await expect(page.getByRole("heading", { name: "The throughline", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "How I work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(
     page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),

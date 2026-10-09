@@ -279,10 +279,9 @@
 }
 
 .practice-hero-graphic {
-  --pointer-x: 0;
-  --pointer-y: 0;
   inset: -8% -8%;
-  opacity: 0.5;
+  mask-image: linear-gradient(110deg, rgb(0 0 0 / 40%), #000 72%);
+  opacity: 0.65;
   pointer-events: auto;
   position: absolute;
   z-index: 0;
@@ -1467,7 +1466,8 @@
   .practice-work-arrow,
   .practice-work-arrow > span,
   .practice-work-visual,
-  .practice-work-image {
+  .practice-work-image,
+  .practice-hero-fallback {
     transition: none;
   }
 }
