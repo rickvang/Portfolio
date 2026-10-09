@@ -22,6 +22,7 @@ Read only the reference needed for the current task after this core contract:
 
 | Task | Additional reference |
 | --- | --- |
+| Find project context, readiness facets or an existing layout/CRUD/content pattern | [Project profile](docs/design/project-profile.md) and [pattern index](docs/design/pattern-index.md) |
 | Visual-quality critique, selection gates, or design QA method | [Visual quality review](docs/design/visual-quality-review.md) |
 | Translating project evidence into a portfolio experience | [Work-to-experience translation](docs/design/work-to-experience.md) |
 | Detailed motion pattern timing, interruption, and reduced-motion behavior | [Motion contract](docs/design/motion.md) |
