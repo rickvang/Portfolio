@@ -83,10 +83,6 @@ export default async function HomePage() {
       >
         <div className="practice-section-heading">
           <h2 id="selected-work-heading">Selected work</h2>
-          <p>
-            The same question runs through the work: what should be shared, what should change,
-            and what will help teams sustain it?
-          </p>
         </div>
         <PersonalPracticeWorkIndex items={selectedWork} />
       </section>
@@ -97,11 +93,7 @@ export default async function HomePage() {
         id="how-i-work"
       >
         <div className="practice-section-heading">
-          <h2 id="throughline-heading">The throughline</h2>
-          <p>
-            Each project makes a system more legible, then carries that clarity into foundations,
-            implementation, and team practice. This is a reading model—not a project timeline.
-          </p>
+          <h2 id="throughline-heading">How I work</h2>
         </div>
 
         <div className="practice-how-grid">

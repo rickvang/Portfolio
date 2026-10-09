@@ -89,14 +89,20 @@ function PracticeCanvasFrame({
       canvasElement.style.width = `${width}px`;
       canvasElement.style.height = `${height}px`;
       context2d.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      if (reducedMotion.matches) {
+        drawScene(context2d, width, height, 0, variant, { active: false, x: 0.5, y: 0.5 });
+      }
     }
 
     function render(milliseconds: number) {
-      const targetPointer = pointerRef.current;
+      const targetPointer = reducedMotion.matches
+        ? { active: false, x: 0.5, y: 0.5 }
+        : pointerRef.current;
       const pointerMotion = pointerMotionRef.current;
 
-      pointerMotion.x += (targetPointer.x - pointerMotion.x) * 0.14;
-      pointerMotion.y += (targetPointer.y - pointerMotion.y) * 0.14;
+      const smoothing = reducedMotion.matches ? 1 : 0.14;
+      pointerMotion.x += (targetPointer.x - pointerMotion.x) * smoothing;
+      pointerMotion.y += (targetPointer.y - pointerMotion.y) * smoothing;
       pointerMotion.active = targetPointer.active;
 
       drawScene(
@@ -177,13 +183,12 @@ function PracticeHeroFallback() {
       viewBox="0 0 1200 720"
     >
       <g fill="none" strokeLinecap="round">
-        <path d="M-40 390C180 150 350 160 570 360s370 250 670-80" stroke="var(--accent)" strokeOpacity=".16" />
-        <path d="M-40 430C190 210 350 200 570 360s390 230 670-100" stroke="var(--blue)" strokeOpacity=".14" />
-        <path d="M-40 350C180 110 360 130 570 360s360 270 670-60" stroke="var(--sand)" strokeOpacity=".18" />
-        <path d="M-40 470C210 260 370 250 570 360s350 190 670-120" stroke="var(--blue)" strokeOpacity=".12" />
-        <path d="M-40 300C200 70 370 110 570 360s360 280 670-30" stroke="var(--sand)" strokeOpacity=".12" />
-        <circle cx="670" cy="360" r="132" stroke="var(--foreground)" strokeOpacity=".12" />
-        <circle cx="670" cy="360" r="136" stroke="var(--accent)" strokeOpacity=".25" />
+        <path d="M-80 120C220-20 360 270 620 160s360-110 660 50" stroke="var(--sand)" strokeOpacity=".2" />
+        <path d="M-80 240C220 70 380 400 640 280s360-120 640 60" stroke="var(--blue)" strokeOpacity=".2" />
+        <path d="M-80 330C230 160 400 510 660 370s360-130 620 70" stroke="var(--accent)" strokeOpacity=".18" />
+        <path d="M-80 440C240 240 420 620 680 470s360-140 600 70" stroke="var(--sand)" strokeOpacity=".22" />
+        <path d="M-80 560C260 360 430 730 700 590s340-130 580 80" stroke="var(--blue)" strokeOpacity=".18" />
+        <path d="M-80 680C270 480 440 840 720 700s340-130 560 80" stroke="var(--sand)" strokeOpacity=".16" />
       </g>
       <g fill="var(--foreground)" fillOpacity=".24">
         <circle cx="558" cy="270" r="3" />
@@ -192,7 +197,6 @@ function PracticeHeroFallback() {
         <circle cx="820" cy="425" r="2.5" />
         <circle cx="900" cy="316" r="2" />
       </g>
-      <circle cx="670" cy="360" fill="var(--accent)" fillOpacity=".52" r="9" />
     </svg>
   );
 }
@@ -273,69 +277,51 @@ function drawHero(
   time: number,
   pointer: PointerState,
 ) {
-  const pointerOffsetX = (pointer.x - 0.5) * width * 0.55;
-  const pointerOffsetY = (pointer.y - 0.5) * height * 0.5;
-  const centerX = width * (0.5 + (pointer.x - 0.5) * 0.16);
-  const centerY = height * (0.5 + (pointer.y - 0.5) * 0.11);
+  const laneCount = 20;
+  const pointerX = (pointer.x - 0.5) * 0.05;
+  const pointerY = (pointer.y - 0.5) * height * 0.07;
 
-  for (let ribbon = 0; ribbon < 12; ribbon += 1) {
-    const color = ribbon % 3 === 0 ? colors.accent : ribbon % 3 === 1 ? colors.blue : colors.sand;
-    const alpha = 0.1 + (ribbon % 4) * 0.02;
+  // One continuous field: spread lanes across the hero rather than pulling them into a hub.
+  function flowPoint(progress: number, lane: number) {
+    const phase = progress * Math.PI * 2;
+    const drift = time * 0.24;
+    const sweep = Math.sin(phase - drift + lane * 0.12) * height * 0.13;
+    const ripple = Math.sin(phase * 1.6 + drift * 0.65 + lane * 0.24) * height * 0.045;
+    return {
+      x: width * (-0.14 + progress * 1.28 + pointerX),
+      y: height * (-0.08 + lane / (laneCount - 1) * 1.16) + sweep + ripple + pointerY,
+    };
+  }
+
+  for (let lane = 0; lane < laneCount; lane += 1) {
+    const color = lane % 5 === 0 ? colors.accent : lane % 2 === 0 ? colors.blue : colors.sand;
     context.beginPath();
 
-    for (let step = 0; step <= 48; step += 1) {
-      const progress = step / 48;
-      const x = -width * 0.22 + progress * width * 1.44;
-      const wave = Math.sin(progress * 8 + time * 0.2 + ribbon * 0.45) * height * 0.09;
-      const pull = Math.sin(progress * Math.PI) * (ribbon - 5.5) * height * 0.045;
-      const y = centerY + wave + pull + pointerOffsetY * Math.sin(progress * Math.PI) * 0.05;
-
+    for (let step = 0; step <= 80; step += 1) {
+      const point = flowPoint(step / 80, lane);
       if (step === 0) {
-        context.moveTo(x, y);
+        context.moveTo(point.x, point.y);
       } else {
-        context.lineTo(x, y);
+        context.lineTo(point.x, point.y);
       }
     }
 
-    context.strokeStyle = withAlpha(color, alpha);
-    context.lineWidth = 1 + (ribbon % 3) * 0.7;
+    context.strokeStyle = withAlpha(color, lane % 5 === 0 ? 0.18 : 0.23);
+    context.lineWidth = lane % 3 === 0 ? 1.5 : 0.9;
     context.stroke();
   }
 
-  for (let particle = 0; particle < 112; particle += 1) {
-    const lane = particle % 14;
-    const progress = ((particle * 0.073 + time * (0.009 + (lane % 3) * 0.002)) % 1 + 1) % 1;
-    const x = width * (0.01 + progress * 0.98);
-    const wave = Math.sin(progress * 8 + time * 0.2 + lane * 0.45) * height * 0.09;
-    const pull = Math.sin(progress * Math.PI) * (lane - 6.5) * height * 0.045;
-    const y = centerY + wave + pull + pointerOffsetY * Math.sin(progress * Math.PI) * 0.05;
-    const radius = 0.7 + (Math.sin(time * 1.1 + particle) + 1) * 0.55;
-
-    context.fillStyle = withAlpha(particle % 4 === 0 ? colors.accent : colors.ink, 0.28);
+  // Particles share the curves and wrap outside the visible edges, avoiding a reset flash.
+  for (let particle = 0; particle < 60; particle += 1) {
+    const lane = particle % laneCount;
+    const progress = (particle * 0.137 + time * (0.025 + (lane % 3) * 0.004)) % 1;
+    const point = flowPoint(progress, lane);
+    const edgeFade = Math.min(progress * 10, (1 - progress) * 10, 1);
+    context.fillStyle = withAlpha(lane % 5 === 0 ? colors.accent : colors.muted, 0.36 * edgeFade);
     context.beginPath();
-    context.arc(x + pointerOffsetX * 0.025, y, radius, 0, Math.PI * 2);
+    context.arc(point.x, point.y, particle % 4 === 0 ? 1.7 : 1, 0, Math.PI * 2);
     context.fill();
   }
-
-  context.strokeStyle = withAlpha(colors.ink, 0.16);
-  context.lineWidth = 1;
-  context.beginPath();
-  context.arc(centerX, centerY, Math.min(width, height) * 0.19, 0, Math.PI * 2);
-  context.stroke();
-  context.strokeStyle = withAlpha(colors.accent, 0.5);
-  context.beginPath();
-  context.arc(
-    centerX,
-    centerY,
-    Math.min(width, height) * (0.19 + Math.sin(time * 0.8) * 0.018),
-    0,
-    Math.PI * 1.65,
-  );
-  context.stroke();
-  context.fillStyle = withAlpha(colors.accent, 0.58);
-  context.beginPath();
-  context.arc(centerX, centerY, 7 + Math.sin(time * 1.1) * 1.6, 0, Math.PI * 2);
-  context.fill();
 }
 
 function drawIntegrations(
