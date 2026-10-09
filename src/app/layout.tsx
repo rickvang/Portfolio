@@ -7,6 +7,7 @@ import "./globals.css";
 import "./work-led.css";
 import "./personal-practice.css";
 import "./design-practice.css";
+import "./ui-craft.css";
 
 const inter = Inter({
   subsets: ["latin"],

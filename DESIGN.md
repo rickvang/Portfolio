@@ -250,13 +250,16 @@ The Playwright suite includes default desktop plus dedicated mobile and tablet p
 
 ### UI Design Practices presentation
 
-The approved UI Design Practices record authors an optional `practiceOverview`: a four-phase text-derived overview supported by its existing source references. It is an explanatory map, not a reconstructed product screenshot or a measured outcome. The shared template renders that data inside the System chapter, explicitly labeled Build sequence. The content schema requires a System chapter whenever a practice overview is authored, preventing the map from silently disappearing. The hero introduces the project and its chapter links; it does not present a second numbered outline. Other records retain their existing presentation.
+CW-97 / Issue #70 replaces the earlier portfolio-build overview at the existing approved route with the owner-reviewed UI craft page. The user approved the content, its three illustrations and the five layout/navigation refinements. This is a scoped exception to the shared five-chapter presentation; other records and draft approval states are unchanged.
 
-Chapter-path labels are native anchor links with visible keyboard focus. For the practice presentation, these links are the single chapter navigation at widths up to 900px; the desktop chapter index remains available above that breakpoint. Mobile anchor targets clear the sticky navigation bar. Links use browser history and Enter activation; there is no custom state, data transmission, or new motion. Existing reduced-motion rules continue to apply.
+- Authored content remains in `content/drafts/case-studies.json`. Optional `practicePresentation` data selects the focused renderer; source/evidence remains available in the ordinary local review view. The story harness uses the same production component with `?slug=ui-design-practices&view=story`.
+- Three chapters use matching navigation/section labels: Understand the work, Make design decisions, Build a shared practice. One image-led introduction and one closing Back to all work link preserve the approved hierarchy.
+- The existing Personal Practice shell supplies the light rail and mobile drawer. The feature uses semantic tokens, responsive grids and native anchors; source/drafting commentary is kept out of the public page.
+- Three keyboard-operable tabs show layout, density and foundations examples. Native dialog enlargement supports Escape, Close and focus return. Reference UI is labeled rather than attributed as original work.
+- The three reviewed PNGs now live under `public/work-media/ui-practice/`. This approval is specific to this page; prior detail-media restrictions for other case studies remain unchanged. Provenance and attribution are recorded beside the assets.
+- The owner-interview mini case records the slide-in pattern decision, Rick's contribution and qualitative adoption. It claims no measured usability improvement or undocumented earlier workflow behavior.
 
-Practice items use aligned title/description rows, stacking on small screens, rather than the generic source-summary/media-placeholder presentation. The original sections, stable anchors, approved copy, and local review evidence remain intact. `/dev/harness/case-study?slug=ui-design-practices` exercises the same record and renderer. Unknown records keep the existing fallback; draft revisions remain unpublished.
-
-Acceptance: see the chapter outline in the hero and the four documented build phases within System; use keyboard or touch to reach every chapter; read the practice and decisions without duplicate intro or missing-media UI; fit desktop, tablet, narrow mobile, and reduced-motion views without overflow. See Issues #64 and #68 and CW-88 for scoped evidence and decisions.
+Acceptance: inspect the desktop and narrow layout, matching chapter links, keyboard tab navigation, all three local images, enlargement/focus recovery and return to Work. The other four review-ready revisions remain unpublished.
 
 Before a UI change is complete:
 

@@ -12,6 +12,8 @@ import {
   importedCaseStudies,
 } from "@/lib/case-studies";
 
+const legacyOverview = { title: "Build sequence", phases: [{ title: "Structure", summary: "Define the page structure." }], evidence: [{ sourceId: "cw97-approved", note: "Synthetic legacy overview fixture." }] };
+
 describe("case-study content contract", () => {
   it("promotes explicitly approved imported and authored projects", () => {
     expect(importedCaseStudies.map((caseStudy) => caseStudy.slug)).toEqual([
@@ -137,7 +139,7 @@ describe("case-study content contract", () => {
     const result = caseStudySchema.safeParse({
       ...caseStudy,
       practiceOverview: {
-        ...caseStudy.practiceOverview,
+        ...legacyOverview,
         evidence: [{ sourceId: "missing-source", note: "Unsupported phase sequence" }],
       },
     });
@@ -148,7 +150,7 @@ describe("case-study content contract", () => {
   });
 
   it("requires a System chapter for a practice overview", () => {
-    const caseStudy = getApprovedCaseStudyBySlug("ui-design-practices")!;
+    const caseStudy = { ...getApprovedCaseStudyBySlug("ui-design-practices")!, practicePresentation: undefined, practiceOverview: legacyOverview };
     const withoutSystem = caseStudy.sections.filter(
       (section) => section.kind !== "system-practice" && section.kind !== "decisions",
     );
@@ -161,9 +163,7 @@ describe("case-study content contract", () => {
     for (const kind of ["system-practice", "decisions"]) {
       expect(caseStudySchema.safeParse({
         ...caseStudy,
-        sections: caseStudy.sections.filter((section) =>
-          section.kind !== "system-practice" && section.kind !== "decisions" || section.kind === kind,
-        ),
+        sections: [{ kind, title: "System", body: "Synthetic system section.", evidence: legacyOverview.evidence }],
       }).success).toBe(true);
     }
   });
@@ -180,5 +180,15 @@ describe("case-study content contract", () => {
     expect(getApprovedCaseStudyBySlug("multi-product-integrations", mixed)).toBeUndefined();
     expect(getApprovedCaseStudyBySlug("design-systems", mixed)).toEqual(importedCaseStudies[1]);
     expect(importedCaseStudies[0]?.reviewStatus).toBe("approved");
+  });
+
+  it("rejects incomplete examples and duplicate tab identities in the craft presentation", () => {
+    const current = getApprovedCaseStudyBySlug("ui-design-practices")!;
+    const incomplete = structuredClone(current);
+    const examples = incomplete.sections.find((section) => section.kind === "system-practice")!.items!;
+    examples[1].id = examples[0].id;
+    examples[0].media = undefined;
+    expect(caseStudySchema.safeParse(incomplete).success).toBe(false);
+    expect(caseStudySchema.safeParse(current).success).toBe(true);
   });
 });

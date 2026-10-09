@@ -230,260 +230,173 @@
     "id": "ui-design-practices",
     "slug": "ui-design-practices",
     "title": "UI Design Practices",
-    "summary": "A staged design-to-implementation practice for turning an ambiguous portfolio redesign into information architecture, visual tokens, interaction contracts, reusable components, and browser-verifiable behavior.",
-    "practiceOverview": {
-      "title": "From structure to a working interface",
-      "phases": [
-        { "title": "Information architecture", "summary": "Visitor jobs, routes, content, and publication boundaries." },
-        { "title": "Visual system & navigation", "summary": "Semantic tokens, a persistent rail, and a mobile drawer." },
-        { "title": "Motion & interaction", "summary": "CSS-first motion, focus behavior, and reduced-motion support." },
-        { "title": "Shared case-study slice", "summary": "Reusable rendering with explicit verification boundaries." }
-      ],
-      "evidence": [
-        { "sourceId": "portfolio-issue-6", "note": "The approved overview establishes information architecture, visual system/navigation, motion, and shared case-study rendering as consecutive implementation phases." },
-        { "sourceId": "portfolio-design", "note": "The approved exploration, system, and outcomes describe tokens, navigation, interaction behavior, reuse, and verification." }
-      ]
-    },
-    "category": "UI Design Practice",
+    "summary": "I connect user workflows, visual hierarchy and reusable patterns—illustrated through enterprise product and design-system work.",
+    "category": "UX / UI practice",
     "reviewStatus": "approved",
     "sources": [
       {
-        "id": "portfolio-issue-6",
-        "kind": "repository",
-        "label": "Portfolio redesign implementation plan",
-        "url": "https://github.com/rickvang/Portfolio/issues/6",
-        "capturedAt": "2026-09-22"
+        "id": "cw97-approved",
+        "kind": "user-provided",
+        "label": "Owner-approved UI craft concept and five annotation refinements, CW-97",
+        "url": "https://app.notion.com/p/3f3cd82535ff81ad9357dc85de1073c8",
+        "capturedAt": "2026-10-08"
       },
       {
-        "id": "portfolio-issue-4",
-        "kind": "repository",
-        "label": "Portfolio interaction-spec and component-builder work",
-        "url": "https://github.com/rickvang/Portfolio/issues/4",
-        "capturedAt": "2026-09-22"
+        "id": "cw83-interview",
+        "kind": "user-provided",
+        "label": "CW-83 owner interview: contribution, pattern adoption and qualitative outcomes",
+        "url": "https://github.com/rickvang/Portfolio/blob/main/docs/work-orders/WO-2026-10-02-hiring-story/work-order.md",
+        "capturedAt": "2026-10-02"
       },
       {
-        "id": "portfolio-design",
-        "kind": "repository",
-        "label": "Portfolio DESIGN.md contract",
-        "url": "https://github.com/rickvang/Portfolio/blob/feat/issue-6-case-study-slice/DESIGN.md",
-        "capturedAt": "2026-09-22"
-      },
-      {
-        "id": "pl-ux-practice",
-        "kind": "repository",
-        "label": "Persona-Library Expert UX Design Practice",
-        "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/ux/expert-ux-design-practice.md",
-        "capturedAt": "2026-09-22"
-      },
-      {
-        "id": "pl-project-routing",
-        "kind": "repository",
-        "label": "Persona-Library Project Context and Reference Routing",
-        "url": "https://github.com/rickvang/Persona-Library/blob/main/docs/ux/project-context-and-reference-routing.md",
-        "capturedAt": "2026-09-22"
+        "id": "original-design-work",
+        "kind": "source-page",
+        "label": "Original Multi Product Integrations and Design Systems source material; archived via local media and authored record",
+        "url": "https://www.rickvang.com/projects/design-systems",
+        "capturedAt": "2026-10-08"
       }
     ],
     "sections": [
       {
-        "kind": "overview",
-        "title": "Overview",
-        "body": "The portfolio redesign was organized as a sequence of inspectable design and engineering contracts: information architecture first, then visual system and navigation, then motion, then a shared case-study slice. Each phase had a concrete artifact and verification boundary before the next dependent layer was added.",
-        "evidence": [
-          {
-            "sourceId": "portfolio-issue-6",
-            "note": "Defines the phased redesign plan and handoff model."
-          }
-        ]
-      },
-      {
         "kind": "context",
-        "title": "Context",
-        "body": "The starting portfolio already had routes, fixtures, a local harness, content imports, and a design contract. The redesign needed to change hierarchy and presentation without publishing draft case-study claims, duplicating navigation components, adding unnecessary dependencies, or breaking the existing admin/content boundaries.",
-        "evidence": [
-          {
-            "sourceId": "portfolio-issue-6",
-            "note": "Defines redesign boundaries, anti-goals, and publication constraints."
-          },
-          {
-            "sourceId": "portfolio-design",
-            "note": "Documents the implemented shell, motion, component, accessibility, and verification contracts."
-          }
-        ]
-      },
-      {
-        "kind": "personas",
-        "title": "Personas",
+        "title": "Before the interface, understand the situation.",
+        "body": "The screen is one part of a larger task. I need to understand who is using it, what they are trying to accomplish, and where the existing workflow makes that harder.\n\nAcross separate applications, teams were solving similar workflow problems in different ways. We looked for patterns that could work across those applications, while leaving room for the needs of each scenario.\n\nSome teams had more developed dashboards and progressive-disclosure patterns. Their approach to creating and viewing records in slide-ins fit certain scenarios better than ours. We adopted that approach and brought it into our shared Figma libraries and guidelines.",
         "items": [
           {
-            "title": "Hiring managers and design leadership",
-            "summary": "Primary evaluation audience for fast understanding of positioning, representative work, design decisions, system thinking, and outcomes."
+            "title": "The need",
+            "summary": "A reusable way to create and view records across applications."
           },
           {
-            "title": "Potential consulting clients",
-            "summary": "Secondary audience evaluating fit, problem-structuring ability, relevant examples, and a direct contact path."
+            "title": "The choice",
+            "summary": "Adopt a pattern another team had developed where it fit the scenario better."
           },
           {
-            "title": "UX and UI design roles",
-            "summary": "Structure/content questions are separated from visual hierarchy, interaction states, responsive behavior, accessibility, and built-versus-designed QA."
+            "title": "The shared result",
+            "summary": "Make the slide-in workflow part of the Figma library and guidelines that other designers could reuse."
           }
         ],
         "evidence": [
           {
-            "sourceId": "portfolio-issue-6",
-            "note": "Confirms primary and secondary portfolio audiences."
-          },
-          {
-            "sourceId": "pl-project-routing",
-            "note": "Defines conditional routing between UX structure work and UI hierarchy/interaction work."
-          }
-        ]
-      },
-      {
-        "kind": "problem",
-        "title": "Problem",
-        "body": "A portfolio redesign can become a styling exercise before the content model, route hierarchy, interaction states, and publication rules are clear. That makes visual polish difficult to evaluate and increases the chance of route-specific markup, hidden states, or unreviewed content appearing authoritative.",
-        "evidence": [
-          {
-            "sourceId": "pl-ux-practice",
-            "note": "The UX practice requires reasoning, evidence, state coverage, traceability, and implementation QA rather than polished screens alone."
-          },
-          {
-            "sourceId": "portfolio-issue-6",
-            "note": "Phase order deliberately locks IA/content contracts before visual and motion implementation."
-          }
-        ]
-      },
-      {
-        "kind": "exploration",
-        "title": "Exploration",
-        "body": "The redesign explored a persistent left rail, a mobile drawer, recovery of the original orange accent, chapter-style route continuity, and a shared case-study model. The implementation favored native links, CSS variables, route groups, and CSS-first motion because those primitives covered the required behavior without a component or animation dependency.",
-        "evidence": [
-          {
-            "sourceId": "portfolio-issue-6",
-            "note": "Confirms the rail, drawer, cinematic direction, orange recovery, and shared case-study structure."
-          },
-          {
-            "sourceId": "portfolio-design",
-            "note": "Documents the implemented shell and CSS-first motion contract."
+            "sourceId": "cw83-interview",
+            "note": "Reviewed synthesis; no invented measurement or reconstruction of client screens."
           }
         ]
       },
       {
         "kind": "system-practice",
-        "title": "System / practice",
+        "title": "The same system. Different design decisions.",
+        "body": "Layout, density and component behavior each shape how an interface feels to use.",
         "items": [
           {
-            "title": "Define structure before polish",
-            "summary": "Visitor jobs, page modes, route contracts, section sequence, and publication boundaries are made explicit before visual implementation."
+            "id": "layout",
+            "label": "Layout & context",
+            "category": "Multi Product Integrations",
+            "title": "Give complexity a structure people can follow.",
+            "summary": "A dense work interface needs clear levels of context. Navigation locates the person in the product; the record view supports scanning and selection; detail and activity panels support the work on a selected item.",
+            "detail": "The exploded layout separates global navigation, the working view and item-level detail. Each layer has a distinct purpose within the same workflow.",
+            "media": {
+              "src": "/work-media/ui-practice/layout.png",
+              "alt": "Exploded study of modular record, navigation and activity panels",
+              "caption": "Navigation, records, contextual detail and activity arranged as connected layers.",
+              "width": 2048,
+              "height": 820
+            }
           },
           {
-            "title": "Turn visual direction into tokens",
-            "summary": "Color, spacing, layout, and motion values live in semantic CSS variables and documented contracts instead of route-specific values."
+            "id": "density",
+            "label": "Density & hierarchy",
+            "category": "Design Systems · Density study",
+            "title": "Let the task set the density.",
+            "summary": "A marketing page draws attention to a small number of ideas. An enterprise workspace needs to support scanning, comparison and repeated actions. I adapt typography, spacing and emphasis to those different reading tasks.",
+            "detail": "The marketing reference uses large type and open spacing. The work-request view groups more information into a compact layout, with headings and alignment establishing reading order.",
+            "media": {
+              "src": "/work-media/ui-practice/density.png",
+              "alt": "Published density study pairing typography, a marketing reference and an enterprise work-request interface",
+              "caption": "Density comparison · includes third-party reference UI.",
+              "width": 2108,
+              "height": 1836
+            }
           },
           {
-            "title": "Specify interaction behavior",
-            "summary": "Important components document states, triggers, focus behavior, cancellation, responsive rules, accessibility, selectors, and verification."
-          },
-          {
-            "title": "Build shared components",
-            "summary": "Public navigation and case-study rendering are reusable boundaries rather than repeated route markup."
-          },
-          {
-            "title": "Keep a deterministic harness",
-            "summary": "Loading, empty, error, disabled, long-content, responsive, and reduced-motion behavior can be exercised without external services."
-          },
-          {
-            "title": "Validate the built experience",
-            "summary": "Lint, typecheck, unit, browser, build, and local schema checks act as implementation gates rather than post-hoc cleanup."
+            "id": "patterns",
+            "label": "Foundations & patterns",
+            "category": "Design Systems · Foundations",
+            "title": "Make shared decisions easier to repeat.",
+            "summary": "Consistent color and control states make an interface easier to interpret. I connect these foundations to reusable screens and workflow patterns, so teams can carry familiar behavior into different product contexts.",
+            "detail": "Color scales sit alongside default, focused and disabled controls. Repeating those state treatments helps people recognize what they can interact with and where their attention is.",
+            "media": {
+              "src": "/work-media/ui-practice/foundations.png",
+              "alt": "Published foundations board showing color scales, form controls and interaction states",
+              "caption": "Color scales and control states · reference board.",
+              "width": 2138,
+              "height": 3094
+            }
           }
         ],
         "evidence": [
           {
-            "sourceId": "portfolio-issue-4",
-            "note": "Defines the interaction-spec and component-builder workflow."
+            "sourceId": "original-design-work",
+            "note": "Reviewed synthesis; no invented measurement or reconstruction of client screens."
           },
           {
-            "sourceId": "portfolio-design",
-            "note": "Documents tokens, components, states, motion, responsive behavior, and verification."
-          },
-          {
-            "sourceId": "pl-ux-practice",
-            "note": "Defines design practice from structure through implementation handoff and built QA."
-          }
-        ]
-      },
-      {
-        "kind": "decisions",
-        "title": "Decisions",
-        "items": [
-          {
-            "title": "Use a public route-group shell",
-            "summary": "Public routes share persistent navigation while admin, API, and local harness surfaces remain outside the portfolio frame."
-          },
-          {
-            "title": "Recover the orange precisely",
-            "summary": "The rendered original site was inspected and the accent was formalized as #F24C27, with a darker semantic ink token for small text contrast."
-          },
-          {
-            "title": "Keep motion CSS-first",
-            "summary": "Short, interruptible CSS motion covers route entry, active state, drawer entry, and feedback without adding an animation dependency."
-          },
-          {
-            "title": "Make approval a route boundary",
-            "summary": "Draft case studies can use the shared template locally, but public indexes and detail routes consume approval-filtered records only."
-          }
-        ],
-        "evidence": [
-          {
-            "sourceId": "portfolio-design",
-            "note": "Documents shell ownership, accent provenance, motion decisions, and the shared case-study publication contract."
-          },
-          {
-            "sourceId": "portfolio-issue-6",
-            "note": "Establishes the staged implementation and draft-first constraints."
+            "sourceId": "cw97-approved",
+            "note": "Reviewed synthesis; no invented measurement or reconstruction of client screens."
           }
         ]
       },
       {
         "kind": "outcomes",
-        "title": "Outcomes",
-        "body": "The work produced documented route/content contracts, a persistent responsive navigation shell, semantic visual and motion tokens, reusable case-study components, and automated coverage for keyboard, mobile/tablet, reduced-motion, and publication-gate behavior. This case study describes implementation artifacts and checks; it does not claim hiring, conversion, or user-research outcomes.",
-        "evidence": [
+        "title": "A design system is also a way of working together.",
+        "body": "My pattern work spans several engagements. In one real-estate engagement, I was a primary contributor working with three teammates. We divided the pattern work and iterated together; my contribution focused on workflow patterns and a layout starter for different problem spaces.\n\nI worked with frontend developers to understand feasibility; they implemented the code. The libraries were generally adopted across the projects I worked on, although established teams found adaptation harder. Reuse required collaboration as well as a shared library.",
+        "items": [
           {
-            "sourceId": "portfolio-design",
-            "note": "Documents the implemented component and verification surface."
+            "title": "Make recurring decisions explicit",
+            "summary": "Define recurring decisions: modal or drawer, close-button placement, reading order, and horizontal or vertical label/value layouts."
           },
           {
-            "sourceId": "portfolio-issue-4",
-            "note": "Records completed interaction-spec/component-builder verification on the portfolio foundation."
+            "title": "Work through the tradeoffs",
+            "summary": "Bring user needs, team priorities and implementation feasibility into the same discussion. A coherent pattern still has to work in its context."
           },
           {
-            "sourceId": "portfolio-issue-6",
-            "note": "Defines the redesign acceptance criteria these implementation artifacts address."
+            "title": "Leave something others can use",
+            "summary": "Turn recurring decisions into foundations, templates and workflow patterns. Keep feedback open as new situations emerge."
           }
-        ]
-      },
-      {
-        "kind": "reflection",
-        "title": "Reflection",
-        "body": "Separating structure, visual system, motion, content rendering, and verification into reviewable layers made each decision easier to trace to a user or system need. The remaining evidence gap is outcome validation: content approval, visual snapshots, release hardening, and real portfolio performance still need to be evaluated before this becomes a finished redesign story.",
+        ],
         "evidence": [
           {
-            "sourceId": "pl-ux-practice",
-            "note": "Requires traceable design reasoning, explicit unknowns, evaluation, and built QA."
-          },
-          {
-            "sourceId": "portfolio-issue-6",
-            "note": "Later phases explicitly cover editorial review, visual snapshots, and release hardening."
+            "sourceId": "cw83-interview",
+            "note": "Reviewed synthesis; no invented measurement or reconstruction of client screens."
           }
         ]
       }
     ],
     "curationNotes": [
-      "This is an implementation-practice case study, not a claim of user-research validation.",
-      "Outcome language is limited to inspectable artifacts and checks; hiring, conversion, usability, and business impact remain unmeasured.",
-      "Published without screenshots; add only source-approved visuals in a later media review."
-    ]
+      "CW-97 owner approved the C22 concept and requested implementation. Approval covers this page and its three reviewed source illustrations, not unrelated draft case studies.",
+      "Density includes third-party example UI; foundations is a reference board, not a claim of original authorship of every component.",
+      "Original source links and editorial provenance stay internal; approved images are bundled locally.",
+      "The older ui-design-practices-revision remains unpublished historical portfolio-building work.",
+      "Qualitative adoption only; earlier page-refresh behavior, dashboard-context retention and measured usability gains remain unconfirmed and are omitted."
+    ],
+    "role": "Workflow patterns, shared Figma libraries and layout direction",
+    "scope": "Selected enterprise and design-system work across engagements",
+    "clientIpDisclaimer": "Illustrations adapted to protect client details and intellectual property. Reference boards are labeled separately from project work.",
+    "practicePresentation": {
+      "headlineLead": "How I approach",
+      "headlineEmphasis": "interface design.",
+      "heroMedia": {
+        "src": "/work-media/ui-practice/layout.png",
+        "alt": "Exploded study of modular record, navigation and activity panels",
+        "caption": "Enterprise interface structure: navigation, records and contextual detail.",
+        "width": 2048,
+        "height": 820
+      },
+      "contextSubtitle": "Knowing when to adopt a better pattern",
+      "chapterLabels": {
+        "context": "Understand the work",
+        "system": "Make design decisions",
+        "outcomes": "Build a shared practice"
+      }
+    }
   },
   {
     "id": "multi-product-integrations-revision",
@@ -773,34 +686,34 @@
       },
       {
         "kind": "exploration",
-      "title": "Same question, different judgments",
+        "title": "Same question, different judgments",
         "items": [
           {
             "id": "shared-question",
             "title": "Shared question",
             "summary": "Would this product idea be useful to you in your work?"
-        },
-        {
-          "id": "priority-executive",
-          "title": "Executive",
-          "summary": "Business value, strategic priorities and organizational risk."
-        },
-        {
-          "id": "priority-manager",
-          "title": "Manager",
-          "summary": "Team performance, resource allocation and coordination."
-        },
-        {
-          "id": "priority-worker",
-          "title": "Worker",
-          "summary": "Completing daily tasks, practical tools and avoiding extra work."
+          },
+          {
+            "id": "priority-executive",
+            "title": "Executive",
+            "summary": "Business value, strategic priorities and organizational risk."
+          },
+          {
+            "id": "priority-manager",
+            "title": "Manager",
+            "summary": "Team performance, resource allocation and coordination."
+          },
+          {
+            "id": "priority-worker",
+            "title": "Worker",
+            "summary": "Completing daily tasks, practical tools and avoiding extra work."
           }
         ],
-      "body": "Each AI persona answered through its compiled role profile. Responsibilities, workload and pain points shaped the responses, so the same question produced different perspectives. I could compare whether the idea seemed useful to each role and how each thought about the data.",
+        "body": "Each AI persona answered through its compiled role profile. Responsibilities, workload and pain points shaped the responses, so the same question produced different perspectives. I could compare whether the idea seemed useful to each role and how each thought about the data.",
         "evidence": [
           {
             "sourceId": "owner-ai-council-2026-10-03",
-          "note": "Rick explicitly confirmed the same question/context across personas and clarified that asking the three personas the same question could produce different responses. His earlier clarification establishes evaluation against role workloads and pain points. This describes AI output behavior, not validation with real users. No exact responses or specific role disagreement are reconstructed. The question wording paraphrases his stated examples. The priority items are authored role examples; they are not recovered original profiles or observed responses."
+            "note": "Rick explicitly confirmed the same question/context across personas and clarified that asking the three personas the same question could produce different responses. His earlier clarification establishes evaluation against role workloads and pain points. This describes AI output behavior, not validation with real users. No exact responses or specific role disagreement are reconstructed. The question wording paraphrases his stated examples. The priority items are authored role examples; they are not recovered original profiles or observed responses."
           }
         ]
       },

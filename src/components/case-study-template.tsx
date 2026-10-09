@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ExperiencePresentation } from "@/components/experience-presentation";
 import { CaseStudyIllustration } from "@/components/case-study-illustration";
 import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
+import { UiPracticeCaseStudy } from "@/components/ui-practice-case-study";
 import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
 
 type CaseStudyTemplateProps = {
@@ -11,6 +12,9 @@ type CaseStudyTemplateProps = {
 };
 
 export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTemplateProps) {
+  if (mode === "public" && caseStudy.practicePresentation) {
+    return <UiPracticeCaseStudy caseStudy={caseStudy} />;
+  }
   if (mode === "public" && caseStudy.slug === "multi-product-integrations") {
     return <PersonalPracticeCaseStudy caseStudy={caseStudy} />;
   }
