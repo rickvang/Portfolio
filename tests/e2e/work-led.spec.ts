@@ -78,16 +78,13 @@ test("mobile home uses the working-index structure without horizontal overflow",
   });
 });
 
-test("integrations detail explains approved patterns without the generated diagram", async ({ page }) => {
+test("integrations detail explains the approved adoption story", async ({ page }) => {
   await page.goto("/work/multi-product-integrations");
-
-  const patterns = page.getByRole("region", { name: "The shared patterns." });
-  await expect(patterns.getByRole("heading", { name: "Standardized Layouts" })).toBeVisible();
-  await expect(patterns.getByRole("heading", { name: "Workflow Completion" })).toBeVisible();
-  await expect(patterns.getByRole("listitem")).toHaveCount(5);
-  await expect(page.getByRole("navigation", { name: "Source sections for this presentation" })).toHaveCount(0);
+  await expect(page.getByRole("heading", { name: "From a useful example to a shared pattern", exact: true })).toBeVisible();
+  await expect(page.locator(".adoption-sequence li")).toHaveCount(3);
+  await expect(page.locator(".record-ui")).toBeVisible();
   await expect(page.getByText("Media not included", { exact: true })).toHaveCount(0);
-  await expect(page.getByRole("link", { name: "All work" })).toHaveAttribute("href", "/work");
+  await expect(page.getByRole("link", { name: "← All work", exact: true })).toHaveAttribute("href", "/work");
 });
 
 test("owner-interview story is readable in review and excluded from publication", async ({ page }) => {

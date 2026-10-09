@@ -3,7 +3,7 @@
     "id": "ai-systems",
     "slug": "ai-systems",
     "title": "AI Systems",
-    "summary": "A repository-backed orchestration system that separates persona roles, shared context, durable work state, and live tool state so complex AI-assisted work can be routed and resumed without turning one orchestrator into every specialist.",
+    "summary": "A persona framework that connects public research, working context and cross-role dependencies to help AI assess product ideas, handoff workflows and information needs.",
     "category": "AI Systems",
     "reviewStatus": "approved",
     "sources": [
@@ -223,7 +223,8 @@
     "curationNotes": [
       "Synthesized from current Persona-Library contracts and completed orchestration work; it is not user research.",
       "No productivity, cost, quality, or adoption metric is claimed because no attributable measurement was found in the source set.",
-      "Published without screenshots; add only source-approved visuals in a later media review."
+      "Published without screenshots; add only source-approved visuals in a later media review.",
+      "CW-97: Rick approved the revised public narrative on 2026-10-09. The current public composition is src/content/ai-story.tsx; earlier sections are retained as historical source context for review, not the current public story. Illustrative responses and fictional role screens are labeled; the colleague reaction is owner-reported experience."
     ]
   },
   {

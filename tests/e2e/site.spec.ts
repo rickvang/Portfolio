@@ -55,7 +55,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
     selectedWork.getByText(/Turning a fragmented ecosystem of products, workflows, and data/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/Building a durable operating system for collaborating with specialized AI agents/i),
+    selectedWork.getByText(/Connecting public research, working context and cross-persona dependencies/i),
   ).toBeVisible();
   await expect(
     selectedWork.getByText(/Creating reusable product foundations and lightweight governance/i),
@@ -139,23 +139,22 @@ test("approved imported work is public through the shared case-study routes", as
   await expect(page).toHaveTitle("Multi Product Integrations | Rick Vang");
   await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
   await expect(page.getByTestId("practice-nav-marker")).toHaveAttribute("data-visible", "true");
-  await expect(page.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 2, name: "Overview", exact: true })).toBeVisible();
-  await expect(page.getByRole("heading", { level: 2, name: "Exploration", exact: true })).toBeVisible();
-  await expect(page.getByText(/client intellectual property/i)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Shared patterns.Room for different work.");
+  await expect(page.getByText(/I worked with three teammates/)).toBeVisible();
+  await expect(page.getByText(/Illustrative UI with fictional records/)).toBeVisible();
 
   await page.goto("/work/design-systems");
   await expect(page).toHaveTitle("Design Systems | Rick Vang");
-  await expect(page.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
-  await expect(page.getByText("Lightweight governance", { exact: true })).toBeVisible();
-  await expect(page.getByText(/client intellectual property/i)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("A common foundation.");
+  await expect(page.getByText(/I designed the platform framework/)).toBeVisible();
+  await expect(page.getByText(/Illustrative comparison with fictional content/)).toBeVisible();
 });
 
 test("existing authored AI work is public through its intended routes", async ({ page }) => {
   await page.goto("/work/ai-systems");
   await expect(page).toHaveTitle("AI Systems | Rick Vang");
-  await expect(page.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
-  await expect(page.locator(".case-study-hero .lede")).toContainText("repository-backed orchestration system");
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("Give AI a model");
+  await expect(page.locator(".approved-story .intro")).toContainText("map of how their roles depended on each other");
 
   await page.goto("/work/ui-design-practices");
   await expect(page).toHaveTitle("UI Design Practices | Rick Vang");
