@@ -141,6 +141,7 @@ export function PersonalPracticeShell({
               width={78}
             />
           </Link>
+          <span className="practice-identity-name">Rick Vang</span>
           <p>Product designer</p>
         </div>
 

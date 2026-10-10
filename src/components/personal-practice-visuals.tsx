@@ -202,9 +202,13 @@ function PracticeHeroFallback() {
 }
 
 export function PersonalPracticeWorkVisual({
+  caption,
+  captionId,
   kind,
   media,
 }: {
+  caption?: string;
+  captionId?: string;
   kind: PracticeWorkVisualKind;
   media?: CaseStudyPreviewMedia;
 }) {
@@ -213,26 +217,30 @@ export function PersonalPracticeWorkVisual({
       <figure
         className={`practice-work-visual practice-work-visual-image practice-work-visual-${kind}`}
       >
-        <Image
-          alt={media.alt}
-          className="practice-work-image"
-          fill
-          priority={kind === "integrations"}
-          sizes="(max-width: 620px) calc(100vw - 3rem), 42vw"
-          src={media.src}
-        />
-        <figcaption>{media.caption}</figcaption>
+        <div className="practice-work-art">
+          <Image
+            alt={media.alt}
+            className="practice-work-image"
+            fill
+            priority={kind === "integrations"}
+            sizes="(max-width: 620px) calc(100vw - 3rem), 42vw"
+            src={media.src}
+          />
+        </div>
+        <figcaption id={captionId}>{caption ?? media.caption}</figcaption>
       </figure>
     );
   }
 
   return (
     <figure className={`practice-work-visual practice-work-visual-${kind}`}>
-      <PracticeCanvasFrame
-        className={`practice-work-visual-canvas practice-work-visual-${kind}`}
-        variant={kind}
-      />
-      <figcaption>Illustrative diagram</figcaption>
+      <div className="practice-work-art">
+        <PracticeCanvasFrame
+          className={`practice-work-visual-canvas practice-work-visual-${kind}`}
+          variant={kind}
+        />
+      </div>
+      <figcaption id={captionId}>{caption ?? "Illustrative diagram"}</figcaption>
     </figure>
   );
 }

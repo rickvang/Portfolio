@@ -10,6 +10,7 @@ import { workHref } from "@/lib/public-routes";
 type PersonalPracticeWorkItem = {
   caseStudy: CaseStudy;
   summary?: string;
+  previewCaption?: string;
   visualKind?: PracticeWorkVisualKind;
 };
 
@@ -28,13 +29,18 @@ export function PersonalPracticeWorkIndex({ items }: PersonalPracticeWorkIndexPr
 
   return (
     <div aria-label="Selected work" className="practice-work-index">
-      {items.map(({ caseStudy, summary, visualKind }) => (
+      {items.map(({ caseStudy, summary, visualKind, previewCaption }) => (
         <article
           className="practice-work-row"
           data-practice-work={caseStudy.slug}
           key={caseStudy.id}
         >
           <Link
+            aria-describedby={
+              visualKind
+                ? `${caseStudy.slug}-summary ${caseStudy.slug}-preview-caption`
+                : `${caseStudy.slug}-summary`
+            }
             aria-label={`Read ${caseStudy.title} case study`}
             className="practice-work-card-link"
             href={workHref(caseStudy.slug)}
@@ -42,11 +48,16 @@ export function PersonalPracticeWorkIndex({ items }: PersonalPracticeWorkIndexPr
             <div className="practice-work-copy">
               <p className="practice-work-meta">{caseStudy.category}</p>
               <h3>{caseStudy.title}</h3>
-              <p>{summary ?? caseStudy.summary}</p>
+              <p id={`${caseStudy.slug}-summary`}>{summary ?? caseStudy.summary}</p>
             </div>
 
             {visualKind && (
-              <PersonalPracticeWorkVisual kind={visualKind} media={caseStudy.previewMedia} />
+              <PersonalPracticeWorkVisual
+                caption={previewCaption}
+                captionId={`${caseStudy.slug}-preview-caption`}
+                kind={visualKind}
+                media={caseStudy.previewMedia}
+              />
             )}
 
             <span aria-hidden="true" className="practice-work-arrow">

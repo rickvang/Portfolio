@@ -13,26 +13,30 @@ const homepageWork = [
   {
     slug: "multi-product-integrations",
     summary:
-      "Turning a fragmented ecosystem of products, workflows, and data into a shared framework for a more coherent product experience.",
+      "I helped define shared workflow patterns and Figma libraries, and created a layout starter for teams working across applications.",
     visualKind: "integrations",
+    previewCaption: "Shared service interfaces · client screens modified to protect intellectual property.",
   },
   {
     slug: "ai-systems",
     summary:
-      "Connecting public research, working context and cross-persona dependencies to help AI assess product ideas and the workflows people need.",
+      "I built a research-grounded persona framework and mapped dependencies between roles to help AI reason about product ideas, workflows and information needs.",
     visualKind: "ai-systems",
+    previewCaption: "Illustrative diagram",
   },
   {
     slug: "design-systems",
     summary:
-      "Creating reusable product foundations and lightweight governance to improve consistency across a complex legacy environment.",
+      "I designed a platform framework within a shared core library, giving teams reusable screens and workflow patterns for redesigning legacy capabilities.",
     visualKind: "design-systems",
+    previewCaption: "Design-system foundations · client screens modified to protect intellectual property.",
   },
   {
     slug: "ui-design-practices",
     summary:
-      "Turning design principles into a repeatable design-to-implementation practice with explicit interaction, accessibility, and verification contracts.",
+      "I connect layout, information density and control states to reusable workflow patterns—drawing on enterprise product and design-system work.",
     visualKind: "ui-practice",
+    previewCaption: "Illustrative diagram",
   },
 ] as const;
 
@@ -44,7 +48,7 @@ export default async function HomePage() {
   const selectedWork = homepageWork.flatMap((item) => {
     const caseStudy = caseStudies.find((candidate) => candidate.slug === item.slug);
     return caseStudy
-      ? [{ caseStudy, summary: item.summary, visualKind: item.visualKind }]
+      ? [{ caseStudy, summary: item.summary, visualKind: item.visualKind, previewCaption: item.previewCaption }]
       : [];
   });
 
@@ -146,13 +150,16 @@ export default async function HomePage() {
             <Link className="practice-text-link" href={publicRoutes.about}>
               More about me →
             </Link>
-            <Link className="practice-text-link" href={publicRoutes.contact}>
-              Get in touch →
-            </Link>
           </div>
         </div>
 
         {profile && <ProfileStats stats={profile.stats} />}
+        <div className="practice-home-contact">
+          <h2>Let’s talk about your next challenge.</h2>
+          <Link className="practice-text-link" href={publicRoutes.contact}>
+            Get in touch →
+          </Link>
+        </div>
       </section>
     </div>
   );

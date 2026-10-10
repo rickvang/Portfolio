@@ -1,5 +1,41 @@
 import { expect, test } from "@playwright/test";
 
+test("homepage introduces project evidence and ends with contact on desktop and mobile", async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto("/");
+    await expect(page.getByTestId("practice-rail").getByText("Rick Vang", { exact: true })).toBeInViewport();
+    const firstProject = page.getByRole("heading", { name: "Multi Product Integrations", exact: true });
+    await expect(firstProject).toBeInViewport();
+    if (viewport.width > 620) {
+      await expect(page.locator(".practice-work-art").first()).toBeInViewport();
+    }
+    await page.screenshot({ path: `test-results/visual-snapshots/home-ux-first-${viewport.width}.png` });
+
+    for (const figure of await page.locator(".practice-work-visual").all()) {
+      const art = await figure.locator(".practice-work-art").boundingBox();
+      const caption = await figure.locator("figcaption").boundingBox();
+      expect(art).not.toBeNull();
+      expect(caption).not.toBeNull();
+      expect(caption!.y).toBeGreaterThanOrEqual(art!.y + art!.height);
+    }
+    const stats = page.locator(".practice-home .profile-stats");
+    const contact = page.getByRole("link", { name: "Get in touch →", exact: true });
+    const statsBox = await stats.boundingBox();
+    const contactBox = await contact.boundingBox();
+    expect(statsBox).not.toBeNull();
+    expect(contactBox).not.toBeNull();
+    expect(contactBox!.y).toBeGreaterThanOrEqual(statsBox!.y + statsBox!.height);
+    if (viewport.width <= 620) expect(statsBox!.height).toBeLessThan(180);
+    await contact.scrollIntoViewIfNeeded();
+    await expect(contact).toBeInViewport();
+    await expect(contact).toHaveAttribute("href", "/contact");
+    await page.screenshot({ path: `test-results/visual-snapshots/home-ux-close-${viewport.width}.png` });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth)).toBe(false);
+  }
+});
+
 test("hero flows normally and stays drawn and still with reduced motion after resize", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/");
@@ -83,22 +119,22 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(workRows.nth(2).getByRole("heading")).toHaveText("Design Systems");
   await expect(workRows.nth(3).getByRole("heading")).toHaveText("UI Design Practices");
   await expect(
-    selectedWork.getByText(/Turning a fragmented ecosystem of products, workflows, and data/i),
+    selectedWork.getByText(/I helped define shared workflow patterns and Figma libraries/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/Connecting public research, working context and cross-persona dependencies/i),
+    selectedWork.getByText(/I built a research-grounded persona framework/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/Creating reusable product foundations and lightweight governance/i),
+    selectedWork.getByText(/I designed a platform framework within a shared core library/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/Turning design principles into a repeatable design-to-implementation practice/i),
+    selectedWork.getByText(/I connect layout, information density and control states/i),
   ).toBeVisible();
   await expect(selectedWork.locator(".practice-work-visual-image")).toHaveCount(2);
   await expect(selectedWork.locator(".practice-work-visual figcaption")).toHaveText([
-    "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property.",
+    "Shared service interfaces · client screens modified to protect intellectual property.",
     "Illustrative diagram",
-    "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property.",
+    "Design-system foundations · client screens modified to protect intellectual property.",
     "Illustrative diagram",
   ]);
   await expect(selectedWork.locator(".practice-work-visual-image img").nth(0)).toHaveAttribute(
