@@ -22,7 +22,7 @@ const homepageWork = [
     summary:
       "I built a research-grounded persona framework and mapped dependencies between roles to help AI reason about product ideas, workflows and information needs.",
     visualKind: "ai-systems",
-    previewCaption: "Illustrative diagram",
+    previewCaption: "Illustrative persona framework",
   },
   {
     slug: "design-systems",
@@ -36,7 +36,7 @@ const homepageWork = [
     summary:
       "I connect layout, information density and control states to reusable workflow patterns—drawing on enterprise product and design-system work.",
     visualKind: "ui-practice",
-    previewCaption: "Illustrative diagram",
+    previewCaption: "Illustrative interface guidance",
   },
 ] as const;
 
@@ -106,8 +106,8 @@ export default async function HomePage() {
             <p>Map products, workflows, and responsibilities so teams can see what belongs together.</p>
           </article>
           <article className="practice-principle">
-            <strong>Define the operating model.</strong>
-            <p>Separate durable work from live context so people and AI can collaborate without losing the thread.</p>
+            <strong>Give AI useful context.</strong>
+            <p>Connect research, people’s decisions and role dependencies so AI can reason about their work.</p>
           </article>
           <article className="practice-principle">
             <strong>Build reusable foundations.</strong>

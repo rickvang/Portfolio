@@ -424,7 +424,11 @@
 }
 
 .practice-work-art {
-  background: var(--foreground);
+  background-color: var(--surface-muted);
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--muted) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--muted) 7%, transparent) 1px, transparent 1px);
+  background-size: 24px 24px;
   min-height: 12rem;
   overflow: hidden;
   position: relative;
@@ -432,7 +436,7 @@
 }
 
 .practice-work-art::after {
-  border: 1px solid color-mix(in srgb, var(--surface) 26%, transparent);
+  border: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
   content: "";
   inset: 0.75rem;
   pointer-events: none;
@@ -464,7 +468,7 @@
 }
 
 .practice-work-visual-image .practice-work-art::after {
-  border-color: color-mix(in srgb, var(--surface) 42%, transparent);
+  border-color: color-mix(in srgb, var(--border) 60%, transparent);
 }
 
 .practice-work-row:is(:hover, :focus-within) .practice-work-art {
@@ -1531,4 +1535,18 @@
   .practice-hero-fallback {
     transition: none;
   }
+}
+
+/* Illustrative Work representations within Home's existing horizontal index. */
+.practice-work-visual-illustrative .practice-work-art {
+  align-items: center;
+  aspect-ratio: 1.65;
+  display: flex;
+  justify-content: center;
+  min-height: 14rem;
+}
+
+.practice-framework-image {
+  object-fit: contain;
+  padding: 12px;
 }
