@@ -1544,6 +1544,8 @@
   display: flex;
   justify-content: center;
   min-height: 14rem;
+  min-width: 0;
+  width: 100%;
 }
 
 .practice-framework-image {
