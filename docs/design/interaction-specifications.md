@@ -98,3 +98,9 @@ The following existing surfaces use the template above. ContactForm is the repre
 - **Harness and verification:** the local-only harness includes both approved projects, synthetic text-only and long-content examples marked as non-client fixtures, deferred media, redacted media, keyboard links, and reduced-motion checks.
 - **Recovery and fallback:** if a profile item or its evidence disappears, use the approved source summary and remaining items in authored order. If content is not approved, public presentation is unavailable.
 - **Open evaluation:** intended feelings remain hypotheses until a reader who has not seen profile metadata identifies the relationship or system structure from the surface.
+
+### Navigation contact actions
+
+The Personal Practice shell replaces its bottom blurb and Contact navigation item with email-copy and LinkedIn actions. Both use the existing contact profile; `/contact` remains available to inbound and content links. The same 44px actions appear at the bottom of the mobile drawer, inside its existing focus trap.
+
+`ContactLinks` uses native button/link semantics. Hover and focus identify the actions; successful copy announces confirmation for 2.5 seconds. Clipboard rejection leaves a visible, selectable email address for manual recovery without opening a mail client. Success keeps focus on the invoking control; failure focuses and selects the readonly address for keyboard copying. No new animation or external data transmission is introduced. `tests/e2e/contact-navigation.spec.ts` deterministically covers success, rejection, desktop/mobile targets and drawer focus recovery; the public Work route exercises the actual shell.

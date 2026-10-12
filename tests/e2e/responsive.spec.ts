@@ -82,7 +82,7 @@ test("mobile public navigation traps focus and returns it on Escape", async ({ p
   expect(closeBox?.height).toBeGreaterThanOrEqual(44);
 
   await page.keyboard.press("Shift+Tab");
-  await expect(drawer.getByRole("link", { name: "Contact" })).toBeFocused();
+  await expect(drawer.getByRole("link", { name: "LinkedIn, opens in a new tab" })).toBeFocused();
 
   await page.keyboard.press("Escape");
   await expect(drawer).not.toBeVisible();
