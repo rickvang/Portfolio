@@ -4,13 +4,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 
+import { ContactLinks } from "@/components/contact-links";
+import contact from "../../content/profile/contact.json";
+
 import { publicRoutes } from "@/lib/public-routes";
 
 const fullNavigationItems = [
   { href: publicRoutes.work, index: "01", label: "Work" },
   { href: publicRoutes.notes, index: "02", label: "Notes" },
   { href: publicRoutes.about, index: "03", label: "About" },
-  { href: publicRoutes.contact, index: "04", label: "Contact" },
 ] as const;
 
 function routeIsActive(pathname: string, href: string) {
@@ -98,6 +100,9 @@ export function PersonalPracticeShell({
         return;
       }
 
+      const focusable = drawer?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      );
       if (event.key !== "Tab" || !focusable?.length) return;
 
       const first = focusable[0];
@@ -196,9 +201,7 @@ export function PersonalPracticeShell({
           <span aria-hidden="true">{drawerOpen ? "Close" : "Menu"}</span>
         </button>
 
-        <p className="practice-rail-note">
-          Products, systems, and the ways teams work through complexity.
-        </p>
+        <ContactLinks email={contact.email} linkedInUrl={contact.linkedInUrl} />
       </aside>
 
       {drawerOpen && (
@@ -247,6 +250,7 @@ export function PersonalPracticeShell({
                 );
               })}
             </nav>
+            <ContactLinks email={contact.email} linkedInUrl={contact.linkedInUrl} />
           </div>
         </div>
       )}

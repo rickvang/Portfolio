@@ -86,7 +86,7 @@ test("contact offers usable direct links", async ({ page }) => {
     await expect(linkedIn).toBeInViewport();
     await email.focus();
     await page.keyboard.press("Tab");
-    await expect(page.getByRole("button", {name:"Copy email"})).toBeFocused();
+    await expect(page.getByRole("button", {name:"Copy email", exact: true})).toBeFocused();
     await page.keyboard.press("Tab");
     await expect(linkedIn).toBeFocused();
     await expect(page.getByRole("button", { name: /send/i })).toHaveCount(0);
@@ -176,7 +176,7 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   const navigation = page.getByRole("navigation", { name: "Primary navigation" });
   await expect(navigation.getByRole("link", { name: "Work" })).toHaveAttribute("href", "/work");
   await expect(navigation.getByRole("link", { name: "About" })).toHaveAttribute("href", "/about");
-  await expect(navigation.getByRole("link", { name: "Contact" })).toHaveAttribute("href", "/contact");
+  await expect(navigation.getByRole("link", { name: "Contact" })).toHaveCount(0);
   await expect(navigation.getByRole("link", { name: "Notes" })).toHaveAttribute("href", "/notes");
   await expect(page.getByRole("link", { name: "Rick Vang, home" })).toHaveAttribute("href", "/");
   await expect(page.locator('a[href^="/dev/harness"]')).toHaveCount(0);
