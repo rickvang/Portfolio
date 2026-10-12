@@ -174,6 +174,8 @@
 }
 
 .practice-mobile-toggle:focus-visible,
+.practice-shell .mobile-drawer .practice-connection:focus-visible,
+.practice-shell .mobile-drawer .practice-contact-error input:focus-visible,
 .practice-shell .mobile-drawer-close:focus-visible {
   box-shadow: 0 0 0 5px var(--accent);
   outline: 2px solid var(--rail-foreground);

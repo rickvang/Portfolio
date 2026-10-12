@@ -24,6 +24,7 @@ for (const width of [1280, 390]) {
     await page.keyboard.press("Tab");
     await copy.focus();
     await expect(copy).toHaveCSS("outline-width", "2px");
+    await expect(copy).toHaveCSS("outline-color", width < 900 ? "rgb(247, 242, 235)" : "rgb(183, 55, 28)");
     await page.keyboard.press("Enter");
     await expect(page.locator("html")).toHaveAttribute("data-copied-email", "rick@rickvang.com");
     await expect(group.getByRole("status")).toHaveText("Email address copied.");
