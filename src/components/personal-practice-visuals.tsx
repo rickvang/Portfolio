@@ -4,6 +4,8 @@ import Image from "next/image";
 import type { PointerEvent } from "react";
 import { useEffect, useRef } from "react";
 
+import { InterfaceGuidancePreview } from "@/components/interface-guidance-preview";
+
 import type { CaseStudyPreviewMedia } from "@/lib/case-studies";
 
 export type PracticeWorkVisualKind =
@@ -212,6 +214,27 @@ export function PersonalPracticeWorkVisual({
   kind: PracticeWorkVisualKind;
   media?: CaseStudyPreviewMedia;
 }) {
+  if (kind === "ai-systems" || kind === "ui-practice") {
+    return (
+      <figure className={`practice-work-visual practice-work-visual-illustrative practice-work-visual-${kind}`}>
+        <div className="practice-work-art">
+          {kind === "ai-systems" ? (
+            <Image
+              alt="Five layers connect public research to working context, role-specific needs, dependencies and UX synthesis."
+              className="practice-framework-image"
+              fill
+              sizes="(max-width: 620px) calc(100vw - 3rem), 42vw"
+              src="/work-media/persona-framework-preview.svg"
+            />
+          ) : (
+            <InterfaceGuidancePreview />
+          )}
+        </div>
+        <figcaption id={captionId}>{caption ?? (kind === "ai-systems" ? "Illustrative persona framework" : "Illustrative interface guidance")}</figcaption>
+      </figure>
+    );
+  }
+
   if (media) {
     return (
       <figure

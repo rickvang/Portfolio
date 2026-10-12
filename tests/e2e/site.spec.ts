@@ -19,7 +19,14 @@ test("homepage introduces project evidence and ends with contact on desktop and 
       expect(art).not.toBeNull();
       expect(caption).not.toBeNull();
       expect(caption!.y).toBeGreaterThanOrEqual(art!.y + art!.height);
+      const board = figure.locator(".practice-board");
+      if (await board.count()) {
+        const bounds = await board.boundingBox();
+        expect(bounds!.y).toBeGreaterThanOrEqual(art!.y);
+        expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(art!.y + art!.height);
+      }
     }
+    await page.locator("#selected-work").screenshot({ path: `test-results/visual-snapshots/home-preview-alignment-${viewport.width}.png` });
     const stats = page.locator(".practice-home .profile-stats");
     const contact = page.getByRole("link", { name: "Get in touch →", exact: true });
     const statsBox = await stats.boundingBox();
@@ -133,9 +140,9 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(selectedWork.locator(".practice-work-visual-image")).toHaveCount(2);
   await expect(selectedWork.locator(".practice-work-visual figcaption")).toHaveText([
     "Shared service interfaces · client screens modified to protect intellectual property.",
-    "Illustrative diagram",
+    "Illustrative persona framework",
     "Design-system foundations · client screens modified to protect intellectual property.",
-    "Illustrative diagram",
+    "Illustrative interface guidance",
   ]);
   await expect(selectedWork.locator(".practice-work-visual-image img").nth(0)).toHaveAttribute(
     "alt",
@@ -145,6 +152,14 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
     "alt",
     "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
   );
+  const aiPreview = selectedWork.locator('[data-practice-work="ai-systems"]');
+  await expect(aiPreview.locator("img")).toHaveAttribute("src", "/work-media/persona-framework-preview.svg");
+  await expect(aiPreview.locator("canvas")).toHaveCount(0);
+  const uiPreview = selectedWork.locator('[data-practice-work="ui-design-practices"]');
+  await expect(uiPreview.getByLabel("Illustrative interface guidance: layout, density and foundations")).toBeVisible();
+  await expect(uiPreview.locator("canvas")).toHaveCount(0);
+  await expect(page.getByText("Give AI useful context.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Connect research, people’s decisions and role dependencies so AI can reason about their work.", { exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "How I work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(
