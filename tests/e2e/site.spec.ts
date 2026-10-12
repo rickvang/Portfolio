@@ -19,6 +19,12 @@ test("homepage introduces project evidence and ends with contact on desktop and 
       expect(art).not.toBeNull();
       expect(caption).not.toBeNull();
       expect(caption!.y).toBeGreaterThanOrEqual(art!.y + art!.height);
+      const board = figure.locator(".practice-board");
+      if (await board.count()) {
+        const bounds = await board.boundingBox();
+        expect(bounds!.y).toBeGreaterThanOrEqual(art!.y);
+        expect(bounds!.y + bounds!.height).toBeLessThanOrEqual(art!.y + art!.height);
+      }
     }
     await page.locator("#selected-work").screenshot({ path: `test-results/visual-snapshots/home-preview-alignment-${viewport.width}.png` });
     const stats = page.locator(".practice-home .profile-stats");

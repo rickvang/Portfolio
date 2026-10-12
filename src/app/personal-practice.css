@@ -1552,3 +1552,7 @@
   object-fit: contain;
   padding: 12px;
 }
+
+.practice-work-visual-ui-practice .practice-work-art {
+  min-height: 17rem;
+}
