@@ -14,9 +14,12 @@ for (const width of [1280, 390]) {
     await expect(page.getByRole("navigation").getByRole("link", { name: "Contact", exact: true })).toHaveCount(0);
     await expect(linkedIn).toHaveAttribute("href", "https://www.linkedin.com/in/rick-vang");
     for (const action of [copy, linkedIn]) {
-      const box = await action.boundingBox();
-      expect(box?.width).toBeGreaterThanOrEqual(44);
-      expect(box?.height).toBeGreaterThanOrEqual(44);
+      await expect(action).toHaveCSS("width", "44px");
+      await expect(action).toHaveCSS("height", "44px");
+      await expect.poll(async () => {
+        const box = await action.boundingBox();
+        return box ? Math.round(Math.min(box.width, box.height) * 100) / 100 : 0;
+      }).toBeGreaterThanOrEqual(44);
     }
     await page.keyboard.press("Tab");
     await copy.focus();

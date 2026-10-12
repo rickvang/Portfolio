@@ -8,8 +8,9 @@ test("contact copy confirms success and gives visible recovery when clipboard ac
     });
   });
   await page.goto("/contact");
-  await page.getByRole("button", { name: "Copy email" }).click();
-  await expect(page.getByRole("status")).toHaveText("Email address copied.");
+  const main = page.getByRole("main");
+  await main.getByRole("button", { name: "Copy email", exact: true }).click();
+  await expect(main.getByRole("status")).toHaveText("Email address copied.");
   expect(await page.evaluate(() => sessionStorage.getItem("copied-email"))).toBe("rick@rickvang.com");
 
   await page.evaluate(() => {
@@ -17,10 +18,10 @@ test("contact copy confirms success and gives visible recovery when clipboard ac
       value: { writeText: async () => { throw new Error("Clipboard denied"); } },
     });
   });
-  await page.getByRole("button", { name: "Copied", exact: true }).click();
-  await expect(page.getByRole("status")).toHaveText("Could not copy. Select rick@rickvang.com to copy it manually.");
-  await expect(page.getByRole("status")).toBeVisible();
-  await expect(page.getByRole("link", { name: "rick@rickvang.com", exact: true })).toHaveAttribute("href", "mailto:rick@rickvang.com");
+  await main.getByRole("button", { name: "Copied", exact: true }).click();
+  await expect(main.getByRole("status")).toHaveText("Could not copy. Select rick@rickvang.com to copy it manually.");
+  await expect(main.getByRole("status")).toBeVisible();
+  await expect(main.getByRole("link", { name: "rick@rickvang.com", exact: true })).toHaveAttribute("href", "mailto:rick@rickvang.com");
 });
 
 test("supporting pages preserve navigation and fit a narrow screen", async ({ page }) => {
