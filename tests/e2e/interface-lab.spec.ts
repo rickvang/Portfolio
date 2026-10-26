@@ -11,6 +11,7 @@ test("UI Systems Lab remains review-only until the source record is approved", a
   await page.goto("/dev/harness/case-study?slug=ui-systems-lab");
   await expect(page.getByText("Review-ready content.")).toBeVisible();
   await expect(page.getByText("Source provenance", { exact: true })).toBeVisible();
+  await page.locator(".case-study-evidence").first().locator("summary").click();
   await expect(page.getByText("The owner specified one Storybook project", { exact: false })).toBeVisible();
 });
 
