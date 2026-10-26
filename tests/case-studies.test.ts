@@ -28,6 +28,7 @@ describe("case-study content contract", () => {
       "ai-systems-revision",
       "design-systems-revision",
       "ui-design-practices-revision",
+      "ui-systems-lab",
     ]);
     expect(getApprovedCaseStudies(authoredCaseStudies).map((caseStudy) => caseStudy.slug)).toEqual([
       "ai-systems",
@@ -42,7 +43,7 @@ describe("case-study content contract", () => {
   });
 
   it("keeps explicitly approved authored case studies public through the shared gate", () => {
-    expect(caseStudyCatalog).toHaveLength(8);
+    expect(caseStudyCatalog).toHaveLength(9);
     expect(getCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
     expect(getApprovedCaseStudyBySlug("ai-systems")).toEqual(authoredCaseStudies[0]);
     expect(getApprovedCaseStudyBySlug("ui-design-practices")).toEqual(authoredCaseStudies[1]);
