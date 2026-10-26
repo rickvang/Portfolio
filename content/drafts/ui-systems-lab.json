@@ -1,0 +1,148 @@
+{
+  "id": "ui-systems-lab",
+  "slug": "ui-systems-lab",
+  "title": "UI Systems Lab",
+  "summary": "A browsable Storybook catalog of interface foundations, components, modules and workflow patterns, with Vite and TanStack Start as supporting prototype spaces.",
+  "category": "Independent exploration / Design engineering",
+  "role": "Interface design and prototyping",
+  "scope": "One Storybook catalog, two application prototype environments",
+  "reviewStatus": "review-ready",
+  "sources": [
+    {
+      "id": "storybook-catalog",
+      "kind": "source-page",
+      "label": "UI Starter Storybook catalog",
+      "url": "https://ui-starter.rickvang.com"
+    },
+    {
+      "id": "vite-repository",
+      "kind": "repository",
+      "label": "Vite UI starter README and source",
+      "url": "https://github.com/rickvang/ui-starter/blob/master/README.md"
+    },
+    {
+      "id": "tanstack-repository",
+      "kind": "repository",
+      "label": "TanStack Start UI starter README and source",
+      "url": "https://github.com/rickvang/ui-startertanstack/blob/master/README.md"
+    },
+    {
+      "id": "owner-framing",
+      "kind": "user-provided",
+      "label": "Portfolio framing clarified by the project owner, October 26, 2026",
+      "capturedAt": "2026-10-26"
+    }
+  ],
+  "sections": [
+    {
+      "kind": "overview",
+      "title": "One catalog, not three projects",
+      "body": "The Storybook catalog is the main artifact of this independent lab. It organizes interface building blocks and working patterns in one place so I can examine how individual design decisions behave in code. Vite and TanStack Start are supporting prototype environments, not separate portfolio projects.",
+      "evidence": [
+        {
+          "sourceId": "owner-framing",
+          "note": "The owner specified one Storybook project with Vite and TanStack explained as prototype spaces."
+        },
+        {
+          "sourceId": "vite-repository",
+          "note": "The README identifies packages/ui as the component, token, and Storybook catalog."
+        }
+      ]
+    },
+    {
+      "kind": "exploration",
+      "title": "Two spaces for trying ideas",
+      "body": "The catalog is the reference point. The application starters provide different contexts in which to try the same kinds of UI patterns: lightweight screen composition and route-based application exploration.",
+      "items": [
+        {
+          "id": "vite-workspace",
+          "title": "Vite / Screen prototypes",
+          "summary": "A lightweight app for composing screens, trying layouts, and iterating on individual workspace or project views."
+        },
+        {
+          "id": "tanstack-workspace",
+          "title": "TanStack Start / Application prototypes",
+          "summary": "A routed app environment for exploring pages, navigation, and how patterns work across multiple screens."
+        }
+      ],
+      "evidence": [
+        {
+          "sourceId": "vite-repository",
+          "note": "The Vite README describes apps/web as a demo page, with optional area pages and no application router."
+        },
+        {
+          "sourceId": "tanstack-repository",
+          "note": "The TanStack README documents file routes in apps/web for pages and area views."
+        }
+      ]
+    },
+    {
+      "kind": "system-practice",
+      "title": "What the Storybook catalog contains",
+      "body": "Storybook organizes the reusable pieces into five groups. Foundations establish the visual rules; layout and components provide the parts; modules compose those parts; patterns demonstrate ways to handle larger workflows.",
+      "items": [
+        {
+          "id": "foundations",
+          "title": "Foundations",
+          "summary": "Color, type, spacing, sizing, radius, shadow and motion."
+        },
+        {
+          "id": "layout",
+          "title": "Layout",
+          "summary": "Frames, overlays and structural arrangements."
+        },
+        {
+          "id": "components",
+          "title": "Components",
+          "summary": "Controls and navigation elements."
+        },
+        {
+          "id": "modules",
+          "title": "Modules",
+          "summary": "Shell, forms, detail and table compositions."
+        },
+        {
+          "id": "patterns",
+          "title": "Patterns",
+          "summary": "Workflow examples such as record creation, onboarding and task management."
+        }
+      ],
+      "evidence": [
+        {
+          "sourceId": "vite-repository",
+          "note": "The README documents the Foundations, Layout, Components, Modules and Patterns Storybook groups and representative subjects."
+        },
+        {
+          "sourceId": "tanstack-repository",
+          "note": "The parallel TanStack README documents the same catalog taxonomy."
+        }
+      ]
+    },
+    {
+      "kind": "reflection",
+      "title": "A place to keep decisions visible",
+      "body": "This is an ongoing working reference, rather than a finished customer product or a claim of measured impact. The value of showing it here is the relationship between design decisions, reusable patterns and prototype implementation. The two starter repositories are parallel implementations, not one automatically shared runtime.",
+      "evidence": [
+        {
+          "sourceId": "owner-framing",
+          "note": "The owner describes the starter environments as prototype spaces in a portfolio lab."
+        },
+        {
+          "sourceId": "vite-repository",
+          "note": "The Vite source is a separate starter project."
+        },
+        {
+          "sourceId": "tanstack-repository",
+          "note": "The TanStack Start source is a separate starter project."
+        }
+      ]
+    }
+  ],
+  "curationNotes": [
+    "Review-ready proposal: keep hidden from public Work routes until owner approves the full copy and presentation.",
+    "The Storybook URL is reported live in Taskosaur UI Starter PROJ-1, but direct page inspection was unavailable from the current web reader; test the destination in a browser before approval.",
+    "Do not present the catalog taxonomy diagram as a screenshot or claim unverified component usage, accessibility conformance, performance, adoption, or usability outcomes.",
+    "The Vite and TanStack catalogs are parallel repositories; avoid implying one shared deployed package or synchronized codebase.",
+    "No protected client work or third-party imagery is used."
+  ]
+}
