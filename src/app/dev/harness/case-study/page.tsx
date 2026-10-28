@@ -5,6 +5,7 @@ import { AiCouncilExample, DesignSystemExample, UiPracticeExample } from "@/comp
 import { IntegrationsCaseStudyExample } from "@/components/integrations-case-study-example";
 import { PersonalPracticeCaseStudy } from "@/components/personal-practice-case-study";
 import { PersonalPracticeShell } from "@/components/personal-practice-shell";
+import { InterfaceLabConcept } from "@/content/interface-lab-concept";
 import { getCaseStudyBySlug } from "@/lib/case-studies";
 
 export const dynamic = "force-dynamic";
@@ -39,7 +40,9 @@ export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHa
     notFound();
   }
 
-  if (params.view === "story" || params.view === "example") {
+  if (params.view === "concept" && caseStudy.slug !== "ui-systems-lab") notFound();
+
+  if (params.view === "story" || params.view === "example" || params.view === "concept") {
     return (
       <PersonalPracticeShell pathname="/work/multi-product-integrations">
         <div className="public-page" data-testid="case-study-story-review">
@@ -51,7 +54,9 @@ export default async function CaseStudyHarnessPage({ searchParams }: CaseStudyHa
               {examples.map((example) => <a key={example.slug} href={`?slug=${example.slug}&view=example`} aria-current={example.slug === caseStudy.slug ? "page" : undefined}>{example.title}</a>)}
             </nav>
           )}
-          {params.view === "example" && Example ? (
+          {params.view === "concept" ? (
+            <InterfaceLabConcept caseStudy={caseStudy} />
+          ) : params.view === "example" && Example ? (
             <Example caseStudy={caseStudy} />
           ) : (
             (caseStudy.practicePresentation || caseStudy.slug === "ui-systems-lab") ? <CaseStudyTemplate caseStudy={caseStudy} /> : <PersonalPracticeCaseStudy caseStudy={caseStudy} />

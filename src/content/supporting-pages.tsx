@@ -87,7 +87,7 @@ export function WorkPageContent({ approvedSlugs }: {
         </div>
         <h3>UI Systems Lab
         </h3>
-        <p>One Storybook catalog for reusable interface patterns, supported by Vite and TanStack Start prototype spaces.
+        <p>A UI library for exploring reusable patterns and trying them in prototype flows.
         </p><span className="read">Explore the lab <span aria-hidden="true">→</span></span>
         </Link>
         </article>)}

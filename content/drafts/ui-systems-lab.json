@@ -2,11 +2,11 @@
   "id": "ui-systems-lab",
   "slug": "ui-systems-lab",
   "title": "UI Systems Lab",
-  "summary": "A browsable Storybook catalog of interface foundations, components, modules and workflow patterns, with Vite and TanStack Start as supporting prototype spaces.",
-  "category": "Independent exploration / Design engineering",
+  "summary": "I’m building a UI library in Storybook and a space to explore flows with those patterns.",
+  "category": "Personal project",
   "role": "Interface design and prototyping",
-  "scope": "One Storybook catalog, two application prototype environments",
-  "reviewStatus": "review-ready",
+  "scope": "UI library and prototype apps",
+  "reviewStatus": "approved",
   "sources": [
     {
       "id": "storybook-catalog",
@@ -31,13 +31,26 @@
       "kind": "user-provided",
       "label": "Portfolio framing clarified by the project owner, October 26, 2026",
       "capturedAt": "2026-10-26"
+    },
+    {
+      "id": "purpose-draft",
+      "kind": "source-page",
+      "label": "UI starter article draft retained in Taskosaur PRTF-11; editorial background",
+      "url": "https://work.rickvang.com/dev-team/portfolio/tasks/37dc3ab1-9410-4eb5-8085-334edc36a8e9/",
+      "capturedAt": "2026-10-27"
+    },
+    {
+      "id": "prototype-purpose",
+      "kind": "user-provided",
+      "label": "Owner's clarification: shared patterns, different fidelity, and what prototyping enables",
+      "capturedAt": "2026-10-27"
     }
   ],
   "sections": [
     {
       "kind": "overview",
-      "title": "One catalog, not three projects",
-      "body": "The Storybook catalog is the main artifact of this independent lab. It organizes interface building blocks and working patterns in one place so I can examine how individual design decisions behave in code. Vite and TanStack Start are supporting prototype environments, not separate portfolio projects.",
+      "title": "About the project",
+      "body": "I use Storybook to work on the library and the starter apps to try it in context. This page brings those pieces together so you can look through the UI and the code behind it.",
       "evidence": [
         {
           "sourceId": "owner-framing",
@@ -50,22 +63,25 @@
       ]
     },
     {
-      "kind": "exploration",
-      "title": "Two spaces for trying ideas",
-      "body": "The catalog is the reference point. The application starters provide different contexts in which to try the same kinds of UI patterns: lightweight screen composition and route-based application exploration.",
-      "items": [
-        {
-          "id": "vite-workspace",
-          "title": "Vite / Screen prototypes",
-          "summary": "A lightweight app for composing screens, trying layouts, and iterating on individual workspace or project views."
-        },
-        {
-          "id": "tanstack-workspace",
-          "title": "TanStack Start / Application prototypes",
-          "summary": "A routed app environment for exploring pages, navigation, and how patterns work across multiple screens."
-        }
-      ],
+      "kind": "context",
+      "title": "Why I built this space",
+      "body": "I wanted a place to work out design ideas in code without starting from scratch each time. With the basics ready, I can spend more time exploring how a form behaves or how someone moves through a task.\n\nStorybook gives me a place to build and inspect those reusable pieces. The prototype workspace lets me try them in a larger flow.",
       "evidence": [
+        {
+          "sourceId": "purpose-draft",
+          "note": "Adapted from the retained article draft's goals: connecting design decisions to code, providing reusable UI for rapid prototyping, and focusing on flows. This states intended purpose, not measured outcomes."
+        }
+      ]
+    },
+    {
+      "kind": "exploration",
+      "title": "Trying a flow in context",
+      "body": "For a task like the create-record example above, I can sketch the steps first, then bring familiar components into a prototype to explore the interaction.",
+      "evidence": [
+        {
+          "sourceId": "prototype-purpose",
+          "note": "The owner clarified that the prototyping workspace uses the Storybook patterns at different levels of fidelity. The explanation should focus on what this enables rather than inventorying the frameworks."
+        },
         {
           "sourceId": "vite-repository",
           "note": "The Vite README describes apps/web as a demo page, with optional area pages and no application router."
@@ -78,33 +94,33 @@
     },
     {
       "kind": "system-practice",
-      "title": "What the Storybook catalog contains",
-      "body": "Storybook organizes the reusable pieces into five groups. Foundations establish the visual rules; layout and components provide the parts; modules compose those parts; patterns demonstrate ways to handle larger workflows.",
+      "title": "Putting the pieces together",
+      "body": "In Storybook, I can move from individual controls to patterns for a complete task. This create-record example brings fields, actions, and feedback together in one place.",
       "items": [
         {
           "id": "foundations",
           "title": "Foundations",
-          "summary": "Color, type, spacing, sizing, radius, shadow and motion."
+          "summary": "The color, type, spacing and motion choices used throughout the library."
         },
         {
           "id": "layout",
           "title": "Layout",
-          "summary": "Frames, overlays and structural arrangements."
+          "summary": "Page frames, overlays and ways to arrange content."
         },
         {
           "id": "components",
           "title": "Components",
-          "summary": "Controls and navigation elements."
+          "summary": "Individual controls, including buttons, fields and navigation."
         },
         {
           "id": "modules",
           "title": "Modules",
-          "summary": "Shell, forms, detail and table compositions."
+          "summary": "Groups of components that work together, such as forms, tables and detail views."
         },
         {
           "id": "patterns",
           "title": "Patterns",
-          "summary": "Workflow examples such as record creation, onboarding and task management."
+          "summary": "Examples of tasks such as creating a record, onboarding and managing work."
         }
       ],
       "evidence": [
@@ -120,9 +136,13 @@
     },
     {
       "kind": "reflection",
-      "title": "A place to keep decisions visible",
-      "body": "This is an ongoing working reference, rather than a finished customer product or a claim of measured impact. The value of showing it here is the relationship between design decisions, reusable patterns and prototype implementation. The two starter repositories are parallel implementations, not one automatically shared runtime.",
+      "title": "What I’m improving next",
+      "body": "I want someone exploring the library to see how a component is used and what happens in different states. The next step is clearer usage notes and more code examples, then trying them in the prototype apps.",
       "evidence": [
+        {
+          "sourceId": "purpose-draft",
+          "note": "The retained article draft describes the goal of making the library useful to developers through component examples and clearer notes about supported behavior. These remain goals, not completed capabilities."
+        },
         {
           "sourceId": "owner-framing",
           "note": "The owner describes the starter environments as prototype spaces in a portfolio lab."
@@ -139,8 +159,10 @@
     }
   ],
   "curationNotes": [
-    "Review-ready proposal: keep hidden from public Work routes until owner approves the full copy and presentation.",
-    "The Storybook URL is reported live in Taskosaur UI Starter PROJ-1, but direct page inspection was unavailable from the current web reader; test the destination in a browser before approval.",
+    "Rick reviewed and approved the concept for publication on October 28, 2026.",
+    "The create-record diagram is an illustration based on the Storybook source; the rough and detailed flow comparison is illustrative, not a screenshot or record of a completed study.",
+    "The Why I built this space section adapts the earlier article draft's stated goals; no historical client experience or measured benefit is implied.",
+    "The create-record Storybook story was inspected in a browser; saving changes local UI state without persisting a record.",
     "Do not present the catalog taxonomy diagram as a screenshot or claim unverified component usage, accessibility conformance, performance, adoption, or usability outcomes.",
     "The Vite and TanStack catalogs are parallel repositories; avoid implying one shared deployed package or synchronized codebase.",
     "No protected client work or third-party imagery is used."

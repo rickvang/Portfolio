@@ -33,12 +33,14 @@ describe("case-study content contract", () => {
     expect(getApprovedCaseStudies(authoredCaseStudies).map((caseStudy) => caseStudy.slug)).toEqual([
       "ai-systems",
       "ui-design-practices",
+      "ui-systems-lab",
     ]);
     expect(getApprovedCaseStudies().map((caseStudy) => caseStudy.slug)).toEqual([
       "multi-product-integrations",
       "design-systems",
       "ai-systems",
       "ui-design-practices",
+      "ui-systems-lab",
     ]);
   });
 
