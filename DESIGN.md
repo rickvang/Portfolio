@@ -7,14 +7,24 @@ This document is the working visual and interaction contract for rickvang.com. I
 The portfolio uses a cinematic editorial foundation for systems-oriented product design work:
 
 - the work and authored content remain the focal point; navigation acts as a stable frame;
-- a warm-charcoal persistent rail creates continuity against warm neutral reading surfaces without reading as pure black chrome;
+- a light, warm persistent left rail keeps navigation quiet against warm neutral reading surfaces, and charcoal survives in the mobile drawer (see [Public shell](#public-shell));
 - the original rickvang.com accent is restored as `#f24c27` and used semantically rather than decoratively;
-- small text on light surfaces uses the darker `--accent-ink` token, while small rail text uses the contrast-adjusted `--rail-accent` token;
+- small text on light surfaces uses the darker `--accent-ink` token, while small text on charcoal (the mobile drawer and the legacy rail) uses the contrast-adjusted `--rail-accent` token;
 - generous spacing and compact typography create hierarchy without delaying access to content;
 - every important flow has explicit loading, empty, error, disabled, long-content, keyboard, and reduced-motion behavior where applicable;
 - the system favors native HTML, readable markup, progressive enhancement, and route continuity over interaction for its own sake.
 
 The current system is CSS-variable based. Tailwind and a third-party component library are not required for this application.
+
+## Public shell
+
+Every route in the `(public)` group renders `SiteShell` (`src/components/site-shell.tsx`), which returns `PersonalPracticeShell` (`src/components/personal-practice-shell.tsx`). Its styles live in `src/app/personal-practice.css` under the `practice-` class prefix.
+
+- **Rail:** light and warm (`--surface` background, `--border` divider) in a `clamp(13.5rem, 17vw, 15.5rem)` column. It holds the wordmark, three primary links indexed 01 Work, 02 Notes and 03 About, and the contact links. An accent marker follows hover, focus and the active route.
+- **Mobile:** at `900px` and below the rail collapses and a Menu button opens a dialog drawer that traps focus and closes on Escape. The drawer keeps the charcoal palette (`--rail`, `--rail-foreground`, `--rail-muted`, `--rail-border`).
+- **Typeface:** Inter, loaded in `src/app/layout.tsx` and exposed as `--font-practice-sans`, with Arial as the fallback. The `body` rule in `globals.css` still sets Arial for anything outside `.practice-shell`.
+- **Legacy frame:** `SiteShellFrame` in the same file is the earlier charcoal rail with five links (01 Home through 05 Contact) and the `.public-shell`, `.site-rail` and `.rail-*` classes in `globals.css`. No production route renders it; only `/dev/harness/shell` does. `--rail-width` and `--content-max` belong to it.
+- **Stale elsewhere:** `docs/design/examples/personal-practice-pilot.md` still says non-pilot routes keep the old rail. Treat that statement as out of date.
 
 ## Selective design references
 
@@ -47,36 +57,56 @@ Do not load all references by default. `DESIGN.md` remains the current universal
 
 The source of truth is `src/app/globals.css`. These are the currently implemented values.
 
-### Color
+### Token reference
 
-| Token | Value | Use |
-| --- | --- | --- |
-| `--background` | `#f7f6f2` | Public page and application background |
-| `--surface` | `#fffefc` | Cards, fields, and elevated reading surfaces |
-| `--surface-muted` | `#e8e7e4` | Secondary surfaces and disabled fields |
-| `--surface-strong` | `#dcdcd9` | Stronger neutral separation when a muted surface is insufficient |
-| `--foreground` | `#171614` | Primary text and strong borders |
-| `--muted` | `#6b665f` | Supporting text |
-| `--border` | `#cfcfcc` | Dividers, card borders, and field borders |
-| `--accent` | `#f24c27` | Brand identity, active rail marker, large authored emphasis, button fill |
-| `--accent-hover` | `#ff6848` | Hover fill for accent actions |
-| `--accent-ink` | `#b7371c` | Small accent text and links on light surfaces |
-| `--rail` | `#282622` | Warm-charcoal persistent navigation rail and mobile drawer |
-| `--rail-foreground` | `#f7f2eb` | Primary text on the rail |
-| `--rail-muted` | `#b6afa3` | Secondary rail text |
-| `--rail-accent` | `#ff6848` | Contrast-adjusted orange for small rail indices and active markers |
-| `--rail-border` | `rgb(247 242 235 / 14%)` | Rail separators on charcoal |
-| `--focus` | `#f24c27` | Selected-state accent and legacy focus-related emphasis |
-| `--focus-inner` | `#fffdfa` | Light inner edge of the two-tone keyboard focus ring |
-| `--focus-outer` | `#171614` | Dark outer edge of the two-tone keyboard focus ring |
-| `--danger` | `#9c342e` | Destructive actions and failures |
-| `--success` | `#176648` | Successful feedback |
+Every custom property declared in the `:root` block of `src/app/globals.css`, plus the scoped tokens declared in other files. `pnpm validate:design` fails when a token is missing, extra or has a different value, so add or change a token here in the same change that declares it. Components use `var(--token)`; they do not repeat the literal values.
+
+| Token | Value | Group | Source | Use |
+| --- | --- | --- | --- | --- |
+| `--background` | `#f7f6f2` | Color | `:root` | Public page and application background |
+| `--surface` | `#fffefc` | Color | `:root` | Cards, fields, the practice rail and elevated reading surfaces |
+| `--surface-muted` | `#e8e7e4` | Color | `:root` | Secondary surfaces and disabled fields |
+| `--surface-strong` | `#dcdcd9` | Color | `:root` | Stronger neutral separation when a muted surface is insufficient |
+| `--foreground` | `#171614` | Color | `:root` | Primary text and strong borders |
+| `--muted` | `#6b665f` | Color | `:root` | Supporting text |
+| `--border` | `#cfcfcc` | Color | `:root` | Dividers, card borders, field borders and the practice rail divider |
+| `--accent` | `#f24c27` | Color | `:root` | Brand identity, active rail marker, large authored emphasis, button fill |
+| `--accent-hover` | `#ff6848` | Color | `:root` | Hover fill for accent actions |
+| `--accent-ink` | `#b7371c` | Color | `:root` | Small accent text and links on light surfaces |
+| `--rail` | `#282622` | Color | `:root` | Charcoal background of the mobile drawer and the legacy `.site-rail` |
+| `--rail-foreground` | `#f7f2eb` | Color | `:root` | Primary text on charcoal |
+| `--rail-muted` | `#b6afa3` | Color | `:root` | Secondary text on charcoal |
+| `--rail-accent` | `#ff6848` | Color | `:root` | Contrast-adjusted orange for small indices and active markers on charcoal |
+| `--rail-border` | `rgb(247 242 235 / 14%)` | Color | `:root` | Separators on charcoal |
+| `--focus` | `#f24c27` | Color | `:root` | Selected-state accent and legacy focus-related emphasis |
+| `--focus-inner` | `#fffdfa` | Color | `:root` | Light inner edge of the two-tone keyboard focus ring |
+| `--focus-outer` | `#171614` | Color | `:root` | Dark outer edge of the two-tone keyboard focus ring |
+| `--danger` | `#9c342e` | Color | `:root` | Destructive actions and failures |
+| `--success` | `#176648` | Color | `:root` | Successful feedback |
+| `--shadow` | `0 18px 50px rgb(23 22 20 / 8%)` | Shape | `:root` | Card elevation |
+| `--radius` | `1rem` | Shape | `:root` | Standard card radius; pills use `999px` |
+| `--rail-width` | `17rem` | Layout | `:root` | Width of the legacy `.site-rail`; the practice shell sizes its own column |
+| `--content-max` | `76rem` | Layout | `:root` | Content cap in the legacy `.public-content` column |
+| `--motion-fast` | `150ms` | Motion | `:root` | Hover, focus and feedback transitions |
+| `--motion-standard` | `240ms` | Motion | `:root` | Page and drawer entry |
+| `--motion-slow` | `320ms` | Motion | `:root` | Staged homepage and case-study chapter reveals |
+| `--ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` | Motion | `:root` | Default easing |
+| `--ease-emphasized` | `cubic-bezier(0.2, 0.8, 0.2, 1)` | Motion | `:root` | Emphasized easing for drawer and reveal entries |
+| `--font-practice-sans` | Inter (next/font) | Typography | `src/app/layout.tsx` | Typeface for the practice shell and public headings; Arial is the fallback |
+| `--green` | `#344c40` | Color | `src/app/supporting-pages.css` | Dark green on the About, Contact and Work pages; scoped to `.portfolio-pages` |
+| `--green` | `#334a40` | Color | `src/app/approved-stories.css` | Dark green in approved stories; scoped to `.approved-story`; near-duplicate of the supporting-pages value |
+| `--soft` | `var(--surface-muted)` | Color | `src/app/approved-stories.css` | Soft panel fill in approved stories; scoped to `.approved-story` |
+| `--step` | `36px` | Layout | `src/app/approved-stories.css` | Step offset on the first `.system-layer`; the second layer sets `18px` |
+
+- Use `color: var(--accent-ink)` for small accent text on light surfaces. Avoid writing `#b7371c` in a component or stylesheet.
+- Use `background: var(--surface)` for cards, fields and the practice rail. When a new value repeats across components, add a token first.
+- Scoped tokens apply only inside the selector that declares them. Do not reference them elsewhere.
 
 Use semantic tokens instead of raw color values in components. The `#f24c27` accent was recovered from the rendered rickvang.com wordmark/name treatment on 2026-09-22 rather than guessed. `--rail-accent` is a contrast-adjusted derivative for small text on `--rail`; the original orange remains the primary brand/accent token. On `#282622`, rail foreground, muted text, and rail-accent all clear normal-text contrast targets. A new semantic color should be added to the token list before it is used in multiple places.
 
 ### Typography
 
-- The current body font stack is `Arial, Helvetica, sans-serif`.
+- Public pages use Inter through `--font-practice-sans` (set in `src/app/layout.tsx`) with an Arial fallback. Surfaces outside `.practice-shell` still inherit the `body` stack `Arial, Helvetica, sans-serif`.
 - Headings use tight line-height (`1.1`) and negative tracking for an editorial, compact silhouette.
 - `h1` uses `clamp(3rem, 8vw, 6.5rem)` and is constrained to roughly 11–14 characters per line depending on the surface.
 - `h2` uses `clamp(1.8rem, 4vw, 3.2rem)`.
@@ -88,8 +118,8 @@ Do not use heading levels only for visual size. Preserve document hierarchy and 
 
 ### Layout and spacing
 
-- Public routes use `.public-shell`: a fixed `17rem` desktop rail plus a content column capped by `--content-max: 76rem`.
-- The public content column uses responsive horizontal padding: `clamp(1.5rem, 5vw, 5rem)`; below `900px` it becomes full-width with a sticky mobile navigation bar.
+- Public routes use `.practice-shell` (see [Public shell](#public-shell)). The legacy `.public-shell` frame, now rendered only by the shell harness, uses a fixed `--rail-width` rail and a content column capped by `--content-max`.
+- In the legacy frame, `.public-content` uses responsive horizontal padding of `clamp(1.5rem, 5vw, 5rem)` and, below `900px`, becomes full-width with a sticky mobile navigation bar.
 - `.site-shell` remains the centered `1120px` container for internal/admin and development-harness surfaces; public pages no longer depend on it.
 - Public heroes use a large first-view rhythm and `.public-hero` targets up to `78vh` without requiring a fixed height.
 - The homepage uses an asymmetric `.editorial-hero-grid`: the statement carries the visual weight and the supporting copy/actions occupy the narrower column. At the shell breakpoint it returns to one column.
@@ -104,7 +134,7 @@ Use the following patterns deliberately rather than decorating every section:
 1. **Content-led hierarchy** — once source-backed portfolio content is approved, use the actual project names, project language, biography, evidence, and artifacts as the primary hierarchy. Do not replace specific work with generic portfolio slogans merely to fill a composition.
 2. **Work-forward first viewport** — keep identity concise and bring a substantial source-backed project preview into the first viewport or its immediate transition. Do not let a manifesto, profile statistics, or a project count displace the first real project signal.
 3. **Asymmetry with recovery** — use one controlled offset or unequal-column moment, then return to the shared content grid so the page remains easy to scan.
-4. **Numbered orientation** — the global rail uses 01–05 indices and long-form case studies use chapter numbers. Numbers support wayfinding; they do not replace text labels.
+4. **Numbered orientation** — the global rail uses 01–03 indices (Work, Notes, About) and long-form case studies use chapter numbers. Numbers support wayfinding; they do not replace text labels.
 5. **Chapter scale** — case-study chapter headings are the largest long-form landmarks beneath the page title. Nested source sections remain smaller and may disappear when their title duplicates the chapter name.
 6. **Warm neutral surfaces** — use background/surface contrast, spacing, and rules before adding more boxes. Cards are reserved for discrete items, evidence, or interactive surfaces.
 7. **Accent discipline** — orange identifies authored emphasis, active state, and selected landmarks. It should not become a decorative wash or substitute for hierarchy.
@@ -114,9 +144,9 @@ Use the following patterns deliberately rather than decorating every section:
 
 For the full motion pattern matrix, interruption rules, and reduced-motion behavior, read [docs/design/motion.md](docs/design/motion.md).
 
-- Standard card radius: `--radius: 1rem`; pills use `999px` radius for buttons, tags, and compact controls.
-- Cards use `--shadow: 0 18px 50px rgb(23 22 20 / 8%)`.
-- Motion uses semantic duration/easing tokens: `--motion-fast: 150ms`, `--motion-standard: 240ms`, `--motion-slow: 320ms`, `--ease-standard: cubic-bezier(0.2, 0, 0, 1)`, and `--ease-emphasized: cubic-bezier(0.2, 0.8, 0.2, 1)`.
+- Standard card radius is `--radius`; pills use `999px` radius for buttons, tags, and compact controls.
+- Cards use `--shadow`.
+- Motion uses the semantic duration and easing tokens (`--motion-fast`, `--motion-standard`, `--motion-slow`, `--ease-standard`, `--ease-emphasized`); their values are in the token reference.
 - Public page entry is a non-blocking `240ms` chapter reveal from 0.96 opacity and a 0.625rem vertical offset; content exists in the DOM immediately and does not wait for animation completion.
 - Homepage coordinate, statement, and support columns use a staged `320ms` reveal from partial opacity with 50–110ms delays. The copy is still readable before the animation finishes.
 - Case-study chapters use the same `320ms` CSS-first reveal with small capped delays between chapters; no intersection observer or scroll-trigger dependency is required.
@@ -132,8 +162,8 @@ These are the reusable components currently in `src/components/`.
 
 | Component | Role | Inputs | Important states |
 | --- | --- | --- | --- |
-| `SiteShell` | Public pathname-aware wrapper around the shared frame | `children` | Current public route state |
-| `SiteShellFrame` | Persistent public navigation/content frame used by production routes and local verification | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
+| `SiteShell` | Public pathname-aware wrapper that renders `PersonalPracticeShell` | `children` | Current public route state |
+| `SiteShellFrame` | Legacy charcoal navigation/content frame; rendered only by `/dev/harness/shell` | `children`, `pathname`, optional `initialDrawerOpen` | Desktop rail; mobile closed/open drawer; deterministic active route; keyboard Escape/Tab trap; no-JS fallback |
 | `CaseStudyList` | Public approved-work index/cards | `caseStudies`, optional empty copy | Approved list; empty review-gated state |
 | `CaseStudyTemplate` | Shared case-study renderer for public and local review surfaces | `caseStudy`, `mode` | Public approved rendering; local draft/review-ready rendering with chapter map, provenance, and evidence |
 | `CaseStudyIllustration` | Authored explanatory diagram within a case-study section | Typed text-derived illustration, descriptive alt text, caption, optional mobile asset | Desktop comparison; vertically arranged mobile comparison; readable caption; approval inherited from the parent record |
@@ -151,6 +181,19 @@ These are the reusable components currently in `src/components/`.
 | `PostStatusActions` | Status and deletion controls | `postId`, `status` | Publish, archive, move to draft, delete, pending, error |
 | `AdminSetupState` | Missing-configuration explanation | none | Configuration error |
 | `HarnessPlayground` | Local-only component/state catalog | `initialState` | State switching, reset, deep-linked initial state |
+| `PersonalPracticeShell` | Live public rail, mobile drawer and content frame | `children`, `pathname` | Desktop rail with active marker; closed and open drawer with focus trap, Escape and focus return; active route through `aria-current` |
+| `ContactLinks` | Copy-email and LinkedIn links in the rail and drawer | `email`, `linkedInUrl` | Default, copied and copy-failure feedback |
+| `PersonalPracticeCaseStudy` | Story presentation of a case study | `caseStudy` | Story view of an approved or local-review record |
+| `PersonalPracticeWorkIndex` | Work index rows on Home | `items` | Rows; empty state |
+| `PersonalPracticeHeroGraphic`, `PersonalPracticeWorkVisual` | Hero graphic and per-project visuals (`personal-practice-visuals.tsx`) | `variant`, `kind` | One visual per project kind |
+| `UiPracticeCaseStudy` | Layout for the UI Design Practices case study | `caseStudy` | Image-led introduction; three chapters |
+| `PracticeExamples` | Tabbed layout, density and foundations examples (`ui-practice-examples.tsx`) | `examples` | Tab selection; enlargement dialog with Escape, Close and focus return |
+| `WorkThroughline` | Shared explanation connecting separate work items | none | Static; no importer found |
+| `ImportedContentPreview` | Local preview of imported profile and project content | `content` | Local-only review |
+| `InterfaceGuidancePreview` | Mini interface-board illustration for supporting pages | none | Static illustration |
+| `AiCouncilExample`, `DesignSystemExample`, `UiPracticeExample` | Local revision examples for three case studies (`case-study-examples.tsx`) | `caseStudy` | Local-only `view=example` |
+| `IntegrationsCaseStudyExample` | Local revision example for the Integrations case study | `caseStudy` | Local-only `view=example` |
+| `WorkLedPreviewHarness` | Harness section for project preview and artifact states | none | Fixture-driven preview and artifact states |
 
 ### Component rules
 
@@ -161,6 +204,64 @@ These are the reusable components currently in `src/components/`.
 5. Keep actions visible in disabled states so the harness and users can understand what is unavailable.
 6. Keep long content valid. Titles, excerpts, tags, and status metadata must wrap without forcing horizontal overflow.
 7. Add a component to the harness when it has a meaningful state or is reused across a product flow.
+
+## Ownership maps
+
+These tables say which stylesheet each component uses and which file each stylesheet belongs to. `pnpm validate:design` fails when a file in `src/components/` or a stylesheet in `src/app/` is missing from its table, or when a listed file no longer exists. Add the row in the same change that adds the file.
+
+### Component ownership
+
+"Owning CSS" lists the stylesheets whose class prefixes the component uses. "Rendered in the harness" names the `/dev/harness` section or route that shows the component; a dash means no harness route renders it directly.
+
+| Component file | Owning CSS | Rendered in the harness |
+| --- | --- | --- |
+| `admin-login-form.tsx` | `globals.css` | — (admin login route) |
+| `admin-setup-state.tsx` | `globals.css` | — (admin routes) |
+| `admin-workflow-preview.tsx` | `globals.css` | `/dev/harness` "Posts administration preview" |
+| `artifact-frame.tsx` | `work-led.css` | `/dev/harness` "Project preview and artifact states" |
+| `case-study-examples.tsx` | `case-study-examples.css`, `integrations-example.css` | `/dev/harness/case-study?view=example` |
+| `case-study-illustration.tsx` | `personal-practice.css` | `/dev/harness/case-study?view=story` |
+| `case-study-list.tsx` | `work-led.css`, `globals.css` | — (no importer found) |
+| `case-study-template.tsx` | `globals.css`, `design-practice.css`, `personal-practice.css` | `/dev/harness` "Case-study content review"; `/dev/harness/case-study` |
+| `contact-form.tsx` | `globals.css` | `/dev/harness` "Contact flow" |
+| `contact-links.tsx` | `personal-practice.css` | — (rendered inside the shell) |
+| `editorial-draft-preview.tsx` | `globals.css` | `/dev/harness` "Editorial draft" |
+| `experience-presentation.tsx` | `work-led.css` | `/dev/harness` "Work-led patterns" (through `ProjectPreview`) |
+| `harness-playground.tsx` | `globals.css` | `/dev/harness` (this is the harness) |
+| `imported-content-preview.tsx` | `globals.css` | `/dev/harness` "Imported source review" |
+| `integrations-case-study-example.tsx` | `integrations-example.css` | `/dev/harness/case-study?view=example` |
+| `interface-guidance-preview.tsx` | `supporting-pages.css` | — (supporting pages and practice visuals) |
+| `personal-practice-case-study.tsx` | `personal-practice.css` | `/dev/harness/case-study?view=story` |
+| `personal-practice-shell.tsx` | `personal-practice.css`, `globals.css` (drawer, skip link) | — (`/dev/harness/shell` renders `SiteShellFrame` instead) |
+| `personal-practice-visuals.tsx` | `personal-practice.css` | — (Home) |
+| `personal-practice-work-index.tsx` | `personal-practice.css` | — (Home) |
+| `post-editor-form.tsx` | `globals.css` | — (admin routes) |
+| `post-list.tsx` | `globals.css` | `/dev/harness` "Posts preview" |
+| `post-status-actions.tsx` | `globals.css` | `/dev/harness` "Delete confirmation" (`DeletePostForm` only) |
+| `profile-stats.tsx` | `globals.css` | — (Home) |
+| `project-list.tsx` | `globals.css` | `/dev/harness` "Project list" |
+| `project-preview.tsx` | `work-led.css` | `/dev/harness` "Work-led patterns" |
+| `site-shell.tsx` | `globals.css` | `/dev/harness/shell` (`SiteShellFrame` only) |
+| `ui-practice-case-study.tsx` | `ui-craft.css` | `/dev/harness/case-study` (through `CaseStudyTemplate`) |
+| `ui-practice-examples.tsx` | `ui-craft.css` | `/dev/harness/case-study` (through `UiPracticeCaseStudy`) |
+| `work-led-preview-harness.tsx` | `work-led.css`, `globals.css` | `/dev/harness` "Project preview and artifact states" |
+| `work-throughline.tsx` | `work-led.css` | — (no importer found) |
+
+### CSS file ownership
+
+The first seven stylesheets are imported by `src/app/layout.tsx`. The last two are imported by the example components that use them. `approved-stories.css` and `supporting-pages.css` are minified, so their prefix lists are partial.
+
+| Stylesheet | Purpose | Imported by | Class prefixes |
+| --- | --- | --- | --- |
+| `globals.css` | Tokens, base elements, legacy shell frame, admin, forms, cards and base case-study styles | `layout.tsx` | `site-`, `rail-`, `mobile-`, `admin-`, `form-`, `state-`, `surface-`, `post-`, `case-study-`, `harness-` |
+| `work-led.css` | Project preview, topology, artifact frame and Home work styles | `layout.tsx` | `project-preview`, `project-topology`, `pattern-matrix`, `artifact-frame`, `experience-`, `home-`, `work-` |
+| `personal-practice.css` | Practice shell, navigation, work index and story styles | `layout.tsx` | `practice-` |
+| `design-practice.css` | Design-practice introduction, phase map and chapters | `layout.tsx` | `design-practice-`, `case-study-practice` |
+| `ui-craft.css` | UI craft case-study layout | `layout.tsx` | `ui-craft`, `craft-` |
+| `approved-stories.css` | Approved story layout for the `src/content/*-story.tsx` pages | `layout.tsx` | `approved-story` |
+| `supporting-pages.css` | About, Contact and Work pages and the practice board | `layout.tsx` | `portfolio-pages`, `practice-board`, `board-`, `mini-`, `swatches` |
+| `integrations-example.css` | Integrations example page | `case-study-examples.tsx`, `integrations-case-study-example.tsx` | `integrations-` |
+| `case-study-examples.css` | Council, foundations and hierarchy examples | `case-study-examples.tsx` | `example-` |
 
 ## State matrix
 
@@ -181,10 +282,10 @@ The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces 
 
 | Surface | Route | Deterministic inputs | Verification purpose |
 | --- | --- | --- | --- |
-| Public shell | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
+| Legacy shell frame (`SiteShellFrame`) | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
 | Case study | `/dev/harness/case-study?slug=<draft-slug>`; add `&view=story` for the story presentation or `&view=example` for the four first-principles revisions | Any typed case-study draft slug; optional presentation view | Shared evidence/provenance review, production story renderer, or local project-specific examples; responsive behavior and visual capture |
 
-Both specialized routes return not-found in production through the same environment guard as the main development harness. They reuse the production shell. The `example` view is a local presentation experiment for the four authored revisions; it does not change the public renderer or publication status.
+Both specialized routes return not-found in production through the same environment guard as the main development harness. The shell route renders the legacy `SiteShellFrame`, not `PersonalPracticeShell`, so it does not verify the live shell. The `example` view is a local presentation experiment for the four authored revisions; it does not change the public renderer or publication status.
 
 When a new important state is introduced, update all four places together:
 
@@ -212,8 +313,8 @@ When a new important state is introduced, update all four places together:
 
 Public navigation and content use a `900px` shell breakpoint; internal grids keep the existing `760px` content breakpoint:
 
-- above `900px`: public routes use the fixed `17rem` rail and offset content column;
-- at `900px` and below: the rail is removed from layout and replaced with the sticky mobile bar plus drawer;
+- above `900px`: public routes use the `.practice-shell` rail column (`clamp(13.5rem, 17vw, 15.5rem)`) beside the content column;
+- at `900px` and below: the rail collapses to the mobile bar plus drawer;
 - at `760px` and below: project, post, split, harness, and relevant admin grids collapse to one column;
 - at `620px` and below: topology panels, authored matrix groups, and text lists stack in source/read order;
 - content determines height; fixed heights remain limited to loading placeholders and minimum card rhythm;
@@ -272,6 +373,7 @@ Before a UI change is complete:
 6. Run the full baseline before handoff:
 
 ```bash
+pnpm validate:design
 pnpm lint
 pnpm typecheck
 pnpm test
@@ -290,6 +392,7 @@ When adding a component or pattern:
 - define loading, empty, error, disabled, and long-content behavior when applicable;
 - add stable accessible selectors through semantics first;
 - add a deterministic fixture and harness preview for meaningful states;
+- add or update the token reference, component ownership and CSS ownership rows for any token, component or stylesheet you add (`pnpm validate:design` enforces them);
 - update this document and the relevant architecture/decision record;
 - run the verification commands before completing the change.
 
