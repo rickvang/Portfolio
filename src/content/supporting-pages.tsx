@@ -80,7 +80,7 @@ export function WorkPageContent({ approvedSlugs }: {
 
         {approvedSlugs.includes("ui-systems-lab") && (<article className="project" data-practice-work="ui-systems-lab">
         <Link href="/work/ui-systems-lab">
-        <figure className="project-image lab">
+        <figure className="project-image practice">
         <InterfaceLabCatalogMap compact />
         </figure>
         <div className="project-meta"><span>Independent UI systems lab</span><span aria-hidden="true">↗</span>
