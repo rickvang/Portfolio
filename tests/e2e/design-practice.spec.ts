@@ -11,7 +11,7 @@ test("approved craft story supports chapter navigation, evidence inspection and 
   await expect(page.getByText(/primary contributor working with three teammates/)).toBeVisible();
   await expect(page.getByText(/libraries were generally adopted/)).toBeVisible();
   await expect(page.getByText("Build sequence", { exact: true })).toHaveCount(0);
-  await expect(page.locator('a[href*="rickvang.com"]')).toHaveCount(0);
+  await expect(page.locator('main a[href*="rickvang.com"]')).toHaveCount(0);
   const chapters = page.getByRole("navigation", { name: "On this page" });
   await expect(chapters.getByRole("link")).toHaveCount(3);
   for (const link of await chapters.getByRole("link").all()) {

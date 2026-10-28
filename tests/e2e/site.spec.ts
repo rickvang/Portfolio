@@ -1,5 +1,19 @@
 import { expect, test } from "@playwright/test";
 
+test("the library is accessible from desktop and mobile navigation", async ({ page }) => {
+  for (const width of [1280, 390]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.goto("/work");
+    if (width < 900) await page.getByRole("button", { name: "Open site navigation" }).click();
+    const navigation = page.getByRole("navigation", { name: "Primary navigation" }).filter({ visible: true });
+    const library = navigation.getByRole("link", { name: "Library" });
+    await expect(library).toBeVisible();
+    await expect(navigation.locator(".practice-nav-link").nth(1)).toHaveAccessibleName("Library");
+    await expect(library).toHaveAttribute("href", "https://ui-starter.rickvang.com");
+    await expect(library).not.toHaveAttribute("aria-current", "page");
+  }
+});
+
 test("homepage introduces project evidence and ends with contact on desktop and mobile", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   for (const viewport of [{ width: 1280, height: 720 }, { width: 390, height: 844 }]) {
