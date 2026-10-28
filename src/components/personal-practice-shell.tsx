@@ -11,8 +11,9 @@ import { publicRoutes } from "@/lib/public-routes";
 
 const fullNavigationItems = [
   { href: publicRoutes.work, index: "01", label: "Work" },
-  { href: publicRoutes.notes, index: "02", label: "Notes" },
-  { href: publicRoutes.about, index: "03", label: "About" },
+  { href: "https://ui-starter.rickvang.com", index: "02", label: "Library" },
+  { href: publicRoutes.notes, index: "03", label: "Notes" },
+  { href: publicRoutes.about, index: "04", label: "About" },
 ] as const;
 
 function routeIsActive(pathname: string, href: string) {
