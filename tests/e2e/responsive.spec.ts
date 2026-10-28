@@ -17,10 +17,10 @@ test("work index stacks and wraps without horizontal overflow", async ({ page })
   await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
   const caseStudies = page.getByRole("region", { name: "Case studies" });
   await expect(caseStudies).toBeVisible();
-  await expect(caseStudies.locator(".project")).toHaveCount(4);
-  await expect(caseStudies.locator(".project > a")).toHaveCount(4);
+  await expect(caseStudies.locator(".project")).toHaveCount(5);
+  await expect(caseStudies.locator(".project > a")).toHaveCount(5);
   await expect(caseStudies.locator(".project-image.ink")).toHaveCount(2);
-  await expect(caseStudies.locator(".project-image")).toHaveCount(4);
+  await expect(caseStudies.locator(".project-image")).toHaveCount(5);
 
   const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(hasHorizontalOverflow).toBe(false);

@@ -6,6 +6,7 @@ import { IntegrationsStory } from "@/content/integrations-story";
 import { DesignSystemsStory } from "@/content/systems-story";
 import { AiSystemsStory } from "@/content/ai-story";
 import { UiPracticeCaseStudy } from "@/components/ui-practice-case-study";
+import { InterfaceLabConcept } from "@/content/interface-lab-concept";
 import { getCaseStudyChapters, type CaseStudy } from "@/lib/case-studies";
 
 type CaseStudyTemplateProps = {
@@ -17,6 +18,7 @@ export function CaseStudyTemplate({ caseStudy, mode = "public" }: CaseStudyTempl
   if (mode === "public" && caseStudy.practicePresentation) {
     return <UiPracticeCaseStudy caseStudy={caseStudy} />;
   }
+  if (mode === "public" && caseStudy.slug === "ui-systems-lab") return <InterfaceLabConcept caseStudy={caseStudy} />;
   if (mode === "public" && caseStudy.slug === "multi-product-integrations") {
     return <IntegrationsStory clientIpDisclaimer={caseStudy.clientIpDisclaimer} />;
   }

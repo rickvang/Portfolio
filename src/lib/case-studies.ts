@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 import authoredCaseStudySource from "../../content/drafts/case-studies.json";
+import interfaceLabSource from "../../content/drafts/ui-systems-lab.json";
 import { importedContent, type ImportedProject } from "@/lib/imported-content";
 
 export const CASE_STUDY_SECTION_ORDER = [
@@ -272,7 +273,7 @@ export const importedCaseStudies = importedContent.projects.map(importedProjectT
 
 const authoredCaseStudySourceSchema = z.array(caseStudySchema).min(1);
 
-export const authoredCaseStudies = authoredCaseStudySourceSchema.parse(authoredCaseStudySource);
+export const authoredCaseStudies = authoredCaseStudySourceSchema.parse([...authoredCaseStudySource, interfaceLabSource]);
 
 export const caseStudyCatalog: CaseStudy[] = [
   ...importedCaseStudies,

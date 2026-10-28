@@ -198,7 +198,7 @@ test("approved imported work is public through the shared case-study routes", as
   await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
   const caseStudies = page.getByRole("region", { name: "Case studies" });
   await expect(caseStudies).toBeVisible();
-  await expect(caseStudies.locator(".project")).toHaveCount(4);
+  await expect(caseStudies.locator(".project")).toHaveCount(5);
   await expect(caseStudies.getByRole("heading", { name: "Multi Product Integrations", exact: true })).toBeVisible();
   await expect(caseStudies.getByRole("heading", { name: "Design Systems", exact: true })).toBeVisible();
   await expect(caseStudies.locator(".gallery-note")).toHaveCount(1);
