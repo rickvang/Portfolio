@@ -9,7 +9,7 @@ test("approved Work gallery pairs each project with a consistent preview and one
   await expect(gallery.locator(".project-image")).toHaveCount(5);
   const backgrounds = await gallery.locator(".project-image").evaluateAll(elements => elements.map(e => getComputedStyle(e).background));
   expect(new Set(backgrounds).size).toBe(1);
-  await expect(gallery.locator(".gallery-note")).toHaveText("Client screens are modified to protect intellectual property. The AI Systems and UI Design Practices previews are illustrative. The UI Systems Lab preview is a catalog diagram, not a Storybook screenshot.");
+  await expect(gallery.locator(".gallery-note")).toHaveText("Client screens are modified to protect intellectual property. The AI Systems and UI Design Practices previews are illustrative. The UI Systems Lab preview is an illustration.");
   await expect(gallery.locator(".caption")).toHaveCount(0);
   for (const slug of ["multi-product-integrations", "ai-systems", "design-systems", "ui-design-practices", "ui-systems-lab"]) {
     await expect(gallery.locator('[data-practice-work="'+slug+'"] a')).toHaveAttribute("href", "/work/"+slug);
