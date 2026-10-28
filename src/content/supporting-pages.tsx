@@ -1,5 +1,5 @@
 import { InterfaceGuidancePreview } from "@/components/interface-guidance-preview";
-import { InterfaceLabCatalogMap } from "@/components/interface-lab-catalog-map";
+import { InterfaceLabPreview } from "@/components/interface-lab-preview";
 import Image from "next/image";
 import Link from "next/link";
 import contact from "../../content/profile/contact.json";
@@ -81,7 +81,7 @@ export function WorkPageContent({ approvedSlugs }: {
         {approvedSlugs.includes("ui-systems-lab") && (<article className="project" data-practice-work="ui-systems-lab">
         <Link href="/work/ui-systems-lab">
         <figure className="project-image practice">
-        <InterfaceLabCatalogMap compact />
+        <InterfaceLabPreview />
         </figure>
         <div className="project-meta"><span>Independent UI systems lab</span><span aria-hidden="true">↗</span>
         </div>
@@ -94,7 +94,7 @@ export function WorkPageContent({ approvedSlugs }: {
 
     </div>
 
-    <p className="gallery-note">Client screens are modified to protect intellectual property. The AI Systems and UI Design Practices previews are illustrative. {approvedSlugs.includes("ui-systems-lab") && "The UI Systems Lab preview is a catalog diagram, not a Storybook screenshot."}
+    <p className="gallery-note">Client screens are modified to protect intellectual property. The AI Systems and UI Design Practices previews are illustrative. {approvedSlugs.includes("ui-systems-lab") && "The UI Systems Lab preview is an illustration."}
     </p>
 
     </section>

@@ -1,0 +1,123 @@
+.preview {
+  container-type: inline-size;
+  height: 86%;
+  position: relative;
+  width: 88%;
+}
+
+.form {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 20px rgb(23 22 20 / 10%);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 94%;
+  left: 21%;
+  padding: 5% 7%;
+  position: absolute;
+  top: 2%;
+  width: 68%;
+}
+
+.formTop {
+  color: var(--muted);
+  display: flex;
+  font-size: clamp(5px, 2.2cqw, 9px);
+  font-weight: 700;
+  justify-content: space-between;
+  letter-spacing: .06em;
+}
+
+.formTitle {
+  color: var(--foreground);
+  font-size: clamp(12px, 6cqw, 24px);
+  letter-spacing: -.04em;
+  line-height: 1;
+  margin: 4% 0 3%;
+}
+
+.fieldLabel {
+  color: var(--foreground);
+  font-size: clamp(6px, 2.6cqw, 11px);
+  font-weight: 650;
+  line-height: 1.2;
+  margin-bottom: 2%;
+}
+
+.field {
+  align-items: center;
+  background: var(--background);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  display: flex;
+  font-size: clamp(6px, 2.6cqw, 11px);
+  height: 14%;
+  margin-bottom: 4%;
+  padding: 0 4%;
+}
+
+.fieldLine {
+  background: var(--border);
+  height: 1px;
+  width: 60%;
+}
+
+.save {
+  align-self: flex-start;
+  background: var(--accent-ink);
+  color: var(--surface);
+  font-size: clamp(6px, 2.5cqw, 10px);
+  font-weight: 700;
+  line-height: 1;
+  padding: 3% 7%;
+}
+
+.foundation {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 16px rgb(23 22 20 / 8%);
+  display: flex;
+  flex-direction: column;
+  gap: 6%;
+  height: 43%;
+  justify-content: center;
+  left: 0;
+  padding: 4%;
+  position: absolute;
+  top: 15%;
+  width: 26%;
+  z-index: 1;
+}
+
+.type {
+  color: var(--foreground);
+  font-family: Georgia, serif;
+  font-size: clamp(15px, 8cqw, 32px);
+  line-height: 1;
+}
+
+.swatches { display: flex; gap: 7%; height: 15%; }
+.swatches i { background: var(--accent-ink); flex: 1; }
+.swatches i:nth-child(2) { background: var(--foreground); }
+.swatches i:nth-child(3) { background: var(--surface-strong); }
+.foundationLabel { color: var(--muted); font-size: clamp(5px, 2cqw, 8px); font-weight: 700; letter-spacing: .04em; }
+
+.saved {
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 16px rgb(23 22 20 / 8%);
+  color: var(--foreground);
+  display: flex;
+  font-size: clamp(7px, 2.8cqw, 11px);
+  font-weight: 700;
+  gap: .5em;
+  padding: 3% 5%;
+  position: absolute;
+  right: 0;
+  bottom: 12%;
+  z-index: 1;
+}
+
+.saved span { color: var(--success); font-size: 1.2em; }
