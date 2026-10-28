@@ -24,6 +24,7 @@ Every route in the `(public)` group renders `SiteShell` (`src/components/site-sh
 - **Mobile:** at `900px` and below the rail collapses and a Menu button opens a dialog drawer that traps focus and closes on Escape. The drawer keeps the charcoal palette (`--rail`, `--rail-foreground`, `--rail-muted`, `--rail-border`).
 - **Typeface:** Inter, loaded in `src/app/layout.tsx` and exposed as `--font-practice-sans`, with Arial as the fallback. The `body` rule in `globals.css` still sets Arial for anything outside `.practice-shell`.
 - **Legacy frame:** `SiteShellFrame` in the same file is the earlier charcoal rail with five links (01 Home through 05 Contact) and the `.public-shell`, `.site-rail` and `.rail-*` classes in `globals.css`. No production route renders it; only `/dev/harness/shell` does. `--rail-width` and `--content-max` belong to it.
+- **Harness:** `/dev/harness/case-study?view=story` and `?view=example` render inside the live `PersonalPracticeShell` with a fixed synthetic pathname. `/dev/harness/shell` renders the legacy frame, so it does not verify the live shell.
 - **Stale elsewhere:** `docs/design/examples/personal-practice-pilot.md` still says non-pilot routes keep the old rail. Treat that statement as out of date.
 
 ## Selective design references
@@ -59,7 +60,7 @@ The source of truth is `src/app/globals.css`. These are the currently implemente
 
 ### Token reference
 
-Every custom property declared in the `:root` block of `src/app/globals.css`, plus the scoped tokens declared in other files. `pnpm validate:design` fails when a token is missing, extra or has a different value, so add or change a token here in the same change that declares it. Components use `var(--token)`; they do not repeat the literal values.
+Every custom property declared in the `:root` block of `src/app/globals.css`, plus every scoped custom property declared elsewhere in `src/**/*.css`. `pnpm validate:design` fails when a `:root` token or a scoped declaration is missing from this table, is listed but not declared, or has a different value; a scoped token declared with two values needs one row per value. `--font-practice-sans` is set from `layout.tsx` rather than a stylesheet, so it is checked by name only. Add or change a token here in the same change that declares it. Components use `var(--token)`; they do not repeat the literal values.
 
 | Token | Value | Group | Source | Use |
 | --- | --- | --- | --- | --- |
@@ -96,7 +97,8 @@ Every custom property declared in the `:root` block of `src/app/globals.css`, pl
 | `--green` | `#344c40` | Color | `src/app/supporting-pages.css` | Dark green on the About, Contact and Work pages; scoped to `.portfolio-pages` |
 | `--green` | `#334a40` | Color | `src/app/approved-stories.css` | Dark green in approved stories; scoped to `.approved-story`; near-duplicate of the supporting-pages value |
 | `--soft` | `var(--surface-muted)` | Color | `src/app/approved-stories.css` | Soft panel fill in approved stories; scoped to `.approved-story` |
-| `--step` | `36px` | Layout | `src/app/approved-stories.css` | Step offset on the first `.system-layer`; the second layer sets `18px` |
+| `--step` | `36px` | Layout | `src/app/approved-stories.css` | Step offset on the first `.system-layer` |
+| `--step` | `18px` | Layout | `src/app/approved-stories.css` | Step offset on the second `.system-layer` |
 
 - Use `color: var(--accent-ink)` for small accent text on light surfaces. Avoid writing `#b7371c` in a component or stylesheet.
 - Use `background: var(--surface)` for cards, fields and the practice rail. When a new value repeats across components, add a token first.
@@ -194,6 +196,8 @@ These are the reusable components currently in `src/components/`.
 | `AiCouncilExample`, `DesignSystemExample`, `UiPracticeExample` | Local revision examples for three case studies (`case-study-examples.tsx`) | `caseStudy` | Local-only `view=example` |
 | `IntegrationsCaseStudyExample` | Local revision example for the Integrations case study | `caseStudy` | Local-only `view=example` |
 | `WorkLedPreviewHarness` | Harness section for project preview and artifact states | none | Fixture-driven preview and artifact states |
+| `InterfaceLabPreview` | Illustration of foundations and a create-project form for the Work preview (`interface-lab-preview.tsx`) | none | Static `role="img"` illustration |
+| `InterfaceLabCatalogMap` | Illustrative map of the Storybook catalog groups (`interface-lab-catalog-map.tsx`) | `compact` | Default and compact; no importer outside `InterfaceLabStory` |
 
 ### Component rules
 
@@ -207,7 +211,7 @@ These are the reusable components currently in `src/components/`.
 
 ## Ownership maps
 
-These tables say which stylesheet each component uses and which file each stylesheet belongs to. `pnpm validate:design` fails when a file in `src/components/` or a stylesheet in `src/app/` is missing from its table, or when a listed file no longer exists. Add the row in the same change that adds the file.
+These tables say which stylesheet each component uses and which file each stylesheet belongs to. `pnpm validate:design` fails when a file in `src/components/` or a stylesheet under `src/` (global or `*.module.css`) is missing from its table, or when a listed file no longer exists. Add the row in the same change that adds the file.
 
 ### Component ownership
 
@@ -231,8 +235,10 @@ These tables say which stylesheet each component uses and which file each styles
 | `imported-content-preview.tsx` | `globals.css` | `/dev/harness` "Imported source review" |
 | `integrations-case-study-example.tsx` | `integrations-example.css` | `/dev/harness/case-study?view=example` |
 | `interface-guidance-preview.tsx` | `supporting-pages.css` | — (supporting pages and practice visuals) |
+| `interface-lab-catalog-map.tsx` | `interface-lab.css` | — (used only by `InterfaceLabStory`, which has no importer found) |
+| `interface-lab-preview.tsx` | `interface-lab-preview.module.css` | — (Work preview in `src/content/supporting-pages.tsx`) |
 | `personal-practice-case-study.tsx` | `personal-practice.css` | `/dev/harness/case-study?view=story` |
-| `personal-practice-shell.tsx` | `personal-practice.css`, `globals.css` (drawer, skip link) | — (`/dev/harness/shell` renders `SiteShellFrame` instead) |
+| `personal-practice-shell.tsx` | `personal-practice.css`, `globals.css` (drawer, skip link) | `/dev/harness/case-study?view=story` and `?view=example`; `/dev/harness/shell` renders `SiteShellFrame` instead |
 | `personal-practice-visuals.tsx` | `personal-practice.css` | — (Home) |
 | `personal-practice-work-index.tsx` | `personal-practice.css` | — (Home) |
 | `post-editor-form.tsx` | `globals.css` | — (admin routes) |
@@ -242,14 +248,14 @@ These tables say which stylesheet each component uses and which file each styles
 | `project-list.tsx` | `globals.css` | `/dev/harness` "Project list" |
 | `project-preview.tsx` | `work-led.css` | `/dev/harness` "Work-led patterns" |
 | `site-shell.tsx` | `globals.css` | `/dev/harness/shell` (`SiteShellFrame` only) |
-| `ui-practice-case-study.tsx` | `ui-craft.css` | `/dev/harness/case-study` (through `CaseStudyTemplate`) |
-| `ui-practice-examples.tsx` | `ui-craft.css` | `/dev/harness/case-study` (through `UiPracticeCaseStudy`) |
+| `ui-practice-case-study.tsx` | `ui-craft.css` | `/dev/harness/case-study?slug=ui-design-practices&view=story` (through `CaseStudyTemplate` in public mode) |
+| `ui-practice-examples.tsx` | `ui-craft.css` | `/dev/harness/case-study?slug=ui-design-practices&view=story` (through `UiPracticeCaseStudy`) |
 | `work-led-preview-harness.tsx` | `work-led.css`, `globals.css` | `/dev/harness` "Project preview and artifact states" |
 | `work-throughline.tsx` | `work-led.css` | — (no importer found) |
 
 ### CSS file ownership
 
-The first seven stylesheets are imported by `src/app/layout.tsx`. The last two are imported by the example components that use them. `approved-stories.css` and `supporting-pages.css` are minified, so their prefix lists are partial.
+The first eight stylesheets are imported by `src/app/layout.tsx`. `integrations-example.css` and `case-study-examples.css` are imported by the example components that use them. The two `*.module.css` rows are CSS modules, listed by repo path and imported by the component beside them. `approved-stories.css` and `supporting-pages.css` are minified, so their prefix lists are partial.
 
 | Stylesheet | Purpose | Imported by | Class prefixes |
 | --- | --- | --- | --- |
@@ -260,8 +266,11 @@ The first seven stylesheets are imported by `src/app/layout.tsx`. The last two a
 | `ui-craft.css` | UI craft case-study layout | `layout.tsx` | `ui-craft`, `craft-` |
 | `approved-stories.css` | Approved story layout for the `src/content/*-story.tsx` pages | `layout.tsx` | `approved-story` |
 | `supporting-pages.css` | About, Contact and Work pages and the practice board | `layout.tsx` | `portfolio-pages`, `practice-board`, `board-`, `mini-`, `swatches` |
+| `interface-lab.css` | Interface Lab story and catalog-map styles | `layout.tsx` | `interface-lab`, `lab-` |
 | `integrations-example.css` | Integrations example page | `case-study-examples.tsx`, `integrations-case-study-example.tsx` | `integrations-` |
 | `case-study-examples.css` | Council, foundations and hierarchy examples | `case-study-examples.tsx` | `example-` |
+| `src/components/interface-lab-preview.module.css` | Interface Lab Work preview illustration | `interface-lab-preview.tsx` | CSS module (local class names) |
+| `src/content/interface-lab-concept.module.css` | Interface Lab concept page | `src/content/interface-lab-concept.tsx` | CSS module (local class names) |
 
 ## State matrix
 
@@ -285,7 +294,7 @@ The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces 
 | Legacy shell frame (`SiteShellFrame`) | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
 | Case study | `/dev/harness/case-study?slug=<draft-slug>`; add `&view=story` for the story presentation or `&view=example` for the four first-principles revisions | Any typed case-study draft slug; optional presentation view | Shared evidence/provenance review, production story renderer, or local project-specific examples; responsive behavior and visual capture |
 
-Both specialized routes return not-found in production through the same environment guard as the main development harness. The shell route renders the legacy `SiteShellFrame`, not `PersonalPracticeShell`, so it does not verify the live shell. The `example` view is a local presentation experiment for the four authored revisions; it does not change the public renderer or publication status.
+Both specialized routes return not-found in production through the same environment guard as the main development harness. The shell route renders the legacy `SiteShellFrame`, not `PersonalPracticeShell`, so it does not verify the live shell; the case-study route's `view=story` and `view=example` views do render inside `PersonalPracticeShell`. The `example` view is a local presentation experiment for the four authored revisions; it does not change the public renderer or publication status.
 
 When a new important state is introduced, update all four places together:
 
