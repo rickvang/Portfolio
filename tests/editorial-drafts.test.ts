@@ -4,7 +4,21 @@ import {
   getPublishedEditorialNoteBySlug,
   getPublishedEditorialNotes,
   personaLedDesignDraft,
+  taskosaurWorkspaceDraft,
+  thinkingWithDocumentationDraft,
 } from "@/lib/editorial-drafts";
+
+describe("new Notes publication boundary", () => {
+  it.each([taskosaurWorkspaceDraft, thinkingWithDocumentationDraft])(
+    "keeps $slug available for review without publishing it",
+    (draft) => {
+      expect(draft.reviewStatus).toBe("review-ready");
+      expect(draft.publishedOn).toBeUndefined();
+      expect(getPublishedEditorialNotes()).not.toContain(draft);
+      expect(getPublishedEditorialNoteBySlug(draft.slug)).toBeUndefined();
+    },
+  );
+});
 
 describe("persona-led design editorial draft", () => {
   it("is explicitly published and source-backed", () => {

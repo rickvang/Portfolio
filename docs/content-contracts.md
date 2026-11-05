@@ -99,6 +99,13 @@ This keeps test determinism, source-controlled authorship, and the hosted author
 
 ## Authored editorial content
 
+Two additional Notes are registered as `review-ready` in `src/lib/editorial-drafts.ts`:
+
+- `taskosaur-workspace-and-docs` — Rick's Taskosaur workspace and Docs practice;
+- `thinking-with-documentation` — his reported experience using a shared working document across AI runs and agents.
+
+Their source records live in `content/drafts/`. Review them locally at `/dev/harness#note-taskosaur-workspace-and-docs` and `/dev/harness#note-thinking-with-documentation`. Neither has a publication date or appears on public Notes routes. Rick's factual and editorial review remains required before publication; the second article makes no measured or guaranteed performance claim.
+
 Phase 5 originally introduced three source-backed review artifacts under `content/drafts/`. Issue #41 records the later explicit publication decision:
 
 - `AI Systems` — approved public case study grounded in Persona-Library orchestration, Work Order, and shared problem-context contracts;
