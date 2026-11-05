@@ -15,9 +15,10 @@ test("new Notes render for local review and stay off public routes", async ({ pa
   await page.goto("/notes");
   await expect(page.getByRole("link", { name: /A place for the work|Thinking with a document/ })).toHaveCount(0);
   for (const slug of ["taskosaur-workspace-and-docs", "thinking-with-documentation"]) {
-    const response = await page.goto(`/notes/${slug}`);
-    expect(response?.status()).toBe(404);
-    await expect(page.getByRole("heading", { name: "That note is not published." })).toBeVisible();
+    // App Router streams the loading shell before resolving notFound().
+    await page.goto(`/notes/${slug}`);
+    await expect(page.getByRole("heading", { name: "That page is not available." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /A place for the work|Thinking with a document/ })).toHaveCount(0);
   }
 });
 
