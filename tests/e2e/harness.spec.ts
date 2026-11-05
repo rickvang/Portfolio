@@ -1,5 +1,27 @@
 import { expect, test } from "@playwright/test";
 
+test("new Notes render for local review and stay off public routes", async ({ page }) => {
+  await page.goto("/dev/harness");
+  for (const [slug, title] of [
+    ["taskosaur-workspace-and-docs", "A place for the work, and the thinking behind it"],
+    ["thinking-with-documentation", "Thinking with a document"],
+  ]) {
+    const article = page.getByTestId(`editorial-draft-${slug}`);
+    await expect(article).toHaveAttribute("data-editorial-status", "review-ready");
+    await expect(article.getByRole("heading", { name: title, exact: true })).toBeVisible();
+    await expect(article.getByRole("heading", { level: 3 })).toHaveCount(6);
+  }
+
+  await page.goto("/notes");
+  await expect(page.getByRole("link", { name: /A place for the work|Thinking with a document/ })).toHaveCount(0);
+  for (const slug of ["taskosaur-workspace-and-docs", "thinking-with-documentation"]) {
+    // App Router streams the loading shell before resolving notFound().
+    await page.goto(`/notes/${slug}`);
+    await expect(page.getByRole("heading", { name: "That page is not available." })).toBeVisible();
+    await expect(page.getByRole("heading", { name: /A place for the work|Thinking with a document/ })).toHaveCount(0);
+  }
+});
+
 test("harness can switch and reset deterministic states", async ({ page }) => {
   await page.goto("/dev/harness");
 

@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 import editorialDraftSource from "../../content/drafts/persona-led-design.json";
+import taskosaurWorkspaceSource from "../../content/drafts/taskosaur-workspace-and-docs.json";
+import thinkingWithDocumentationSource from "../../content/drafts/thinking-with-documentation.json";
 import { caseStudyEvidenceSchema, caseStudySourceSchema } from "@/lib/case-studies";
 
 const editorialSectionSchema = z.object({
@@ -58,18 +60,25 @@ const editorialDraftSchema = z
   });
 
 export const personaLedDesignDraft = editorialDraftSchema.parse(editorialDraftSource);
+export const taskosaurWorkspaceDraft = editorialDraftSchema.parse(taskosaurWorkspaceSource);
+export const thinkingWithDocumentationDraft = editorialDraftSchema.parse(thinkingWithDocumentationSource);
+export const editorialDrafts = [
+  personaLedDesignDraft,
+  taskosaurWorkspaceDraft,
+  thinkingWithDocumentationDraft,
+];
 
 export type EditorialDraft = z.infer<typeof editorialDraftSchema>;
 
 export function getPublishedEditorialNotes(
-  drafts: readonly EditorialDraft[] = [personaLedDesignDraft],
+  drafts: readonly EditorialDraft[] = editorialDrafts,
 ): EditorialDraft[] {
   return drafts.filter((draft) => draft.reviewStatus === "published");
 }
 
 export function getPublishedEditorialNoteBySlug(
   slug: string,
-  drafts: readonly EditorialDraft[] = [personaLedDesignDraft],
+  drafts: readonly EditorialDraft[] = editorialDrafts,
 ): EditorialDraft | undefined {
   return getPublishedEditorialNotes(drafts).find((draft) => draft.slug === slug);
 }
