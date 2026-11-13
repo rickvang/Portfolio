@@ -1,5 +1,41 @@
 import { expect, test } from "@playwright/test";
 
+test("approved Notes remain available in local review", async ({ page }) => {
+  await page.goto("/dev/harness");
+  for (const [slug, title] of [
+    ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
+    ["thinking-with-documentation", "Thinking with a document"],
+  ]) {
+    const article = page.getByTestId(`editorial-draft-${slug}`);
+    await expect(article).toHaveAttribute("data-editorial-status", "published");
+    await expect(article.getByRole("heading", { name: title, exact: true })).toBeVisible();
+    await expect(article.getByRole("heading", { level: 3 })).toHaveCount(6);
+  }
+
+  await page.goto("/dev/harness/notes?slug=taskosaur-workspace-and-docs");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("How I use Taskosaur");
+  await expect(page.getByRole("note")).toContainText("This article is published.");
+  await page.getByRole("navigation", { name: "Article previews" }).getByRole("link", { name: "Thinking with a document" }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Thinking with a document");
+  await expect(page.locator(".post-content h2")).toHaveCount(6);
+  await expect(page.getByRole("button", { name: "Review evidence" })).toHaveCount(0);
+});
+
+test("approved Notes open from the public index", async ({ page }) => {
+  for (const [slug, title] of [
+    ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
+    ["thinking-with-documentation", "Thinking with a document"],
+  ]) {
+    await page.goto("/notes");
+    await page.getByRole("link", { name: title, exact: true }).click();
+    await expect(page).toHaveURL(`/notes/${slug}`);
+    await expect(page.getByRole("heading", { name: title, level: 1 })).toBeVisible();
+    await expect(page.locator(".post-content h2")).toHaveCount(6);
+    await expect(page.getByText("Published note", { exact: true })).toBeVisible();
+    await expect(page.getByRole("note")).toHaveCount(0);
+  }
+});
+
 test("harness can switch and reset deterministic states", async ({ page }) => {
   await page.goto("/dev/harness");
 

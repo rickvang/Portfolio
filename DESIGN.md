@@ -246,6 +246,7 @@ These tables say which stylesheet each component uses and which file each styles
 | `personal-practice-work-index.tsx` | `personal-practice.css` | — (Home) |
 | `post-editor-form.tsx` | `globals.css` | — (admin routes) |
 | `post-list.tsx` | `globals.css` | `/dev/harness` "Posts preview" |
+| `note-article.tsx` | `globals.css` | `/dev/harness/notes?slug=…`; shared with public Notes details, using the live shell and current palette without changing draft publication status |
 | `post-status-actions.tsx` | `globals.css` | `/dev/harness` "Delete confirmation" (`DeletePostForm` only) |
 | `profile-stats.tsx` | `globals.css` | — (Home) |
 | `project-list.tsx` | `globals.css` | `/dev/harness` "Project list" |

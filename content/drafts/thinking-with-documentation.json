@@ -1,0 +1,81 @@
+{
+  "id": "thinking-with-documentation",
+  "slug": "thinking-with-documentation",
+  "title": "Thinking with a document",
+  "excerpt": "I started giving AI a document to read and update each run. The work improved, and writing things down helped me figure out what I was asking for.",
+  "reviewStatus": "published",
+  "publishedOn": "2026-11-13",
+  "sources": [
+    { "id": "rick-observation", "kind": "user-provided", "label": "Rick's observation about documentation improving outputs across runs and agents, and article brief", "capturedAt": "2026-11-05" },
+    { "id": "shared-guidance", "kind": "observed", "label": "Current shared collaboration principles: evidence, corrections, ownership, and original documents", "capturedAt": "2026-11-05" },
+    { "id": "handoff-guidance", "kind": "observed", "label": "Current Taskosaur work tracking and handoff guidance", "capturedAt": "2026-11-05" }
+  ],
+  "intro": [
+    "I started giving AI a file to read and update each time we worked. It held the brief, decisions we'd made, and corrections I wanted to keep. When I opened another session or switched agents, I pointed back to that file.",
+    "I found that the outputs got better across runs, including when I switched agents. I could put feedback somewhere the next agent would see it. Writing the feedback also made me work out what I actually wanted."
+  ],
+  "sections": [
+    {
+      "id": "write-down-the-goal",
+      "heading": "Getting past “this isn't quite right”",
+      "body": [
+        "I can tell that a page isn't working before I can explain why. Asking an agent to improve it leaves a lot open to interpretation. Writing a brief makes me name the part I want to change.",
+        "On my portfolio's UI Systems Lab page, I wanted the prototype section to explain what the workspace enables. A list of what's in it wasn't the point. The Storybook patterns and the prototyping workspace let me work with the same ideas at different levels of fidelity.",
+        "That was a more useful direction than asking for better copy. Once it's written down, I can check a revision against it. I can also change my mind without losing track of the earlier decision."
+      ],
+      "evidence": [{ "sourceId": "rick-observation", "note": "Rick's Portfolio feedback explicitly asked for the prototypes section to focus on what the workspace enables and described it as the same Storybook patterns at a different fidelity. Reflection on writing remains for his review." }, { "sourceId": "shared-guidance", "note": "Supports distinguishing observations, assumptions, and unresolved decisions." }]
+    },
+    {
+      "id": "give-corrections-a-home",
+      "heading": "Keeping the correction",
+      "body": [
+        "I can explain that direction in a chat and get a better revision. But if the correction stays in that conversation, another agent may start from the old brief.",
+        "Updating the document gives that feedback somewhere to go. The next run starts with the revised intent. Sometimes the update is a sentence; sometimes it's deleting an instruction that no longer makes sense. I don't need a new paragraph for every session."
+      ],
+      "evidence": [{ "sourceId": "rick-observation", "note": "The reported cross-run benefit is Rick's observation. His earlier Portfolio feedback explicitly shifted the prototypes section toward what the workspace enables." }, { "sourceId": "shared-guidance", "note": "Current guidance belongs at its owner; replace stale rules rather than accumulating instructions." }]
+    },
+    {
+      "id": "carry-context-across-agents",
+      "heading": "Taking it to another agent",
+      "body": [
+        "I use Codex, Claude, Cursor, and Gemini. They don't share my conversation history. Giving them access to the same document lets me bring decisions from one tool into another.",
+        "I point them to the original rather than keeping a copy for each agent. Otherwise, I can fix one version and leave another out of date. I also ask the agent to read it; connecting a tool doesn't mean it has loaded the context.",
+        "They still interpret the brief differently. Having the same reference makes those differences easier to discuss. I can point to a decision and ask why the result departed from it."
+      ],
+      "evidence": [{ "sourceId": "rick-observation", "note": "The conversation establishes use of several agents and Rick's reported improvement across them." }, { "sourceId": "shared-guidance", "note": "Requires authoritative originals and truthful access claims; no automatic cross-tool memory is implied." }]
+    },
+    {
+      "id": "inspect-the-thinking",
+      "heading": "Reading what changed",
+      "body": [
+        "I still have to read the edits. An agent can turn a tentative idea into a confident statement or drop a constraint during a rewrite. If I miss that, the next agent may treat it as something I've already agreed to.",
+        "The document helps me notice those changes. It also shows me where I haven't made a decision yet. I can leave a question open instead of accepting an answer just because it sounds finished."
+      ],
+      "evidence": [{ "sourceId": "handoff-guidance", "note": "Defines compact continuation context and meaningful checkpoints rather than transcript duplication." }, { "sourceId": "rick-observation", "note": "Thinking benefits are reflective interpretation for Rick's review." }]
+    },
+    {
+      "id": "a-repeatable-rhythm",
+      "heading": "What I ask for each run",
+      "body": [
+        "I ask the agent to read the current document before working, check what it changed, and update the parts that the next session will need. That includes unfinished work. If a check failed, I want the record to say so.",
+        "I keep the goal, constraints, decisions, and open questions. The chat can hold the rest. When several agents are working, they also need to check for each other's edits before saving."
+      ],
+      "evidence": [{ "sourceId": "handoff-guidance", "note": "Supports fresh orientation, verification, explicit unfinished work, and handoff checkpoints." }, { "sourceId": "shared-guidance", "note": "Requires preserving other writers' work and verifying claims." }]
+    },
+    {
+      "id": "what-improved-and-what-didnt",
+      "heading": "Where it can go wrong",
+      "body": [
+        "I haven't measured how much this helps, and a document can carry a mistake into the next run too. Old instructions and too much detail can make it harder to use. I have to revise it, not just keep adding to it.",
+        "What changes is the context I give the agent on the next run. The correction I made last time is there to read. So is the question I haven't answered yet. I can pick up either one without having to remember which chat it was in."
+      ],
+      "evidence": [{ "sourceId": "rick-observation", "note": "Qualitative personal experience only. No controlled benchmark, quantified gain, or guaranteed improvement is asserted." }, { "sourceId": "shared-guidance", "note": "Supports review, correction, and removal of stale guidance; document updates are context changes, not model training." }]
+    }
+  ],
+  "curationNotes": [
+    "Rick approved the revised wording and authorized publication on 2026-11-13.",
+    "The improvement across runs and agents is Rick's reported experience. No measured benchmark or guaranteed every-run improvement is claimed.",
+    "The UI Systems Lab example is grounded in Rick's earlier Portfolio feedback in this conversation. No hypothetical dashboard project is presented as experience.",
+    "First-person wording approved by Rick. Cross-agent continuity requires explicit access and reading; editing documentation does not train model weights."
+  ]
+}

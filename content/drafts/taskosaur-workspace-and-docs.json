@@ -1,0 +1,81 @@
+{
+  "id": "taskosaur-workspace-and-docs",
+  "slug": "taskosaur-workspace-and-docs",
+  "title": "How I use Taskosaur",
+  "excerpt": "My portfolio, UI starters, and AI tools share a workspace. Here's how I keep track of the work and the decisions behind it.",
+  "reviewStatus": "published",
+  "publishedOn": "2026-11-13",
+  "sources": [
+    { "id": "rick-context", "kind": "user-provided", "label": "Rick's Portfolio article brief and ongoing Shared Work practice", "capturedAt": "2026-11-05" },
+    { "id": "work-continuity", "kind": "observed", "label": "Current Taskosaur work tracking and handoff guidance, read from the original organization document", "capturedAt": "2026-11-05" },
+    { "id": "docs-integration", "kind": "repository", "label": "Taskosaur document integration and Creating and linking documents guide", "capturedAt": "2026-11-05" },
+    { "id": "collaboration-core", "kind": "observed", "label": "Current shared collaboration principles and Codex document-loading contract", "capturedAt": "2026-11-05" }
+  ],
+  "intro": [
+    "I work on my portfolio, two UI starters, and the tools I use with AI. I move between agents too. A decision made while working on the portfolio might matter to a starter, but the agent working on that starter won't necessarily have seen the conversation.",
+    "I use Taskosaur to keep track of those connections. My customized setup has a workspace called Shared Work, with a project for each codebase. Alongside the tasks, Docs holds the guidance I want to use again."
+  ],
+  "sections": [
+    {
+      "id": "why-i-needed-it",
+      "heading": "Picking up where I left off",
+      "body": [
+        "Chat works well while I'm in the middle of something. I can try an idea, ask for a change, and work out what I meant. Coming back later is harder. The latest reply may say what changed without explaining why.",
+        "I wanted a place to check before starting another conversation. In Shared Work, I can find the task under its project and see where we stopped. Keeping the projects together helps me follow related work without putting everything into one task list."
+      ],
+      "evidence": [{ "sourceId": "rick-context", "note": "The ongoing work spans Portfolio, Taskosaur, and both UI starters. Motivation is an editorial interpretation for Rick's review." }, { "sourceId": "work-continuity", "note": "Active work is tracked in Shared Work under the project that owns the deliverable." }]
+    },
+    {
+      "id": "tasks-carry-current-work",
+      "heading": "What I put in a task",
+      "body": [
+        "I want the task to tell me what we're doing, who's working on it, and what needs to happen next. Checkpoints record progress and link to the files or review. They also say what was checked and what's still uncertain.",
+        "These articles are an example. A draft can render correctly and pass the code checks while still needing my review. The task keeps that distinction visible: ready to read doesn't mean ready to publish."
+      ],
+      "evidence": [{ "sourceId": "work-continuity", "note": "Defines task objective, owner, next action, semantic checkpoints, evidence, and explicit completion boundaries." }]
+    },
+    {
+      "id": "docs-hold-context",
+      "heading": "What goes in Docs",
+      "body": [
+        "Docs is where I keep instructions and explanations that apply beyond one task. My collaboration guidance belongs there, as do project conventions and reasons for decisions I expect to revisit.",
+        "A document can belong to the organization, a workspace, or a project. That lets me keep shared guidance in one place and project details with the project. Tasks link to those documents.",
+        "Underneath the interface, they're Markdown files. I can edit a document in Taskosaur, and an agent with access can read that same file. I don't need to maintain a separate copy for each tool."
+      ],
+      "evidence": [{ "sourceId": "docs-integration", "note": "The document integration supports owner-scoped Markdown sources, subjects, search, editing, and references to originals with permission checks." }]
+    },
+    {
+      "id": "how-they-work-together",
+      "heading": "Following a change through",
+      "body": [
+        "For an interface change, the task describes what needs changing and links to the project's design guidance. The code stays in the repository. After the change is checked, the task gets a checkpoint with the result and anything left to do.",
+        "If we made a decision that will affect later work, it belongs in the guidance too. A temporary detail, such as the port used for a local preview, can stay in the task. I want to be able to find it without making every future agent read it."
+      ],
+      "evidence": [{ "sourceId": "work-continuity", "note": "The interface-change walkthrough illustrates the documented task, artifact, and checkpoint relationship; it is not a separate measured project result." }, { "sourceId": "collaboration-core", "note": "Reusable guidance stays at its owner; work records hold task state and evidence." }]
+    },
+    {
+      "id": "agents-share-a-reference",
+      "heading": "Switching agents",
+      "body": [
+        "When I move to another agent, I can point it to the task and the documents it needs. I still have to tell it to read them. Having access to Taskosaur doesn't mean it knows what's in there.",
+        "I've also had to deal with an agent using old instructions. A shared source only helps if the agent reads the current version. When several agents are working at once, I need to know which one is changing which files."
+      ],
+      "evidence": [{ "sourceId": "collaboration-core", "note": "Requires fresh authoritative sources, explicit access, preservation of other writers' work, and review." }, { "sourceId": "rick-context", "note": "Rick reported Cursor using an old AGENTS.md and Notion files and asked how to direct it to the new structures. He also described working with multiple agents in the project." }]
+    },
+    {
+      "id": "what-i-want-to-keep",
+      "heading": "Keeping it useful",
+      "body": [
+        "I don't want maintaining the workspace to become another project that gets in the way of everything else. I need enough detail to resume the work, with links when I need to go deeper.",
+        "The test for me is what happens when I return after a break. Can I see where we stopped and what needs my attention? That's what I want this setup to make easier."
+      ],
+      "evidence": [{ "sourceId": "rick-context", "note": "First-person reflection and intended value, pending Rick's wording review; no quantified productivity claim." }]
+    }
+  ],
+  "curationNotes": [
+    "Rick approved the revised wording and authorized publication on 2026-11-13.",
+    "Describes Rick's customized Taskosaur setup rather than claiming every feature is part of upstream Taskosaur.",
+    "Source descriptions deliberately omit private infrastructure addresses, account identifiers, credentials, and internal document links.",
+    "First-person wording approved by Rick. Workflow examples illustrate the documented method; no measured time savings or universal agent performance claim is made."
+  ]
+}

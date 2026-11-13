@@ -13,7 +13,7 @@ import { DeletePostForm } from "@/components/post-status-actions";
 import { ProjectList } from "@/components/project-list";
 import { WorkLedPreviewHarness } from "@/components/work-led-preview-harness";
 import { caseStudyCatalog } from "@/lib/case-studies";
-import { personaLedDesignDraft } from "@/lib/editorial-drafts";
+import { editorialDrafts } from "@/lib/editorial-drafts";
 import { importedContent } from "@/lib/imported-content";
 import {
   harnessStates,
@@ -140,15 +140,19 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
         </div>
       </section>
 
-      <section className="harness-section" aria-labelledby="editorial-draft-heading">
+      <section className="harness-section harness-section-single" aria-labelledby="editorial-draft-heading">
         <div>
           <p className="eyebrow">Editorial draft</p>
-          <h2 id="editorial-draft-heading">Persona-led design article review</h2>
+          <h2 id="editorial-draft-heading">Notes article review</h2>
           <p className="lede">
-            This source-backed article is published through the public Notes adapter while the harness preserves its provenance and editorial review details.
+            Read published and review-ready Notes with their sources and editorial review details. Unpublished articles remain local to this harness.
           </p>
         </div>
-        <EditorialDraftPreview draft={personaLedDesignDraft} />
+        {editorialDrafts.map((draft) => (
+          <div id={`note-${draft.slug}`} key={draft.id}>
+            <EditorialDraftPreview draft={draft} />
+          </div>
+        ))}
       </section>
 
       <section className="harness-section" aria-labelledby="projects-heading">
