@@ -9,9 +9,20 @@ test("the library is accessible from desktop and mobile navigation", async ({ pa
     const library = navigation.getByRole("link", { name: "Library" });
     await expect(library).toBeVisible();
     await expect(navigation.locator(".practice-nav-link").nth(1)).toHaveAccessibleName("Library");
-    await expect(library).toHaveAttribute("href", "https://ui-starter.rickvang.com");
+    await expect(library).toHaveAttribute("href", "/library");
     await expect(library).not.toHaveAttribute("aria-current", "page");
   }
+
+  await page.setViewportSize({ width: 1280, height: 844 });
+  await page.goto("/library");
+  await expect(page.getByTestId("personal-practice-shell")).toHaveClass(/practice-shell--library/);
+  await expect(
+    page.getByRole("navigation", { name: "Primary navigation" }).getByRole("link", { name: "Library" }),
+  ).toHaveAttribute("aria-current", "page");
+  const frame = page.getByTestId("practice-library-frame");
+  await expect(frame).toBeVisible();
+  await expect(frame).toHaveAttribute("src", "https://ui-starter.rickvang.com");
+  await expect(frame).toHaveAttribute("title", "Design system catalog");
 });
 
 test("homepage introduces project evidence and ends with contact on desktop and mobile", async ({ page }) => {
