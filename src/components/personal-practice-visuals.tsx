@@ -26,15 +26,15 @@ type PointerState = Point & {
 };
 
 const colors = {
-  accent: "#f24c27",
-  blue: "#7892c9",
-  cream: "#f5efe5",
-  ink: "#171715",
-  lilac: "#b1a8d8",
-  muted: "#7f7a70",
-  paper: "#fffefc",
-  plum: "#332636",
-  sand: "#c6a989",
+  accent: "#355e82",
+  blue: "#7187a0",
+  cream: "#e8eef4",
+  ink: "#1d2834",
+  lilac: "#aecdeb",
+  muted: "#505e6d",
+  paper: "#fafcff",
+  plum: "#1f2936",
+  sand: "#81959b",
 };
 
 type HeroColors = Pick<typeof colors, "accent" | "blue" | "muted" | "sand">;
@@ -79,9 +79,9 @@ function PracticeCanvasFrame({
     const frameStyles = window.getComputedStyle(frameElement);
     const heroColors: HeroColors = {
       accent: frameStyles.getPropertyValue("--accent").trim() || colors.accent,
-      blue: frameStyles.getPropertyValue("--preview-secondary").trim() || colors.blue,
-      muted: frameStyles.getPropertyValue("--preview-muted").trim() || colors.muted,
-      sand: frameStyles.getPropertyValue("--preview-tertiary").trim() || colors.sand,
+      blue: frameStyles.getPropertyValue("--accent-secondary").trim() || colors.blue,
+      muted: frameStyles.getPropertyValue("--muted").trim() || colors.muted,
+      sand: frameStyles.getPropertyValue("--hero-mist").trim() || colors.sand,
     };
 
     let animationFrame = 0;
@@ -195,12 +195,12 @@ function PracticeHeroFallback() {
       viewBox="0 0 1200 720"
     >
       <g fill="none" strokeLinecap="round">
-        <path d="M-80 120C220-20 360 270 620 160s360-110 660 50" stroke="var(--preview-tertiary, var(--sand))" strokeOpacity=".2" />
-        <path d="M-80 240C220 70 380 400 640 280s360-120 640 60" stroke="var(--preview-secondary, var(--blue))" strokeOpacity=".2" />
+        <path d="M-80 120C220-20 360 270 620 160s360-110 660 50" stroke="var(--hero-mist)" strokeOpacity=".2" />
+        <path d="M-80 240C220 70 380 400 640 280s360-120 640 60" stroke="var(--accent-secondary)" strokeOpacity=".2" />
         <path d="M-80 330C230 160 400 510 660 370s360-130 620 70" stroke="var(--accent)" strokeOpacity=".18" />
-        <path d="M-80 440C240 240 420 620 680 470s360-140 600 70" stroke="var(--preview-tertiary, var(--sand))" strokeOpacity=".22" />
-        <path d="M-80 560C260 360 430 730 700 590s340-130 580 80" stroke="var(--preview-secondary, var(--blue))" strokeOpacity=".18" />
-        <path d="M-80 680C270 480 440 840 720 700s340-130 560 80" stroke="var(--preview-tertiary, var(--sand))" strokeOpacity=".16" />
+        <path d="M-80 440C240 240 420 620 680 470s360-140 600 70" stroke="var(--hero-mist)" strokeOpacity=".22" />
+        <path d="M-80 560C260 360 430 730 700 590s340-130 580 80" stroke="var(--accent-secondary)" strokeOpacity=".18" />
+        <path d="M-80 680C270 480 440 840 720 700s340-130 560 80" stroke="var(--hero-mist)" strokeOpacity=".16" />
       </g>
       <g fill="var(--foreground)" fillOpacity=".24">
         <circle cx="558" cy="270" r="3" />

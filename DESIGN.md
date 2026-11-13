@@ -7,8 +7,8 @@ This document is the working visual and interaction contract for rickvang.com. I
 The portfolio uses a cinematic editorial foundation for systems-oriented product design work:
 
 - the work and authored content remain the focal point; navigation acts as a stable frame;
-- a light, warm persistent left rail keeps navigation quiet against warm neutral reading surfaces, and charcoal survives in the mobile drawer (see [Public shell](#public-shell));
-- the original rickvang.com accent is restored as `#f24c27` and used semantically rather than decoratively;
+- a light blue-gray rail sits beside cool reading surfaces, and the mobile drawer uses deep slate (see [Public shell](#public-shell));
+- Ink Blue (`#355e82`) marks active navigation, selected controls and authored emphasis;
 - small text on light surfaces uses the darker `--accent-ink` token, while small text on charcoal (the mobile drawer and the legacy rail) uses the contrast-adjusted `--rail-accent` token;
 - generous spacing and compact typography create hierarchy without delaying access to content;
 - every important flow has explicit loading, empty, error, disabled, long-content, keyboard, and reduced-motion behavior where applicable;
@@ -20,7 +20,7 @@ The current system is CSS-variable based. Tailwind and a third-party component l
 
 Every route in the `(public)` group renders `SiteShell` (`src/components/site-shell.tsx`), which returns `PersonalPracticeShell` (`src/components/personal-practice-shell.tsx`). Its styles live in `src/app/personal-practice.css` under the `practice-` class prefix.
 
-- **Rail:** light and warm (`--surface` background, `--border` divider) in a `clamp(13.5rem, 17vw, 15.5rem)` column. It holds the wordmark, three primary links indexed 01 Work, 02 Notes and 03 About, and the contact links. An accent marker follows hover, focus and the active route.
+- **Rail:** light blue-gray (`--practice-rail-surface` background, `--border` divider) in a `clamp(13.5rem, 17vw, 15.5rem)` column. It holds the wordmark, three primary links indexed 01 Work, 02 Notes and 03 About, and the contact links. An accent marker follows hover, focus and the active route.
 - **Mobile:** at `900px` and below the rail collapses and a Menu button opens a dialog drawer that traps focus and closes on Escape. The drawer keeps the charcoal palette (`--rail`, `--rail-foreground`, `--rail-muted`, `--rail-border`).
 - **Typeface:** Inter, loaded in `src/app/layout.tsx` and exposed as `--font-practice-sans`, with Arial as the fallback. The `body` rule in `globals.css` still sets Arial for anything outside `.practice-shell`.
 - **Legacy frame:** `SiteShellFrame` in the same file is the earlier charcoal rail with five links (01 Home through 05 Contact) and the `.public-shell`, `.site-rail` and `.rail-*` classes in `globals.css`. No production route renders it; only `/dev/harness/shell` does. `--rail-width` and `--content-max` belong to it.
@@ -64,27 +64,31 @@ Every custom property declared in the `:root` block of `src/app/globals.css`, pl
 
 | Token | Value | Group | Source | Use |
 | --- | --- | --- | --- | --- |
-| `--background` | `#f7f6f2` | Color | `:root` | Public page and application background |
-| `--surface` | `#fffefc` | Color | `:root` | Cards, fields, the practice rail and elevated reading surfaces |
-| `--surface-muted` | `#e8e7e4` | Color | `:root` | Secondary surfaces and disabled fields |
-| `--surface-strong` | `#dcdcd9` | Color | `:root` | Stronger neutral separation when a muted surface is insufficient |
-| `--foreground` | `#171614` | Color | `:root` | Primary text and strong borders |
-| `--muted` | `#6b665f` | Color | `:root` | Supporting text |
-| `--border` | `#cfcfcc` | Color | `:root` | Dividers, card borders, field borders and the practice rail divider |
-| `--accent` | `#f24c27` | Color | `:root` | Brand identity, active rail marker, large authored emphasis, button fill |
-| `--accent-hover` | `#ff6848` | Color | `:root` | Hover fill for accent actions |
-| `--accent-ink` | `#b7371c` | Color | `:root` | Small accent text and links on light surfaces |
-| `--rail` | `#282622` | Color | `:root` | Charcoal background of the mobile drawer and the legacy `.site-rail` |
-| `--rail-foreground` | `#f7f2eb` | Color | `:root` | Primary text on charcoal |
-| `--rail-muted` | `#b6afa3` | Color | `:root` | Secondary text on charcoal |
-| `--rail-accent` | `#ff6848` | Color | `:root` | Contrast-adjusted orange for small indices and active markers on charcoal |
-| `--rail-border` | `rgb(247 242 235 / 14%)` | Color | `:root` | Separators on charcoal |
-| `--focus` | `#f24c27` | Color | `:root` | Selected-state accent and legacy focus-related emphasis |
-| `--focus-inner` | `#fffdfa` | Color | `:root` | Light inner edge of the two-tone keyboard focus ring |
-| `--focus-outer` | `#171614` | Color | `:root` | Dark outer edge of the two-tone keyboard focus ring |
+| `--background` | `#f0f3f7` | Color | `:root` | Public page and application background |
+| `--surface` | `#fafcff` | Color | `:root` | Cards, fields, elevated reading surfaces and labels on filled accent buttons |
+| `--surface-muted` | `#e2eaf2` | Color | `:root` | Secondary surfaces and disabled fields |
+| `--surface-strong` | `#d4e0ec` | Color | `:root` | Stronger neutral separation when a muted surface is insufficient |
+| `--foreground` | `#1d2834` | Color | `:root` | Primary text and strong borders |
+| `--muted` | `#505e6d` | Color | `:root` | Supporting text |
+| `--border` | `#bdcbd8` | Color | `:root` | Dividers, card borders, field borders and the practice rail divider |
+| `--accent` | `#355e82` | Color | `:root` | Brand identity, active rail marker, large authored emphasis, button fill |
+| `--accent-hover` | `#1f4163` | Color | `:root` | Hover text and fill for accent actions |
+| `--accent-ink` | `#264b70` | Color | `:root` | Small accent text and links on light surfaces |
+| `--accent-secondary` | `#7187a0` | Color | `:root` | Slate detail in the hero and authored interface illustrations |
+| `--accent-tint` | `#dce7f2` | Color | `:root` | Light blue fill for authored illustrations |
+| `--hero-mist` | `#81959b` | Color | `:root` | Supporting stroke in the hero artwork |
+| `--practice-rail-surface` | `#e8eef4` | Color | `:root` | Light blue-gray navigation rail and mobile bar |
+| `--rail` | `#1f2936` | Color | `:root` | Deep slate background of the mobile drawer and the legacy `.site-rail` |
+| `--rail-foreground` | `#f1f6fb` | Color | `:root` | Primary text on deep slate |
+| `--rail-muted` | `#adbdcf` | Color | `:root` | Secondary text on deep slate |
+| `--rail-accent` | `#aecdeb` | Color | `:root` | Active markers, accent text and focus rings on deep slate |
+| `--rail-border` | `rgb(241 246 251 / 14%)` | Color | `:root` | Separators on deep slate |
+| `--focus` | `#355e82` | Color | `:root` | Selected-state accent and legacy focus-related emphasis |
+| `--focus-inner` | `#fafcff` | Color | `:root` | Light inner edge of the two-tone keyboard focus ring |
+| `--focus-outer` | `#355e82` | Color | `:root` | Blue outer edge of the two-tone keyboard focus ring on light surfaces |
 | `--danger` | `#9c342e` | Color | `:root` | Destructive actions and failures |
 | `--success` | `#176648` | Color | `:root` | Successful feedback |
-| `--shadow` | `0 18px 50px rgb(23 22 20 / 8%)` | Shape | `:root` | Card elevation |
+| `--shadow` | `0 18px 50px rgb(29 40 52 / 8%)` | Shape | `:root` | Card elevation |
 | `--radius` | `1rem` | Shape | `:root` | Standard card radius; pills use `999px` |
 | `--rail-width` | `17rem` | Layout | `:root` | Width of the legacy `.site-rail`; the practice shell sizes its own column |
 | `--content-max` | `76rem` | Layout | `:root` | Content cap in the legacy `.public-content` column |
@@ -94,17 +98,16 @@ Every custom property declared in the `:root` block of `src/app/globals.css`, pl
 | `--ease-standard` | `cubic-bezier(0.2, 0, 0, 1)` | Motion | `:root` | Default easing |
 | `--ease-emphasized` | `cubic-bezier(0.2, 0.8, 0.2, 1)` | Motion | `:root` | Emphasized easing for drawer and reveal entries |
 | `--font-practice-sans` | Inter (next/font) | Typography | `src/app/layout.tsx` | Typeface for the practice shell and public headings; Arial is the fallback |
-| `--green` | `#344c40` | Color | `src/app/supporting-pages.css` | Dark green on the About, Contact and Work pages; scoped to `.portfolio-pages` |
-| `--green` | `#334a40` | Color | `src/app/approved-stories.css` | Dark green in approved stories; scoped to `.approved-story`; near-duplicate of the supporting-pages value |
+| `--green` | `#334a40` | Color | `src/app/approved-stories.css` | Dark green scoped to `.approved-story` |
 | `--soft` | `var(--surface-muted)` | Color | `src/app/approved-stories.css` | Soft panel fill in approved stories; scoped to `.approved-story` |
 | `--step` | `36px` | Layout | `src/app/approved-stories.css` | Step offset on the first `.system-layer` |
 | `--step` | `18px` | Layout | `src/app/approved-stories.css` | Step offset on the second `.system-layer` |
 
-- Use `color: var(--accent-ink)` for small accent text on light surfaces. Avoid writing `#b7371c` in a component or stylesheet.
-- Use `background: var(--surface)` for cards, fields and the practice rail. When a new value repeats across components, add a token first.
+- Use `color: var(--accent-ink)` for small accent text on light surfaces.
+- Use `background: var(--surface)` for cards and fields. When a new value repeats across components, add a token first.
 - Scoped tokens apply only inside the selector that declares them. Do not reference them elsewhere.
 
-Use semantic tokens instead of raw color values in components. The `#f24c27` accent was recovered from the rendered rickvang.com wordmark/name treatment on 2026-09-22 rather than guessed. `--rail-accent` is a contrast-adjusted derivative for small text on `--rail`; the original orange remains the primary brand/accent token. On `#282622`, rail foreground, muted text, and rail-accent all clear normal-text contrast targets. A new semantic color should be added to the token list before it is used in multiple places.
+Use semantic tokens in components. Ink Blue uses `--accent-ink` for small text on cool paper and `--rail-accent` for small text on the deep slate drawer. Status colors identify success, errors and risks within their existing contexts.
 
 ### Typography
 
@@ -138,8 +141,8 @@ Use the following patterns deliberately rather than decorating every section:
 3. **Asymmetry with recovery** — use one controlled offset or unequal-column moment, then return to the shared content grid so the page remains easy to scan.
 4. **Numbered orientation** — the global rail uses 01–03 indices (Work, Notes, About) and long-form case studies use chapter numbers. Numbers support wayfinding; they do not replace text labels.
 5. **Chapter scale** — case-study chapter headings are the largest long-form landmarks beneath the page title. Nested source sections remain smaller and may disappear when their title duplicates the chapter name.
-6. **Warm neutral surfaces** — use background/surface contrast, spacing, and rules before adding more boxes. Cards are reserved for discrete items, evidence, or interactive surfaces.
-7. **Accent discipline** — orange identifies authored emphasis, active state, and selected landmarks. It should not become a decorative wash or substitute for hierarchy.
+6. **Cool neutral surfaces** — use background/surface contrast, spacing, and rules before adding more boxes. Cards are reserved for discrete items, evidence, or interactive surfaces.
+7. **Accent discipline** — reserve Ink Blue for authored emphasis, active state and selected landmarks.
 8. **Layout choice** — use the asymmetric homepage pattern for thesis-led landing pages, the split section pattern for paired explanation/action content, and the chapter pattern for evidence-heavy long-form work. Do not force the chapter pattern onto short notes or utility pages.
 
 ## Shape, elevation, and motion
@@ -294,7 +297,7 @@ The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces 
 | --- | --- | --- | --- |
 | Legacy shell frame (`SiteShellFrame`) | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
 | Case study | `/dev/harness/case-study?slug=<draft-slug>`; add `&view=story` for the story presentation or `&view=example` for the four first-principles revisions | Any typed case-study draft slug; optional presentation view | Shared evidence/provenance review, production story renderer, or local project-specific examples; responsive behavior and visual capture |
-| Portfolio color | `/dev/harness/palette?palette=<forest|ink-blue|mulberry>&view=<home|ai-systems>` | Forest and Home by default | Compare the same public content and shell under three local palette treatments |
+| Portfolio color | `/dev/harness/palette?palette=<ink-blue|forest|mulberry>&view=<home|ai-systems>` | Ink Blue and Home by default | Compare the same public content and shell under three local palette treatments |
 
 The specialized routes return not-found in production through the same environment guard as the main development harness. The shell route renders the legacy `SiteShellFrame`, not `PersonalPracticeShell`, so it does not verify the live shell; the case-study route's `view=story` and `view=example` views do render inside `PersonalPracticeShell`. The `example` view is a local presentation experiment for the four authored revisions; it does not change the public renderer or publication status.
 
@@ -312,7 +315,7 @@ When a new important state is introduced, update all four places together:
 - Use `aria-live="polite"` for non-blocking form feedback and `role="alert"` for failures.
 - Use `aria-busy="true"` on loading data surfaces.
 - Use `aria-pressed` for the harness state toggle group.
-- Preserve a visible `:focus-visible` ring with sufficient contrast. Light surfaces use the global light/dark two-tone ring; charcoal rail/drawer controls use a light inner outline plus orange outer ring.
+- Preserve a visible `:focus-visible` ring with sufficient contrast. Light surfaces use a light inner outline and an Ink Blue outer ring. Deep slate drawer controls use a light inner outline and a pale blue outer ring.
 - Primary mobile navigation controls maintain at least a 44×44 CSS-pixel target; browser coverage checks the menu and close controls at mobile/tablet widths.
 - Keep heading levels in document order.
 - Express topology with a named heading and unordered list; express a matrix with labelled sections and lists. Do not rely on colour, line position, or motion to convey a relationship.

@@ -125,7 +125,7 @@ test("palette preview preserves the selected color when switching pages", async 
 
   const palettes = page.getByRole("navigation", { name: "Palette" });
   const views = page.getByRole("navigation", { name: "Preview page" });
-  await expect(palettes.getByRole("link", { name: "Forest" })).toHaveAttribute("aria-current", "true");
+  await expect(palettes.getByRole("link", { name: "Ink Blue" })).toHaveAttribute("aria-current", "true");
   await expect(page.getByRole("heading", { name: /I make complex products/ })).toBeVisible();
 
   await palettes.getByRole("link", { name: "Mulberry" }).press("Enter");

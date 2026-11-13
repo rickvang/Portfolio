@@ -107,7 +107,7 @@
 .example-chosen-colors span { border: 1px solid var(--border); height: 2.5rem; width: 2.5rem; }
 .example-color-background { background: var(--background); }
 .example-color-surface { background: var(--surface); }
-.example-color-accent { background: var(--accent); }
+.example-color-accent { background: #f24c27; }
 
 .case-study-review-links { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: 0.8rem; margin: 1rem 0 0; }
 .case-study-review-links a { padding: 0.5rem 0; text-underline-offset: 0.2em; }
