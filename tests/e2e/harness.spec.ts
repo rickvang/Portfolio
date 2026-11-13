@@ -12,6 +12,14 @@ test("new Notes render for local review and stay off public routes", async ({ pa
     await expect(article.getByRole("heading", { level: 3 })).toHaveCount(6);
   }
 
+  await page.goto("/dev/harness/notes?slug=taskosaur-workspace-and-docs");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("A place for the work, and the thinking behind it");
+  await expect(page.getByRole("note")).toContainText("unpublished");
+  await page.getByRole("navigation", { name: "Draft articles" }).getByRole("link", { name: "Thinking with a document" }).click();
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Thinking with a document");
+  await expect(page.locator(".post-content h2")).toHaveCount(6);
+  await expect(page.getByRole("button", { name: "Review evidence" })).toHaveCount(0);
+
   await page.goto("/notes");
   await expect(page.getByRole("link", { name: /A place for the work|Thinking with a document/ })).toHaveCount(0);
   for (const slug of ["taskosaur-workspace-and-docs", "thinking-with-documentation"]) {
