@@ -140,7 +140,7 @@ export function HarnessPlayground({ initialState = "success" }: HarnessPlaygroun
         </div>
       </section>
 
-      <section className="harness-section" aria-labelledby="editorial-draft-heading">
+      <section className="harness-section harness-section-single" aria-labelledby="editorial-draft-heading">
         <div>
           <p className="eyebrow">Editorial draft</p>
           <h2 id="editorial-draft-heading">Notes article review</h2>
