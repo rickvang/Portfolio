@@ -271,6 +271,7 @@ The first eight stylesheets are imported by `src/app/layout.tsx`. `integrations-
 | `case-study-examples.css` | Council, foundations and hierarchy examples | `case-study-examples.tsx` | `example-` |
 | `src/components/interface-lab-preview.module.css` | Interface Lab Work preview illustration | `interface-lab-preview.tsx` | CSS module (local class names) |
 | `src/content/interface-lab-concept.module.css` | Interface Lab concept page | `src/content/interface-lab-concept.tsx` | CSS module (local class names) |
+| `dev/harness/palette/palette.module.css` | Palette comparison controls and preview-only color overrides | `dev/harness/palette/page.tsx` | CSS module (local class names) |
 
 ## State matrix
 
@@ -293,8 +294,9 @@ The core state matrix remains at `/dev/harness?state=...`. Interaction surfaces 
 | --- | --- | --- | --- |
 | Legacy shell frame (`SiteShellFrame`) | `/dev/harness/shell?route=<home|work|notes|about|contact>&drawer=<open|closed>` | Synthetic active pathname and optional initial drawer state | Rail/drawer hierarchy, active-route state, keyboard/focus, touch targets, responsive behavior, reduced motion, visual capture |
 | Case study | `/dev/harness/case-study?slug=<draft-slug>`; add `&view=story` for the story presentation or `&view=example` for the four first-principles revisions | Any typed case-study draft slug; optional presentation view | Shared evidence/provenance review, production story renderer, or local project-specific examples; responsive behavior and visual capture |
+| Portfolio color | `/dev/harness/palette?palette=<forest|ink-blue|mulberry>&view=<home|ai-systems>` | Forest and Home by default | Compare the same public content and shell under three local palette treatments |
 
-Both specialized routes return not-found in production through the same environment guard as the main development harness. The shell route renders the legacy `SiteShellFrame`, not `PersonalPracticeShell`, so it does not verify the live shell; the case-study route's `view=story` and `view=example` views do render inside `PersonalPracticeShell`. The `example` view is a local presentation experiment for the four authored revisions; it does not change the public renderer or publication status.
+The specialized routes return not-found in production through the same environment guard as the main development harness. The shell route renders the legacy `SiteShellFrame`, not `PersonalPracticeShell`, so it does not verify the live shell; the case-study route's `view=story` and `view=example` views do render inside `PersonalPracticeShell`. The `example` view is a local presentation experiment for the four authored revisions; it does not change the public renderer or publication status.
 
 When a new important state is introduced, update all four places together:
 

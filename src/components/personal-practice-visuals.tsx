@@ -37,6 +37,8 @@ const colors = {
   sand: "#c6a989",
 };
 
+type HeroColors = Pick<typeof colors, "accent" | "blue" | "muted" | "sand">;
+
 type PracticeCanvasProps = {
   variant: PracticeCanvasVariant;
 };
@@ -74,6 +76,13 @@ function PracticeCanvasFrame({
     const frameElement = frame;
     const canvasElement = canvas;
     const context2d = context;
+    const frameStyles = window.getComputedStyle(frameElement);
+    const heroColors: HeroColors = {
+      accent: frameStyles.getPropertyValue("--accent").trim() || colors.accent,
+      blue: frameStyles.getPropertyValue("--preview-secondary").trim() || colors.blue,
+      muted: frameStyles.getPropertyValue("--preview-muted").trim() || colors.muted,
+      sand: frameStyles.getPropertyValue("--preview-tertiary").trim() || colors.sand,
+    };
 
     let animationFrame = 0;
     let width = 0;
@@ -92,7 +101,7 @@ function PracticeCanvasFrame({
       canvasElement.style.height = `${height}px`;
       context2d.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
       if (reducedMotion.matches) {
-        drawScene(context2d, width, height, 0, variant, { active: false, x: 0.5, y: 0.5 });
+        drawScene(context2d, width, height, 0, variant, { active: false, x: 0.5, y: 0.5 }, heroColors);
       }
     }
 
@@ -114,6 +123,7 @@ function PracticeCanvasFrame({
         milliseconds / 1000,
         variant,
         pointerMotion,
+        heroColors,
       );
 
       if (!reducedMotion.matches) {
@@ -185,12 +195,12 @@ function PracticeHeroFallback() {
       viewBox="0 0 1200 720"
     >
       <g fill="none" strokeLinecap="round">
-        <path d="M-80 120C220-20 360 270 620 160s360-110 660 50" stroke="var(--sand)" strokeOpacity=".2" />
-        <path d="M-80 240C220 70 380 400 640 280s360-120 640 60" stroke="var(--blue)" strokeOpacity=".2" />
+        <path d="M-80 120C220-20 360 270 620 160s360-110 660 50" stroke="var(--preview-tertiary, var(--sand))" strokeOpacity=".2" />
+        <path d="M-80 240C220 70 380 400 640 280s360-120 640 60" stroke="var(--preview-secondary, var(--blue))" strokeOpacity=".2" />
         <path d="M-80 330C230 160 400 510 660 370s360-130 620 70" stroke="var(--accent)" strokeOpacity=".18" />
-        <path d="M-80 440C240 240 420 620 680 470s360-140 600 70" stroke="var(--sand)" strokeOpacity=".22" />
-        <path d="M-80 560C260 360 430 730 700 590s340-130 580 80" stroke="var(--blue)" strokeOpacity=".18" />
-        <path d="M-80 680C270 480 440 840 720 700s340-130 560 80" stroke="var(--sand)" strokeOpacity=".16" />
+        <path d="M-80 440C240 240 420 620 680 470s360-140 600 70" stroke="var(--preview-tertiary, var(--sand))" strokeOpacity=".22" />
+        <path d="M-80 560C260 360 430 730 700 590s340-130 580 80" stroke="var(--preview-secondary, var(--blue))" strokeOpacity=".18" />
+        <path d="M-80 680C270 480 440 840 720 700s340-130 560 80" stroke="var(--preview-tertiary, var(--sand))" strokeOpacity=".16" />
       </g>
       <g fill="var(--foreground)" fillOpacity=".24">
         <circle cx="558" cy="270" r="3" />
@@ -275,11 +285,12 @@ function drawScene(
   time: number,
   variant: PracticeCanvasVariant,
   pointer: PointerState,
+  heroColors: HeroColors,
 ) {
   context.clearRect(0, 0, width, height);
 
   if (variant === "hero") {
-    drawHero(context, width, height, time, pointer);
+    drawHero(context, width, height, time, pointer, heroColors);
     return;
   }
 
@@ -307,6 +318,7 @@ function drawHero(
   height: number,
   time: number,
   pointer: PointerState,
+  palette: HeroColors,
 ) {
   const laneCount = 20;
   const pointerX = (pointer.x - 0.5) * 0.05;
@@ -325,7 +337,7 @@ function drawHero(
   }
 
   for (let lane = 0; lane < laneCount; lane += 1) {
-    const color = lane % 5 === 0 ? colors.accent : lane % 2 === 0 ? colors.blue : colors.sand;
+    const color = lane % 5 === 0 ? palette.accent : lane % 2 === 0 ? palette.blue : palette.sand;
     context.beginPath();
 
     for (let step = 0; step <= 80; step += 1) {
@@ -348,7 +360,7 @@ function drawHero(
     const progress = (particle * 0.137 + time * (0.025 + (lane % 3) * 0.004)) % 1;
     const point = flowPoint(progress, lane);
     const edgeFade = Math.min(progress * 10, (1 - progress) * 10, 1);
-    context.fillStyle = withAlpha(lane % 5 === 0 ? colors.accent : colors.muted, 0.36 * edgeFade);
+    context.fillStyle = withAlpha(lane % 5 === 0 ? palette.accent : palette.muted, 0.36 * edgeFade);
     context.beginPath();
     context.arc(point.x, point.y, particle % 4 === 0 ? 1.7 : 1, 0, Math.PI * 2);
     context.fill();
