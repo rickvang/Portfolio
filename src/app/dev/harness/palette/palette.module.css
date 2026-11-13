@@ -1,0 +1,62 @@
+.preview {
+  background: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+}
+
+.toolbar {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--font-practice-sans), Arial, Helvetica, sans-serif;
+  padding: 0.5rem clamp(1rem, 4vw, 3rem);
+}
+
+.controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.option {
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  display: inline-flex;
+  font-size: 0.85rem;
+  font-weight: 550;
+  gap: 0.35rem;
+  min-height: 2.75rem;
+  padding: 0.25rem 0.45rem;
+  text-decoration: none;
+}
+
+.option[aria-current] {
+  border-bottom-color: currentColor;
+  color: var(--accent-ink);
+  font-weight: 650;
+}
+
+.option:hover {
+  background: var(--surface-muted);
+  color: var(--accent-hover);
+}
+
+.description {
+  color: var(--muted);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin: 0.35rem 0 0;
+}
+
+.swatch {
+  border-radius: 50%;
+  display: inline-block;
+  height: 0.7rem;
+  width: 0.7rem;
+}

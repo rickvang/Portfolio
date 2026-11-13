@@ -1,10 +1,11 @@
 /* Approved case-study compositions only. Global navigation and shell stay untouched. */
 .approved-story { --soft: var(--surface-muted); --green: #334a40; min-width:0; line-height:1.65; }
 .approved-story h1,.approved-story h2,.approved-story h3,.approved-story h4 { color:var(--foreground); }
-.approved-story a:hover { text-decoration:underline; }
+.approved-story a:hover { color:var(--accent-hover);text-decoration:underline; }
 .approved-story a { touch-action:manipulation }
 .approved-story a { color:inherit }
-.approved-story .back { font-size:13px;text-decoration:none;color:var(--muted) }
+.approved-story .back { font-size:13px;text-decoration:none;color:var(--accent-ink) }
+.approved-story .back:hover { color:var(--accent-hover) }
 .approved-story .hero { max-width:none; padding:55px 0 40px }
 .approved-story h1 em { color:var(--accent-ink); font-style:normal }
 .approved-story .eyebrow { font-size:11px;font-weight:bold;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);margin:0 0 18px }
@@ -209,7 +210,7 @@
 .approved-story .synthesis-note { font-size:12px;color:var(--muted);margin:30px 0 0;max-width:70ch }
 .approved-story #ai-synthesis .adoption-note strong { color:var(--foreground) }
 .approved-story .scaffold-comparison { margin:32px 0 45px }
-.approved-story .shared-prompt { padding:20px 24px;border-block:1px solid var(--border);background:#eeefe8 }
+.approved-story .shared-prompt { padding:20px 24px;border-block:1px solid var(--border);background:var(--surface-muted) }
 .approved-story .shared-prompt>span, .approved-story .scaffold-case>header>span, .approved-story .answer-label { font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600 }
 .approved-story .shared-prompt p { font-size:22px;line-height:1.35;color:var(--foreground);margin:8px 0 0 }
 .approved-story .scaffold-columns { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-bottom:1px solid var(--border) }
@@ -237,16 +238,16 @@
 .approved-story .shared-prompt p { font-size:19px }
 .approved-story .sample-answer dl>div { grid-template-columns:65px 1fr }
 }
-.approved-story .persona-structure { margin:0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#fff;align-self:start }
-.approved-story .persona-structure header, .approved-story .dependency-example>header { padding:20px 24px;background:#f0f1ea;border-bottom:1px solid var(--border) }
+.approved-story .persona-structure { margin:0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--surface);align-self:start }
+.approved-story .persona-structure header, .approved-story .dependency-example>header { padding:20px 24px;background:var(--surface-muted);border-bottom:1px solid var(--border) }
 .approved-story .persona-structure header>span, .approved-story .dependency-example>header>span { font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted) }
 .approved-story .persona-structure header h3, .approved-story .dependency-example>header h3 { margin:8px 0 0;font-size:22px }
 .approved-story .persona-structure dl { margin:0 }
 .approved-story .persona-structure dl>div { padding:15px 24px;border-bottom:1px solid var(--border) }
 .approved-story .persona-structure dt { font-size:12px;font-weight:700;margin-bottom:5px }
 .approved-story .persona-structure dd { margin:0;font-size:13px;line-height:1.6;color:var(--muted) }
-.approved-story .persona-structure figcaption { font-size:11px;margin:0;padding:16px 24px;background:#fafbf8 }
-.approved-story .dependency-example { margin:28px 0 0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:white }
+.approved-story .persona-structure figcaption { font-size:11px;margin:0;padding:16px 24px;background:var(--surface) }
+.approved-story .dependency-example { margin:28px 0 0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:var(--surface) }
 .approved-story .dependency-grid { display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) }
 .approved-story .dependency-role { padding:25px;display:flex;flex-direction:column }
 .approved-story .dependency-role+.dependency-role { border-left:1px solid var(--border) }
@@ -257,7 +258,7 @@
 .approved-story .dependency-role dd { font-size:14px;line-height:1.6;margin:0 }
 .approved-story .dependency-role dt:first-child { margin-top:0 }
 .approved-story .dependency-handoff { font-size:12px;line-height:1.6;border-top:1px solid var(--border);padding-top:14px;margin: auto 0 0;color:var(--foreground) }
-.approved-story .dependency-example>figcaption { margin:0;padding:16px 24px;border-top:1px solid var(--border);background:#fafbf8;font-size:11px }
+.approved-story .dependency-example>figcaption { margin:0;padding:16px 24px;border-top:1px solid var(--border);background:var(--surface);font-size:11px }
 .approved-story .dependency-result { font-size:16px;max-width:76ch;margin:28px 0 0 }
 .approved-story #ai-synthesis .scaffold-comparison { margin-bottom:0 }
 @media(max-width:680px) {

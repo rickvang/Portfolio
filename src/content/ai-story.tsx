@@ -86,9 +86,9 @@ export function AiSystemsStory() {
 </text>
 </g>
 <g>
-<path d="M35 232 L145 287 L275 222 L275 234 L145 299 L35 244 Z" fill="#ead5c4" stroke="#a9ada7" strokeWidth="1">
+<path d="M35 232 L145 287 L275 222 L275 234 L145 299 L35 244 Z" fill="var(--surface-strong)" stroke="#a9ada7" strokeWidth="1">
 </path>
-<path d="M35 232 L165 167 L275 222 L145 287 Z" fill="#f8ede3" stroke="#a9ada7" strokeWidth="1">
+<path d="M35 232 L165 167 L275 222 L145 287 Z" fill="var(--accent-tint)" stroke="#a9ada7" strokeWidth="1">
 </path>
 <path d="M277 226 H306" fill="none" stroke="#adb3aa">
 </path>
@@ -152,9 +152,9 @@ export function AiSystemsStory() {
 </text>
 </g>
 <g>
-<path d="M35 232 L145 287 L275 222 L275 234 L145 299 L35 244 Z" fill="#ead5c4" stroke="#a9ada7" strokeWidth="1">
+<path d="M35 232 L145 287 L275 222 L275 234 L145 299 L35 244 Z" fill="var(--surface-strong)" stroke="#a9ada7" strokeWidth="1">
 </path>
-<path d="M35 232 L165 167 L275 222 L145 287 Z" fill="#f8ede3" stroke="#a9ada7" strokeWidth="1">
+<path d="M35 232 L165 167 L275 222 L145 287 Z" fill="var(--accent-tint)" stroke="#a9ada7" strokeWidth="1">
 </path>
 <path d="M277 226 H306" fill="none" stroke="#adb3aa">
 </path>
