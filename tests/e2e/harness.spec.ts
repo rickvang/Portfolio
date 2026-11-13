@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("new Notes render for local review and stay off public routes", async ({ page }) => {
   await page.goto("/dev/harness");
   for (const [slug, title] of [
-    ["taskosaur-workspace-and-docs", "A place for the work, and the thinking behind it"],
+    ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
     ["thinking-with-documentation", "Thinking with a document"],
   ]) {
     const article = page.getByTestId(`editorial-draft-${slug}`);
@@ -13,7 +13,7 @@ test("new Notes render for local review and stay off public routes", async ({ pa
   }
 
   await page.goto("/dev/harness/notes?slug=taskosaur-workspace-and-docs");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("A place for the work, and the thinking behind it");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("How I use Taskosaur");
   await expect(page.getByRole("note")).toContainText("unpublished");
   await page.getByRole("navigation", { name: "Draft articles" }).getByRole("link", { name: "Thinking with a document" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Thinking with a document");
@@ -21,12 +21,12 @@ test("new Notes render for local review and stay off public routes", async ({ pa
   await expect(page.getByRole("button", { name: "Review evidence" })).toHaveCount(0);
 
   await page.goto("/notes");
-  await expect(page.getByRole("link", { name: /A place for the work|Thinking with a document/ })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: /How I use Taskosaur|Thinking with a document/ })).toHaveCount(0);
   for (const slug of ["taskosaur-workspace-and-docs", "thinking-with-documentation"]) {
     // App Router streams the loading shell before resolving notFound().
     await page.goto(`/notes/${slug}`);
     await expect(page.getByRole("heading", { name: "That page is not available." })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /A place for the work|Thinking with a document/ })).toHaveCount(0);
+    await expect(page.getByRole("heading", { name: /How I use Taskosaur|Thinking with a document/ })).toHaveCount(0);
   }
 });
 
