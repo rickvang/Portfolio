@@ -8,6 +8,7 @@ describe("public route contract", () => {
       home: "/",
       work: "/work",
       workDetail: "/work/[slug]",
+      library: "/library",
       notes: "/notes",
       noteDetail: "/notes/[slug]",
       about: "/about",

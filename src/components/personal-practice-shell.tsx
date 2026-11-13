@@ -11,7 +11,7 @@ import { publicRoutes } from "@/lib/public-routes";
 
 const fullNavigationItems = [
   { href: publicRoutes.work, index: "01", label: "Work" },
-  { href: "https://ui-starter.rickvang.com", index: "02", label: "Library" },
+  { href: publicRoutes.library, index: "02", label: "Library" },
   { href: publicRoutes.notes, index: "03", label: "Notes" },
   { href: publicRoutes.about, index: "04", label: "About" },
 ] as const;
@@ -126,8 +126,13 @@ export function PersonalPracticeShell({
     };
   }, [closeDrawer, drawerOpen]);
 
+  const libraryEmbed = routeIsActive(pathname, publicRoutes.library);
+
   return (
-    <div className="practice-shell" data-testid="personal-practice-shell">
+    <div
+      className={libraryEmbed ? "practice-shell practice-shell--library" : "practice-shell"}
+      data-testid="personal-practice-shell"
+    >
       <a className="skip-link practice-skip-link" href="#main-content">
         Skip to content
       </a>
