@@ -99,12 +99,12 @@ This keeps test determinism, source-controlled authorship, and the hosted author
 
 ## Authored editorial content
 
-Two additional Notes are registered as `review-ready` in `src/lib/editorial-drafts.ts`:
+Two additional Notes are registered as `published` in `src/lib/editorial-drafts.ts`, following Rick's editorial approval and publication request on 2026-11-13:
 
 - `taskosaur-workspace-and-docs` — Rick's Taskosaur workspace and Docs practice;
 - `thinking-with-documentation` — his reported experience using a shared working document across AI runs and agents.
 
-Their source records live in `content/drafts/`. Review them locally at `/dev/harness#note-taskosaur-workspace-and-docs` and `/dev/harness#note-thinking-with-documentation`. Neither has a publication date or appears on public Notes routes. Rick's factual and editorial review remains required before publication; the second article makes no measured or guaranteed performance claim.
+Their source records live in `content/drafts/`, with publication date `2026-11-13`. Both appear on public Notes index and detail routes. Local layout previews remain at `/dev/harness/notes?slug=taskosaur-workspace-and-docs` and `/dev/harness/notes?slug=thinking-with-documentation`; provenance review remains in `/dev/harness`. The second article makes no measured or guaranteed performance claim. Records without published status remain excluded from public routes.
 
 Phase 5 originally introduced three source-backed review artifacts under `content/drafts/`. Issue #41 records the later explicit publication decision:
 

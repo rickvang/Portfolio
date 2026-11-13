@@ -28,9 +28,11 @@ export default async function NotesPreview({ searchParams }: NotesPreviewProps) 
   return (
     <PersonalPracticeShell pathname={`/notes/${draft.slug}`}>
       <aside className="public-page" aria-label="Local Notes preview">
-        <p className="case-study-review-banner" role="note">Local preview · This article is unpublished.</p>
-        <nav className="state-controls" aria-label="Draft articles">
-          {editorialDrafts.filter((entry) => entry.reviewStatus !== "published").map((entry) => (
+        <p className="case-study-review-banner" role="note">
+          Local preview · {draft.reviewStatus === "published" ? "This article is published." : "This article is unpublished."}
+        </p>
+        <nav className="state-controls" aria-label="Article previews">
+          {editorialDrafts.map((entry) => (
             <Link
               aria-current={entry.slug === draft.slug ? "page" : undefined}
               href={`/dev/harness/notes?slug=${entry.slug}`}

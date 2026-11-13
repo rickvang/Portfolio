@@ -1,32 +1,36 @@
 import { expect, test } from "@playwright/test";
 
-test("new Notes render for local review and stay off public routes", async ({ page }) => {
+test("approved Notes render in local review and public routes", async ({ page }) => {
   await page.goto("/dev/harness");
   for (const [slug, title] of [
     ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
     ["thinking-with-documentation", "Thinking with a document"],
   ]) {
     const article = page.getByTestId(`editorial-draft-${slug}`);
-    await expect(article).toHaveAttribute("data-editorial-status", "review-ready");
+    await expect(article).toHaveAttribute("data-editorial-status", "published");
     await expect(article.getByRole("heading", { name: title, exact: true })).toBeVisible();
     await expect(article.getByRole("heading", { level: 3 })).toHaveCount(6);
   }
 
   await page.goto("/dev/harness/notes?slug=taskosaur-workspace-and-docs");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("How I use Taskosaur");
-  await expect(page.getByRole("note")).toContainText("unpublished");
-  await page.getByRole("navigation", { name: "Draft articles" }).getByRole("link", { name: "Thinking with a document" }).click();
+  await expect(page.getByRole("note")).toContainText("This article is published.");
+  await page.getByRole("navigation", { name: "Article previews" }).getByRole("link", { name: "Thinking with a document" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Thinking with a document");
   await expect(page.locator(".post-content h2")).toHaveCount(6);
   await expect(page.getByRole("button", { name: "Review evidence" })).toHaveCount(0);
 
-  await page.goto("/notes");
-  await expect(page.getByRole("link", { name: /How I use Taskosaur|Thinking with a document/ })).toHaveCount(0);
-  for (const slug of ["taskosaur-workspace-and-docs", "thinking-with-documentation"]) {
-    // App Router streams the loading shell before resolving notFound().
-    await page.goto(`/notes/${slug}`);
-    await expect(page.getByRole("heading", { name: "That page is not available." })).toBeVisible();
-    await expect(page.getByRole("heading", { name: /How I use Taskosaur|Thinking with a document/ })).toHaveCount(0);
+  for (const [slug, title] of [
+    ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
+    ["thinking-with-documentation", "Thinking with a document"],
+  ]) {
+    await page.goto("/notes");
+    await page.getByRole("link", { name: title, exact: true }).click();
+    await expect(page).toHaveURL(`/notes/${slug}`);
+    await expect(page.getByRole("heading", { name: title, level: 1 })).toBeVisible();
+    await expect(page.locator(".post-content h2")).toHaveCount(6);
+    await expect(page.getByText("Published note", { exact: true })).toBeVisible();
+    await expect(page.getByRole("note")).toHaveCount(0);
   }
 });
 

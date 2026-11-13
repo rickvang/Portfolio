@@ -10,14 +10,19 @@ import {
 
 describe("new Notes publication boundary", () => {
   it.each([taskosaurWorkspaceDraft, thinkingWithDocumentationDraft])(
-    "keeps $slug available for review without publishing it",
+    "publishes the approved $slug article",
     (draft) => {
-      expect(draft.reviewStatus).toBe("review-ready");
-      expect(draft.publishedOn).toBeUndefined();
-      expect(getPublishedEditorialNotes()).not.toContain(draft);
-      expect(getPublishedEditorialNoteBySlug(draft.slug)).toBeUndefined();
+      expect(draft.reviewStatus).toBe("published");
+      expect(draft.publishedOn).toBe("2026-11-13");
+      expect(getPublishedEditorialNotes()).toContain(draft);
+      expect(getPublishedEditorialNoteBySlug(draft.slug)).toEqual(draft);
     },
   );
+  it("excludes records that have not been approved for publication", () => {
+    const unpublished = { ...taskosaurWorkspaceDraft, reviewStatus: "review-ready" as const, publishedOn: undefined };
+    expect(getPublishedEditorialNotes([unpublished])).toEqual([]);
+    expect(getPublishedEditorialNoteBySlug(unpublished.slug, [unpublished])).toBeUndefined();
+  });
 });
 
 describe("persona-led design editorial draft", () => {
@@ -26,7 +31,7 @@ describe("persona-led design editorial draft", () => {
     expect(personaLedDesignDraft.publishedOn).toBe("2026-09-23");
     expect(personaLedDesignDraft.slug).toBe("persona-led-design-discovery");
     expect(personaLedDesignDraft.sections).toHaveLength(6);
-    expect(getPublishedEditorialNotes()).toEqual([personaLedDesignDraft]);
+    expect(getPublishedEditorialNotes()).toContain(personaLedDesignDraft);
     expect(getPublishedEditorialNoteBySlug("persona-led-design-discovery")).toEqual(personaLedDesignDraft);
 
     const sourceIds = new Set(personaLedDesignDraft.sources.map((source) => source.id));

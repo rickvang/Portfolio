@@ -3,7 +3,8 @@
   "slug": "thinking-with-documentation",
   "title": "Thinking with a document",
   "excerpt": "I started giving AI a document to read and update each run. The work improved, and writing things down helped me figure out what I was asking for.",
-  "reviewStatus": "review-ready",
+  "reviewStatus": "published",
+  "publishedOn": "2026-11-13",
   "sources": [
     { "id": "rick-observation", "kind": "user-provided", "label": "Rick's observation about documentation improving outputs across runs and agents, and article brief", "capturedAt": "2026-11-05" },
     { "id": "shared-guidance", "kind": "observed", "label": "Current shared collaboration principles: evidence, corrections, ownership, and original documents", "capturedAt": "2026-11-05" },
@@ -72,9 +73,9 @@
     }
   ],
   "curationNotes": [
-    "Review-ready draft requested by Rick on 2026-11-05; not published.",
+    "Rick approved the revised wording and authorized publication on 2026-11-13.",
     "The improvement across runs and agents is Rick's reported experience. No measured benchmark or guaranteed every-run improvement is claimed.",
     "The UI Systems Lab example is grounded in Rick's earlier Portfolio feedback in this conversation. No hypothetical dashboard project is presented as experience.",
-    "Review first-person wording with Rick. Cross-agent continuity requires explicit access and reading; editing documentation does not train model weights."
+    "First-person wording approved by Rick. Cross-agent continuity requires explicit access and reading; editing documentation does not train model weights."
   ]
 }

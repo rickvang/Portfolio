@@ -3,7 +3,8 @@
   "slug": "taskosaur-workspace-and-docs",
   "title": "How I use Taskosaur",
   "excerpt": "My portfolio, UI starters, and AI tools share a workspace. Here's how I keep track of the work and the decisions behind it.",
-  "reviewStatus": "review-ready",
+  "reviewStatus": "published",
+  "publishedOn": "2026-11-13",
   "sources": [
     { "id": "rick-context", "kind": "user-provided", "label": "Rick's Portfolio article brief and ongoing Shared Work practice", "capturedAt": "2026-11-05" },
     { "id": "work-continuity", "kind": "observed", "label": "Current Taskosaur work tracking and handoff guidance, read from the original organization document", "capturedAt": "2026-11-05" },
@@ -72,9 +73,9 @@
     }
   ],
   "curationNotes": [
-    "Review-ready draft requested by Rick on 2026-11-05; not authorized for publication.",
+    "Rick approved the revised wording and authorized publication on 2026-11-13.",
     "Describes Rick's customized Taskosaur setup rather than claiming every feature is part of upstream Taskosaur.",
     "Source descriptions deliberately omit private infrastructure addresses, account identifiers, credentials, and internal document links.",
-    "Review first-person motivation and interpretation with Rick. Workflow examples illustrate the documented method; no measured time savings or universal agent performance claim is made."
+    "First-person wording approved by Rick. Workflow examples illustrate the documented method; no measured time savings or universal agent performance claim is made."
   ]
 }
