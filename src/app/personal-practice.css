@@ -63,7 +63,7 @@
 
 .practice-rail {
   animation: practice-rail-enter 180ms var(--ease-standard) both;
-  background: var(--surface);
+  background: var(--practice-rail-surface);
   border-right: 1px solid var(--border);
   display: flex;
   flex-direction: column;
@@ -173,11 +173,10 @@
   padding: 0 0.8rem;
 }
 
-.practice-mobile-toggle:focus-visible,
 .practice-shell .mobile-drawer .practice-connection:focus-visible,
 .practice-shell .mobile-drawer .practice-contact-error input:focus-visible,
 .practice-shell .mobile-drawer-close:focus-visible {
-  box-shadow: 0 0 0 5px var(--accent);
+  box-shadow: 0 0 0 5px var(--rail-accent);
   outline: 2px solid var(--rail-foreground);
   outline-offset: 2px;
 }
@@ -283,8 +282,13 @@
 }
 
 .practice-text-link {
+  color: var(--accent-ink);
   font-size: 0.88rem;
   font-weight: 650;
+}
+
+.practice-text-link:hover {
+  color: var(--accent-hover);
 }
 
 .practice-hero-graphic {
@@ -531,8 +535,8 @@
 .practice-work-row:is(:hover, :focus-within) .practice-work-arrow,
 .practice-work-arrow:focus-visible {
   background: var(--surface);
-  border-color: var(--foreground);
-  color: var(--foreground);
+  border-color: var(--accent);
+  color: var(--accent-ink);
   transform: translateX(0.2rem);
 }
 

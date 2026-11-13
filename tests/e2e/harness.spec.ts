@@ -120,6 +120,26 @@ test("case-study harness can deep-link to an authored draft", async ({ page }) =
   await expect(caseStudy).toContainText("eligible for public rendering");
 });
 
+test("palette preview preserves the selected color when switching pages", async ({ page }) => {
+  await page.goto("/dev/harness/palette");
+
+  const palettes = page.getByRole("navigation", { name: "Palette" });
+  const views = page.getByRole("navigation", { name: "Preview page" });
+  await expect(palettes.getByRole("link", { name: "Ink Blue" })).toHaveAttribute("aria-current", "true");
+  await expect(page.getByRole("heading", { name: /I make complex products/ })).toBeVisible();
+
+  await palettes.getByRole("link", { name: "Mulberry" }).press("Enter");
+  await expect(page).toHaveURL(/palette=mulberry&view=home$/);
+  await expect(palettes.getByRole("link", { name: "Mulberry" })).toHaveAttribute("aria-current", "true");
+  await views.getByRole("link", { name: "AI Systems" }).click();
+
+  await expect(page).toHaveURL(/palette=mulberry&view=ai-systems$/);
+  await expect(page.getByRole("heading", { name: /Give AI a model/ })).toBeVisible();
+  await page.reload();
+  await expect(palettes.getByRole("link", { name: "Mulberry" })).toHaveAttribute("aria-current", "true");
+  await expect(views.getByRole("link", { name: "AI Systems" })).toHaveAttribute("aria-current", "page");
+});
+
 test("destructive post action requires explicit confirmation", async ({ page }) => {
   await page.goto("/dev/harness");
 
