@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("approved Notes render in local review and public routes", async ({ page }) => {
+test("approved Notes remain available in local review", async ({ page }) => {
   await page.goto("/dev/harness");
   for (const [slug, title] of [
     ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
@@ -19,7 +19,9 @@ test("approved Notes render in local review and public routes", async ({ page })
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Thinking with a document");
   await expect(page.locator(".post-content h2")).toHaveCount(6);
   await expect(page.getByRole("button", { name: "Review evidence" })).toHaveCount(0);
+});
 
+test("approved Notes open from the public index", async ({ page }) => {
   for (const [slug, title] of [
     ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
     ["thinking-with-documentation", "Thinking with a document"],
