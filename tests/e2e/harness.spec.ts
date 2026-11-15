@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("approved Notes remain available in local review", async ({ page }) => {
   await page.goto("/dev/harness");
   for (const [slug, title] of [
-    ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
+    ["workspace-and-docs", "How I use the workspace"],
     ["thinking-with-documentation", "Thinking with a document"],
   ]) {
     const article = page.getByTestId(`editorial-draft-${slug}`);
@@ -12,8 +12,8 @@ test("approved Notes remain available in local review", async ({ page }) => {
     await expect(article.getByRole("heading", { level: 3 })).toHaveCount(6);
   }
 
-  await page.goto("/dev/harness/notes?slug=taskosaur-workspace-and-docs");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("How I use Taskosaur");
+  await page.goto("/dev/harness/notes?slug=workspace-and-docs");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("How I use the workspace");
   await expect(page.getByRole("note")).toContainText("This article is published.");
   await page.getByRole("navigation", { name: "Article previews" }).getByRole("link", { name: "Thinking with a document" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Thinking with a document");
@@ -23,7 +23,7 @@ test("approved Notes remain available in local review", async ({ page }) => {
 
 test("approved Notes open from the public index", async ({ page }) => {
   for (const [slug, title] of [
-    ["taskosaur-workspace-and-docs", "How I use Taskosaur"],
+    ["workspace-and-docs", "How I use the workspace"],
     ["thinking-with-documentation", "Thinking with a document"],
   ]) {
     await page.goto("/notes");
@@ -34,6 +34,14 @@ test("approved Notes open from the public index", async ({ page }) => {
     await expect(page.getByText("Published note", { exact: true })).toBeVisible();
     await expect(page.getByRole("note")).toHaveCount(0);
   }
+
+  const oldUrl = "/notes/taskosaur-workspace-and-docs";
+  const redirect = await page.request.get(oldUrl, { maxRedirects: 0 });
+  expect(redirect.status()).toBe(308);
+  expect(redirect.headers().location).toBe("/notes/workspace-and-docs");
+  await page.goto(oldUrl);
+  await expect(page).toHaveURL("/notes/workspace-and-docs");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("How I use the workspace");
 });
 
 test("harness can switch and reset deterministic states", async ({ page }) => {
