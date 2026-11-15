@@ -31,9 +31,9 @@
     "reviewStatus": "approved",
     "eyebrow": "Available for Work",
     "headline": "Hi, I'm Rick.",
-    "summary": "I'm a product design leader driven by creating systems that give people tools to stop fighting fires so they can do the things they're passionate about.",
-    "aboutHeading": "A decade-long craft defined with empathy",
-    "aboutSummary": "Over 13 years, I've worked at the intersection of product design, systems thinking, and implementation—helping teams turn complex workflows into products people can understand and teams can evolve. I'm most useful when the challenge is bigger than a screen: clarifying the problem, finding the right structure, building reusable foundations, and carrying decisions into code. More recently, that includes shaping AI-assisted workflows with the context, review, and human judgment they need to work in practice.",
+    "summary": "I'm a product design leader. I help teams make tools that let people spend less time fighting fires and more time on the work they came to do.",
+    "aboutHeading": "Product design, systems and implementation",
+    "aboutSummary": "I have over 13 years of experience across product design, systems thinking and implementation. I help teams turn complex workflows into products people can understand and teams can keep improving. My work includes finding the right structure, building reusable foundations and carrying design decisions into code. More recently, I’ve also worked on AI-assisted workflows, with attention to context, review and human judgment.",
     "stats": [
       {
         "value": "13+",
@@ -56,34 +56,34 @@
       "title": "Multi Product Integrations",
       "category": "Enterprise B2B",
       "sourceUrl": "https://www.rickvang.com/projects/multi-product-integrations",
-      "summary": "A unified framework for standardizing processes, consolidating data, and integrating workflows across a fragmented ecosystem of products and applications.",
+      "summary": "I helped teams share patterns and workflows across separate products and applications.",
       "previewMedia": {
         "src": "/work-media/multi-product-integrations.png",
         "alt": "Overlapping service interfaces showing work-order records, service listings, inventory, and a map-based activity view.",
-        "caption": "Selected interface studies for shared service workflows. Screens are modified to protect client intellectual property."
+        "caption": "Examples of shared service workflows. Screens are modified to protect client intellectual property."
       },
-      "discovery": "The work began by identifying core personas and mapping their workflows to create reusable domain experiences that could support future journey and experience maps.",
-      "outcomes": "Designed a platform framework and collaborated to build trust with early adopters. The effort enabled real-time operational data views, reduced administrative work, and reduced UX-operations rework.",
+      "discovery": "We identified core personas and mapped their workflows to find reusable domain experiences and support future journey and experience maps.",
+      "outcomes": "I designed a platform framework and worked with early adopters to build trust. The work enabled real-time operational data views and reduced administrative work and UX-operations rework.",
       "solutionSections": [
         {
           "title": "Standardized Layouts",
-          "summary": "Modular layouts designed to handle large sets of data."
+          "summary": "Modular layouts for working with large sets of data."
         },
         {
           "title": "Dashboards",
-          "summary": "Aggregated views shaped around a user's persona and needs."
+          "summary": "Aggregated views organized around a user's role and needs."
         },
         {
           "title": "Records and Chat",
-          "summary": "Current views of the data a user is entitled to access."
+          "summary": "Current views of the data each user is allowed to access."
         },
         {
           "title": "Settings",
-          "summary": "Reusable cross-application configurations that can expand with business needs."
+          "summary": "Configurations teams could reuse across applications and extend as needs changed."
         },
         {
           "title": "Workflow Completion",
-          "summary": "Connected data, project visibility, and progress for consumers."
+          "summary": "Connected data, project visibility and progress for customers."
         }
       ],
       "curationNotes": [
@@ -99,38 +99,38 @@
       "title": "Design Systems",
       "category": "Design Systems",
       "sourceUrl": "https://www.rickvang.com/projects/design-systems",
-      "summary": "A comprehensive and scalable design system for improving consistency, accelerating development workflows, and extending legacy capabilities for future growth.",
+      "summary": "A shared design system to make interfaces more consistent and extend legacy capabilities.",
       "previewMedia": {
         "src": "/work-media/design-systems.png",
         "alt": "Collage of interface patterns, color and contrast scales, and typography examples from a design system.",
         "caption": "Selected design-system foundations and reusable patterns. Screens are modified to protect client intellectual property."
       },
-      "discovery": "Audited and prioritized existing patterns and user scenarios, then used stakeholder workshops, usage analysis, user testing, and developer feedback to align goals and feasibility.",
-      "outcomes": "Established a platform framework, built trust with early adopters, enabled real-time operational data views, reduced administrative work, and created potential to reduce UX-operations rework.",
+      "discovery": "We reviewed and prioritized existing patterns and user scenarios. Workshops, usage analysis, user testing and developer feedback helped us align goals and feasibility.",
+      "outcomes": "The work established a platform framework and built trust with early adopters. It enabled real-time operational data views, reduced administrative work and created potential to reduce UX-operations rework.",
       "solutionSections": [
         {
           "title": "Gathered collaborators",
-          "summary": "Brought the team together to implement and prioritize the system."
+          "summary": "Brought the team together to implement the system and decide what to work on first."
         },
         {
           "title": "Established a core library",
-          "summary": "Created a reusable foundation for shared design decisions."
+          "summary": "Created a core library teams could reuse for shared design decisions."
         },
         {
           "title": "Lightweight governance",
-          "summary": "Created collaborative feedback loops to support adoption and ongoing prioritization."
+          "summary": "Set up feedback loops to support adoption and help prioritize future work."
         },
         {
           "title": "Foundations",
-          "summary": "Defined reusable style-library and token foundations."
+          "summary": "Defined reusable styles and tokens for the library."
         },
         {
           "title": "Density",
-          "summary": "Supported different needs across marketing and enterprise-product surfaces."
+          "summary": "Accounted for the different needs of marketing and enterprise product screens."
         },
         {
           "title": "Templates and patterns",
-          "summary": "Created reusable screens and workflow patterns for onboarding, work progression, inventory management, and account configuration."
+          "summary": "Created screens and workflow patterns for onboarding, work progression, inventory and account settings."
         }
       ],
       "curationNotes": [

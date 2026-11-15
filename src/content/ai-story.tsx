@@ -8,17 +8,17 @@ export function AiSystemsStory() {
 <Link className="back" href="/work">← All work</Link>
 
 <header className="hero ai-hero">
-<p className="eyebrow">AI-assisted discovery / Context framework
+<p className="eyebrow">AI-assisted product discovery
 </p>
 <h1>Give AI a model<br /><em>of people&apos;s work.</em>
 </h1>
-<p className="intro">I built a framework that connected research-grounded personas with a map of how their roles depended on each other. It gave AI a richer basis for evaluating product ideas and reasoning about workflows, information needs and different users&apos; screens.
+<p className="intro">I built role profiles from public research and mapped how the roles depended on one another. That gave AI more context for assessing product ideas, workflows and information needs.
 </p>
 <dl className="meta">
 <div>
 <dt>My contribution
 </dt>
-<dd>Persona structure, cross-persona dependencies &amp; synthesis
+<dd>Role profiles, dependency mapping &amp; UX synthesis
 </dd>
 </div>
 <div>
@@ -39,9 +39,9 @@ export function AiSystemsStory() {
 <section className="chapter" id="ai-synthesis">
 <p className="eyebrow">01 / Change the context behind the answer
 </p>
-<h2>A believable profile is a start.<br />Understanding the work goes further.
+<h2>I wanted the AI to consider<br />how people actually work.
 </h2>
-<p className="lead">Earlier outputs described a person&apos;s background and broad goals. I wanted the AI to consider what that person needed to decide, the information they relied on and the people they depended on.
+<p className="lead">Earlier outputs described a person&apos;s background and broad goals. I wanted the AI to account for their decisions, information needs and working relationships.
 </p>
 <div className="scaffold-comparison">
 <div className="shared-prompt"><span>THE SAME PRODUCT QUESTION</span>
@@ -230,11 +230,11 @@ export function AiSystemsStory() {
 </p>
 <div className="split">
 <div>
-<h2>Connect the facets.<br />Make uncertainty visible.
+<h2>Give each role a working context.
 </h2>
-<p>The persona instructions organized source material around practical work: goals, responsibilities, workflows, decision rights, collaborators, tools and data. Trust requirements and adoption barriers gave the AI reasons to question an idea&apos;s usefulness.
+<p>The persona instructions covered goals, responsibilities, workflows, decision rights, collaborators, tools and data. I included trust and adoption concerns so the AI could consider what might make an idea hard to use.
 </p>
-<p>I used publicly available role information, whitepapers and leading industry forums. The instructions kept evidence, assumptions and questions for real research distinct.
+<p>I used publicly available role information, whitepapers and industry forums. The instructions kept source material, assumptions and questions for real research separate.
 </p>
 </div>
 <figure className="persona-structure">
@@ -277,13 +277,13 @@ export function AiSystemsStory() {
 <section className="chapter" id="ai-dependencies">
 <p className="eyebrow">03 / Model the work between roles
 </p>
-<h2>The handoff connects the screens.
+<h2>Map what passes between roles.
 </h2>
-<p className="lead">A cross-persona dependency sheet mapped how roles worked together. That gave UX questions a context for deciding where handoff workflows and different management views were needed.
+<p className="lead">I mapped how the roles depended on each other. That helped me ask where a handoff workflow or a different management view might be needed.
 </p>
 <figure className="dependency-example">
 <header><span>Illustrative application</span>
-<h3>One blocker. Different decisions.
+<h3>One blocker, seen by three roles.
 </h3>
 </header>
 <div className="dependency-grid">
@@ -422,7 +422,7 @@ export function AiSystemsStory() {
 <figcaption>Illustrative screens with fictional work and data. The same permit blocker connects individual work, team coordination and delivery decisions.
 </figcaption>
 </figure>
-<p className="dependency-result">I brought the role perspectives together into a use-case scenario. The framework supported reasoning about the work across screens, beyond a list of features for individual users.
+<p className="dependency-result">I brought the role perspectives together in a use-case scenario. The framework let me explore the work across screens, rather than considering each role in isolation.
 </p>
 </section>
 
@@ -431,19 +431,19 @@ export function AiSystemsStory() {
 </p>
 <div className="split">
 <div>
-<h2>Specific enough to feel<br />like familiar work.
+<h2>The answers reflected<br />more of the work.
 </h2>
-<p>The responses felt more like feedback from someone working in the industry. They reflected priorities, pains and constraints that a demographic sketch had not captured.
+<p>The responses felt closer to feedback from someone in the industry. They included priorities, pain points and constraints that the earlier demographic sketch had missed.
 </p>
 <p>At a company where confidentiality and security were top priorities, colleagues asked whether I had supplied internal documents to a public AI.
 </p>
 </div>
 <aside className="adoption-note">
-<p className="eyebrow">The source of that specificity
+<p className="eyebrow">Where the details came from
 </p>
 <h3>I had used only publicly available material.
 </h3>
-<p>The framework gathered and connected that material around people&apos;s work and the relationships between their roles.
+<p>The framework organized that public material around people&apos;s work and the relationships between their roles.
 </p>
 </aside>
 </div>

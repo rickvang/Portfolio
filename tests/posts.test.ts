@@ -33,7 +33,7 @@ describe("posts adapter", () => {
     expect(posts.find((post) => post.slug === "persona-led-design-discovery")).toMatchObject({
       source: "source-controlled",
       status: "published",
-      title: "Persona-led Design Starts Before the Screen",
+      title: "Using AI Personas During Design",
     });
     expect(posts.map((post) => post.slug)).not.toContain("fixture-post");
   });
@@ -42,7 +42,7 @@ describe("posts adapter", () => {
     const article = await getPublishedPostBySlug("persona-led-design-discovery");
 
     expect(article?.sections).toHaveLength(6);
-    expect(article?.content[0]).toContain("AI personas are most useful");
+    expect(article?.content[0]).toContain("I use AI personas to explore design questions");
     await expect(getPublishedPostBySlug("fixture-post")).resolves.toBeNull();
     await expect(getPublishedPostBySlug("missing-post")).resolves.toBeNull();
   });

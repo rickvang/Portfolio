@@ -4,7 +4,7 @@ import { designSystemCatalogUrl } from "@/lib/design-system-catalog";
 
 export const metadata: Metadata = {
   title: "Library · Rick Vang",
-  description: "Design system catalog embedded from the ui-starter Storybook.",
+  description: "Browse the UI patterns I’m building in Storybook.",
 };
 
 export default function LibraryPage() {

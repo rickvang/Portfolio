@@ -10,7 +10,7 @@ export default async function NotesPage() {
     <div className="public-page">
       <section className="hero notes-hero">
         <h1>Notes</h1>
-        <p className="lede">Short observations and ideas from ongoing design work.</p>
+        <p className="lede">Notes on product design, working with AI and the decisions behind the work.</p>
       </section>
 
       <section aria-label="Published notes" className="content-section notes-index-section">

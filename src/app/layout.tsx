@@ -20,7 +20,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   title: "Rick Vang",
-  description: "Portfolio foundation for rickvang.com.",
+  description: "Product design, design systems and AI-assisted workflows by Rick Vang.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

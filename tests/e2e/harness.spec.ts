@@ -122,7 +122,7 @@ test("harness exposes authored editorial sources with their publication state", 
 
   await expect(aiSystems.getByRole("heading", { name: "AI Systems", exact: true })).toBeVisible();
   await expect(uiPractices.getByRole("heading", { name: "UI Design Practices", exact: true })).toBeVisible();
-  await expect(article.getByRole("heading", { name: "Persona-led Design Starts Before the Screen" })).toBeVisible();
+  await expect(article.getByRole("heading", { name: "Using AI Personas During Design" })).toBeVisible();
 
   const chapterNav = aiSystems.getByRole("navigation", { name: "Case study chapters" });
   for (const chapter of ["Context", "Personas", "Exploration", "System", "Outcomes"]) {
