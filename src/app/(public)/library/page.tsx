@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
-import { designSystemCatalogUrl } from "@/lib/design-system-catalog";
+import {
+  designSystemCatalogEmbedUrl,
+  designSystemCatalogUrl,
+} from "@/lib/design-system-catalog";
 
 export const metadata: Metadata = {
   title: "Library · Rick Vang",
@@ -23,7 +26,7 @@ export default function LibraryPage() {
       <iframe
         className="practice-library-frame"
         data-testid="practice-library-frame"
-        src={designSystemCatalogUrl}
+        src={designSystemCatalogEmbedUrl}
         title="Design system catalog"
       />
     </section>

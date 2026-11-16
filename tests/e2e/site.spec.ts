@@ -21,7 +21,10 @@ test("the library is accessible from desktop and mobile navigation", async ({ pa
   ).toHaveAttribute("aria-current", "page");
   const frame = page.getByTestId("practice-library-frame");
   await expect(frame).toBeVisible();
-  await expect(frame).toHaveAttribute("src", "https://ui-starter.rickvang.com");
+  await expect(frame).toHaveAttribute(
+    "src",
+    "https://ui-starter.rickvang.com/?path=/story/patterns-overview--overview&embed=1",
+  );
   await expect(frame).toHaveAttribute("title", "Design system catalog");
 });
 
