@@ -11,8 +11,8 @@ import { publicRoutes } from "@/lib/public-routes";
 
 const fullNavigationItems = [
   { href: publicRoutes.work, index: "01", label: "Work" },
-  { href: publicRoutes.library, index: "02", label: "Library" },
-  { href: publicRoutes.notes, index: "03", label: "Notes" },
+  { href: publicRoutes.notes, index: "02", label: "Notes" },
+  { href: publicRoutes.library, index: "03", label: "Library" },
   { href: publicRoutes.about, index: "04", label: "About" },
 ] as const;
 

@@ -8,7 +8,7 @@ test("the library is accessible from desktop and mobile navigation", async ({ pa
     const navigation = page.getByRole("navigation", { name: "Primary navigation" }).filter({ visible: true });
     const library = navigation.getByRole("link", { name: "Library" });
     await expect(library).toBeVisible();
-    await expect(navigation.locator(".practice-nav-link").nth(1)).toHaveAccessibleName("Library");
+    await expect(navigation.locator(".practice-nav-link").nth(2)).toHaveAccessibleName("Library");
     await expect(library).toHaveAttribute("href", "/library");
     await expect(library).not.toHaveAttribute("aria-current", "page");
   }
