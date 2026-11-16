@@ -2,7 +2,7 @@
 export const designSystemCatalogUrl = "https://ui-starter.rickvang.com";
 
 /**
- * In-shell embed: Patterns/Overview with Storybook nav chrome hidden (`embed=1`).
- * Manager detects iframe / ?embed=1 and collapses nav + addon panel.
+ * In-shell Library iframe: the full Storybook catalog (sidebar + stories).
+ * Do not use `?embed=1` here — that hides catalog navigation.
  */
-export const designSystemCatalogEmbedUrl = `${designSystemCatalogUrl}/?path=/story/patterns-overview--overview&embed=1`;
+export const designSystemCatalogEmbedUrl = designSystemCatalogUrl;
