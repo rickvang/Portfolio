@@ -59,6 +59,20 @@ test("personal practice rail marker preserves keyboard focus when the pointer le
   ).toBe(focusedTop);
 });
 
+test("mobile /work drawer closes and returns focus on immediate Escape", async ({ page }) => {
+  await page.goto("/work");
+  const menuButton = page.getByRole("button", { name: "Open site navigation" });
+  const drawer = page.getByRole("dialog", { name: "Site navigation" });
+
+  await menuButton.click();
+  // Sample the open state without waiting for the entrance animation.
+  expect(await drawer.isVisible()).toBe(true);
+  await page.keyboard.press("Escape");
+
+  await expect(drawer).toHaveCount(0);
+  await expect(menuButton).toBeFocused();
+});
+
 test("mobile public navigation traps focus and returns it on Escape", async ({ page }) => {
   await page.goto("/work");
 
