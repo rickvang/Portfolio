@@ -3,7 +3,7 @@
 - Status: owner authorized merge of the review experience; draft publication and Design Systems artifact attribution remain open
 - Created / updated: 2026-10-02 / 2026-10-03
 - Owner: Riley Morgan / ai-orchestrator; Codex executes directly
-- Current Work: [CW-83](https://app.notion.com/p/3eecd82535ff8197abd6e6b6e3550609)
+- If this work resumes, use the public issues below to identify the scope, then find or create the matching Portfolio task using the [work-tracking instructions](../../../AGENTS.md#orchestration-and-continuity).
 - Issues: [Portfolio #62](https://github.com/rickvang/Portfolio/issues/62) (lead story/contact) and [Portfolio #66](https://github.com/rickvang/Portfolio/issues/66) (project-specific review examples)
 - Target: rickvang/Portfolio, local prototype on codex/case-study-rethink from merged main 5d00bfa
 - Operating route: owner interview → source-backed content → scoped presentation/contact edits → verification → owner publication decision
