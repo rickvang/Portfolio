@@ -10,19 +10,15 @@ Persona Workspace, Persona-Library, SkillRepo, operating-packs, and tool-repo ma
 
 - For every substantial Portfolio workstream, treat Riley Morgan / `ai-orchestrator` as the default durable orchestration owner unless the requester explicitly establishes another orchestration boundary.
 - The selected Persona, Skill, Playbook, Tool path, specialist, or execution runtime may operate directly. Do not insert an unnecessary Riley execution hop.
-- When the user's Notion Current Work tracker is available, create or resume one row at the first substantial checkpoint and use it as the concise cross-thread/cross-agent index.
-- Keep Current Work focused on durable resumable context: Work ID, current objective, owner, Operating Route, optional Parent Work ID, next action, blocker, last checkpoint, and authoritative links.
-- Reconcile Riley's durable orchestration state at workstream creation, material rerouting, cross-agent handoff, major blocker, and completion.
-- Use a repo-local Work Order only when the work needs **unique durable execution/recovery state** that Current Work + the GitHub issue/PR + existing project artifacts do not already preserve. Follow `docs/work-orders.md`.
-- A bounded change may use the no-Work-Order lane when those existing surfaces already preserve objective/scope, owner/route, accepted evidence or decision boundary, blocker/next action, and completion criteria. "Small" refers to recovery footprint, not risk, semantic importance, file count, or test count.
-- Use this state hierarchy: **Current Work → Work Order when needed, otherwise the smallest authoritative issue/PR/project artifact → selectively refreshed live systems**.
-- Work Graph membership and Riley supervision remain in force when the work is a supervised node; omitting a Work Order never removes orchestration obligations.
-- GitHub, Vercel, Supabase, deployments, permissions, CI, review state, mergeability, and other independently changing systems remain freshness-sensitive authorities. Do not mirror volatile live state into Current Work merely to make the tracker look complete.
-- If Current Work cannot be updated because the required Notion tool, connection, or permission is unavailable, explicitly state **Current Work not updated** and why.
+- Find the Portfolio project in the configured Taskosaur workspace. At the first substantial checkpoint, search its tasks for the workstream and resume the matching task. Create a project task if the work is new.
+- Keep the task’s objective, owner, operating route, latest checkpoint, blocker, next action and links to public issues or pull requests current. Link a parent task when Riley splits an outcome into child workstreams.
+- Reconcile Riley’s durable orchestration state at workstream creation, material rerouting, cross-agent handoff, major blocker and completion. Preserve Work Graph membership and supervision for a supervised node.
+- Resume from the Portfolio task, then the linked issue, PR or project artifact. Add a repo-local [Work Order](docs/work-orders.md) only when another agent would otherwise have to reconstruct a decision, accepted evidence or recovery step.
+- Refresh GitHub, Vercel, Supabase, deployments, permissions and other live systems before relying on their current state. If Taskosaur is unavailable, identify the missing access and the checkpoint still to record.
 
 ## Development contract
 
-- For project orientation or pattern discovery, use [the project profile](docs/design/project-profile.md) and its selective pattern index. These link existing owners; current task state remains in Current Work and the relevant issue/PR or Work Order.
+- For project orientation or pattern discovery, use [the project profile](docs/design/project-profile.md) and its selective pattern index. These link existing owners. The Portfolio task holds the current objective and next action.
 - Use pnpm and the Node version declared in `package.json`.
 - Read `ARCHITECTURE.md` and `DECISIONS.md` before changing system boundaries.
 - Read `DESIGN.md` first before visual changes or reusable component work, then load only the task-specific reference from `docs/design/` named by its selective-routing table. Do not read the entire design reference set by default.
@@ -39,13 +35,10 @@ Persona Workspace, Persona-Library, SkillRepo, operating-packs, and tool-repo ma
 
 ## Work tracking
 
-- Create or link a GitHub issue for each non-trivial implementation plan. Keep scope, status, and next action visible there. Link it from the Work Order when one exists; otherwise link it from Current Work or the smallest authoritative project artifact used for recovery.
-- Use one Current Work row per substantial workstream, not one row per conversational turn.
-- Before creating a Work Order, ask: **If the agent stops mid-task, can another agent resume safely from Current Work + the GitHub issue/PR + existing project artifacts without reconstructing hidden decisions?** If yes, reuse those surfaces and do not create a duplicate Work Order. If no, create/use one.
+- Create or link a GitHub issue for each non-trivial implementation plan. Keep repository scope and progress visible there. Link the public issue or PR from its Taskosaur task. Keep private task links, identifiers and workspace details out of this public repository, issues and PRs.
+- Use the same task across turns. Update it before reporting a material handoff, blocker, priority change or completion.
 - When a Work Order exists, link specialized artifacts rather than duplicating them.
 - Archive terminal Work Orders under `docs/work-orders/archive/YYYY-MM/<work-order-id>/` rather than deleting them. When the implementation PR is the final repository change, record terminal status and move the Work Order to the archive **in that same PR**. Archive-only PRs are not the normal closeout path and should not create an avoidable additional production deployment.
-- When work is already represented in Current Work, reconcile that record before reporting a material handoff, blocker, priority change, or completion.
-- When Riley decomposes a substantial outcome into child workstreams, record the parent `CW-#` in Current Work's **Parent Work ID** field.
 
 ## GitHub operating boundary
 

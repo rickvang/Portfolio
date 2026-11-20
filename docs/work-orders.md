@@ -8,7 +8,7 @@ Do not create a Work Order merely because a change is important, risky, multi-fi
 
 Before creating a Work Order, ask:
 
-> If the agent stops mid-task, can another agent resume safely from Current Work + the GitHub issue/PR + existing project artifacts without reconstructing hidden decisions?
+> If the agent stops mid-task, can another agent resume safely from the Portfolio task in Taskosaur, the GitHub issue or PR, and existing project artifacts without reconstructing hidden decisions?
 
 - **Yes:** no separate Work Order is required. Reuse the existing authoritative surfaces.
 - **No:** create or continue a Work Order.
@@ -23,19 +23,13 @@ A bounded no-Work-Order change is valid when the existing surfaces already prese
 
 Move into a Work Order as soon as those surfaces stop being enough—for example, when work becomes interruptible across agents/sessions, has multi-phase gates that are hard to reconstruct, or needs durable accepted-evidence/decision state that does not belong in the issue/PR or a project artifact.
 
-Omitting a Work Order does **not** remove Current Work continuity, Riley supervision, Work Graph membership, authorization, validation, design/architecture artifacts, or live-state refresh requirements.
+Omitting a Work Order does **not** remove Taskosaur task continuity, Riley supervision, Work Graph membership, authorization, validation, design/architecture artifacts, or live-state refresh requirements.
 
 ## State hierarchy
 
-Use the following hierarchy for substantial work:
-
-1. **Current Work** — concise cross-thread/cross-agent index: Work ID, objective, owner, Operating Route, optional Parent Work ID, next action, blocker, last checkpoint, and authoritative links.
-2. **Work Order or smallest authoritative work artifact** — use a Work Order only for unique durable execution/recovery state. Otherwise resume from the relevant GitHub issue/PR or project-specific architecture/design/content artifact that already owns the needed state.
-3. **Live systems** — freshness-sensitive operational authority: GitHub branches/PRs/checks/reviews/mergeability, Vercel deployments, Supabase state, permissions, and other independently changing systems.
-
-**Resume order:** Current Work → linked Work Order when one exists, otherwise the smallest authoritative issue/PR/project artifact → selectively refresh live systems whose state may have changed.
-
-Do not copy fast-changing live state into Notion as if it were durable truth. Record the last proven checkpoint and what must be refreshed before the next consequential mutation.
+1. **Portfolio task in Taskosaur** — search the Portfolio project in the configured workspace for the matching workstream. Read its objective, owner, operating route, parent task when applicable, next action, blocker, latest checkpoint and evidence links.
+2. **Work Order or project artifact** — follow the task’s link to the artifact that holds the execution or recovery details. This may be a GitHub issue, a PR, a design decision or a Work Order. Keep private evidence with its authorized readers.
+3. **Live systems** — refresh GitHub checks, review or merge state, Vercel deployments, Supabase state and permissions when they affect the next action. Record the last verified checkpoint in the task.
 
 ## Riley continuity
 
@@ -74,8 +68,7 @@ A Work Order should record:
 - Work Order ID and title;
 - status;
 - created / last-updated date;
-- linked Current Work ID and URL when available;
-- linked GitHub issue;
+- public GitHub issue or PR (link back to this Work Order from the private Taskosaur task);
 - requester and current owner;
 - Operating Route;
 - request mode and target repository;
@@ -97,10 +90,10 @@ Do not turn it into a transcript or duplicate every commit/check.
 
 ## Completion
 
-When a Work Order exists, it is complete when the scoped outcome is in place, directly inspectable structure/invariants are correct, applicable checks have passed or remaining uncertainty is stated, authorization boundaries were respected, and Current Work has been reconciled to the terminal state **when the tracker is available**. If the implementation PR is the final repository change, terminalize and archive the Work Order in that same PR.
+When a Work Order exists, it is complete when the scoped outcome is in place, directly inspectable structure/invariants are correct, applicable checks have passed or remaining uncertainty is stated, authorization boundaries were respected, and the Portfolio task in Taskosaur records the outcome. If the implementation PR is the final repository change, terminalize and archive the Work Order in that same PR.
 
-For a no-Work-Order change, completion is carried by Current Work plus the issue/PR and relevant project artifacts; do not create a Work Order only to record that the work finished.
+For a no-Work-Order change, record completion in the Portfolio task with the issue, PR or relevant project artifacts; do not create a Work Order only to record that the work finished.
 
-If Current Work cannot be written because the required Notion tool, connection, or permission is unavailable, the explicit `Current Work not updated` fallback plus the reason satisfies the tracker portion of completion; reconcile it later when a subsequent authorized agent has access.
+If access to the Portfolio task is unavailable, report the access gap and the checkpoint still to record. An agent with access can reconcile it there.
 
 Portfolio-specific completion and verification requirements in `AGENTS.md`, `ARCHITECTURE.md`, and `DESIGN.md` still apply. The normal `pnpm verify`, browser verification where applicable, GitHub review/merge, and deployment authorization semantics are unchanged.

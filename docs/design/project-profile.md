@@ -1,6 +1,6 @@
 # Portfolio project profile
 
-Project ID: `rickvang/Portfolio`. Repository: [Portfolio](https://github.com/rickvang/Portfolio). This is durable design orientation; [Current Work](https://app.notion.com/p/3decd82535ff81809250e8db33b9ce3c) and the relevant issue/PR own current objectives, decisions and next actions.
+Project ID: `rickvang/Portfolio`. Repository: [Portfolio](https://github.com/rickvang/Portfolio). This profile provides durable design orientation. Find current objectives and next actions in the Portfolio project in your configured Taskosaur workspace.
 
 ## Start here
 
@@ -9,7 +9,7 @@ Help readers understand Rick's work through source-backed stories and reach rele
 1. Read [repository instructions](../../AGENTS.md), then [DESIGN.md](../../DESIGN.md) for visual/interaction work.
 2. Use the [pattern index](pattern-index.md) to find the relevant existing layout, collection, CRUD or content convention; follow its owning source.
 3. For architecture/data boundaries use [ARCHITECTURE.md](../../ARCHITECTURE.md) and [DECISIONS.md](../../DECISIONS.md); for imported content use [content import](../content-import.md).
-4. On resumption, retrieve the matching Current Work record and linked issue/PR or [Work Order](../work-orders.md). Historical design studies are not active redesigns merely because they are discoverable.
+4. On resumption, find the matching Portfolio task in Taskosaur and follow its link to the issue, PR or [Work Order](../work-orders.md). Historical design studies are not active redesigns merely because they are discoverable.
 
 ## Design infrastructure readiness
 
@@ -34,6 +34,6 @@ The application's `src/lib/experience-profiles.ts` contains authored case-study 
 
 ## Work and updates
 
-This infrastructure was introduced under [CW-99](https://app.notion.com/p/3f4cd82535ff81e2be64c42a2146fb04). Prior CW-97 and other design studies supply historical evidence; use Current Work and live issue/PR state to find anything still active. Never treat this pointer as a live status mirror.
+The [original project profile and pattern index](https://github.com/rickvang/Portfolio/commit/db837bcc12ea18e274d88cd9d0cc1e8a8c0e5e30) record the design context at introduction. For active work, use the Portfolio task in Taskosaur and refresh its linked issue or PR.
 
 Update this profile only when purpose, authority, coverage, dependencies or durable constraints change. Put a proposed pattern/variant in its owning design reference with evidence and scope; retain the adopted baseline while exploring. A redesign records alternatives and acceptance in the work record. A refactor records behavior to preserve and affected consumers. When replacing a pattern, link old and new IDs, migration scope, remaining consumers and rollback source before marking the old record superseded. Transferable reasoning may be proposed to shared design knowledge with conditions and counterexamples; Portfolio's visual style stays here.
