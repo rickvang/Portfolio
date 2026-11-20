@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("approved Work gallery pairs each project with a consistent preview and one provenance note", async ({ page }) => {
   await page.goto("/work");
-  await expect(page.getByRole("heading", {level:1, name:/Designing the parts/})).toBeVisible();
+  await expect(page.getByRole("heading", {level:1, name:/Selected work across/})).toBeVisible();
   const gallery = page.getByRole("region", {name:"Case studies"});
   await expect(gallery.locator(".project")).toHaveCount(5);
   await expect(gallery.getByRole("heading", {level:3})).toHaveText(["Multi Product Integrations", "AI Systems", "Design Systems", "UI Design Practices", "UI Systems Lab"]);
@@ -23,7 +23,7 @@ test("mobile home uses the working-index structure without horizontal overflow",
   await expect(
     page.getByRole("heading", {
       level: 1,
-      name: "I make complex products easier to understand, build, and evolve.",
+      name: "I design interfaces for complex workflows.",
       exact: true,
     }),
   ).toBeInViewport({ ratio: 1 });
@@ -204,7 +204,7 @@ test("both work patterns stay visible with reduced motion", async ({ page }) => 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: /Selected work across/ })).toBeVisible();
   await expect(page.getByRole("region", { name: "Case studies" })).toBeVisible();
   await expect(page.locator(".portfolio-pages .project")).toHaveCount(5);
   await expect(page.locator(".gallery-note")).toHaveCount(1);

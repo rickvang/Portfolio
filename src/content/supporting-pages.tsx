@@ -14,10 +14,10 @@ export function WorkPageContent({ approvedSlugs }: {
     <div>
     <p className="eyebrow">Selected work
     </p>
-    <h1>Designing the parts.<br /><em>Connecting the whole.</em>
+    <h1>Selected work across<br /><em>products and systems.</em>
     </h1>
     </div>
-    <p className="intro">Product experiences, shared foundations and the ways teams bring them into practice.
+    <p className="intro">A few examples of how I work through product problems, build shared patterns and help teams use them.
     </p>
     </header>
 
@@ -33,7 +33,7 @@ export function WorkPageContent({ approvedSlugs }: {
         </div>
         <h3>Multi Product Integrations
         </h3>
-        <p>Turning repeated workflow decisions into shared patterns, Figma libraries and a layout starter teams could adapt.
+        <p>I helped define shared workflow patterns, Figma libraries and a layout starter teams could adapt.
         </p><span className="read">Explore the case study <span aria-hidden="true">→</span></span>
         </Link>
         </article>)}
@@ -46,7 +46,7 @@ export function WorkPageContent({ approvedSlugs }: {
         </div>
         <h3>AI Systems
         </h3>
-        <p>Giving AI the context to assess an idea against people’s work, decisions and dependencies.
+        <p>I gave AI role-specific work context and dependencies to consider when assessing product ideas.
         </p><span className="read">Explore the case study <span aria-hidden="true">→</span></span>
         </Link>
         </article>)}
@@ -59,7 +59,7 @@ export function WorkPageContent({ approvedSlugs }: {
         </div>
         <h3>Design Systems
         </h3>
-        <p>A common foundation for legacy products, with room for different interfaces and ways of working.
+        <p>I helped create a shared library for redesigning legacy products, with guidance for different product surfaces.
         </p><span className="read">Explore the case study <span aria-hidden="true">→</span></span>
         </Link>
         </article>)}
@@ -73,7 +73,7 @@ export function WorkPageContent({ approvedSlugs }: {
         </div>
         <h3>UI Design Practices
         </h3>
-        <p>Making design decisions explicit, from layout and interaction to the contracts that carry them into implementation.
+        <p>I make decisions about layout, interaction and implementation clear enough for a team to build from.
         </p><span className="read">Explore the case study <span aria-hidden="true">→</span></span>
         </Link>
         </article>)}
@@ -87,7 +87,7 @@ export function WorkPageContent({ approvedSlugs }: {
         </div>
         <h3>UI Systems Lab
         </h3>
-        <p>A UI library for exploring reusable patterns and trying them in prototype flows.
+        <p>I’m building a UI library and a place to try its patterns in prototype flows.
         </p><span className="read">Explore the lab <span aria-hidden="true">→</span></span>
         </Link>
         </article>)}
@@ -99,9 +99,9 @@ export function WorkPageContent({ approvedSlugs }: {
 
     </section>
     <footer className="page-close">
-    <p>More about the person behind the work.
+    <p>Want to know more about how I work?
     </p>
-    <Link href="/about">Meet Rick <span aria-hidden="true">→</span>
+    <Link href="/about">About me <span aria-hidden="true">→</span>
     </Link>
     </footer>
 
@@ -118,12 +118,12 @@ export function AboutPageContent({ stats }: {
     <header className="page-header about-header">
     <p className="eyebrow">About / Rick Vang
     </p>
-    <h1>I’m most useful when<br />the challenge is<br /><em>bigger than a screen.</em>
+    <h1>Product design,<br /><em>systems and implementation.</em>
     </h1>
     <div className="about-intro">
-    <p className="lead">I help teams turn complex workflows into products people can understand—and teams can evolve.
+    <p className="lead">I help teams turn complex workflows into products people can understand and teams can keep improving.
     </p>
-    <p>Over 13 years, I’ve worked at the intersection of product design, systems thinking and implementation. I care about giving people tools that help them spend less time fighting fires and more time on the work that matters to them.
+    <p>I have over 13 years of experience across product design, systems thinking and implementation. I care about tools that help people spend less time fighting fires and more time on the work they came to do.
     </p>
     </div>
     </header>
@@ -134,32 +134,32 @@ export function AboutPageContent({ stats }: {
     <div>
     <p className="eyebrow">How I contribute
     </p>
-    <h2>From understanding<br />to something useful.
+    <h2>How I work with a team.
     </h2>
-    <p>Clarifying the problem, finding the structure and carrying the decisions through.
+    <p>I work from the task and its constraints through to a design the team can build and maintain.
     </p>
     </div>
     <div className="approach-list">
     <div>
-    <h3>Understand the work.
+    <h3>Understand the workflow.
     </h3>
-    <p>Start with what people need to do, the decisions they make and the people they depend on.
+    <p>I look at what people need to do, the decisions they make and the handoffs that shape the task.
     </p>
     <Link href="/work/ai-systems">See AI Systems <span aria-hidden="true">↗</span>
     </Link>
     </div>
     <div>
-    <h3>Build foundations teams can share.
+    <h3>Build shared foundations.
     </h3>
-    <p>Find the repeated decisions and give teams a useful starting point they can adapt to their context.
+    <p>I identify repeated design decisions and make patterns teams can reuse or adapt to their product.
     </p>
     <Link href="/work/design-systems">See Design Systems <span aria-hidden="true">↗</span>
     </Link>
     </div>
     <div>
-    <h3>Carry the intent into implementation.
+    <h3>Work through implementation.
     </h3>
-    <p>Make design decisions clear enough to build, review and evolve—with human judgment throughout.
+    <p>I work with developers to make interaction, accessibility and edge cases clear before implementation.
     </p>
     <Link href="/work/ui-design-practices">See UI Design Practices <span aria-hidden="true">↗</span>
     </Link>
@@ -168,7 +168,7 @@ export function AboutPageContent({ stats }: {
     </section>
 
     <footer className="page-close">
-    <p>Have a challenge that could use this kind of thinking?
+    <p>Have a product or design problem to work through?
     </p>
     <Link href="/contact">Let’s talk <span aria-hidden="true">→</span>
     </Link>
@@ -182,9 +182,9 @@ export function ContactPageContent() {
     <header className="page-header contact-header">
     <p className="eyebrow">Contact
     </p>
-    <h1>Good work starts<br /><em>with a conversation.</em>
+    <h1>Tell me what<br /><em>you’re working on.</em>
     </h1>
-    <p className="intro">For product design opportunities, collaboration or a question about my work—get in touch.
+    <p className="intro">I’m open to product design roles, collaboration and questions about my work. Send me a note.
     </p>
     </header>
 
@@ -194,7 +194,7 @@ export function ContactPageContent() {
     <Link className="email" href={`mailto:${contact.email}`}>{contact.email} <span aria-hidden="true">↗</span>
     </Link>
     <div className="contact-bottom">
-    <p>A little context about your team or the challenge is a good place to start.
+    <p>Tell me a little about your team and what you’re trying to solve.
     </p><CopyEmail email={contact.email}/>
     </div>
     </section>
@@ -209,7 +209,7 @@ export function ContactPageContent() {
     <div>
     <p className="eyebrow">A starting point
     </p>
-    <p>My work spans product workflows, design systems and AI-assisted design practice.
+    <p>I work across product workflows, design systems and AI-assisted design.
     </p>
     <Link href="/work" className="text-link">Explore the work <span aria-hidden="true">→</span>
     </Link>

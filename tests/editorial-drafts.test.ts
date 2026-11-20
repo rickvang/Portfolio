@@ -42,7 +42,7 @@ describe("persona-led design editorial draft", () => {
   });
 
   it("keeps synthetic-persona evidence limits explicit", () => {
-    expect(personaLedDesignDraft.excerpt).toContain("without mistaking synthetic perspective for user evidence");
+    expect(personaLedDesignDraft.excerpt).toContain("they are not evidence from real users");
     expect(personaLedDesignDraft.curationNotes.join(" ")).toContain("not framed as observed user research");
   });
 });

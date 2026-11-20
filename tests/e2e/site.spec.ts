@@ -125,12 +125,12 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 
   await expect(
     page.getByRole("heading", {
-      name: "I make complex products easier to understand, build, and evolve.",
+      name: "I design interfaces for complex workflows.",
       exact: true,
     }),
   ).toBeVisible();
   await expect(
-    page.getByText(/I work across product strategy, systems design, and AI-assisted delivery/i),
+    page.getByText(/I work across product design, design systems and AI-assisted workflows/i),
   ).toBeVisible();
   await expect(page.getByRole("link", { name: "See the work ↓" })).toHaveAttribute(
     "href",
@@ -151,16 +151,16 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   await expect(workRows.nth(2).getByRole("heading")).toHaveText("Design Systems");
   await expect(workRows.nth(3).getByRole("heading")).toHaveText("UI Design Practices");
   await expect(
-    selectedWork.getByText(/I helped define shared workflow patterns and Figma libraries/i),
+    selectedWork.getByText(/I worked with designers to define shared workflow patterns and Figma libraries/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/I built a research-grounded persona framework/i),
+    selectedWork.getByText(/I gave AI role profiles based on public research/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/I designed a platform framework within a shared core library/i),
+    selectedWork.getByText(/I designed a platform framework within a shared library/i),
   ).toBeVisible();
   await expect(
-    selectedWork.getByText(/I connect layout, information density and control states/i),
+    selectedWork.getByText(/I look at how layout, information density and control states affect a task/i),
   ).toBeVisible();
   await expect(selectedWork.locator(".practice-work-visual-image")).toHaveCount(2);
   await expect(selectedWork.locator(".practice-work-visual figcaption")).toHaveText([
@@ -183,12 +183,12 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
   const uiPreview = selectedWork.locator('[data-practice-work="ui-design-practices"]');
   await expect(uiPreview.getByLabel("Illustrative interface guidance: layout, density and foundations")).toBeVisible();
   await expect(uiPreview.locator("canvas")).toHaveCount(0);
-  await expect(page.getByText("Give AI useful context.", { exact: true })).toBeVisible();
-  await expect(page.getByText("Connect research, people’s decisions and role dependencies so AI can reason about their work.", { exact: true })).toBeVisible();
+  await expect(page.getByText("Give AI role-specific context.", { exact: true })).toBeVisible();
+  await expect(page.getByText("I connect public research to people’s responsibilities, decisions and dependencies at work.", { exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "How I work", exact: true })).toBeVisible();
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),
+    page.getByRole("heading", { name: "Using AI Personas During Design", exact: true }),
   ).toBeVisible();
   await expect(page.getByRole("heading", { name: "About", exact: true })).toBeVisible();
 
@@ -210,8 +210,8 @@ test("homepage is driven by approved portfolio content", async ({ page }) => {
 test("about page renders the approved biography and experience summary", async ({ page }) => {
   await page.goto("/about");
 
-  await expect(page.getByRole("heading", { name: /I’m most useful/ })).toBeVisible();
-  await expect(page.getByText(/Over 13 years, I’ve worked at the intersection of product design/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: /Product design,/ })).toBeVisible();
+  await expect(page.getByText(/I have over 13 years of experience across product design/i)).toBeVisible();
   await expect(page.getByText("Years of Experience", { exact: true })).toBeVisible();
   await expect(page.getByText("Companies", { exact: true })).toBeVisible();
   await expect(page.getByText("Projects Delivered", { exact: true })).toBeVisible();
@@ -220,7 +220,7 @@ test("about page renders the approved biography and experience summary", async (
 test("approved imported work is public through the shared case-study routes", async ({ page }) => {
   await page.goto("/work");
 
-  await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: /Selected work across/ })).toBeVisible();
   const caseStudies = page.getByRole("region", { name: "Case studies" });
   await expect(caseStudies).toBeVisible();
   await expect(caseStudies.locator(".project")).toHaveCount(5);
@@ -232,14 +232,14 @@ test("approved imported work is public through the shared case-study routes", as
   await expect(page).toHaveTitle("Multi Product Integrations | Rick Vang");
   await expect(page.getByTestId("personal-practice-shell")).toBeVisible();
   await expect(page.getByTestId("practice-nav-marker")).toHaveAttribute("data-visible", "true");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Shared patterns.Room for different work.");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("We found patternsteams could share.");
   await expect(page.getByText(/I worked with three teammates/)).toBeVisible();
   await expect(page.getByText(/Illustrative UI with fictional records/)).toBeVisible();
 
   await page.goto("/work/design-systems");
   await expect(page).toHaveTitle("Design Systems | Rick Vang");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("A common foundation.");
-  await expect(page.getByText(/I designed the platform framework/)).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 })).toContainText("One shared library");
+  await expect(page.getByText(/I designed a platform framework/)).toBeVisible();
   await expect(page.getByText(/Illustrative comparison with fictional content/)).toBeVisible();
 });
 
@@ -247,7 +247,7 @@ test("existing authored AI work is public through its intended routes", async ({
   await page.goto("/work/ai-systems");
   await expect(page).toHaveTitle("AI Systems | Rick Vang");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Give AI a model");
-  await expect(page.locator(".approved-story .intro")).toContainText("map of how their roles depended on each other");
+  await expect(page.locator(".approved-story .intro")).toContainText("mapped how the roles depended on one another");
 
   await page.goto("/work/ui-design-practices");
   await expect(page).toHaveTitle("UI Design Practices | Rick Vang");
@@ -255,12 +255,12 @@ test("existing authored AI work is public through its intended routes", async ({
   await expect(page.locator(".craft-intro")).toContainText("user workflows, visual hierarchy and reusable patterns");
 
   await page.goto("/notes/persona-led-design-discovery");
-  await expect(page).toHaveTitle("Persona-led Design Starts Before the Screen | Rick Vang");
+  await expect(page).toHaveTitle("Using AI Personas During Design | Rick Vang");
   await expect(
-    page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),
+    page.getByRole("heading", { name: "Using AI Personas During Design", exact: true }),
   ).toBeVisible();
-  await expect(page.getByText(/AI personas are most useful to my design process/i)).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Frame the problem before selecting personas" })).toBeVisible();
+  await expect(page.locator(".post-content").getByText(/I use AI personas to explore design questions/i)).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Define the problem first" })).toBeVisible();
 });
 
 test("public notes include source-controlled publications without fixture leakage", async ({ page }) => {
@@ -268,7 +268,7 @@ test("public notes include source-controlled publications without fixture leakag
 
   await expect(page.getByRole("heading", { name: "Notes", exact: true })).toBeVisible();
   await expect(
-    page.getByRole("heading", { name: "Persona-led Design Starts Before the Screen", exact: true }),
+    page.getByRole("heading", { name: "Using AI Personas During Design", exact: true }),
   ).toBeVisible();
   await expect(page.getByText("Fixture post", { exact: true })).toHaveCount(0);
   await expect(

@@ -1,8 +1,8 @@
 {
   "id": "persona-led-design-discovery",
   "slug": "persona-led-design-discovery",
-  "title": "Persona-led Design Starts Before the Screen",
-  "excerpt": "A practical method for structuring AI personas as bounded design collaborators before exploration, then questioning them during design without mistaking synthetic perspective for user evidence.",
+  "title": "Using AI Personas During Design",
+  "excerpt": "AI personas can help me find questions to investigate. I treat their responses as suggestions; they are not evidence from real users.",
   "reviewStatus": "published",
   "sources": [
     {
@@ -35,17 +35,17 @@
     }
   ],
   "intro": [
-    "AI personas are most useful to my design process when they are treated as bounded collaborators, not fictional users and not a panel I summon after the interface already exists.",
-    "The structure starts before design: define the problem, identify which perspective can answer which question, label what is evidence versus assumption, and decide what a persona is allowed to influence. During exploration, I can then question those personas about the workflow, terminology, priorities, handoffs, and failure states that belong to their scope.",
-    "The goal is not to manufacture confidence. It is to make design reasoning more inspectable while preserving the line between a modeled perspective and actual user evidence."
+    "I use AI personas to explore design questions. I treat them as modeled perspectives with a clear scope, not as fictional users or a panel that can validate a design.",
+    "Before I use them, I define the problem, choose the perspectives that can help, separate evidence from assumptions and decide what each persona can influence. Then I can ask about workflows, terminology, priorities, handoffs and failure states within that scope.",
+    "Their answers help me see what to investigate. They do not replace research with real users."
   ],
   "sections": [
     {
       "id": "frame-before-selecting",
-      "heading": "Frame the problem before selecting personas",
+      "heading": "Define the problem first",
       "body": [
-        "Start with the task, desired outcome, constraints, known evidence, missing evidence, and stopping condition. A persona should be selected because it contributes a distinct perspective to that frame, not because adding another voice feels comprehensive.",
-        "This prevents the design process from turning into role-play. It also makes it easier to see when the real gap is missing research, an unsettled content model, a tooling constraint, or a decision that belongs to a human owner."
+        "I start with the task, desired outcome, constraints, what I know, what I still need to learn and when to stop. I choose a persona when it brings a distinct perspective to that problem.",
+        "This helps me see whether I need more research, a clearer content model, a technical answer or a decision from someone on the team."
       ],
       "evidence": [
         {
@@ -60,10 +60,10 @@
     },
     {
       "id": "give-each-persona-a-job",
-      "heading": "Give each persona a bounded job",
+      "heading": "Give each persona a clear role",
       "body": [
-        "A useful design persona has a responsibility boundary. When structure, terminology, task flow, or evaluation is unsettled, the UX perspective should own those questions. Once the structure is sufficient, a UI perspective can focus on visual hierarchy, interaction states, responsive behavior, accessibility, and implementation fidelity.",
-        "Those roles can collaborate, but they should not collapse into one generic design voice. Clear boundaries make disagreement useful because I can trace it back to a specific design responsibility."
+        "Each persona needs a defined area of responsibility. If the structure, terminology or task flow is still unsettled, I use a UX perspective to work through those questions. Once the structure is clear enough, a UI perspective can focus on hierarchy, interaction states, responsive behavior, accessibility and implementation.",
+        "The perspectives can work together without blending into one generic design voice. When they disagree, I can see which design responsibility each one is considering."
       ],
       "evidence": [
         {
@@ -78,10 +78,10 @@
     },
     {
       "id": "shared-context-only-when-needed",
-      "heading": "Create shared context only when handoffs matter",
+      "heading": "Share context when the work crosses roles",
       "body": [
-        "Multiple personas do not automatically require a collaboration system. I use shared context when several perspectives need to contribute to one outcome, hand work between stages, or preserve consequential disagreement.",
-        "The shared record should carry the problem, evidence status, contributions, decisions, artifacts, blockers, quality gates, and next handoff. That turns the collaboration into an inspectable design process instead of a transcript."
+        "I use shared context when several perspectives contribute to one outcome, hand work between stages or need to keep an important disagreement visible.",
+        "The record should capture the problem, evidence, contributions, decisions, blockers, quality checks and next handoff. Then I can review how the work moved forward without relying on a chat transcript."
       ],
       "evidence": [
         {
@@ -96,10 +96,10 @@
     },
     {
       "id": "question-during-exploration",
-      "heading": "Question personas during exploration",
+      "heading": "Ask specific questions during exploration",
       "body": [
-        "Once the responsibilities are clear, the questions can become specific: What terminology is ambiguous in this workflow? Which information must remain visible on a narrow screen? What happens when the user returns after an interruption? Which state would make this action feel irreversible? What evidence would change this recommendation?",
-        "For a synthetic or modeled perspective, the answer stays labeled as an assumption, recommendation, or unknown. I use it to surface design risks and better validation questions, not to claim that users said or wanted something."
+        "Once the roles are clear, I can ask about a particular workflow: Which terms could confuse someone? What needs to stay visible on a narrow screen? What happens when they return after an interruption? What evidence would change the recommendation?",
+        "I label a modeled answer as an assumption, recommendation or unknown. I use it to find design risks and questions to validate, not to claim that users said or wanted something."
       ],
       "evidence": [
         {
@@ -114,10 +114,10 @@
     },
     {
       "id": "preserve-disagreement",
-      "heading": "Preserve disagreement instead of averaging it away",
+      "heading": "Keep useful disagreements visible",
       "body": [
-        "If two design perspectives disagree about hierarchy, interaction, or risk, the useful move is not to force consensus. Record the tradeoff, the evidence each perspective is using, who owns the decision, and what would cause it to be revisited.",
-        "That creates a better handoff to prototyping and evaluation because the risky assumption is visible. It also keeps later iteration from looking like arbitrary preference changes."
+        "If two perspectives disagree about hierarchy, interaction or risk, I record the tradeoff, the evidence each one uses, who owns the decision and what would make us revisit it.",
+        "That gives the next person a clear question to explore in a prototype or evaluation. It also shows why a later design decision changed."
       ],
       "evidence": [
         {
@@ -132,10 +132,10 @@
     },
     {
       "id": "close-with-a-gate",
-      "heading": "Close with a real design gate",
+      "heading": "Check the design before moving on",
       "body": [
-        "Persona input is not the finish line. The design still needs a concrete output and a quality gate: does the structure serve the task, are important states covered, does responsive behavior preserve the relationships that matter, is focus and keyboard behavior defined, and what remains untested?",
-        "When real user evidence is available, it should outrank synthetic perspective. When it is not, the missing validation should remain explicit. A persona-led process is useful because it makes the next question clearer, not because it removes the need to ask real people."
+        "I still need a design I can review: does the structure support the task? Are important states covered? Does the layout work at different screen sizes? Are keyboard and focus behavior clear? What have I not tested?",
+        "Real user evidence takes priority over a modeled perspective. If I have not validated an assumption, I leave that gap visible. The personas help me decide what to ask next; they do not remove the need to ask real people."
       ],
       "evidence": [
         {

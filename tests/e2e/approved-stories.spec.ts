@@ -2,8 +2,8 @@ import { mkdir } from "node:fs/promises";
 import { expect, test } from "@playwright/test";
 
 const stories = [
-  { slug: "multi-product-integrations", title: "Shared patterns.", example: ".record-ui" },
-  { slug: "design-systems", title: "A common foundation.", example: ".density-demo" },
+  { slug: "multi-product-integrations", title: "We found patterns", example: ".record-ui" },
+  { slug: "design-systems", title: "One shared library", example: ".density-demo" },
   { slug: "ai-systems", title: "Give AI a model", example: ".dependency-example" },
 ];
 
@@ -35,6 +35,6 @@ for (const story of stories) {
     await expect(returnLink).toBeFocused();
     await returnLink.press("Enter");
     await expect(page).toHaveURL(/\/work$/);
-    await expect(page.getByRole("heading", { level: 1, name: /Designing the parts/ })).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1, name: /Selected work across/ })).toBeVisible();
   });
 }

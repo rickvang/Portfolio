@@ -10,9 +10,9 @@ export function IntegrationsStory({ clientIpDisclaimer }: { clientIpDisclaimer?:
 <header className="hero">
 <p className="eyebrow">Multi Product Integrations
 </p>
-<h1>Shared patterns.<br /><em>Room for different work.</em>
+<h1>We found patterns<br /><em>teams could share.</em>
 </h1>
-<p className="intro">Designers were making similar workflow decisions across separate applications. I helped turn those repeated decisions into shared patterns, Figma libraries and a layout starter that teams could adapt.
+<p className="intro">Designers were making similar workflow decisions in separate applications. I helped define shared patterns, build Figma libraries and create a layout starter teams could adapt.
 </p>
 <dl className="meta">
 <div>
@@ -41,11 +41,11 @@ export function IntegrationsStory({ clientIpDisclaimer }: { clientIpDisclaimer?:
 </p>
 <div className="split">
 <div>
-<h2>Different applications.<br />Familiar design problems.
+<h2>Separate apps, repeated decisions.
 </h2>
-<p>Across the places I&apos;ve worked, teams often defined their own workflows even when the interactions overlapped. We wanted a common starting point that could support those shared needs.
+<p>Across my work, I saw teams define their own workflows even when the interactions were similar. We wanted a common starting point for those shared needs.
 </p>
-<p>The work reached into everyday interface decisions: when to use a modal or drawer, where close controls belong, how information is read, and how labels relate to their values.
+<p>We worked through everyday interface choices: when to use a modal or drawer, where close controls belong, how people scan information, and how labels relate to values.
 </p>
 </div>
 <figure className="field-specimen">
@@ -80,15 +80,15 @@ export function IntegrationsStory({ clientIpDisclaimer }: { clientIpDisclaimer?:
 <section className="chapter" id="integration-choice">
 <p className="eyebrow">02 / Adopt the better pattern
 </p>
-<h2>Consistency also meant<br />learning from another team.
+<h2>We reused a pattern<br />another team had worked out.
 </h2>
-<p className="lead">Some applications had more developed dashboards and progressive-disclosure patterns. Their slide-in approach to creating and viewing records fit certain scenarios better than ours.
+<p className="lead">Some applications had more developed dashboards and ways to reveal information as needed. Their slide-in approach to creating and viewing records fit some scenarios better than ours.
 </p>
 <div className="split">
 <div>
-<p>We adopted that approach and brought it into the shared Figma libraries and guidelines. The common system could incorporate a better solution that already existed elsewhere.
+<p>We added that approach to the shared Figma libraries and guidelines. Teams could use a pattern that already worked well in another product.
 </p>
-<p>My contribution focused on defining workflow patterns and representing them in the system. In one real-estate engagement, I worked with three teammates; we divided the pattern work and iterated together.
+<p>In one real-estate engagement, I worked with three teammates. We divided the pattern work and iterated together; I focused on workflow patterns and how to represent them in the system.
 </p>
 </div>
 <figure className="record-example">
@@ -188,13 +188,13 @@ export function IntegrationsStory({ clientIpDisclaimer }: { clientIpDisclaimer?:
 </p>
 <div className="split">
 <div>
-<h2>The library was one part.<br />Adoption was the other.
+<h2>A shared library needed<br />people to use it.
 </h2>
-<p>We built component libraries with guidance for the patterns we defined together. I also created a layout starter for designers working in different problem spaces.
+<p>We built component libraries and guidance for the patterns we defined. I also created a layout starter for designers working in different problem spaces.
 </p>
 <p>I worked with frontend developers to understand feasibility. They implemented the code.
 </p>
-<p>The libraries were generally adopted across the projects I worked on. More established teams found adaptation harder, so collaboration remained part of the work.
+<p>Teams generally adopted the libraries across the projects I worked on. More established teams found them harder to adapt, so collaboration stayed part of the work.
 </p>
 </div>
 <div className="stack">

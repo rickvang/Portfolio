@@ -21,7 +21,7 @@ export default async function NotesPreview({ searchParams }: NotesPreviewProps) 
 
   const params = await searchParams;
   const slug = (Array.isArray(params.slug) ? params.slug[0] : params.slug)
-    ?? "taskosaur-workspace-and-docs";
+    ?? "workspace-and-docs";
   const draft = editorialDrafts.find((entry) => entry.slug === slug);
   if (!draft) notFound();
 

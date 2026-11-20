@@ -12,22 +12,22 @@ export function DesignSystemsStory({ clientIpDisclaimer }: { clientIpDisclaimer?
 <div>
 <p className="eyebrow">Design Systems
 </p>
-<h1>A common foundation.<br /><em>Different expressions.</em>
+<h1>One shared library<br /><em>for different products.</em>
 </h1>
-<p className="intro">Teams redesigning legacy capabilities needed a more consistent starting point. I designed the platform framework as part of a collaborative effort to build a core library.
+<p className="intro">Teams redesigning legacy products needed a more consistent starting point. I designed a platform framework with the team as we built a shared core library.
 </p>
 </div>
 <figure className="system-stack">
 <div className="system-layer"><span>Apply</span><strong>Workflows &amp; screens</strong>
-<p>Starting points for recurring tasks
+<p>Screens for recurring tasks
 </p>
 </div>
 <div className="system-layer"><span>Adapt</span><strong>Density &amp; interface guidance</strong>
-<p>Different needs across surfaces
+<p>Guidance for each surface
 </p>
 </div>
 <div className="system-layer"><span>Share</span><strong>Styles &amp; foundations</strong>
-<p>Reusable design decisions
+<p>Shared styles and tokens
 </p>
 </div>
 <figcaption>A conceptual map of the library&apos;s responsibilities.
@@ -55,11 +55,11 @@ export function DesignSystemsStory({ clientIpDisclaimer }: { clientIpDisclaimer?
 </p>
 <div className="split">
 <div>
-<h2>Start with the work<br />teams already have.
+<h2>Review the patterns<br />teams already use.
 </h2>
-<p>We audited existing patterns alongside user scenarios to identify duplication and decide where consistency would help. Stakeholder workshops aligned the goals; developer feedback helped us understand feasibility.
+<p>We reviewed existing patterns alongside user scenarios to find duplication and decide where consistency would help. Workshops helped align goals, and developer feedback showed us what was feasible.
 </p>
-<p>This gave us material to organize and refine into the core library. The foundations held reusable styles and tokens that teams could use as a common starting point.
+<p>We organized and refined that work into a core library. Its styles and tokens gave teams a shared starting point.
 </p>
 </div>
 <p className="story-callout">A shared foundation still needs to accommodate the surface being designed.
@@ -71,10 +71,10 @@ export function DesignSystemsStory({ clientIpDisclaimer }: { clientIpDisclaimer?
 
 <p className="eyebrow">02 / Adapt to the surface
 </p>
-<h2>One foundation.<br />Two kinds of reading.
+<h2>The same foundations,<br />different interface needs.
 </h2>
 
-<p className="lead">We maintained display marketing guidance alongside enterprise interface guidance. A page introducing an idea and a screen supporting daily work needed different hierarchies.
+<p className="lead">We kept marketing guidance alongside enterprise interface guidance. A page introducing an idea and a screen for daily work needed different hierarchies.
 </p>
 
 <div className="density-demo">
@@ -189,11 +189,11 @@ export function DesignSystemsStory({ clientIpDisclaimer }: { clientIpDisclaimer?
 
 <div className="split">
 <div>
-<h2>A starting point<br />people could adapt.
+<h2>Give designers a screen<br />they can adapt.
 </h2>
-<p>We created reusable screens that designers could duplicate and modify for a use case. Workflow patterns connected those screens to recurring tasks.
+<p>We created reusable screens designers could duplicate and adapt for a use case. Workflow patterns helped connect the screens to recurring tasks.
 </p>
-<p>The library brought the foundations and interface guidance into everyday design work.
+<p>The library brought shared foundations and interface guidance into day-to-day design work.
 </p>
 </div>
 
@@ -204,7 +204,7 @@ export function DesignSystemsStory({ clientIpDisclaimer }: { clientIpDisclaimer?
 </h3>
 <p>I worked with early adopters to build trust in the platform framework. Their collaboration was part of making the shared starting point useful.
 </p>
-<p>Keeping the system prioritized remained a challenge. Documentation, incremental rollouts and feedback supported the team&apos;s ongoing library work.
+<p>Keeping the system a priority remained a challenge. Documentation, incremental rollouts and feedback helped the team continue work on the library.
 </p>
 </aside>
 </div>

@@ -8,8 +8,8 @@ test("approved craft story supports chapter navigation, evidence inspection and 
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/work/ui-design-practices");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("How I approach interface design.");
-  await expect(page.getByText(/primary contributor working with three teammates/)).toBeVisible();
-  await expect(page.getByText(/libraries were generally adopted/)).toBeVisible();
+  await expect(page.getByText(/primary contributor on a team of four/)).toBeVisible();
+  await expect(page.getByText(/Teams generally adopted the libraries/)).toBeVisible();
   await expect(page.getByText("Build sequence", { exact: true })).toHaveCount(0);
   await expect(page.locator('main a[href*="rickvang.com"]')).toHaveCount(0);
   const chapters = page.getByRole("navigation", { name: "On this page" });
@@ -23,7 +23,7 @@ test("approved craft story supports chapter navigation, evidence inspection and 
   await decisionLink.focus();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/#decisions$/);
-  await expect(page.getByRole("heading", { name: "The same system. Different design decisions." })).toBeInViewport();
+  await expect(page.getByRole("heading", { name: "Make design decisions the team can reuse." })).toBeInViewport();
   const tabs = page.getByRole("tablist", { name: "Explore design decisions" });
   const layout = tabs.getByRole("tab", { name: "Layout & context" });
   await layout.focus();
@@ -68,7 +68,7 @@ test("craft examples fit narrow screens and reduced-motion navigation", async ({
       expect(await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)).toBe(false);
     }
     await page.getByRole("navigation", { name: "On this page" }).getByRole("link", { name: "Build a shared practice" }).click();
-    await expect(page.getByRole("heading", { name: "A design system is also a way of working together." })).toBeInViewport();
+    await expect(page.getByRole("heading", { name: "The team has to be able to use the system." })).toBeInViewport();
     if (width <= 900) expect((await page.locator("#practice").boundingBox())!.y).toBeGreaterThanOrEqual(76);
   }
   await page.setViewportSize({ width: 390, height: 844 });
