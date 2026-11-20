@@ -28,7 +28,7 @@ Omitting a Work Order does **not** remove Taskosaur task continuity, Riley super
 ## State hierarchy
 
 1. **Portfolio task in Taskosaur** — search the Portfolio project in the configured workspace for the matching workstream. Read its objective, owner, operating route, parent task when applicable, next action, blocker, latest checkpoint and evidence links.
-2. **Work Order or project artifact** — follow the task’s link to the smallest public artifact that holds the execution or recovery details. This may be a GitHub issue, a PR, a design decision or a Work Order.
+2. **Work Order or project artifact** — follow the task’s link to the artifact that holds the execution or recovery details. This may be a GitHub issue, a PR, a design decision or a Work Order. Keep private evidence with its authorized readers.
 3. **Live systems** — refresh GitHub checks, review or merge state, Vercel deployments, Supabase state and permissions when they affect the next action. Record the last verified checkpoint in the task.
 
 ## Riley continuity
